@@ -1,3 +1,32 @@
+@import 'common';
 .header {
-  height: 5rem;
+  background-color: $lightgray;
+  width: 100%;
+
+  .header-content {
+    height: 5rem;
+    width: 90%;
+    padding: 5px;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .space {
+    width: 15%;
+  }
+
+  @include media("<wide") {
+    width: 100%;
+  }
+
+  .nav-items {
+    flex: 1;
+    
+    .nav-item {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
 }
