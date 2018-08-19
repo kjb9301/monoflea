@@ -1,0 +1,16 @@
+@import 'lib/_media.scss';
+
+$breakpoints: (small: 320px, medium: 768px, large: 1024px, wide: 1400px);
+
+// 메인 컬러
+$lightgray: #C4D4E0;
+$darkgray: #9AABB9;
+$lightorange: #E2B49A;
+$lightyellow: #E9C77B;
+$navy: #193446;
+
+@mixin position-center() {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

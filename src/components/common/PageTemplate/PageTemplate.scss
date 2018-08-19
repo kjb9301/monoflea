@@ -1,0 +1,8 @@
+@import 'common';
+
+.page-template {
+  main {
+    background: $darkgray;
+    min-height: calc(100vh - 15rem);
+  }
+}
