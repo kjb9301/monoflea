@@ -1,0 +1,9 @@
+@import 'common';
+
+.notice-detail {
+  position: absolute;
+  @include position-center();
+  div {
+    font-size: 20px;
+  }
+}

@@ -4,20 +4,20 @@ import { pender } from 'redux-pender';
 
 import * as api from 'lib/api';
 
-const GET_NOTICE_LIST = 'notices/GET_NOTICE_LIST';
+const GET_NOTICE_DETAIL = 'notices/GET_NOTICE_DETAIL';
 
-export const getNoticeList = createAction(GET_NOTICE_LIST, api.getNoticeList);
+export const getNoticeDetail = createAction(GET_NOTICE_DETAIL, api.getNoticeDetail);
 
 const initialState = Map({
-  notices: List()
+  noticeDetail: Map({})
 });
 
 export default handleActions({
   ...pender({
-    type: GET_NOTICE_LIST,
+    type: GET_NOTICE_DETAIL,
     onSuccess: (state, action) => {
-      const { data: notices } = action.payload;
-      return state.set('notices', notices);
+      const { data: noticeDetail } = action.payload;
+      return state.set('noticeDetail', noticeDetail);
     }
   })
 }, initialState);

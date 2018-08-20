@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { MainPage, AboutPage, BoardPage, SellerPage, MarketPage, ClassPage } from 'pages';
+import { MainPage, AboutPage, BoardPage, SellerPage, MarketPage, ClassPage, BoardDetailPage } from 'pages';
 
 const App = () => {
   return (
@@ -8,10 +8,11 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={MainPage}/>
         <Route path="/about" component={AboutPage}/>
-        <Route path="/notices" component={BoardPage}/>
-        <Route path="/markets" component={MarketPage}/>
-        <Route path="/classes" component={ClassPage}/>
-        <Route path="/sellers" component={SellerPage}/>
+        <Route exact path="/notices" component={BoardPage}/>
+        <Route path="/notices/:id" component={BoardDetailPage}/>
+        <Route exact path="/markets" component={MarketPage}/>
+        <Route exact path="/classes" component={ClassPage}/>
+        <Route exact path="/sellers" component={SellerPage}/>
       </Switch>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as listActions from 'store/modules/noticeList';
-import BoardList from 'components/board/BoardList';
+import NoticeList from 'components/board/NoticeList';
 
 class NoticeListContainer extends Component {
   getNoticeList = () => {
@@ -22,7 +22,7 @@ class NoticeListContainer extends Component {
     const { notices } = this.props;
     return (
       <div>
-        <BoardList notices={notices}/>
+        <NoticeList notices={notices}/>
       </div>
     );
   }

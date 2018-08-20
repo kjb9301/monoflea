@@ -15,7 +15,7 @@ const Header = () => {
         </div>
         <div className={cx('nav-items')}>
           <Link className={cx('nav-item')} to='/about'>소개</Link>
-          <Link className={cx('nav-item')} to='/boards'>게시판</Link>
+          <Link className={cx('nav-item')} to='/notices'>게시판</Link>
           <Link className={cx('nav-item')} to='/sellers'>셀러</Link>
           <Link className={cx('nav-item')} to='/markets'>마켓</Link>
           <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>

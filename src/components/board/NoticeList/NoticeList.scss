@@ -1,0 +1,15 @@
+@import 'common';
+
+.notice-wrap {
+  border: 1px solid red;
+  padding: 5rem;
+  a {
+    color: black;
+  }
+  .notice {
+    width: 80%;
+    border: 1px solid blue;
+    padding: 3rem;
+    margin: 2rem auto;
+  }
+}
