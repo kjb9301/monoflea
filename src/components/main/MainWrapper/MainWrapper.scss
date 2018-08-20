@@ -1,0 +1,8 @@
+.main-wrapper {
+  .main-background {
+    background-image: url('./index-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vh - 5rem);
+  }
+}

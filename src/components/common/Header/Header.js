@@ -21,8 +21,8 @@ const Header = () => {
           <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
         </div>
         <div className={cx('space')}>
-          <Button theme="outline">로그인</Button>
-          <Button theme="gray">회원가입</Button>
+          <Button className={cx('header-button')} theme="outline">로그인</Button>
+          <Button className={cx('header-button')} theme="outline">회원가입</Button>
         </div>
       </div>
     </header>

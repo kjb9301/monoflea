@@ -8,7 +8,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={MainPage}/>
         <Route path="/about" component={AboutPage}/>
-        <Route path="/boards" component={BoardPage}/>
+        <Route path="/notices" component={BoardPage}/>
         <Route path="/markets" component={MarketPage}/>
         <Route path="/classes" component={ClassPage}/>
         <Route path="/sellers" component={SellerPage}/>

@@ -1,7 +1,11 @@
 @import 'common';
 .header {
-  background-color: $lightgray;
+  background-color: $navy;
   width: 100%;
+
+  .logo > a {
+    color: white;
+  }
 
   .header-content {
     height: 5rem;
@@ -26,6 +30,7 @@
     
     .nav-item {
       padding: 10px;
+      color: white;
       font-size: 14px;
     }
   }

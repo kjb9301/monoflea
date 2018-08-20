@@ -1,10 +1,11 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
+import NoticeListContainer from 'containers/board/NoticeListContainer';
 
 const BoardPage = () => {
   return (
     <PageTemplate>
-      Board 페이지 템플릿 적용
+      <NoticeListContainer/>
     </PageTemplate>
   );
 };
