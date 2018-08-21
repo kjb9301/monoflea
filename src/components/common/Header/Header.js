@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './Header.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import Button from 'components/common/Button';
+// import Button from 'components/common/Button';
 
 const cx = classNames.bind(styles);
 
-const Header = () => {
+const Header = ({ onLoginClick }) => {
   return (
     <header className={cx('header')}>
       <div className={cx('header-content')}>
@@ -21,8 +21,8 @@ const Header = () => {
           <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
         </div>
         <div className={cx('space')}>
-          <Button className={cx('header-button')} theme="outline">로그인</Button>
-          <Button className={cx('header-button')} theme="outline">회원가입</Button>
+          <div className={cx('header-button')} onClick={onLoginClick}>로그인</div>
+          <div className={cx('header-button')}>회원가입</div>
         </div>
       </div>
     </header>

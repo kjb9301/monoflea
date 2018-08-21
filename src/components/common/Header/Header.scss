@@ -19,6 +19,19 @@
 
   .space {
     width: 15%;
+    .header-button {
+      display: inline-flex;
+      padding: 15px;
+      border: 1px solid white;
+      color: white;
+      font-weight: 600;
+      margin: 5px;
+      cursor: pointer;
+      &:hover {
+        background: white;
+        color: $oc-blue-6;
+      }
+    }
   }
 
   @include media("<wide") {

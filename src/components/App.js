@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { MainPage, AboutPage, BoardPage, SellerPage, MarketPage, ClassPage, BoardDetailPage } from 'pages';
+import Base from 'containers/common/Base';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route exact path="/classes" component={ClassPage}/>
         <Route exact path="/sellers" component={SellerPage}/>
       </Switch>
+      <Base/>
     </div>
   );
 };

@@ -15,7 +15,7 @@ class NoticeListContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
+    
   }
 
   render() {
