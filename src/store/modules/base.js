@@ -36,6 +36,7 @@ const initialState = Map({
   }),
   logged: false,
   nickName: '',
+  loginMessage: ''
 });
 
 export default handleActions({
@@ -50,9 +51,11 @@ export default handleActions({
   ...pender({
     type: LOGIN,
     onSuccess: (state, action) => {
-      const { data: nickName } = action.payload;
-      return state.set('logged', true)
+      console.log(action);
+      const { isLogin, nickName, message } = action.payload.data;
+      return state.set('logged', isLogin)
                   .set('nickName', nickName)
+                  .set('loginMessage', message)
     }
   }),
   ...pender({

@@ -9,8 +9,12 @@ class LoginModalContainer extends Component {
     const { BaseActions, email, password } = this.props;
     try {
       await BaseActions.login(email, password);
-      localStorage.nickName = this.props.nickName;
-      await BaseActions.hideModal('login');
+      const { logged, nickName, message = '올바른 입력이 아닙니다!' } = this.props;
+      if(logged) {
+        localStorage.nickName = nickName;
+        return BaseActions.hideModal('login');        
+      }
+      alert(message);
     } catch(e) {
       console.log(e);
     }
@@ -58,7 +62,9 @@ export default connect(
     visible: state.base.getIn(['modal', 'login']),
     email: state.base.getIn(['loginModal', 'email']),
     password: state.base.getIn(['loginModal', 'password']),
-    nickName: state.base.get('nickName')
+    nickName: state.base.get('nickName'),
+    logged: state.base.get('logged'),
+    message: state.base.get('loginMessage')
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)

@@ -33,7 +33,6 @@ class HeaderContainer extends Component {
   }
 
   render() {
-    console.log(1);
     const { handleLoginClick, handleLogout } = this;
     const { logged, nickName } = this.props;
     return (
