@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const Header = ({ onLoginClick }) => {
+const Header = ({ onLoginClick, logged, nickName }) => {
   return (
     <header className={cx('header')}>
       <div className={cx('header-content')}>
         <div className={cx('logo', 'space')}>
-          <Link to='/'>MONOFLEA</Link>
+          <Link className={cx('logo-text')} to='/'>MonoFlea</Link>
         </div>
         <div className={cx('nav-items')}>
           <Link className={cx('nav-item')} to='/about'>소개</Link>
@@ -21,8 +21,16 @@ const Header = ({ onLoginClick }) => {
           <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
         </div>
         <div className={cx('space')}>
-          <div className={cx('header-button')} onClick={onLoginClick}>로그인</div>
-          <div className={cx('header-button')}>회원가입</div>
+          {
+            logged ? 
+            <div className={cx('header-button')}>
+              {nickName}
+            </div> : 
+            <div>
+              <div className={cx('header-button')} onClick={onLoginClick}>로그인</div>
+              <div className={cx('header-button')}>회원가입</div>            
+            </div>
+          }
         </div>
       </div>
     </header>

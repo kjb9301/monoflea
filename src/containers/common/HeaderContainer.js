@@ -8,15 +8,14 @@ class HeaderContainer extends Component {
   handleLoginClick = () => {
     const { BaseActions } = this.props;
     BaseActions.showModal('login');
-    const { visible } = this.props;
-    console.log(visible);
     BaseActions.initializeLoginModal();
   }
 
   render() {
     const { handleLoginClick } = this;
+    const { logged, nickName } = this.props;
     return (
-      <Header onLoginClick={handleLoginClick}/>
+      <Header onLoginClick={handleLoginClick} logged={logged} nickName={nickName}/>
     );
   }
 }
@@ -24,6 +23,7 @@ class HeaderContainer extends Component {
 export default connect(
   (state) => ({
     logged: state.base.get('logged'),
+    nickName: state.base.get('nickName'),
     visible: state.base.getIn(['modal', 'login'])
   }),
   (dispatch) => ({

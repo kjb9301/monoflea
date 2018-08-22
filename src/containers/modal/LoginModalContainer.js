@@ -18,7 +18,6 @@ class LoginModalContainer extends Component {
   handleCancel = () => {
     const { BaseActions, visible } = this.props;
     BaseActions.hideModal('login');
-    console.log(visible);
   }
  
   handleKeyPress = (e) => {
@@ -39,7 +38,6 @@ class LoginModalContainer extends Component {
   render() {
     const { handleLogin, handleCancel, handleKeyPress, handleChange} = this;
     const { email, password, visible } = this.props;
-    console.log(visible);
     return (
       <LoginModal 
         visible={visible} 
