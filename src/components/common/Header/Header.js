@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const Header = ({ onLoginClick, logged, nickName, match }) => {
+const Header = ({ onLoginClick, onLogout, logged, nickName, match }) => {
   const { path } = match;
   return (
     <header className={cx('header')}>
@@ -25,9 +25,14 @@ const Header = ({ onLoginClick, logged, nickName, match }) => {
         }
         <div className={cx('space')}>
           {
-            localStorage.nickName ? 
-            <div className={cx('header-button')}>
-              {localStorage.nickName}
+            logged && localStorage.nickName ? 
+            <div>
+              <div className={cx('header-button')}>
+                {localStorage.nickName}
+              </div>
+              <div className={cx('header-button')} onClick={onLogout}>
+                로그아웃
+              </div>
             </div> : 
             <div>
               <div className={cx('header-button')} onClick={onLoginClick}>로그인</div>

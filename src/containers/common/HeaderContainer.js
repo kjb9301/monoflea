@@ -3,6 +3,7 @@ import Header from 'components/common/Header';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/modules/base';
+import { withRouter } from 'react-router-dom';
 
 class HeaderContainer extends Component {
   handleLoginClick = () => {
@@ -19,16 +20,24 @@ class HeaderContainer extends Component {
     localStorage.nickName = nickName;
   }
 
+  handleLogout = async () => {
+    const { BaseActions, history } = this.props;
+    await BaseActions.logout();
+    delete localStorage.nickName;
+    alert('로그아웃 되었습니다!');
+    return history.push('/');
+  }
+
   componentDidMount() {
     this.checkLoginUser();
   }
 
   render() {
     console.log(1);
-    const { handleLoginClick } = this;
+    const { handleLoginClick, handleLogout } = this;
     const { logged, nickName } = this.props;
     return (
-      <Header onLoginClick={handleLoginClick} logged={logged} nickName={nickName}/>
+      <Header onLoginClick={handleLoginClick} onLogout={handleLogout} logged={logged} nickName={nickName}/>
     );
   }
 }
@@ -42,4 +51,4 @@ export default connect(
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)
   })
-)(HeaderContainer);
+)(withRouter(HeaderContainer));

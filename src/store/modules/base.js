@@ -7,6 +7,7 @@ const SHOW_MODAL = 'base/SHOW_MODAL';
 const HIDE_MODAL = 'base/HIDE_MODAL';
 
 const LOGIN = 'base/LOGIN';
+const LOGOUT = 'base/LOGOUT';
 const LOGIN_USER_CHECK = 'base/LOGIN_USER_CHECK';
 const INITIALIZE_LOGIN_MODAL = 'base/INITIALIZE_LOGIN_MODAL';
 const CHANGE_PASSWORD_INPUT = 'base/CHANGE_PASSWORD_INPUT';
@@ -17,6 +18,7 @@ export const hideModal = createAction(HIDE_MODAL);
 
 // login
 export const login = createAction(LOGIN, api.login);
+export const logout = createAction(LOGOUT, api.logout);
 export const loginUserCheck = createAction(LOGIN_USER_CHECK, api.loginUserCheck)
 export const initializeLoginModal = createAction(INITIALIZE_LOGIN_MODAL);
 export const changePasswordInput = createAction(CHANGE_PASSWORD_INPUT);
@@ -60,6 +62,13 @@ export default handleActions({
       const { isLogin, nickName } = userState;
       return state.set('logged', isLogin)
                   .set('nickName',nickName);
+    }
+  }),
+  ...pender({
+    type: LOGOUT,
+    onSuccess: (state, action) => {
+      return state.set('logged', false)
+                  .set('nickName', '');
     }
   }),
   [CHANGE_EMAIL_INPUT]: (state, action) => {
