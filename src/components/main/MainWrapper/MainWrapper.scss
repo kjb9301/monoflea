@@ -1,8 +1,53 @@
+@import 'common';
+
 .main-wrapper {
   .main-background {
-    background-image: url('./index-background.png');
+    background-image: url('./image/index-background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: calc(100vh - 10rem);
+  }
+  .main-navigation-wrap {
+    display: flex;
+  }
+  .main-nav {
+    flex: 1;
+    height: 7rem;
+    &:nth-child(1) {
+      background-color: $lightgray;
+    }
+    &:nth-child(2) {
+      background-color: $darkgray;
+    }
+    &:nth-child(3) {
+      background-color: $lightorange;
+    }
+    &:nth-child(4) {
+      background-color: #D6C1C1;
+    }
+    &:nth-child(5) {
+      background-color: $lightyellow;
+    }
+    &:nth-child(6) {
+      background-color: #93B7B7;
+    }
+    &:nth-child(7) {
+      background-color: $navy;
+    }
+    &:hover {
+      opacity: 0.7;
+    }
+    .nav-wrap {
+      padding: 0.7rem;
+      text-align: center;
+      img {
+        width: 80px;
+      }
+      p {
+        font-size: 13px;
+        font-weight: 800;
+        color: white;
+      }
+    }
   }
 }

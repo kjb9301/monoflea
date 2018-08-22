@@ -1,25 +1,29 @@
 import React from 'react';
 import styles from './Header.scss';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 // import Button from 'components/common/Button';
 
 const cx = classNames.bind(styles);
 
-const Header = ({ onLoginClick, logged, nickName }) => {
+const Header = ({ onLoginClick, logged, nickName, match }) => {
+  const { path } = match;
   return (
     <header className={cx('header')}>
       <div className={cx('header-content')}>
         <div className={cx('logo', 'space')}>
           <Link className={cx('logo-text')} to='/'>MonoFlea</Link>
         </div>
-        <div className={cx('nav-items')}>
-          <Link className={cx('nav-item')} to='/about'>소개</Link>
-          <Link className={cx('nav-item')} to='/notices'>게시판</Link>
-          <Link className={cx('nav-item')} to='/sellers'>셀러</Link>
-          <Link className={cx('nav-item')} to='/markets'>마켓</Link>
-          <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
-        </div>
+        {
+          path === '/' ? <div className={cx('nav-items')}></div> :
+          <div className={cx('nav-items')}>
+            <Link className={cx('nav-item')} to='/about'>소개</Link>
+            <Link className={cx('nav-item')} to='/notices'>게시판</Link>
+            <Link className={cx('nav-item')} to='/sellers'>셀러</Link>
+            <Link className={cx('nav-item')} to='/markets'>마켓</Link>
+            <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
+          </div>
+        }
         <div className={cx('space')}>
           {
             logged ? 
@@ -37,4 +41,4 @@ const Header = ({ onLoginClick, logged, nickName }) => {
   );
 };
 
-export default Header;
+export default withRouter(Header);
