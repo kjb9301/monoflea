@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Header.scss';
 import classNames from 'classnames/bind';
 import { Link, withRouter } from 'react-router-dom';
-// import Button from 'components/common/Button';
 
 const cx = classNames.bind(styles);
 
@@ -26,9 +25,9 @@ const Header = ({ onLoginClick, logged, nickName, match }) => {
         }
         <div className={cx('space')}>
           {
-            logged ? 
+            localStorage.nickName ? 
             <div className={cx('header-button')}>
-              {nickName}
+              {localStorage.nickName}
             </div> : 
             <div>
               <div className={cx('header-button')} onClick={onLoginClick}>로그인</div>

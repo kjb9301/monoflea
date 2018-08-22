@@ -14,8 +14,6 @@
     }
   }
 
-
-
   .header-content {
     height: 3rem;
     width: 90%;
@@ -26,19 +24,19 @@
     display: flex;
   }
 
-  .space {
+  .space { 
     width: 15%;
     .header-button {
       display: inline-flex;
       padding: 15px;
-      border: 1px solid white;
-      color: white;
+      border: 1px solid #717171;
+      color: #717171;
       font-weight: 600;
       margin: 5px;
       cursor: pointer;
       &:hover {
-        background: white;
-        color: $oc-blue-6;
+        background: #717171;
+        color: white;
       }
     }
   }
@@ -52,7 +50,7 @@
     
     .nav-item {
       padding: 10px;
-      color: white;
+      color: #717171;
       font-size: 14px;
     }
   }

@@ -11,7 +11,20 @@ class HeaderContainer extends Component {
     BaseActions.initializeLoginModal();
   }
 
+  checkLoginUser = async () => {
+    const { BaseActions } = this.props;
+    await BaseActions.loginUserCheck();
+    const { logged, nickName } = this.props;
+    if(!logged) return delete localStorage.nickName;
+    localStorage.nickName = nickName;
+  }
+
+  componentDidMount() {
+    this.checkLoginUser();
+  }
+
   render() {
+    console.log(1);
     const { handleLoginClick } = this;
     const { logged, nickName } = this.props;
     return (

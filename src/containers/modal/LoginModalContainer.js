@@ -9,6 +9,7 @@ class LoginModalContainer extends Component {
     const { BaseActions, email, password } = this.props;
     try {
       await BaseActions.login(email, password);
+      localStorage.nickName = this.props.nickName;
       await BaseActions.hideModal('login');
     } catch(e) {
       console.log(e);
@@ -16,7 +17,7 @@ class LoginModalContainer extends Component {
   }
 
   handleCancel = () => {
-    const { BaseActions, visible } = this.props;
+    const { BaseActions } = this.props;
     BaseActions.hideModal('login');
   }
  
