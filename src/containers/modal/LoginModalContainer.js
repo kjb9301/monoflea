@@ -47,7 +47,7 @@ class LoginModalContainer extends Component {
       <LoginModal 
         visible={visible} 
         onChange={handleChange}
-        onLogin={handleLogin} 
+        onLogin={handleLogin}
         onCancel={handleCancel}
         onKeyPress={handleKeyPress} 
         email={email} 

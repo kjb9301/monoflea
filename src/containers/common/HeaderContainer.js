@@ -12,13 +12,13 @@ class HeaderContainer extends Component {
     BaseActions.initializeLoginModal();
   }
 
-  checkLoginUser = async () => {
-    const { BaseActions } = this.props;
-    await BaseActions.loginUserCheck();
-    const { logged, nickName } = this.props;
-    if(!logged) return delete localStorage.nickName;
-    localStorage.nickName = nickName;
-  }
+  // checkLoginUser = async () => {
+  //   const { BaseActions } = this.props;
+  //   await BaseActions.loginUserCheck();
+  //   const { logged, nickName } = this.props;
+  //   if(!logged) return delete localStorage.nickName;
+  //   localStorage.nickName = nickName;
+  // }
 
   handleLogout = async () => {
     const { BaseActions, history } = this.props;
@@ -28,15 +28,26 @@ class HeaderContainer extends Component {
     return history.push('/');
   }
 
-  componentDidMount() {
-    this.checkLoginUser();
-  }
+  // componentDidMount() {
+  //   this.checkLoginUser();
+  // }
+
+  // componentDidUpdate() {
+  //   this.checkLoginUser();
+  // }
 
   render() {
     const { handleLoginClick, handleLogout } = this;
-    const { logged, nickName } = this.props;
+    const { logged, nickName, isLogin, userName } = this.props;
     return (
-      <Header onLoginClick={handleLoginClick} onLogout={handleLogout} logged={logged} nickName={nickName}/>
+      <Header 
+        onLoginClick={handleLoginClick} 
+        onLogout={handleLogout} 
+        logged={logged} 
+        nickName={nickName}
+        isLogin={isLogin}
+        userName={userName}
+      />
     );
   }
 }

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MainWrapper from 'components/main/MainWrapper';
+import PageTemplate from 'components/common/PageTemplate';
 
-const MainPage = () => {
-  return (
-    <div>
-      <MainWrapper />
-    </div>
-  );
-};
+class MainPage extends Component {
+  render() {
+    return (
+      <PageTemplate>
+        <MainWrapper />
+      </PageTemplate>      
+    );
+  }
+}
 
 export default MainPage;
