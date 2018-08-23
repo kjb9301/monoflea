@@ -58,4 +58,11 @@
       background: $oc-blue-6;
     }
   }
+  .social-login-wrap {
+    display: flex;
+    .social-login {
+      text-align: center;
+      flex: 1;
+    }
+  }
 }

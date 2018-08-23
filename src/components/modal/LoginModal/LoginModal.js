@@ -14,6 +14,14 @@ const LoginModal = ({ onLogin, onCancel, visible, onKeyPress, handleCancel, onCh
         <input autoFocus type="text" name="email" placeholder="Email" value={email} onChange={onChange} onKeyPress={onKeyPress} />
         <div className={cx('description')}>관리자 비밀번호를 입력하세요</div>
         <input type="password" name="password" placeholder="Password" value={password} onChange={onChange} onKeyPress={onKeyPress} />
+        <div className={cx('social-login-wrap')}>
+          <div className={cx('social-login')}>
+            Kakao
+          </div>
+          <div className={cx('social-login')}>
+            Naver
+          </div>
+        </div>
         <div className={cx('login')} onClick={onLogin}>로그인</div>
       </div>
     </ModalWrapper>
