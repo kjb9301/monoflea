@@ -7,12 +7,13 @@ const cx = classNames.bind(styles);
 
 const Div = ({ children, ...rest }) => <div {...rest}>{children}</div>;
 
-const Button = ({ children, to, theme='default', disabled }) => {
+const Button = ({ children, to, theme='default', disabled, onSearch }) => {
   const Element = (to && !disabled ? Link : Div)
   return (
     <Element
       to={to}
-      className={cx('button', theme, {disabled})}
+      className={cx('button', theme, {disabled})} 
+      onClick={() => onSearch('20180822')}
     >
       {children}
     </Element>

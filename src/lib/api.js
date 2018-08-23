@@ -9,5 +9,6 @@ export const login = (email, password) => axios.post('/users/login', { email, pa
 export const loginUserCheck = () => axios.get('/users/user-check');
 export const logout = () => axios.delete('/users/logout');
 
-export const getMarketList = () => axios.get('/markets');
+// export const getMarketList = () => axios.get('/markets');
 export const getSellersList = () => axios.get('/sellers');
+export const getMarketList = (category) => axios.get(`/markets?category=${category}`);

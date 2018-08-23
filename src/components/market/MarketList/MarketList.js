@@ -34,7 +34,7 @@ const MarketItem = ({name,place,poster,period,end,reg}) => {
   );
 };
 
-const MarketList = ({markets}) => {
+const MarketList = ({children,markets}) => {
   const marketList = markets.map(
     (market) => {
       const {market_id, market_name, market_place, market_poster,market_period,end_date,reg_date} = market;
@@ -53,6 +53,9 @@ const MarketList = ({markets}) => {
   );
   return (
     <div className={cx('wrapper')}>
+      <div>
+        {children}
+      </div>
       {marketList}
     </div>
   )
