@@ -1,10 +1,12 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
+import ClassListContainer from 'containers/class/ClassListContainer';
+
 
 const ClassPage = () => {
   return (
     <PageTemplate>
-      Oneday Class 페이지 템플릿 적용
+      <ClassListContainer/>
     </PageTemplate>
   );
 };

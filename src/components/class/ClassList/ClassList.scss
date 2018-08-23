@@ -1,0 +1,111 @@
+@import 'common';
+
+.wrapper {
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .visual {
+    margin-bottom: 1.5rem;
+          border: 1px solid orange;
+  }
+  .visual .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 0 2rem 2rem;
+          border: 1px solid orangered;
+  }
+  .visual h1 {
+    font-size: 2.5rem;
+    letter-spacing: -.1rem;
+    color: hsla(0, 70%, 67%, 0.89);
+  }
+  .visual p {
+    margin-top: .5rem;
+    margin-left: 10rem;
+  }
+  .best-itemlist {
+    margin-bottom: 1.2rem;
+    background: rgba(201, 195, 161, 0.438);
+  }
+  .best-itemlist .inner {
+    padding: 1rem;
+  }
+  .best-itemlist h2 {
+    padding: .5rem 0 1rem .5rem;
+    font-size: 2rem;
+    letter-spacing: -.1rem;   
+  }
+  .itemlist h2 {
+    padding: .5rem 0 1rem .5rem;
+    font-size: 2rem;
+    letter-spacing: -.1rem;   
+  }
+  .itemlist .inner {
+    padding: 1rem;
+  }
+}
+
+
+
+// .wrapper {
+//   display: flex;
+//   background: skyblue;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+
+//   .market-item {
+//     height:300px;
+//     width:300px;
+//     background-color:white;
+//     border:1px solid black;
+//     padding-bottom: 1.5rem;
+//     margin-top: 2rem;
+//     margin-left: 2rem;
+//     margin-right: 2rem;
+//     min-width: 300px;
+//     flex: 1;
+//   }
+// }
+/* 
+.wrapper {
+  width: 80%;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+  .market-item {
+    display: inline-block;
+    width: 22%;
+    margin: 5px;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .market-item-top {
+      width: 100%;
+      min-height: 250px;
+      border-bottom: 1px solid black;
+    }
+    .market-item-bottom {
+      .bot-inner-top {
+      }
+      .bot-inner-bot {
+      }
+      .item-left, .item-right {
+        width: 48%;
+        display: inline-block;
+        padding: 2px;
+      }
+      .item-left {
+        text-align: left;
+      }
+      .item-right {
+        text-align: right;
+      }
+      .block-to-inline {
+        display: inline-block;
+      }
+    }
+  }
+} */
