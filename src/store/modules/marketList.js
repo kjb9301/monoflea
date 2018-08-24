@@ -9,16 +9,17 @@ const GET_MARKET_LIST = 'market/GET_MARKET_LIST';
 export const getMarketList = createAction(GET_MARKET_LIST,api.getMarketList);
 
 const initialState = Map({
-  markets: List()
+  marketList: List(),
+  marketComingList: List()
 });
 
 export default handleActions({
   ...pender({
     type: GET_MARKET_LIST,
     onSuccess: (state,action) => {
-      const markets = action.payload.data;
-      console.log(action.payload);
-      return state.set('markets', markets)
+      const {marketList , marketComingList} = action.payload.data;
+      return state.set('marketList', marketList)
+                  .set('marketComingList', marketComingList)
     }
   })
 },initialState);

@@ -9,6 +9,9 @@ const MarketItem = ({name,place,poster,period,end,reg}) => {
   return (
     <div className={cx('market-item')}>
       <div className={cx('market-item-top')}>
+        <div className={cx('market-dday')}>
+          <p>{period}</p>
+        </div>
         <p>{poster}</p>
       </div>
       <div className={cx('market-item-bottom')}>
