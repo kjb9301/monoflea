@@ -48,7 +48,7 @@ class SignupModalContainer extends Component {
     }
 
     if(name === 'password' || name === 'password-check') {
-      
+      //
     }
   }
 
