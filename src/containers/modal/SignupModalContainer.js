@@ -5,6 +5,9 @@ import * as baseActions from 'store/modules/base';
 import SignupModal from 'components/modal/SignupModal';
 
 class SignupModalContainer extends Component {
+
+  comparedPasswordValidation = false;
+
   handleSignup = async () => {
     const { BaseActions, modalEmail, modalNickname, modalPassword } = this.props;
     try {
@@ -38,13 +41,19 @@ class SignupModalContainer extends Component {
       BaseActions.changeSignupEmail(value);
     } else if(name === 'nickName') {
       BaseActions.changeSignupNick(value);
-    } else {
+    } else if(name === 'password'){
       BaseActions.changeSignupPassword(value);
+    } else if(name === 'password-check'){
+      BaseActions.changeSignupPasswordCheck(value);
+    }
+
+    if(name === 'password' || name === 'password-check') {
+      
     }
   }
 
   render() {
-    const { handleSignup, handleCancel, handleKeyPress, handleChange  } = this;
+    const { handleSignup, handleCancel, handleKeyPress, handleChange, comparedPasswordValidation } = this;
     const { visible, modalEmail, modalNickname, modalPassword } = this.props;
     return (
       <SignupModal
@@ -56,6 +65,7 @@ class SignupModalContainer extends Component {
         modalEmail={modalEmail}
         modalNickname={modalNickname}
         modalPassword={modalPassword}
+        comparedPasswordValidation={comparedPasswordValidation}
       />
     );
   }
@@ -68,7 +78,8 @@ export default connect(
     nickName: state.base.get('nickName'),
     modalEmail: state.base.getIn(['signupModal', 'email']),
     modalNickname: state.base.getIn(['signupModal', 'nickName']),
-    modalPassword: state.base.getIn(['signupModal', 'password'])
+    modalPassword: state.base.getIn(['signupModal', 'password']),
+    modalPasswordCheck: state.base.getIn(['signupModal', 'passwordCheck']),
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)

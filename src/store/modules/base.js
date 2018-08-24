@@ -17,7 +17,9 @@ const SIGNUP = 'base/SIGNUP';
 const CHANGE_SIGNUP_EMAIL = 'base/CHANGE_SIGNUP_EMAIL';
 const CHANGE_SIGNUP_NICK = 'base/CHANGE_SIGNUP_NICK';
 const CHANGE_SIGNUP_PASSWORD = 'base/CHANGE_SIGNUP_PASSWORD';
+const CHANGE_SIGNUP_PASSWORD_CHECK = 'base/CHANGE_SIGNUP_PASSWORD_CHECK';
 const INITIALIZE_SIGNUP_MODAL = 'base/INITIALIZE_SIGNUP_MODAL';
+const COMPARE_PASSWORD = 'base/COMPARE_PASSWORD';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -35,7 +37,9 @@ export const signup = createAction(SIGNUP, api.signup);
 export const changeSignupEmail = createAction(CHANGE_SIGNUP_EMAIL);
 export const changeSignupNick = createAction(CHANGE_SIGNUP_NICK);
 export const changeSignupPassword = createAction(CHANGE_SIGNUP_PASSWORD);
+export const changeSignupPasswordCheck = createAction(CHANGE_SIGNUP_PASSWORD_CHECK);
 export const initializeSignupModal = createAction(INITIALIZE_SIGNUP_MODAL);
+export const comparePassword = createAction(COMPARE_PASSWORD);
 
 const initialState = Map({
   modal: Map({
@@ -50,7 +54,9 @@ const initialState = Map({
   signupModal: Map({
     email: '',
     nickName: '',
-    password: ''
+    password: '',
+    passwordCheck: '',
+    comparePwErr: false
   }),
   logged: false,
   nickName: '',
@@ -125,5 +131,15 @@ export default handleActions({
   [CHANGE_SIGNUP_PASSWORD]: (state, action) => {
     const { payload: value } = action;
     return state.setIn(['signupModal', 'password'], value);
+  },
+  [CHANGE_SIGNUP_PASSWORD_CHECK]: (state, action) => {
+    const { payload: value } = action;
+    console.log(value);
+    return state.setIn(['signupModal', 'passwordCheck'], value);
+  },
+  [COMPARE_PASSWORD]: (state, action) => {
+    const { payload: value } = action;
+    console.log(action);
+    return state.setIn(['signupModal', 'comparePwErr'], value);
   }
 }, initialState);
