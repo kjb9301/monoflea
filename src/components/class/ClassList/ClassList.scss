@@ -46,7 +46,75 @@
   .itemlist .inner {
     padding: 1rem;
   }
+
+  // best-itemlist-box & itemlist-box 
+  .itemlist-box {
+    font-size: .9rem;
+    line-height: 1.5;
+    border: 1px solid orangered;
+  }
+  .item-boxframe {
+    width: 25%;
+    padding: 1rem;
+    display: inline-block;
+    border: 1px solid orange;
+  }
+  .item-box {
+    padding: .7rem;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .item-poster {
+    height: 200px;
+    margin-bottom: 1rem;
+    border: 1px solid blueviolet;
+  }
+  .item-poster img {
+    max-width: 100%;
+    height: auto;
+    // height: 100%;
+  }
+  .item-contents {
+    margin-bottom: 1rem;
+  }
+  .item-name {
+    padding-bottom: .5rem;
+    font-weight: bold;
+  }
+  .item-desc {
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+  }
+  .item-profile {
+    position: relative;
+    padding-left: 25%;
+  }
+  .item-profile-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 20%;
+    border-radius: 50%;
+  }
+  .item-profile-img img {
+    max-width: 100%;
+    height: auto;
+  }
+  .item-nickname {
+
+  }
+  .item-category {
+
+  }
+  .item-place {
+
+  }
+
 }
+
+
+
 
 
 
