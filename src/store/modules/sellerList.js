@@ -17,7 +17,7 @@ export default handleActions({
     onSuccess : (state,action) => {
       const sellers = action.payload.data;
       console.log(sellers);
-      return state.set('sellers', sellers);
+      return state.set('sellers', sellers[0]);
     }
   })
 }, initialState)
