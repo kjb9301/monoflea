@@ -3,8 +3,6 @@ import styles from './LoginModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
 
-import { Link } from 'react-router-dom';
-
 const cx = classNames.bind(styles);
 
 const LoginModal = ({ onLogin, onCancel, visible, onKeyPress, handleCancel, onChange, email, password }) => {
@@ -14,7 +12,7 @@ const LoginModal = ({ onLogin, onCancel, visible, onKeyPress, handleCancel, onCh
         <div onClick={onCancel} className={cx('close')}>&times;</div>
         <div className={cx('title')}>로그인</div>
         <input autoFocus type="text" name="email" placeholder="Email" value={email} onChange={onChange} onKeyPress={onKeyPress} />
-        <div className={cx('description')}>관리자 비밀번호를 입력하세요</div>
+        {/* <div className={cx('description')}>비밀번호를 입력하세요</div> */}
         <input type="password" name="password" placeholder="Password" value={password} onChange={onChange} onKeyPress={onKeyPress} />
         <div className={cx('social-login-wrap')}>
           {/* <div className={cx('kakao-login')}> */}

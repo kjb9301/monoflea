@@ -12,6 +12,12 @@ class HeaderContainer extends Component {
     BaseActions.initializeLoginModal();
   }
 
+  handleSignupClick = () => {
+    const { BaseActions } = this.props;
+    BaseActions.showModal('signup');
+    BaseActions.initializeSignupModal();
+  }
+
   // checkLoginUser = async () => {
   //   const { BaseActions } = this.props;
   //   await BaseActions.loginUserCheck();
@@ -37,11 +43,12 @@ class HeaderContainer extends Component {
   // }
 
   render() {
-    const { handleLoginClick, handleLogout } = this;
+    const { handleLoginClick, handleLogout, handleSignupClick } = this;
     const { logged, nickName, isLogin, userName } = this.props;
     return (
       <Header 
-        onLoginClick={handleLoginClick} 
+        onLoginClick={handleLoginClick}
+        onSignupClick={handleSignupClick}
         onLogout={handleLogout} 
         logged={logged} 
         nickName={nickName}

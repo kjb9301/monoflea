@@ -13,6 +13,12 @@ const INITIALIZE_LOGIN_MODAL = 'base/INITIALIZE_LOGIN_MODAL';
 const CHANGE_PASSWORD_INPUT = 'base/CHANGE_PASSWORD_INPUT';
 const CHANGE_EMAIL_INPUT = 'base/CHANGE_EMAIL_INPUT';
 
+const SIGNUP = 'base/SIGNUP';
+const CHANGE_SIGNUP_EMAIL = 'base/CHANGE_SIGNUP_EMAIL';
+const CHANGE_SIGNUP_NICK = 'base/CHANGE_SIGNUP_NICK';
+const CHANGE_SIGNUP_PASSWORD = 'base/CHANGE_SIGNUP_PASSWORD';
+const INITIALIZE_SIGNUP_MODAL = 'base/INITIALIZE_SIGNUP_MODAL';
+
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 
@@ -24,15 +30,27 @@ export const initializeLoginModal = createAction(INITIALIZE_LOGIN_MODAL);
 export const changePasswordInput = createAction(CHANGE_PASSWORD_INPUT);
 export const changeEmailInput = createAction(CHANGE_EMAIL_INPUT);
 
+// signup
+export const signup = createAction(SIGNUP, api.signup);
+export const changeSignupEmail = createAction(CHANGE_SIGNUP_EMAIL);
+export const changeSignupNick = createAction(CHANGE_SIGNUP_NICK);
+export const changeSignupPassword = createAction(CHANGE_SIGNUP_PASSWORD);
+export const initializeSignupModal = createAction(INITIALIZE_SIGNUP_MODAL);
+
 const initialState = Map({
   modal: Map({
-    remove: false,
-    login: false
+    login: false,
+    signup: false
   }),
   loginModal: Map({
     email: '',
     password: '',
     error: false
+  }),
+  signupModal: Map({
+    email: '',
+    nickName: '',
+    password: ''
   }),
   logged: false,
   nickName: '',
@@ -51,11 +69,10 @@ export default handleActions({
   ...pender({
     type: LOGIN,
     onSuccess: (state, action) => {
-      console.log(action);
       const { isLogin, nickName, message } = action.payload.data;
       return state.set('logged', isLogin)
                   .set('nickName', nickName)
-                  .set('loginMessage', message)
+                  .set('loginMessage', message);
     }
   }),
   ...pender({
@@ -65,6 +82,15 @@ export default handleActions({
       const { isLogin, nickName } = userState;
       return state.set('logged', isLogin)
                   .set('nickName',nickName);
+    }
+  }),
+  ...pender({
+    type: SIGNUP,
+    onSuccess: (state, action) => {
+      const { isLogin, nickName } = action.payload.data;
+      console.log(action)
+      return state.set('logged', isLogin)
+                  .set('nickName', nickName);
     }
   }),
   ...pender({
@@ -85,4 +111,19 @@ export default handleActions({
   [INITIALIZE_LOGIN_MODAL]: (state, action) => {
     return state.set('loginModal', initialState.get('loginModal'));
   },
+  [INITIALIZE_SIGNUP_MODAL]: (state, action) => {
+    return state.set('signupModal', initialState.get('signupModal'));
+  },
+  [CHANGE_SIGNUP_EMAIL]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupModal', 'email'], value);
+  },
+  [CHANGE_SIGNUP_NICK]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupModal', 'nickName'], value);
+  },
+  [CHANGE_SIGNUP_PASSWORD]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupModal', 'password'], value);
+  }
 }, initialState);

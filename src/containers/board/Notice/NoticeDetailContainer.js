@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as listActions from 'store/modules/noticeDetail';
 import NoticeDetail from 'components/board/NoticeDetail';
+import { withRouter } from 'react-router-dom';
 
 class NoticeDetailContainer extends Component {
   getNoticeDetail = () => {
-    const { ListActions, id } = this.props;
+    const { ListActions, match } = this.props;
+    const { id } = match.params;
     ListActions.getNoticeDetail(id);
   }
 
@@ -14,11 +16,16 @@ class NoticeDetailContainer extends Component {
     this.getNoticeDetail();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(nextProps.noticeDetail);
+  //   console.log(this.props.noticeDetail);
+  //   //return true;
+  //   return nextProps.noticeDetail !== this.props.noticeDetail;
+  // }
 
   render() {
+    const { loading } = this.props;
+    if(loading) return null;
     const { noticeDetail } = this.props;
     return (
       <div>
@@ -30,9 +37,10 @@ class NoticeDetailContainer extends Component {
 
 export default connect(
   (state) => ({
-    noticeDetail: state.noticeDetail.get('noticeDetail')
+    noticeDetail: state.noticeDetail.get('noticeDetail'),
+    loading: state.pender.pending['notices/GET_NOTICE_DETAIL']
   }),
   (dispatch) => ({
     ListActions: bindActionCreators(listActions, dispatch)
   })
-)(NoticeDetailContainer);
+)(withRouter(NoticeDetailContainer));

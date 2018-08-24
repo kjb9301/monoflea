@@ -42,20 +42,6 @@ class PageTemplate extends Component {
   }
 }
 
-// const PageTemplate = ({ children, match }) => (
-//   <div className={cx('page-template')}>
-//     <HeaderContainer />
-//     <main>
-//       {children}
-//     </main>
-//     {
-//       match.path === '/' ?
-//       null :
-//       <Footer/>
-//     }
-//   </div>
-// );
-
 export default connect(
   (state) => ({
     logged: state.base.get('logged'),
