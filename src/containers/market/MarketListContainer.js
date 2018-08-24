@@ -14,7 +14,7 @@ class MarketListContainer extends Component {
 
   handleClick = (category) => {
     const {ListActions} = this.props;
-    ListActions.getMarketList();
+    ListActions.getMarketList(category);
   }
 
   componentDidMount() {
@@ -22,13 +22,18 @@ class MarketListContainer extends Component {
   }
 
   render() {
-    const {loading,markets} = this.props;
+    const {loading,marketList,marketComingList} = this.props;
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dateInfo = {year:year,month:month,day:day};
     if(loading) return null;
     return (
       <div>
-        <MarketList markets={markets}>
-          <Button onSearch={this.handleClick}>기간별</Button>
-          {/* <Button onClick={this.handleClick}>기간별</Button> */}
+        <MarketList markets={marketComingList}/>
+        <MarketList markets={marketList}>
+          <Button onSelect={this.handleClick}>기간별</Button>
         </MarketList>
       </div>
     );
@@ -37,7 +42,8 @@ class MarketListContainer extends Component {
 
 export default connect(
   (state) => ({
-    markets: state.marketList.get('markets'),
+    marketList: state.marketList.get('marketList'),
+    marketComingList: state.marketList.get('marketComingList'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
