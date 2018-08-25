@@ -24,15 +24,17 @@ class MarketListContainer extends Component {
   render() {
     const {loading,marketList,marketComingList} = this.props;
     const date = new Date();
-    const year = date.getFullYear();
+    /* const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    const dateInfo = {year:year,month:month,day:day};
+    const dateInfo = {year:year,month:month,day:day}; */
+    const curGetTime = date.getTime();
+
     if(loading) return null;
     return (
       <div>
-        <MarketList markets={marketComingList}/>
-        <MarketList markets={marketList}>
+        <MarketList markets={marketComingList} curGetTime={curGetTime}/>
+        <MarketList markets={marketList} curGetTime={curGetTime}>
           <Button onSelect={this.handleClick}>기간별</Button>
         </MarketList>
       </div>
