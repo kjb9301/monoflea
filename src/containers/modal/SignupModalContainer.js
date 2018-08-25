@@ -8,8 +8,9 @@ class SignupModalContainer extends Component {
 
   comparedPasswordValidation = false;
 
-  handleSignup = async () => {
+  handleSignup = async (validatedEmail, validatedPassword, comparedPassword) => {
     const { BaseActions, modalEmail, modalNickname, modalPassword } = this.props;
+    if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
     try {
       await BaseActions.signup(modalEmail, modalNickname, modalPassword);
       const { logged, nickName } = this.props;
@@ -21,6 +22,27 @@ class SignupModalContainer extends Component {
     } catch(e) {
       console.log(e);
     }
+  }
+
+  checkValidations = (validatedEmail, validatedPassword, comparedPassword) => {
+    const { checkedEmail, checkedNick } = this.props;
+    if(!validatedEmail) {
+      alert('유효한 이메일이 아닙니다!');
+      return false;
+    } else if(!checkedEmail) {
+      alert('이메일 중복확인을 해주세요!');
+      return false;
+    } else if(!checkedNick) {
+      alert('닉네임 중복확인을 해주세요!');
+      return false;
+    } else if(!validatedPassword) {
+      alert('유효한 패스워드가 아닙니다!');
+      return false;
+    } else if(!comparedPassword) {
+      alert('패스워드가 일치하지 않습니다!');
+      return false;
+    }
+    return true;
   }
 
   handleCancel = () => {

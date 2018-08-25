@@ -58,9 +58,9 @@ const initialState = Map({
     nickName: '',
     password: '',
     passwordCheck: '',
-    checkedEmail: '',
+    checkedEmail: false,
     checkedEmailMessage: '',
-    checkedNick: '',
+    checkedNick: false,
     checkedNickMessage: ''
   }),
   logged: false,
@@ -99,7 +99,6 @@ export default handleActions({
     type: SIGNUP,
     onSuccess: (state, action) => {
       const { isLogin, nickName } = action.payload.data;
-      console.log(action)
       return state.set('logged', isLogin)
                   .set('nickName', nickName);
     }
