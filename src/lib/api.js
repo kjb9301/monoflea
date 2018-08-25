@@ -12,6 +12,8 @@ export const logout = () => axios.delete('/users/logout');
 
 // signup
 export const signup = (email, nickName, password) => axios.post('/users/signup', { email, nickName, password });
+export const checkEmail = (email) => axios.post('/users/check-email', { email });
+export const checkNickname = (nickName) => axios.post('/users/check-nickname', { nickName });
 
 // seller
 export const getSellersList = () => axios.get('/sellers');

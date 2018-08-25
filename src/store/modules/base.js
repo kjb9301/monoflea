@@ -19,7 +19,8 @@ const CHANGE_SIGNUP_NICK = 'base/CHANGE_SIGNUP_NICK';
 const CHANGE_SIGNUP_PASSWORD = 'base/CHANGE_SIGNUP_PASSWORD';
 const CHANGE_SIGNUP_PASSWORD_CHECK = 'base/CHANGE_SIGNUP_PASSWORD_CHECK';
 const INITIALIZE_SIGNUP_MODAL = 'base/INITIALIZE_SIGNUP_MODAL';
-const COMPARE_PASSWORD = 'base/COMPARE_PASSWORD';
+const CHECK_EMAIL = 'base/CHECK_EMAIL';
+const CHECK_NICKNAME = 'base/CHECK_NICKNAME';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -39,7 +40,8 @@ export const changeSignupNick = createAction(CHANGE_SIGNUP_NICK);
 export const changeSignupPassword = createAction(CHANGE_SIGNUP_PASSWORD);
 export const changeSignupPasswordCheck = createAction(CHANGE_SIGNUP_PASSWORD_CHECK);
 export const initializeSignupModal = createAction(INITIALIZE_SIGNUP_MODAL);
-export const comparePassword = createAction(COMPARE_PASSWORD);
+export const checkEmail = createAction(CHECK_EMAIL, api.checkEmail);
+export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
 
 const initialState = Map({
   modal: Map({
@@ -56,7 +58,10 @@ const initialState = Map({
     nickName: '',
     password: '',
     passwordCheck: '',
-    comparePwErr: false
+    checkedEmail: '',
+    checkedEmailMessage: '',
+    checkedNick: '',
+    checkedNickMessage: ''
   }),
   logged: false,
   nickName: '',
@@ -106,6 +111,22 @@ export default handleActions({
                   .set('nickName', '');
     }
   }),
+  ...pender({
+    type: CHECK_EMAIL,
+    onSuccess: (state, action) => {
+      const { checkedEmail, message } = action.payload.data;
+      return state.setIn(['signupModal', 'checkedEmail'], checkedEmail)
+                  .setIn(['signupModal', 'checkedEmailMessage'], message);
+    }
+  }),
+  ...pender({
+    type: CHECK_NICKNAME,
+    onSuccess: (state, action) => {
+      const { checkedNick, message } = action.payload.data;
+      return state.setIn(['signupModal', 'checkedNick'], checkedNick)
+                  .setIn(['signupModal', 'checkedNickMessage'], message);
+    }
+  }),
   [CHANGE_EMAIL_INPUT]: (state, action) => {
     const { payload: value } = action;
     return state.setIn(['loginModal', 'email'], value);
@@ -134,12 +155,6 @@ export default handleActions({
   },
   [CHANGE_SIGNUP_PASSWORD_CHECK]: (state, action) => {
     const { payload: value } = action;
-    console.log(value);
     return state.setIn(['signupModal', 'passwordCheck'], value);
   },
-  [COMPARE_PASSWORD]: (state, action) => {
-    const { payload: value } = action;
-    console.log(action);
-    return state.setIn(['signupModal', 'comparePwErr'], value);
-  }
 }, initialState);
