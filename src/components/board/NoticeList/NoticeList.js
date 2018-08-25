@@ -40,6 +40,11 @@ const NoticeList = ({ notices }) => {
 
   return (
     <div className={cx('notice-wrap')}>
+      <div className={cx('button-space')}>
+        <Link to="/notices/post" className={cx('write-button')}>
+          글쓰기
+        </Link>
+      </div>
       {noticeList}
     </div>
   );

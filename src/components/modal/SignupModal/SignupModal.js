@@ -40,11 +40,11 @@ class SignupModal extends Component {
             <input 
               autoFocus
               autoComplete="off"
-              type="text" 
-              name="email" 
-              placeholder="Email" 
-              value={modalEmail} 
-              onChange={(e) => checkEmailValidation(e)} 
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={modalEmail}
+              onChange={(e) => checkEmailValidation(e)}
               onKeyPress={onKeyPress}
               ref={ref => this.emailInput = ref}
             />
@@ -55,12 +55,13 @@ class SignupModal extends Component {
           {!this.validatedEmail && <span className={cx('warning-message')}>올바른 이메일을 입력하세요!</span>}
           <div>
             <input 
-              type="text" 
-              name="nickName" 
-              placeholder="Nickname" 
-              value={modalNickname} 
-              onChange={onChange} 
-              onKeyPress={onKeyPress} 
+              type="text"
+              autoComplete="off"
+              name="nickName"
+              placeholder="Nickname"
+              value={modalNickname}
+              onChange={onChange}
+              onKeyPress={onKeyPress}
             />
             <div className={cx('validate-button')} onClick={checkNick}>
               중복체크
