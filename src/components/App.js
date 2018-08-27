@@ -1,6 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { MainPage, AboutPage, BoardPage, SellerPage, MarketPage, ClassPage, BoardDetailPage, BoardPostPage } from 'pages';
+import { 
+  MainPage, 
+  AboutPage, 
+  BoardPage, 
+  SellerPage, 
+  MarketPage, 
+  ClassPage, 
+  BoardDetailPage, 
+  BoardPostPage,
+  MarketDetailPage
+} from 'pages';
 import Base from 'containers/common/Base';
 
 const App = () => {
@@ -13,6 +23,7 @@ const App = () => {
         <Route path="/notices/post" component={BoardPostPage}/>
         <Route path="/notices/:id" component={BoardDetailPage}/>
         <Route exact path="/markets" component={MarketPage}/>
+        <Route path="/markets/:id" component={MarketDetailPage}/>
         <Route exact path="/classes" component={ClassPage}/>
         <Route exact path="/sellers" component={SellerPage}/>
       </Switch>

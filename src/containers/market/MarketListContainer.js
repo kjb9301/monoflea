@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import MarketList from 'components/market/MarketList';
 import Button from '../../components/common/Button/Button';
 
 import * as listActions from 'store/modules/marketList';
+import * as detailActions from 'store/modules/marketDetail';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
@@ -17,6 +19,11 @@ class MarketListContainer extends Component {
     ListActions.getMarketList(category);
   }
 
+  handleDetail = (id) => {
+    const {history} = this.props;
+    history.push(`/markets/${id}`);
+  }
+
   componentDidMount() {
     this.getMarketList();
   }
@@ -24,17 +31,13 @@ class MarketListContainer extends Component {
   render() {
     const {loading,marketList,marketComingList} = this.props;
     const date = new Date();
-    /* const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const dateInfo = {year:year,month:month,day:day}; */
     const curGetTime = date.getTime();
 
     if(loading) return null;
     return (
       <div>
-        <MarketList markets={marketComingList} curGetTime={curGetTime}/>
-        <MarketList markets={marketList} curGetTime={curGetTime}>
+        <MarketList markets={marketComingList} curGetTime={curGetTime} onDetail={this.handleDetail}/>
+        <MarketList markets={marketList} curGetTime={curGetTime} onDetail={this.handleDetail}>
           <Button onSelect={this.handleClick}>기간별</Button>
         </MarketList>
       </div>
@@ -49,6 +52,7 @@ export default connect(
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
-    ListActions: bindActionCreators(listActions,dispatch)
+    ListActions: bindActionCreators(listActions,dispatch),
+    DetailActions: bindActionCreators(detailActions,dispatch)
   })
-)(MarketListContainer);
+)(withRouter(MarketListContainer));

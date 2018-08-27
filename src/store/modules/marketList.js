@@ -4,7 +4,7 @@ import { pender} from 'redux-pender';
 
 import * as api from 'lib/api';
 
-const GET_MARKET_LIST = 'market/GET_MARKET_LIST';
+const GET_MARKET_LIST = 'markets/GET_MARKET_LIST';
 
 export const getMarketList = createAction(GET_MARKET_LIST,api.getMarketList);
 
