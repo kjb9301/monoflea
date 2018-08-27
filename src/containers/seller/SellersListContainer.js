@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import SellerList from '../../components/seller/SellerList'
+import Button from '../../components/common/Button'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as sellerListActions from 'store/modules/sellerList';
 
 class SellersListContainer extends Component {
   
-  getSellersList = () =>{
+  getSellersList = (category) =>{
     const { SellerListActions } = this.props;
-    SellerListActions.getSellersList();
+    SellerListActions.getSellersList(category);
   } 
 
   componentDidMount(){
@@ -16,12 +17,28 @@ class SellersListContainer extends Component {
   }
   
   render() {
-    console.log(this.props.sellers)
-    const { sellers, loading } = this.props;
+    const { sellers, loading, categories } = this.props;
+    const { getSellersList } = this
+    const categoryList = categories.map(
+      (categoryItem) => {
+        const {category_id, category_ko, category} = categoryItem;
+          return <Button
+            key = {category_id}
+            onHandlePrams = {category}
+            onCategory = {getSellersList}
+          > {category_ko} </Button>
+        
+      } 
+    )
     if(loading) return null;
     return (  
       <div>
-        <SellerList sellers = { sellers} />
+        <Button 
+          key = {'All'}
+          onCategory = {getSellersList}
+        >전체</Button>
+        {categoryList}
+        <SellerList sellers = { sellers } />
       </div>
     );
   }
@@ -29,6 +46,7 @@ class SellersListContainer extends Component {
 
 export default connect((state) => ({
   sellers : state.sellerList.get('sellers'),
+  categories : state.sellerList.get('categories'),
   loading : state.pender.pending['seller/GET_SELLERS_LIST']
 }),
 (dispatch) => ({
