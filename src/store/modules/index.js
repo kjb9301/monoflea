@@ -6,3 +6,4 @@ export { penderReducer as pender } from 'redux-pender';
 
 export { default as marketList } from './marketList';
 export { default as sellerList } from './sellerList';
+export { default as marketDetail } from './marketDetail';
