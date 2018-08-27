@@ -3,4 +3,33 @@
   margin: auto;
   padding: 2rem;
   border: 1px solid black;
+  .post-title {
+    width: 80%;
+    margin: auto;
+    input {
+      width: 100%;
+      height: 50px;
+      padding: 1rem;
+      font-size: 1.2rem;
+      outline: none;
+      margin: 0.5rem 0;
+    }
+  }
+  .post-btn-wrap {
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+    .post-btn {
+      font-size: 1.2rem;
+      background-color: purple;
+      padding: 0.5rem;
+      color: white;
+      &:hover {
+        background-color: white;
+        border: 1px solid purple;
+        color: purple;
+        cursor: pointer;
+      }
+    }
+  }
 }

@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 const NoticeItem = ({ board_no, user_id, title, content, img_file, reg_date, view_cnt }) => {
   return (
-    <Link to={`notices/${board_no}`}>
+    <Link to={`/boards/notice/${board_no}`}>
       <div className={cx('notice')}>
         <div>{board_no}</div>
         <div>{user_id}</div>
@@ -41,7 +41,7 @@ const NoticeList = ({ notices }) => {
   return (
     <div className={cx('notice-wrap')}>
       <div className={cx('button-space')}>
-        <Link to="/notices/post" className={cx('write-button')}>
+        <Link to="/boards/notice/post" className={cx('write-button')}>
           글쓰기
         </Link>
       </div>

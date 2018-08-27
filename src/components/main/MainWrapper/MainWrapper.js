@@ -43,7 +43,7 @@ const MainWrapper = () => {
             <p>원데이클래스</p>
           </div>
         </Link>
-        <Link to="/notices" className={cx('main-nav')}>
+        <Link to="/boards" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             <img src={communityImg}/>
             <p>커뮤니티</p>

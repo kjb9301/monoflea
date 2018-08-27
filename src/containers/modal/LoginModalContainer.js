@@ -40,8 +40,15 @@ class LoginModalContainer extends Component {
     BaseActions.changePasswordInput(value);
   }
 
+  handleSocialLogin = (url) => {
+    const { BaseActions } = this.props;
+    window.open(url, "_blank", "width=800px, height=800px");
+    BaseActions.hideModal('login');
+    window.location.reload();
+  }
+
   render() {
-    const { handleLogin, handleCancel, handleKeyPress, handleChange} = this;
+    const { handleLogin, handleCancel, handleKeyPress, handleChange, handleSocialLogin } = this;
     const { email, password, visible } = this.props;
     return (
       <LoginModal 
@@ -52,6 +59,7 @@ class LoginModalContainer extends Component {
         onKeyPress={handleKeyPress} 
         email={email} 
         password={password}
+        handleSocialLogin={handleSocialLogin}
       />
     );
   }

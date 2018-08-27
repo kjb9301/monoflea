@@ -1,0 +1,22 @@
+@import 'common';
+
+.board-wrap {
+  width: 80%;
+  border: 1px solid black;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+  .board-item {
+    display: inline-block;
+    width: 30%;
+    min-height: 250px;
+    margin: 3rem 1rem;
+    border: 1px solid yellow;
+    position: relative;
+  }
+  .board-name {
+    font-size: 20px;
+    color: purple;
+    @include position-center();
+  }
+}

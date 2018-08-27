@@ -4,6 +4,7 @@ import qs from 'query-string';
 // notice
 export const getNoticeList = () => axios.get('/notices');
 export const getNoticeDetail = (id) => axios.get(`/notices/${id}`);
+export const postNewNotice = (title, content) => axios.post('/notices');
 
 // login
 export const login = (email, password) => axios.post('/users/login', { email, password });

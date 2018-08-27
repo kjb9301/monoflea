@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as listActions from 'store/modules/noticeDetail';
+import * as noticeDetailActions from 'store/modules/noticeDetail';
 import NoticeDetail from 'components/board/NoticeDetail';
 import { withRouter } from 'react-router-dom';
 
 class NoticeDetailContainer extends Component {
   getNoticeDetail = () => {
-    const { ListActions, match } = this.props;
+    const { NoticeDetailActions, match } = this.props;
     const { id } = match.params;
-    ListActions.getNoticeDetail(id);
+    NoticeDetailActions.getNoticeDetail(id);
   }
 
   componentDidMount() {
@@ -41,6 +41,6 @@ export default connect(
     loading: state.pender.pending['notices/GET_NOTICE_DETAIL']
   }),
   (dispatch) => ({
-    ListActions: bindActionCreators(listActions, dispatch)
+    NoticeDetailActions: bindActionCreators(noticeDetailActions, dispatch)
   })
 )(withRouter(NoticeDetailContainer));

@@ -5,7 +5,7 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const LoginModal = ({ onLogin, onCancel, visible, onKeyPress, handleCancel, onChange, email, password }) => {
+const LoginModal = ({ onLogin, handleSocialLogin, onCancel, visible, onKeyPress, handleCancel, onChange, email, password }) => {
   return (
     <ModalWrapper visible={visible}>
       <div className={cx('form')}>
@@ -15,12 +15,14 @@ const LoginModal = ({ onLogin, onCancel, visible, onKeyPress, handleCancel, onCh
         {/* <div className={cx('description')}>비밀번호를 입력하세요</div> */}
         <input type="password" name="password" placeholder="Password" value={password} onChange={onChange} onKeyPress={onKeyPress} />
         <div className={cx('social-login-wrap')}>
-          {/* <div className={cx('kakao-login')}> */}
-            <a href="http://localhost:4000/users/auth/kakao-login" className={cx('kakao-login')}>Kakao</a>
-          {/* </div> */}
-          {/* <div className={cx('naver-login')}> */}
-            <a href="http://localhost:4000/users/auth/naver-login" className={cx('naver-login')}>Naver</a>
-          {/* </div> */}
+          <div className={cx('kakao-login')} onClick={() => handleSocialLogin("http://localhost:4000/users/auth/kakao-login")}>
+            Kakao
+            {/* <a href="http://localhost:4000/users/auth/kakao-login" className={cx('kakao-login')}>Kakao</a> */}
+          </div>
+          <div className={cx('naver-login')} onClick={() => handleSocialLogin("http://localhost:4000/users/auth/naver-login")}>
+            Naver
+            {/* <a href="http://localhost:4000/users/auth/naver-login" className={cx('naver-login')}>Naver</a> */}
+          </div>
         </div>
         <div className={cx('login')} onClick={onLogin}>로그인</div>
       </div>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as listActions from 'store/modules/noticeList';
+import * as noticeListActions from 'store/modules/noticeList';
 import NoticeList from 'components/board/NoticeList';
 
 class NoticeListContainer extends Component {
   getNoticeList = () => {
-    const { ListActions } = this.props;
-    ListActions.getNoticeList();
+    const { NoticeListActions } = this.props;
+    NoticeListActions.getNoticeList();
   }
 
   componentDidMount() {
@@ -33,6 +33,6 @@ export default connect(
     notices: state.noticeList.get('notices')
   }),
   (dispatch) => ({
-    ListActions: bindActionCreators(listActions, dispatch)
+    NoticeListActions: bindActionCreators(noticeListActions, dispatch)
   })
 )(NoticeListContainer);

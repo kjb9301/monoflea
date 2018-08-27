@@ -1,11 +1,11 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import NoticePost from 'components/board/NoticePost';
+import NoticePostContainer from 'containers/board/Notice/NoticePostContainer';
 
 const BoardPostPage = () => {
   return (
     <PageTemplate>
-      <NoticePost />
+      <NoticePostContainer/>
     </PageTemplate>
   );
 };

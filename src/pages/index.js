@@ -6,3 +6,4 @@ export { default as ClassPage } from './ClassPage';
 export { default as MarketPage } from './MarketPage';
 export { default as SellerPage } from './SellerPage';
 export { default as BoardPostPage } from './BoardPostPage';
+export { default as BoardListPage } from './BoardListPage';
