@@ -17,8 +17,9 @@ export const checkEmail = (email) => axios.post('/users/check-email', { email })
 export const checkNickname = (nickName) => axios.post('/users/check-nickname', { nickName });
 
 // seller
-export const getSellersList = () => axios.get('/sellers');
+export const getSellersList = (category) => axios.get(`/sellers?category=${category}`);
 
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
 export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
+

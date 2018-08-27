@@ -7,13 +7,13 @@ const cx = classNames.bind(styles);
 
 const Div = ({ children, ...rest }) => <div {...rest}>{children}</div>;
 
-const Button = ({ children, to, theme='default', disabled, onSelect }) => {
+const Button = ({ children, to, theme='default', disabled, onSelect, onCategory, onHandlePrams }) => {
   const Element = (to && !disabled ? Link : Div)
   return (
     <Element
       to={to}
       className={cx('button', theme, {disabled})} 
-      onClick={() => onSelect('2018-07-01')}
+      onClick={() => onCategory(onHandlePrams)}
     >
       {children}
     </Element>
