@@ -1,0 +1,24 @@
+import { createAction, handleActions } from 'redux-actions';
+import { Map, List } from 'immutable';
+import { pender} from 'redux-pender';
+import * as api from 'lib/api';
+
+const GET_CLASS_LIST = 'GET_CLASS_LIST';
+
+export const getClassList = createAction(GET_CLASS_LIST, api.getClassList);
+
+const initialState = Map({
+  classList : List()
+})
+
+export default handleActions({
+  ...pender({
+    type: GET_CLASS_LIST,
+    onSuccess : (state,action) => {
+      const { classList } = action.payload.data;
+      console.log('============= action.payload.data ============');
+      console.log(classList);
+      return state.set('classList', classList);
+    }
+  })
+}, initialState)

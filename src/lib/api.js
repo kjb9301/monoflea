@@ -23,3 +23,4 @@ export const getSellerId = (id) => axios.get(`/sellers/${id}`);
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
 export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
 
+export const getClassList = () => axios.get('/classes');
