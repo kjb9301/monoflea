@@ -12,6 +12,10 @@ class SellersListContainer extends Component {
     SellerListActions.getSellersList(category);
   } 
 
+  getSellerId  = (id) =>{
+    const {SellerListActions} = this.props;
+      
+  }
   componentDidMount(){
     this.getSellersList()
   }

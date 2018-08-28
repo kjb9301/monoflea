@@ -42,9 +42,14 @@ class LoginModalContainer extends Component {
 
   handleSocialLogin = (url) => {
     const { BaseActions } = this.props;
-    window.open(url, "_blank", "width=800px, height=800px");
+    const popup = window.open(url, "_blank", "width=500px, height=500px");
     BaseActions.hideModal('login');
-    window.location.reload();
+    const timer = setInterval(() => {
+      if(popup.closed) {
+        window.location.reload();
+        clearInterval(timer);
+      }
+    }, 1000);
   }
 
   render() {
