@@ -6,10 +6,12 @@ import * as api from 'lib/api';
 const GET_SELLERS_LIST = 'GET_SELLERS_LIST';
 
 export const getSellersList = createAction(GET_SELLERS_LIST, api.getSellersList);
+
 const initialState = Map({
   sellers : List(),
   categories : List()
 })
+
 
 export default handleActions({
   ...pender({
