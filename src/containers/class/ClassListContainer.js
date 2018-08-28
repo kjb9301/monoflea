@@ -3,38 +3,40 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import ClassList from 'components/class/ClassList';
 
-
-// 수정 필요
-import * as listActions from 'store/modules/marketList';
-
+import * as classListActions from 'store/modules/classList';
 
 class ClassListContainer extends Component {
-  getMarketList = () => {
-    const {ListActions} = this.props;
-    ListActions.getMarketList()
+
+  getClassList = () => {
+    const { ClassListActions } = this.props;
+    ClassListActions.getClassList();
   }
 
   componentDidMount() {
-    this.getMarketList();
+    console.log(`This is componentDidMount()`);
+    this.getClassList();
   }
 
   render() {
-    const {loading,markets} = this.props;
+    const { loading, classList } = this.props;
+
+    console.log('======= classListContainer render() classList =========');
+    console.log(classList);
+    
     if(loading) return null;
     return (
       <div>
-        <ClassList markets={markets}/>
+        <ClassList onedayLists={classList}/>
       </div>
     );
   }
 }
 
-export default connect(
-  (state) => ({
-    markets: state.marketList.get('markets'),
-    loading: state.pender.pending['market/GET_MARKET_LIST']
+export default connect((state) => ({
+    classList: state.classList.get('classList'),
+    loading: state.pender.pending['class/GET_CLASS_LIST']
   }),
   (dispatch) => ({
-    ListActions: bindActionCreators(listActions,dispatch)
+    ClassListActions: bindActionCreators(classListActions, dispatch)
   })
 )(ClassListContainer);

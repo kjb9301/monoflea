@@ -18,3 +18,4 @@ export const checkNickname = (nickName) => axios.post('/users/check-nickname', {
 // seller
 export const getSellersList = () => axios.get('/sellers');
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
+export const getClassList = () => axios.get('/classes');
