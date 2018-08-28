@@ -9,6 +9,7 @@ import {
   ClassPage, 
   BoardDetailPage, 
   BoardPostPage,
+  BoardListPage,
   MarketDetailPage
 } from 'pages';
 import Base from 'containers/common/Base';

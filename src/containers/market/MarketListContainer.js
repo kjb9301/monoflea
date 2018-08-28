@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import MarketList from 'components/market/MarketList';
 import Button from '../../components/common/Button/Button';
+import MarketDetailModal from 'components/modal/MarketDetailModal';
 
 import * as listActions from 'store/modules/marketList';
 import * as detailActions from 'store/modules/marketDetail';
+import * as modalActions from 'store/modules/detailModal';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
@@ -20,8 +22,11 @@ class MarketListContainer extends Component {
   }
 
   handleDetail = (id) => {
-    const {history} = this.props;
-    history.push(`/markets/${id}`);
+    const {DetailActions,ModalActions} = this.props;
+    //const {id} = match.params;
+    //history.push(`/markets/${id}`);
+    ModalActions.showModal('market');
+    DetailActions.getMarketDetail(id);
   }
 
   componentDidMount() {
@@ -29,7 +34,7 @@ class MarketListContainer extends Component {
   }
 
   render() {
-    const {loading,marketList,marketComingList} = this.props;
+    const {visible,loading,marketList,marketComingList,marketDetail} = this.props;
     const date = new Date();
     const curGetTime = date.getTime();
 
@@ -40,6 +45,7 @@ class MarketListContainer extends Component {
         <MarketList markets={marketList} curGetTime={curGetTime} onDetail={this.handleDetail}>
           <Button onSelect={this.handleClick}>기간별</Button>
         </MarketList>
+        <MarketDetailModal visible={visible} marketDetail={marketDetail}/>
       </div>
     );
   }
@@ -47,12 +53,15 @@ class MarketListContainer extends Component {
 
 export default connect(
   (state) => ({
+    //visible: state.detailModal,
     marketList: state.marketList.get('marketList'),
     marketComingList: state.marketList.get('marketComingList'),
+    marketDetail: state.marketDetail.get('marketDetail'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
     ListActions: bindActionCreators(listActions,dispatch),
-    DetailActions: bindActionCreators(detailActions,dispatch)
+    DetailActions: bindActionCreators(detailActions,dispatch),
+    ModalActions: bindActionCreators(modalActions,dispatch)
   })
 )(withRouter(MarketListContainer));

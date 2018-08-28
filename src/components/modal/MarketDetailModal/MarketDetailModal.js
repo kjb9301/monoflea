@@ -5,11 +5,10 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const MarketDetailModal = ({marketDetail}) => {
-  console.log(marketDetail)
+const MarketDetailModal = ({visible,marketDetail}) => {
   const {market_name,market_place,market_poster,market_desc,market_period,end_date} = marketDetail;
   return (
-    <div>
+    <ModalWrapper visible={visible}>
       <div className={cx('question')}>
         <div className={cx('title')}>{market_poster}</div>
         <div className={cx('description')}>{market_name}</div>
@@ -19,7 +18,7 @@ const MarketDetailModal = ({marketDetail}) => {
       </div>
       <div className={cx('options')}>
       </div>
-    </div>
+    </ModalWrapper>
   );
 };
 
