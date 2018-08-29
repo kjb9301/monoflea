@@ -103,7 +103,7 @@ class SignupModal extends Component {
             className={cx('login')}
             onClick={() => {
               if(userType==='U') return onSignup(validatedEmail, validatedPassword, comparedPassword);
-              callNextModal();
+              callNextModal(validatedEmail, validatedPassword, comparedPassword);
             }}>
             {
               userType === 'U' ? '회원가입' : '다음'

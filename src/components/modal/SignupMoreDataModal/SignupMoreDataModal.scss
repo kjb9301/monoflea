@@ -1,7 +1,7 @@
 @import 'common';
 
 .SignupMoreDataModal {
-  width: 30rem;
+  width: 50rem;
   background-color: white;
   padding: 2rem;
   position: relative;
@@ -35,6 +35,23 @@
         border-bottom: 1px solid $oc-gray-5;
         padding: 0.25rem;
         border-radius: 4px;
+      }
+    }
+  }
+  .button-wrap {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    .button {
+      display: inline-block;
+      border: 1px solid blue;
+      color: blue;
+      padding: 15px;
+      margin: 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: blue;
+        color: white;
       }
     }
   }

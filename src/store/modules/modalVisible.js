@@ -18,10 +18,10 @@ const initialState = Map({
 export default handleActions({
   [SHOW_MODAL]: (state,action) => {
     const modalName = action.payload;
-    return state.setIn(['modal',modalName],true);
+    return state.setIn(['modal', modalName], true);
   },
   [HIDE_MODAL]: (state,action) => {
     const modalName = action.payload;
-    return state.setIn(['modal',modalName],false);
+    return state.setIn(['modal', modalName], false);
   }
-},initialState)
+}, initialState);
