@@ -5,11 +5,11 @@ import styles from './SellerList.scss';
 
 const cx = classNames.bind(styles)
 
-const SellerItem = ({nickname, category, sns, career, seller_desc, imgurl, }) =>{
+const SellerItem = ({nickname, category, sns, career, seller_desc, profile_img, }) =>{
   return (
     <div className = {cx('seller-item')}>
       <div className = {cx('seller-item-top')}>
-        <img className = {cx('seller-img')} src= {imgurl}/>
+        <img className = {cx('seller-img')} src= {profile_img}/>
       </div>
       <div className = {cx('seller-item-bottom')}>
         <div className = {cx('bot-inner-top')}>
@@ -35,7 +35,7 @@ const SellerItem = ({nickname, category, sns, career, seller_desc, imgurl, }) =>
 const SellerList = ({sellers}) =>{
   const sellerlist  = sellers.map(
     (seller) => {
-      const { seller_id, nickname, category, category_id, sns, career, seller_desc, imgUrl} = seller;
+      const { seller_id, nickname, category, category_id, sns, career, seller_desc, profile_img} = seller;
       
       return(
         <SellerItem
@@ -46,7 +46,7 @@ const SellerList = ({sellers}) =>{
           sns = {sns}
           career = {career}
           seller_desc = {seller_desc}
-          imgurl = {imgUrl}
+          profile_img = {profile_img}
         />
       )
     }
