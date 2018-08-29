@@ -8,3 +8,4 @@ export { default as marketList } from './marketList';
 export { default as sellerList } from './sellerList';
 export { default as marketDetail } from './marketDetail';
 export { default as classList } from './classList';
+export { default as modalVisible } from './modalVisible';

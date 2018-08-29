@@ -1,0 +1,28 @@
+@import 'common';
+
+.button-space {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  padding: 1rem;
+
+  .reg-button {
+    width: 5rem;
+    height: 2rem;
+    margin-left: 1rem;
+    border: 1px solid $oc-blue-7;
+    color: $oc-blue-7;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      background: $oc-blue-7;
+      color: white;
+    }
+    &:active {
+      background: $oc-blue-8;
+    }
+  }
+}

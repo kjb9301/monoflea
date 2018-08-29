@@ -7,4 +7,4 @@ export { default as MarketPage } from './MarketPage';
 export { default as SellerPage } from './SellerPage';
 export { default as BoardPostPage } from './BoardPostPage';
 export { default as BoardListPage } from './BoardListPage';
-export { default as MarketDetailPage } from './MarketDetailPage';
+export { default as MarketPostPage } from './MarketPostPage';

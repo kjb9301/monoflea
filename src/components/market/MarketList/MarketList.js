@@ -60,7 +60,7 @@ const MarketList = ({children,markets,curGetTime,onDetail}) => {
   return (
     <div className={cx('wrapper')}>
       <div>
-        {children}
+        <div>{children}</div>
       </div>
       {marketList}
     </div>

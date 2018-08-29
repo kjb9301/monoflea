@@ -3,12 +3,13 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import MarketList from 'components/market/MarketList';
-import Button from '../../components/common/Button/Button';
+import Button from 'components/common/Button/Button';
+import MarketRegButton from 'components/market/MarketRegButton/MarketRegButton'; 
 import MarketDetailModal from 'components/modal/MarketDetailModal';
 
 import * as listActions from 'store/modules/marketList';
 import * as detailActions from 'store/modules/marketDetail';
-import * as modalActions from 'store/modules/detailModal';
+import * as modalActions from 'store/modules/modalVisible';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
@@ -23,10 +24,13 @@ class MarketListContainer extends Component {
 
   handleDetail = (id) => {
     const {DetailActions,ModalActions} = this.props;
-    //const {id} = match.params;
-    //history.push(`/markets/${id}`);
     ModalActions.showModal('market');
     DetailActions.getMarketDetail(id);
+  }
+
+  handleCancel = () => {
+    const {ModalActions} = this.props;
+    ModalActions.hideModal('market');
   }
 
   componentDidMount() {
@@ -44,8 +48,9 @@ class MarketListContainer extends Component {
         <MarketList markets={marketComingList} curGetTime={curGetTime} onDetail={this.handleDetail}/>
         <MarketList markets={marketList} curGetTime={curGetTime} onDetail={this.handleDetail}>
           <Button onSelect={this.handleClick}>기간별</Button>
+          <MarketRegButton/>
         </MarketList>
-        <MarketDetailModal visible={visible} marketDetail={marketDetail}/>
+        <MarketDetailModal visible={visible} marketDetail={marketDetail} onCancel={this.handleCancel}/>
       </div>
     );
   }
@@ -53,7 +58,7 @@ class MarketListContainer extends Component {
 
 export default connect(
   (state) => ({
-    //visible: state.detailModal,
+    visible: state.modalVisible.getIn(['modal','market']),
     marketList: state.marketList.get('marketList'),
     marketComingList: state.marketList.get('marketComingList'),
     marketDetail: state.marketDetail.get('marketDetail'),
