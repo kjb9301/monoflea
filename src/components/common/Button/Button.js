@@ -14,7 +14,7 @@ const Button = ({ children, to, theme='default', disabled, onSelect, onCategory,
       to={to}
       className={cx('button', theme, {disabled})} 
       onClick={() => onCategory(onHandlePrams)}
-      // onClick={() => onSelect('2018-08-30')}
+      //onClick={() => onSelect('2018-08-30')}
     >
       {children}
     </Element>

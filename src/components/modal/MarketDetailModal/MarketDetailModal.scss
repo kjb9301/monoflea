@@ -1,19 +1,103 @@
 @import 'common';
 
-.question {
+.modalForm {
   background: white;
   padding: 2rem;
-  .title {
-    font-size: 1.25rem;
-    font-weight: 500;
+  position: relative;
+  padding-top: 2.5rem;
+  width: 50rem;
+  height: 50rem;
+  .close {
+    line-height: 2rem;
+    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+    &:hover {
+      color: $oc-gray-6;
+    }
   }
-  .description {
+  .wrapper {
+    .poster {
+      width: 20rem;
+      height: 20rem;
+      padding: 2rem;
+      border: 1px solid black;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 1rem;
+      display: inline-block;
+    }
+    .info {
+      width: 20rem;
+      height: 20rem;
+      padding: 2rem;
+      margin: 1rem;
+      border: 1px solid black;
+      display: inline-block;
+    }
+    .desc {
+      width: 40rem;
+      height: 20rem;
+      border: 1px solid black;
+    }
+  } 
+  
+  /* .description {
     margin-top: 0.25rem;
   }
-}
-
-.options {
-  padding: 1rem;
-  background: $oc-gray-1;
-  text-align: right;
+  .error {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: $oc-red-6;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  input {
+    width: 100%;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid $oc-gray-3;
+    padding: 0.25rem;
+    outline: none;
+    border-radius: 4px;
+  }
+  .login {
+    background: $oc-blue-6;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    &:hover {
+      background: $oc-blue-5;
+    }
+    &:active {
+      background: $oc-blue-6;
+    }
+  }
+  .social-login-wrap {
+    display: flex;
+    .kakao-login, .naver-login {
+      text-align: center;
+      flex: 1;
+      margin: 5px;
+      padding: 0.5rem;
+      font-weight: 5000;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: white;
+    }
+    .kakao-login {
+      background-color: $oc-yellow-3;
+    }
+    .naver-login {
+      background-color: $oc-green-4;
+    }
+  } */
 }
