@@ -84,9 +84,15 @@ class SignupModalContainer extends Component {
     }
   }
 
+  callNextModal = () => {
+    const { BaseActions } = this.props; 
+    BaseActions.hideModal('signup');
+    BaseActions.showModal('signupMore');
+  }
+
   render() {
-    const { handleSignup, handleCancel, handleKeyPress, handleChange, checkEmail, checkNick } = this;
-    const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck } = this.props;
+    const { handleSignup, handleCancel, handleKeyPress, handleChange, checkEmail, checkNick, callNextModal } = this;
+    const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck, userType } = this.props;
     return (
       <SignupModal
         visible={visible}
@@ -100,6 +106,8 @@ class SignupModalContainer extends Component {
         modalPasswordCheck={modalPasswordCheck}
         checkEmail={checkEmail}
         checkNick={checkNick}
+        userType={userType}
+        callNextModal={callNextModal}
       />
     );
   }
@@ -117,7 +125,8 @@ export default connect(
     checkedEmail: state.base.getIn(['signupModal', 'checkedEmail']),
     checkedEmailMessage: state.base.getIn(['signupModal', 'checkedEmailMessage']),
     checkedNick: state.base.getIn(['signupModal', 'checkedNick']),
-    checkedNickMessage: state.base.getIn(['signupModal', 'checkedNickMessage'])
+    checkedNickMessage: state.base.getIn(['signupModal', 'checkedNickMessage']),
+    userType: state.base.getIn(['signupTypeModal', 'type'])
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)

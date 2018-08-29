@@ -14,17 +14,12 @@ class HeaderContainer extends Component {
 
   handleSignupClick = () => {
     const { BaseActions } = this.props;
-    BaseActions.showModal('signup');
-    BaseActions.initializeSignupModal();
-  }
+    BaseActions.showModal('signupType');
 
-  // checkLoginUser = async () => {
-  //   const { BaseActions } = this.props;
-  //   await BaseActions.loginUserCheck();
-  //   const { logged, nickName } = this.props;
-  //   if(!logged) return delete localStorage.nickName;
-  //   localStorage.nickName = nickName;
-  // }
+    // 실제 가입 폼
+    // BaseActions.showModal('signup');
+    // BaseActions.initializeSignupModal();
+  }
 
   handleLogout = async () => {
     const { BaseActions, history } = this.props;
@@ -33,14 +28,6 @@ class HeaderContainer extends Component {
     alert('로그아웃 되었습니다!');
     return history.push('/');
   }
-
-  // componentDidMount() {
-  //   this.checkLoginUser();
-  // }
-
-  // componentDidUpdate() {
-  //   this.checkLoginUser();
-  // }
 
   render() {
     const { handleLoginClick, handleLogout, handleSignupClick } = this;

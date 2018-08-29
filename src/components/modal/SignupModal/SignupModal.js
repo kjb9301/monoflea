@@ -29,7 +29,7 @@ class SignupModal extends Component {
   }
 
   render() {
-    const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck, onSignup, onCancel, onKeyPress, onChange, checkEmail, checkNick } = this.props;
+    const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck, onSignup, onCancel, onKeyPress, onChange, checkEmail, checkNick, userType, callNextModal } = this.props;
     const { comparePassword, checkEmailValidation, checkPasswordValidation, validatedEmail, validatedPassword, comparedPassword } = this;
     return (
       <ModalWrapper visible={visible}>
@@ -101,9 +101,13 @@ class SignupModal extends Component {
           </div>
           <div 
             className={cx('login')}
-            onClick={() => onSignup(validatedEmail, validatedPassword, comparedPassword)
-            }>
-            회원가입
+            onClick={() => {
+              if(userType==='U') return onSignup(validatedEmail, validatedPassword, comparedPassword);
+              callNextModal();
+            }}>
+            {
+              userType === 'U' ? '회원가입' : '다음'
+            }
           </div>
         </div>
       </ModalWrapper>

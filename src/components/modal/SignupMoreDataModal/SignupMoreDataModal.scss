@@ -1,0 +1,41 @@
+@import 'common';
+
+.SignupMoreDataModal {
+  width: 30rem;
+  background-color: white;
+  padding: 2rem;
+  position: relative;
+  .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .close {
+    position: absolute;
+    line-height: 2rem;
+    text-align: right;
+    font-size: 2rem;
+    right: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+  }
+  .input-box {
+    width: 100%;
+    margin: 1rem auto;
+    .input-container {
+      width: 100%;
+      margin: 1rem auto;
+      .item-title {
+        font-size: 1.2rem;
+      }
+      .item-input {
+        width: 80%;
+        font-size: 1.2rem;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid $oc-gray-5;
+        padding: 0.25rem;
+        border-radius: 4px;
+      }
+    }
+  }
+}

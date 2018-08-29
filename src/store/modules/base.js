@@ -22,6 +22,19 @@ const INITIALIZE_SIGNUP_MODAL = 'base/INITIALIZE_SIGNUP_MODAL';
 const CHECK_EMAIL = 'base/CHECK_EMAIL';
 const CHECK_NICKNAME = 'base/CHECK_NICKNAME';
 
+const CHANGE_USER_TYPE = 'base/CHAGE_USER_TYPE';
+
+const CHANGE_MORE_CATEGORY = 'base/CHANGE_MORE_CATEGORY';
+const CHANGE_MORE_CAREER = 'base/CHANGE_MORE_CAREER';
+const CHANGE_MORE_SNS = 'base/CHANGE_MORE_SNS';
+const CHANGE_MORE_PROFILEIMG = 'base/CHANGE_MORE_PROFILEIMG';
+const CHANGE_MORE_BIZ = 'base/CHANGE_MORE_BIZ';
+const CHANGE_MORE_DESC = 'base/CHANGE_MORE_DESC';
+const CHANGE_MORE_CLASS = 'base/CHANGE_MORE_CLASS';
+const CHANGE_MORE_SHOW = 'base/CHANGE_MORE_SHOW';
+// TODO
+const SEND_MORE_DATA = '';
+
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 
@@ -43,10 +56,25 @@ export const initializeSignupModal = createAction(INITIALIZE_SIGNUP_MODAL);
 export const checkEmail = createAction(CHECK_EMAIL, api.checkEmail);
 export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
 
+// signupType
+export const changeUserType = createAction(CHANGE_USER_TYPE);
+
+// signupMoreData
+export const changeMoreCategory = createAction(CHANGE_MORE_CATEGORY);
+export const changeMoreCareer = createAction(CHANGE_MORE_CAREER);
+export const changeMoreSNS = createAction(CHANGE_MORE_SNS);
+export const changeMoreProfileImg = createAction(CHANGE_MORE_PROFILEIMG);
+export const changeMoreBiz = createAction(CHANGE_MORE_BIZ);
+export const changeMoreDesc = createAction(CHANGE_MORE_DESC);
+export const changeMoreClass = createAction(CHANGE_MORE_CLASS);
+export const changeMoreShow = createAction(CHANGE_MORE_SHOW);
+
 const initialState = Map({
   modal: Map({
     login: false,
-    signup: false
+    signup: false,
+    signupType: false,
+    signupMore: false
   }),
   loginModal: Map({
     email: '',
@@ -62,6 +90,19 @@ const initialState = Map({
     checkedEmailMessage: '',
     checkedNick: false,
     checkedNickMessage: ''
+  }),
+  signupTypeModal: Map({
+    type: ''
+  }),
+  signupMoreModal: Map({
+    category: '',
+    career: '',
+    sns: '',
+    profile_img: '',
+    biz: '',
+    desc: '',
+    classTF: '',
+    showTF: ''
   }),
   logged: false,
   nickName: '',
@@ -155,5 +196,41 @@ export default handleActions({
   [CHANGE_SIGNUP_PASSWORD_CHECK]: (state, action) => {
     const { payload: value } = action;
     return state.setIn(['signupModal', 'passwordCheck'], value);
+  },
+  [CHANGE_USER_TYPE]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupTypeModal', 'type'], value);
+  },
+  [CHANGE_MORE_CATEGORY]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'category'], value);
+  },
+  [CHANGE_MORE_CAREER]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'career'], value);
+  },
+  [CHANGE_MORE_SNS]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'sns'], value);
+  },
+  [CHANGE_MORE_PROFILEIMG]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'profile_img'], value);
+  },
+  [CHANGE_MORE_BIZ]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'biz'], value);
+  },
+  [CHANGE_MORE_DESC]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'desc'], value);
+  },
+  [CHANGE_MORE_CLASS]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'classTF'], value);
+  },
+  [CHANGE_MORE_SHOW]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'showTF'], value);
   },
 }, initialState);
