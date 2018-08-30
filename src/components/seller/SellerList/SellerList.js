@@ -5,23 +5,21 @@ import styles from './SellerList.scss';
 
 const cx = classNames.bind(styles)
 
-const SellerItem = ({nickname, category, sns, career, seller_desc, profile_img, }) =>{
+const SellerItem = ({user, sellerCategory, seller_desc, profile_img, id, onModal}) =>{
   return (
-    <div className = {cx('seller-item')}>
+    <div className = {cx('seller-item')} onClick = {() => onModal(id)}>
       <div className = {cx('seller-item-top')}>
         <img className = {cx('seller-img')} src= {profile_img}/>
       </div>
       <div className = {cx('seller-item-bottom')}>
         <div className = {cx('bot-inner-top')}>
           <p className = {cx('item-left')}>
-            닉네임 {nickname}
+            닉네임 {user.nickName}
           </p>
         </div>
         <div className = {cx('bot-inner-bot')}>
           <div className = {cx('item-left')}>
-            <p className = {cx('block-to-inline')}>분야  : {category}</p><br/>
-            <p className = {cx('block-to-inline')}>경력 : {career}년</p><br/>
-            <p className = {cx('block-to-inline')}>facebook : {sns}</p><br/>
+            <p className = {cx('block-to-inline')}>분야  : {sellerCategory.category_ko}</p><br/>
           </div>
           <p>
             셀러소개 : {seller_desc}
@@ -32,21 +30,20 @@ const SellerItem = ({nickname, category, sns, career, seller_desc, profile_img, 
   );
 };
 
-const SellerList = ({sellers}) =>{
+const SellerList = ({sellers, onModal}) =>{
   const sellerlist  = sellers.map(
     (seller) => {
-      const { seller_id, nickname, category, category_id, sns, career, seller_desc, profile_img} = seller;
+      const { seller_id, user, sellerCategory, seller_desc, profile_img} = seller;
       
       return(
         <SellerItem
           key = {seller_id}
-          nickname = {nickname}
-          category ={category}
-          category_id = {category_id}
-          sns = {sns}
-          career = {career}
+          id = {seller_id}
+          user = {user}
+          sellerCategory ={sellerCategory}
           seller_desc = {seller_desc}
           profile_img = {profile_img}
+          onModal = { onModal }
         />
       )
     }

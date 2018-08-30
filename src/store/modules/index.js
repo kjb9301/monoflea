@@ -10,3 +10,4 @@ export { default as marketDetail } from './marketDetail';
 export { default as classList } from './classList';
 export { default as modalVisible } from './modalVisible';
 export { default as marketPost } from './marketPost';
+export { default as sellerDetail } from './sellerDetail';
