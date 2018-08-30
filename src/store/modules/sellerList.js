@@ -21,7 +21,7 @@ export default handleActions({
       console.log(sellers)
       //'sellers'는 initialState의 sellers
       //'sellers'에 actions.payload.data를 set
-      return state.set('sellers', sellers.list)
+      return state.set('sellers', sellers.sellerList)
                   .set('categories',sellers.category)
                   
     }
