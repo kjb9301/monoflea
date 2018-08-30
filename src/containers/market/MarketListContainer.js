@@ -17,7 +17,7 @@ class MarketListContainer extends Component {
     ListActions.getMarketList();
   }
 
-  handleClick = (category) => {
+  handleSelect = (category) => {
     const {ListActions} = this.props;
     ListActions.getMarketList(category);
   }
@@ -39,18 +39,19 @@ class MarketListContainer extends Component {
 
   render() {
     const {visible,loading,marketList,marketComingList,marketDetail} = this.props;
+    const {handleDetail,handleSelect,handleCancel} = this;
     const date = new Date();
     const curGetTime = date.getTime();
 
     if(loading) return null;
     return (
       <div>
-        <MarketList markets={marketComingList} curGetTime={curGetTime} onDetail={this.handleDetail}/>
-        <MarketList markets={marketList} curGetTime={curGetTime} onDetail={this.handleDetail}>
-          <Button onSelect={this.handleClick}>기간별</Button>
+        <MarketList markets={marketComingList} curGetTime={curGetTime} onDetail={handleDetail}/>
+        <MarketList markets={marketList} curGetTime={curGetTime} onDetail={handleDetail}>
+          <Button onSelect={handleSelect}>기간별</Button>
           <MarketRegButton/>
         </MarketList>
-        <MarketDetailModal visible={visible} marketDetail={marketDetail} onCancel={this.handleCancel}/>
+        <MarketDetailModal visible={visible} marketDetail={marketDetail} onCancel={handleCancel}/>
       </div>
     );
   }

@@ -1,16 +1,49 @@
 @import 'common';
 
+/* * {
+  box-sizing: border-box;
+} */
+
 .form {
-  border: 1px solid black;
-  input {
-    flex: 1;
-    font-size: 1rem;
-    outline: none;
+  border-radius: 5px;
+  padding: 2rem;
+  .row:after {
+    display: table;
+    clear: both;
+  }
+  .label-space {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    label {
+      padding: 12px 12px 12px 0;
+      display: inline-block;
+    }
+  }
+  .input-space {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+    input {
+      width: 80%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+  }
+  .submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
     border: none;
-    background: transparent;
-    border-bottom: 1px solid $oc-gray-4;
-    &:focus {
-      border-bottom: 1px solid $oc-cyan-6;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    &.hover {
+      background-color: #45a049;
     }
   }
 }
+
+

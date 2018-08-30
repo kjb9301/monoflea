@@ -11,7 +11,7 @@ const MarketItem = ({id,name,place,poster,period,end,reg,curGetTime,onDetail}) =
   const dDay = Math.ceil(gap/(1000*60*60*24));
 
   return (
-    <div className={cx('market-item')} onClick={() => onDetail(id)}>
+    <div className={cx('market-item')}>
       <div className={cx('market-item-top')}>
         <div className={cx('market-dday')}>
           <p>{dDay >= 0 ? `D-${dDay}` : '종료'}</p>
@@ -26,11 +26,12 @@ const MarketItem = ({id,name,place,poster,period,end,reg,curGetTime,onDetail}) =
           <p className={cx('item-right')}>
             {place}
           </p>
-        </div>
-        <div className={cx('bot-inner-bot')}>
           <div className={cx('item-left')}>
             <p className={cx('block-to-inline')}>{period} ~ {end}</p>
           </div>
+        </div>
+        <div className={cx('bot-inner-bot')}>
+          <button className={cx('reg-button')} onClick={() => onDetail(id)}>상세보기</button>
         </div>
       </div>
     </div>

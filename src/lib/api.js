@@ -25,6 +25,8 @@ export const getSellerCategory = () => axios.get('/sellers/category-list');
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
 export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
+export const postMarket = (newMarket) => axios.post('/markets',{newMarket});
 
+// class
 export const getClassList = (category) => axios.get(`/classes?category=${category}`);
 export const getClassId = (id) => axios.get(`/classes/${id}`);
