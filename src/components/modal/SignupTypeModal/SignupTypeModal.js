@@ -3,7 +3,9 @@ import styles from './SignupTypeModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
 
-
+import userImg from './image/user.png';
+import sellerImg from './image/seller.png';
+import hostImg from './image/host.png';
 
 const cx = classNames.bind(styles);
 
@@ -14,19 +16,22 @@ const SignupTypeModal = ({ visible, onCancel, onChangeValue, onClickButton }) =>
         <div onClick={onCancel} className={cx('close')}>&times;</div>
         <div className={cx('list-wrap')}>
           <div className={cx('list')}>
-            <img src="https://us.123rf.com/450wm/jemastock/jemastock1608/jemastock160800437/60754519-flat-design-user-pictogram-icon-vector-illustration.jpg?ver=6"/>
+            <img src={userImg}/>
+            <p className={cx('user-type')}>일반</p>
             <div>
               <input type="radio" name="userType" value="U" onChange={onChangeValue}/>
             </div>
           </div>
           <div className={cx('list')}>
-            <img src="https://us.123rf.com/450wm/jemastock/jemastock1608/jemastock160800437/60754519-flat-design-user-pictogram-icon-vector-illustration.jpg?ver=6"/>
+            <img src={sellerImg}/>
+            <p className={cx('user-type')}>셀러</p>
             <div>
               <input type="radio" name="userType" value="S" onChange={onChangeValue}/>
             </div>
           </div>
           <div className={cx('list')}>
-            <img src="https://us.123rf.com/450wm/jemastock/jemastock1608/jemastock160800437/60754519-flat-design-user-pictogram-icon-vector-illustration.jpg?ver=6"/>
+            <img src={hostImg}/>
+            <p className={cx('user-type')}>주최자</p>
             <div>
               <input type="radio" name="userType" value="H" onChange={onChangeValue}/>
             </div>

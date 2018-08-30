@@ -52,7 +52,7 @@ class SignupMoreDataModalContainer extends Component {
       showTF
     } = this.props;
     if(!this.checkValidations()) return;
-    await BaseActions.signup(modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF);
+    await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
     alert('가입이 완료되었습니다!');
     BaseActions.hideModal('signupMore');
   }
@@ -78,38 +78,43 @@ class SignupMoreDataModalContainer extends Component {
       biz,
       desc,
       classTF,
-      showTF
+      showTF,
+      userType
     } = this.props;
     
     const telReg = /^\d{2,3}-\d{3,4}-\d{4}$/;
-
+    
     if(name.length === 0) {
       alert('이름은 필수사항입니다!');
       return false;
     } else if(tel.length === 0 || !telReg.test(tel)) {
       alert('전화번호는 필수사항입니다! (ex. 010-1234-1234)');
       return false;
-    } else if(category.length === 0 || category === "0") {
-      alert('카테고리를 선택하세요!');
-      return false;
-    } else if(career.length === 0 || career<0) {
-      alert('경력은 필수사항입니다!(0년 이상)');
-      return false;
-    } else if(profile_img.length === 0) {
-      alert('프로필 이미지는 필수사항입니다!');
-      return false;
-    } else if(biz.length === 0 || !(biz === 'Y' || biz === 'N')) {
-      alert('사업자 여부는 필수사항입니다.(Y/N)');
-      return false;
-    } else if(desc.length === 0) {
-      alert('셀러소개는 필수사항입니다!');
-      return false;
-    } else if(classTF.length === 0 || !(classTF === 'Y' || classTF === 'N')) {
-      alert('원데이 클래스 주최는 필수사항입니다.(Y/N)');
-      return false;
-    } else if(showTF.length === 0 || !(showTF === 'Y' || showTF === 'N')) {
-      alert('셀러 정보 노출 여부는 필수사항입니다.(Y/N)');
-      return false;
+    }
+    
+    if(userType === 'S') {
+      if(category.length === 0 || category === "0") {
+        alert('카테고리를 선택하세요!');
+        return false;
+      } else if(career.length === 0 || career<0) {
+        alert('경력은 필수사항입니다!(0년 이상)');
+        return false;
+      } else if(profile_img.length === 0) {
+        alert('프로필 이미지는 필수사항입니다!');
+        return false;
+      } else if(biz.length === 0 || !(biz === 'Y' || biz === 'N')) {
+        alert('사업자 여부는 필수사항입니다.(Y/N)');
+        return false;
+      } else if(desc.length === 0) {
+        alert('셀러소개는 필수사항입니다!');
+        return false;
+      } else if(classTF.length === 0 || !(classTF === 'Y' || classTF === 'N')) {
+        alert('원데이 클래스 주최는 필수사항입니다.(Y/N)');
+        return false;
+      } else if(showTF.length === 0 || !(showTF === 'Y' || showTF === 'N')) {
+        alert('셀러 정보 노출 여부는 필수사항입니다.(Y/N)');
+        return false;
+      }
     }
     return true;
   }

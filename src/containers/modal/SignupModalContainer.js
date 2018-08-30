@@ -12,7 +12,7 @@ class SignupModalContainer extends Component {
     const { BaseActions, modalEmail, modalNickname, modalPassword } = this.props;
     if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
     try {
-      await BaseActions.signup(modalEmail, modalNickname, modalPassword);
+      await BaseActions.signup({ modalEmail, modalNickname, modalPassword });
       const { logged, nickName } = this.props;
       if(logged) {
         localStorage.nickName = nickName;

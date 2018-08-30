@@ -12,7 +12,7 @@ export const loginUserCheck = () => axios.get('/users/user-check');
 export const logout = () => axios.delete('/users/logout');
 
 // signup
-export const signup = (email, nickName, password, userType, name, tel, category_id, career, sns, profile_img, biz_YN, seller_desc, class_TF, show_TF) => axios.post('/users/signup', { email, nickName, password, userType, name, tel, category_id, career, sns, profile_img, biz_YN, seller_desc, class_TF, show_TF});
+export const signup = (newUser) => axios.post('/users/signup', { newUser });
 export const checkEmail = (email) => axios.post('/users/check-email', { email });
 export const checkNickname = (nickName) => axios.post('/users/check-nickname', { nickName });
 
