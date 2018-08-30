@@ -48,7 +48,7 @@ class MarketListContainer extends Component {
       <div>
         <MarketList markets={marketComingList} curGetTime={curGetTime} onDetail={handleDetail}/>
         <MarketList markets={marketList} curGetTime={curGetTime} onDetail={handleDetail}>
-          <Button onSelect={handleSelect}>기간별</Button>
+          <Button toGetData={handleSelect} onHandleParams = {'2018-08-30'}>기간별</Button>
           <MarketRegButton/>
         </MarketList>
         <MarketDetailModal visible={visible} marketDetail={marketDetail} onCancel={handleCancel}/>

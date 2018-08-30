@@ -38,8 +38,8 @@ class SellersListContainer extends Component {
         const {category_id, category_ko, category} = categoryItem;
           return <Button
             key = {category_id}
-            onHandlePrams = {category}
-            onCategory = {getSellersList}
+            onHandleParams = {category}
+            toGetData = {getSellersList}
           > {category_ko} </Button>
       } 
     )
@@ -48,7 +48,7 @@ class SellersListContainer extends Component {
       <div>
         <Button 
           key = {'All'}
-          onCategory = {getSellersList}
+          toGetData = {getSellersList}
         >전체</Button>
         {categoryList}
         <SellerList
@@ -67,6 +67,7 @@ class SellersListContainer extends Component {
 
 export default connect((state) => ({
   sellers : state.sellerList.get('sellers'),
+  nickname : state.sellerDetail.get('nickName'),
   categories : state.sellerList.get('categories'),
   sellerDetail : state.sellerDetail.get('sellerDetail'),
   visible : state.modalVisible.getIn(['modal','seller']),
