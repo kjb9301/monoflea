@@ -18,12 +18,11 @@ class ClassListContainer extends Component {
   }
 
   componentDidMount() {
-    console.log(`This is componentDidMount()`);
     this.getClassList();
   }
 
   render() {
-    const { loading, classList, categories } = this.props;
+    const { loading, classList, categories, bestClassList } = this.props;
     const { getClassList } = this
     const categoryList = categories.map(
       (categoryItem) => {
@@ -42,7 +41,7 @@ class ClassListContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <ClassList onedayLists={classList} categoryList={categoryList}/>
+        <ClassList onedayLists={classList} categoryList={categoryList} bestOnedayLists={bestClassList}/>
       </div>
     );
   }
@@ -51,6 +50,7 @@ class ClassListContainer extends Component {
 export default connect((state) => ({
     classList: state.classList.get('classList'),
     categories: state.classList.get('categories'),
+    bestClassList: state.classList.get('bestClassList'),
     loading: state.pender.pending['class/GET_CLASS_LIST']
   }),
   (dispatch) => ({

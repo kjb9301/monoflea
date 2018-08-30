@@ -9,7 +9,8 @@ export const getClassList = createAction(GET_CLASS_LIST, api.getClassList);
 
 const initialState = Map({
   classList : List(),
-  categories : List()
+  categories : List(),
+  bestClassList : List()
 })
 
 export default handleActions({
@@ -21,6 +22,7 @@ export default handleActions({
       console.log(classList);
       return state.set('classList', classList.list)
                   .set('categories', classList.category)
+                  .set('bestClassList', classList.bestList)
     }
   })
 }, initialState)
