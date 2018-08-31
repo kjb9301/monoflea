@@ -3,22 +3,20 @@ import styles from './ClassList.scss';
 import classNames from 'classnames/bind';
 import {Link} from 'react-router-dom';
 
-
-
 const cx = classNames.bind(styles);
 
 const ClassItem = ({name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName}) => {
   return (
     <div className={cx('item-boxframe')}>
       <div className={cx('item-box')}>
-        <div className={cx('item-poster')}>
-          <img src={images} />
+        <div className={cx('item-posterframe')}>
+          <div className={cx('item-poster')}><img src={images} /></div>
         </div>
         
         <div className={cx('item-contents')}>
           <div className={cx('item-name')}>{name}</div>
           <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
-          <div className={cx('item-period')}>모집기간 {date} ~ {date}</div>
+          <div className={cx('item-period')}>모집기간 : {date} ~ {date}</div>
           <div className={cx('item-desc')}>{desc}</div>
         </div>
 
@@ -87,14 +85,14 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
     <div className={cx('wrapper')}>
       <div className={cx('visual')}>
         <div className={cx('inner')}>
-          <h1>Oneday Class</h1>
+          <h1>"Oneday Class"</h1>
           <p>"일상의 작은 <strong>'소·확·행'</strong><br/>관심 있던 수업을 체험 해보고 나의 취미를 찾아보세요"</p>
         </div>
       </div>
 
       <div className={cx('best-itemlist')}>
         <div className={cx('inner')}>
-          <h2>Best Oneday Class</h2>
+          <div className={cx('best-itemlist-title')}><h2>Best Oneday Class</h2></div>
           <div className={cx('itemlist-box')}>
             {bestClassList}
           </div>
@@ -103,7 +101,7 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
 
       <div className={cx('itemlist')}>
         <div className={cx('inner')}>
-          <h2>Oneday Class List</h2>
+          <div className={cx('itemlist-title')}><h2>Oneday Class List</h2></div>
           <div className={cx('categoryList')}>{categoryList}</div>
           <div className={cx('itemlist-box')}>
             {classList}
