@@ -41,19 +41,20 @@ class ClassListContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <ClassList onedayLists={classList} categoryList={categoryList} bestOnedayLists={bestClassList}/>
+          <ClassList onedayLists={classList} categoryList={categoryList} bestOnedayLists={bestClassList}/>
       </div>
     );
   }
 }
 
-export default connect((state) => ({
-    classList: state.classList.get('classList'),
-    categories: state.classList.get('categories'),
-    bestClassList: state.classList.get('bestClassList'),
-    loading: state.pender.pending['class/GET_CLASS_LIST']
+export default connect(
+  (state) => ({
+    classList : state.classList.get('classList'),
+    categories : state.classList.get('categories'),
+    bestClassList : state.classList.get('bestClassList'),
+    loading : state.pender.pending['class/GET_CLASS_LIST']
   }),
   (dispatch) => ({
-    ClassListActions: bindActionCreators(classListActions, dispatch)
+    ClassListActions : bindActionCreators(classListActions, dispatch)
   })
 )(ClassListContainer);
