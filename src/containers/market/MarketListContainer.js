@@ -6,6 +6,7 @@ import MarketList from 'components/market/MarketList';
 import Button from 'components/common/Button/Button';
 import MarketRegButton from 'components/market/MarketRegButton/MarketRegButton'; 
 import MarketDetailModal from 'components/modal/MarketDetailModal';
+import AskRemoveModal from 'components/modal/AskRemoveModal';
 
 import * as listActions from 'store/modules/marketList';
 import * as detailActions from 'store/modules/marketDetail';
@@ -33,13 +34,34 @@ class MarketListContainer extends Component {
     ModalActions.hideModal('market');
   }
 
+  handleRemove = async (id) => {
+    const {ModalActions,ListActions} = this.props;
+    ModalActions.hideModal('remove');
+    await ListActions.removeMarket(id);
+    const { message } = this.props;
+    ModalActions.hideModal('market');
+    ListActions.getMarketList();
+    alert(message);
+  }
+
+  handleAskRemove = () => {
+    const {ModalActions} = this.props;
+    ModalActions.showModal('remove');
+  }
+
+  AskRemoveCancel = () => {
+    const {ModalActions} = this.props;
+    ModalActions.hideModal('remove');
+  }
+
   componentDidMount() {
     this.getMarketList();
   }
 
   render() {
-    const {visible,loading,marketList,marketComingList,marketDetail} = this.props;
-    const {handleDetail,handleSelect,handleCancel} = this;
+    const {detailVisible,removeVisible,loading,marketList,marketComingList,marketDetail} = this.props;
+    const {handleDetail,handleSelect,handleCancel,handleRemove,handleAskRemove,AskRemoveCancel} = this;
+    const id = marketDetail.market_id;
     const date = new Date();
     const curGetTime = date.getTime();
 
@@ -51,7 +73,8 @@ class MarketListContainer extends Component {
           <Button onSelect={handleSelect}>기간별</Button>
           <MarketRegButton/>
         </MarketList>
-        <MarketDetailModal visible={visible} marketDetail={marketDetail} onCancel={handleCancel}/>
+        <MarketDetailModal visible={detailVisible} marketDetail={marketDetail} onCancel={handleCancel} onAskRemove={handleAskRemove}/>
+        <AskRemoveModal id={id} visible={removeVisible} onRemove={handleRemove} onCancel={AskRemoveCancel}/>
       </div>
     );
   }
@@ -59,7 +82,9 @@ class MarketListContainer extends Component {
 
 export default connect(
   (state) => ({
-    visible: state.modalVisible.getIn(['modal','market']),
+    message: state.marketList.get('message'),
+    detailVisible: state.modalVisible.getIn(['modal','market']),
+    removeVisible: state.modalVisible.getIn(['modal','remove']),
     marketList: state.marketList.get('marketList'),
     marketComingList: state.marketList.get('marketComingList'),
     marketDetail: state.marketDetail.get('marketDetail'),

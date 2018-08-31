@@ -16,7 +16,7 @@ const MarketItem = ({id,name,place,poster,period,end,reg,curGetTime,onDetail}) =
         <div className={cx('market-dday')}>
           <p>{dDay >= 0 ? `D-${dDay}` : '종료'}</p>
         </div>
-        <p>{poster}</p>
+        <img src={poster}/>
       </div>
       <div className={cx('market-item-bottom')}>
         <div className={cx('bot-inner-top')}>

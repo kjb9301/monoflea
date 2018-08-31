@@ -12,7 +12,8 @@ export const hideModal = createAction(HIDE_MODAL);
 const initialState = Map({
   modal: Map({
     market: false,
-    seller : false
+    seller : false,
+    remove: false
   })
 });
 
