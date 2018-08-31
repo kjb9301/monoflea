@@ -17,11 +17,9 @@ const LoginModal = ({ onLogin, handleSocialLogin, onCancel, visible, onKeyPress,
         <div className={cx('social-login-wrap')}>
           <div className={cx('kakao-login')} onClick={() => handleSocialLogin("http://localhost:4000/users/auth/kakao-login")}>
             Kakao
-            {/* <a href="http://localhost:4000/users/auth/kakao-login" className={cx('kakao-login')}>Kakao</a> */}
           </div>
           <div className={cx('naver-login')} onClick={() => handleSocialLogin("http://localhost:4000/users/auth/naver-login")}>
             Naver
-            {/* <a href="http://localhost:4000/users/auth/naver-login" className={cx('naver-login')}>Naver</a> */}
           </div>
         </div>
         <div className={cx('login')} onClick={onLogin}>로그인</div>

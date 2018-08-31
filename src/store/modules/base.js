@@ -14,6 +14,7 @@ const CHANGE_PASSWORD_INPUT = 'base/CHANGE_PASSWORD_INPUT';
 const CHANGE_EMAIL_INPUT = 'base/CHANGE_EMAIL_INPUT';
 
 const SIGNUP = 'base/SIGNUP';
+// const SOCIAL_ACCOUNT_SIGNUP ='base/SOCIAL_ACCOUNT_SIGNUP';
 const CHANGE_SIGNUP_EMAIL = 'base/CHANGE_SIGNUP_EMAIL';
 const CHANGE_SIGNUP_NICK = 'base/CHANGE_SIGNUP_NICK';
 const CHANGE_SIGNUP_PASSWORD = 'base/CHANGE_SIGNUP_PASSWORD';
@@ -57,6 +58,7 @@ export const changeSignupPasswordCheck = createAction(CHANGE_SIGNUP_PASSWORD_CHE
 export const initializeSignupModal = createAction(INITIALIZE_SIGNUP_MODAL);
 export const checkEmail = createAction(CHECK_EMAIL, api.checkEmail);
 export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
+// export const signupSocialAccount = createAction(SOCIAL_ACCOUNT_SIGNUP, api.signupSocialAccount);
 
 // signupType
 export const changeUserType = createAction(CHANGE_USER_TYPE);

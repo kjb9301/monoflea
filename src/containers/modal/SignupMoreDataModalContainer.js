@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/modules/base';
 import SignupMoreDataModal from 'components/modal/SignupMoreDataModal';
+import axios from 'axios';
 
 class SignupMoreDataModalContainer extends Component {
 
@@ -50,15 +51,31 @@ class SignupMoreDataModalContainer extends Component {
       desc,
       classTF,
       showTF
-    } = this.props;
+    } = this.props;    
+    
     if(!this.checkValidations()) return;
-    await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
+    
+
+    if(!modalNickname) {
+      await BaseActions.loginUserCheck();
+      const { nickName } = this.props;
+      await axios.post('/users/social-signup', { userType, nickName, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
+    } else {
+      await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
+    }
     alert('가입이 완료되었습니다!');
     BaseActions.hideModal('signupMore');
   }
 
-  onCancel = () => {
-    const { BaseActions } = this.props;
+  onCancel = async () => {
+    const { BaseActions, modalNickname } = this.props;
+    if(!modalNickname) {
+      await BaseActions.loginUserCheck();
+      const { nickName } = this.props;
+      await axios.delete('/users/social-signup', { nickName });
+      await BaseActions.loginUserCheck(); // 리액트 로그아웃
+      // return window.location.reload();
+    }
     BaseActions.hideModal('signupMore');
   }
 
@@ -129,7 +146,7 @@ class SignupMoreDataModalContainer extends Component {
   }
 
   render() {
-    const { visible, sellerCategory, userType } = this.props;
+    const { visible, sellerCategory, userType, modalNickname } = this.props;
     const { onChangeValue, onSignup, onCancel, onMovePrev } = this;
     return (
       <SignupMoreDataModal 
@@ -140,6 +157,7 @@ class SignupMoreDataModalContainer extends Component {
         onMovePrev={onMovePrev}
         sellerCategory={sellerCategory}
         userType={userType}
+        nickName={modalNickname}
       />
     );
   }
@@ -147,6 +165,7 @@ class SignupMoreDataModalContainer extends Component {
 
 export default connect(
   (state) => ({
+    nickName: state.base.get('nickName'),
     visible: state.base.getIn(['modal', 'signupMore']),
     sellerCategory: state.base.getIn(['signupMoreModal', 'sellerCategory']),
     name: state.base.getIn(['signupMoreModal', 'name']),

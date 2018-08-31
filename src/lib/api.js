@@ -15,7 +15,7 @@ export const logout = () => axios.delete('/users/logout');
 export const signup = (newUser) => axios.post('/users/signup', { newUser });
 export const checkEmail = (email) => axios.post('/users/check-email', { email });
 export const checkNickname = (nickName) => axios.post('/users/check-nickname', { nickName });
-
+// export const signupSocialAccount = (newUser) => axios.post('/users/social-signup', { newUser });
 
 // seller
 export const getSellersList = (category) => axios.get(`/sellers?category=${category}`);

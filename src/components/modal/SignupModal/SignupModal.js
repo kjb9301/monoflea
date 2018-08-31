@@ -29,7 +29,7 @@ class SignupModal extends Component {
   }
 
   render() {
-    const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck, onSignup, onCancel, onKeyPress, onChange, checkEmail, checkNick, userType, callNextModal } = this.props;
+    const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck, onSignup, onCancel, onKeyPress, onChange, checkEmail, checkNick, userType, callNextModal, handleSocialSignup } = this.props;
     const { comparePassword, checkEmailValidation, checkPasswordValidation, validatedEmail, validatedPassword, comparedPassword } = this;
     return (
       <ModalWrapper visible={visible}>
@@ -96,8 +96,12 @@ class SignupModal extends Component {
           </div>
           {!this.comparedPassword && <span className={cx('warning-message')}>패스워드가 일치하지 않습니다</span>}
           <div className={cx('social-login-wrap')}>
-            <a href="http://localhost:4000/users/auth/kakao-login" className={cx('kakao-login')}>Kakao</a>
-            <a href="http://localhost:4000/users/auth/naver-login" className={cx('naver-login')}>Naver</a>
+            <div className={cx('kakao-login')} onClick={() => handleSocialSignup("http://localhost:4000/users/auth/kakao-login")}>
+              Kakao
+            </div>
+            <div className={cx('naver-login')} onClick={() => handleSocialSignup("http://localhost:4000/users/auth/naver-login")}>
+              Naver
+            </div>
           </div>
           <div 
             className={cx('login')}

@@ -91,8 +91,23 @@ class SignupModalContainer extends Component {
     BaseActions.showModal('signupMore');
   }
 
+  handleSocialSignup = (url) => {
+    const { BaseActions, userType } = this.props;
+    const popup = window.open(url, "_blank", "width=500px, height=500px");
+    const timer = setInterval(() => {
+      if(popup.closed) {
+        // window.location.reload();
+        BaseActions.hideModal('signup');
+        if(userType === 'S' || userType === 'H') {
+          BaseActions.showModal('signupMore');
+        }
+        clearInterval(timer);
+      }
+    }, 1000);
+  }  
+
   render() {
-    const { handleSignup, handleCancel, handleKeyPress, handleChange, checkEmail, checkNick, callNextModal } = this;
+    const { handleSignup, handleSocialSignup, handleCancel, handleKeyPress, handleChange, checkEmail, checkNick, callNextModal } = this;
     const { visible, modalEmail, modalNickname, modalPassword, modalPasswordCheck, userType } = this.props;
     return (
       <SignupModal
@@ -109,6 +124,7 @@ class SignupModalContainer extends Component {
         checkNick={checkNick}
         userType={userType}
         callNextModal={callNextModal}
+        handleSocialSignup={handleSocialSignup}
       />
     );
   }

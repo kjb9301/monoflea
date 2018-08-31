@@ -5,13 +5,14 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const SignupMoreDataModal = ({ visible, sellerCategory, userType, onCancel, onChangeValue, onSignup, onMovePrev }) => {
+const SignupMoreDataModal = ({ visible, nickName, sellerCategory, userType, onCancel, onChangeValue, onSignup, onMovePrev }) => {
   let categories = sellerCategory.map(category => {
     let { category_id, category_ko } = category;
    return (
      <option key={category_id} value={category_id}>{category_ko}</option>
    ); 
-  })
+  });
+
   return (
     <ModalWrapper visible={visible}>
       <div className={cx('SignupMoreDataModal')}>
@@ -117,11 +118,19 @@ const SignupMoreDataModal = ({ visible, sellerCategory, userType, onCancel, onCh
           }
         </div>
         <div className={cx('button-wrap')}>
-          <div className={cx('button')} onClick={onMovePrev}>
-            이전
+          <div 
+            className={cx('button')} 
+            onClick={() => {
+              if(nickName) return onMovePrev();
+              return onCancel();
+            }}
+          >
+            { nickName ? '이전' : '취소' }
           </div>
-          <div className={cx('button')} onClick={onSignup}>
-            가입
+          <div 
+            className={cx('button')} 
+            onClick={onSignup}
+          >가입
           </div>
         </div>
       </div>
