@@ -1,69 +1,44 @@
 @import 'common';
 
-// .wrapper {
-//   display: flex;
-//   background: skyblue;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   flex-wrap: wrap;
 
-//   .market-item {
-//     height:300px;
-//     width:300px;
-//     background-color:white;
-//     border:1px solid black;
-//     padding-bottom: 1.5rem;
-//     margin-top: 2rem;
-//     margin-left: 2rem;
-//     margin-right: 2rem;
-//     min-width: 300px;
-//     flex: 1;
-//   }
-// }
-
+//pinterest ui ********
 .wrapper {
   width: 80%;
-  padding: 20px;
-  margin: auto;
+  margin: 50px auto;
   text-align: center;
-  .seller-item {
-    display: inline-block;
-    width: 22%;
-    margin: 5px;
-    border: 1px solid black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    &:hover {
-      cursor: pointer;
-      opacity: 0.7;
-    }
-    .seller-item-top {
-      width: 100%;
-      min-height: 250px;
-      border-bottom: 1px solid black;
-      .seller-img {
-        width : 100%;
-        max-height: 250px;
+  column-width : 200px;
+  column-gap: 25px;
+  column-count: 5;
+  // 
+  &:hover {
+    figure {
+      &:not(:hover){
+        opacity: 0.4;  
       }
     }
-    .seller-item-bottom {
-      .bot-inner-top {
+  }
+  figure {
+    max-width: 200px;
+    background: white;
+    display : inline-block;
+    padding : 10px;
+    padding-bottom : 10px;
+    box-shadow: 0 4px 4px rgba(34, 25, 25, 0.4);
+    margin: 0 2px 15px;
+    img{
+      width :100%;
+      height: auto;
+    }
+    figcaption {
+      p{
+        font-weight: bold;
+        border-bottom :1px solid gray;
+        text-align: center;
+        margin-bottom : 10px;
+        margin-left: 3px;
+        padding :10px;
       }
-      .bot-inner-bot {
-      }
-      .item-left, .item-right {
-        width: 48%;
-        display: inline-block;
-        padding: 2px;
-      }
-      .item-left {
-        text-align: left;
-      }
-      .item-right {
-        text-align: right;
-      }
-      .block-to-inline {
-        display: inline-block;
-      }
+      text-align: left;
     }
   }
 }

@@ -30,13 +30,13 @@ class ClassListContainer extends Component {
         
         return <Button
           key = {class_category_id}
-          onHandlePrams = {category_name}
-          onCategory = {getClassList}
+          onHandleParams = {category_name}
+          toGetData = {getClassList}
         > {category_ko_name}</Button>
 
       }
     );
-    categoryList.unshift(<Button key = {'All'} onCategory = {getClassList} >전체</Button>);
+    categoryList.unshift(<Button key = {'All'} toGetData = {getClassList} >전체</Button>);
 
     if(loading) return null;
     return (

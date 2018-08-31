@@ -9,7 +9,7 @@ const GET_SELLER_DETAIL = 'GET_SELLER_DETAIL';
 export const getSellerDetail = createAction(GET_SELLER_DETAIL, api.getSellerId)
 
 const initialState = Map({
-  sellerDetail : List()
+  sellerDetail : List([]),
 })
 
 export default handleActions({
