@@ -27,6 +27,8 @@ const CHANGE_USER_TYPE = 'base/CHAGE_USER_TYPE';
 
 const CHANGE_MORE_NAME = 'base/CHANGE_MORE_NAME';
 const CHANGE_MORE_TEL = 'base/CHANGE_MORE_TEL';
+const CHANGE_MORE_CHKNUM = 'base/CHANGE_MORE_CHKNUM';
+const CHANGE_MORE_AUTH = 'base/CHANGE_MORE_AUTH';
 const CHANGE_MORE_CATEGORY = 'base/CHANGE_MORE_CATEGORY';
 const CHANGE_MORE_CAREER = 'base/CHANGE_MORE_CAREER';
 const CHANGE_MORE_SNS = 'base/CHANGE_MORE_SNS';
@@ -35,6 +37,7 @@ const CHANGE_MORE_BIZ = 'base/CHANGE_MORE_BIZ';
 const CHANGE_MORE_DESC = 'base/CHANGE_MORE_DESC';
 const CHANGE_MORE_CLASS = 'base/CHANGE_MORE_CLASS';
 const CHANGE_MORE_SHOW = 'base/CHANGE_MORE_SHOW';
+const GET_AUTH_NUMBER = 'base/GET_AUTH_NUMBER';
 
 const CALL_SELLER_CATEGORY = 'base/CALL_SELLER_CATEGORY';
 
@@ -66,6 +69,8 @@ export const changeUserType = createAction(CHANGE_USER_TYPE);
 // signupMoreData
 export const changeMoreName = createAction(CHANGE_MORE_NAME);
 export const changeMoreTel = createAction(CHANGE_MORE_TEL);
+export const changeMoreChkNum = createAction(CHANGE_MORE_CHKNUM);
+export const changeMoreAuth = createAction(CHANGE_MORE_AUTH);
 export const changeMoreCategory = createAction(CHANGE_MORE_CATEGORY);
 export const changeMoreCareer = createAction(CHANGE_MORE_CAREER);
 export const changeMoreSNS = createAction(CHANGE_MORE_SNS);
@@ -74,6 +79,7 @@ export const changeMoreBiz = createAction(CHANGE_MORE_BIZ);
 export const changeMoreDesc = createAction(CHANGE_MORE_DESC);
 export const changeMoreClass = createAction(CHANGE_MORE_CLASS);
 export const changeMoreShow = createAction(CHANGE_MORE_SHOW);
+export const getAuthNumber = createAction(GET_AUTH_NUMBER, api.getAuthNumber);
 
 export const callSellerCategory = createAction(CALL_SELLER_CATEGORY, api.getSellerCategory);
 
@@ -105,6 +111,13 @@ const initialState = Map({
   signupMoreModal: Map({
     name: '',
     tel: '',
+    checkNum: '',
+    isAuthenticated: false,
+    authInfo: Map({
+      isSent: false,
+      authNum: '',
+      message: ''
+    }),
     category: '',
     career: '',
     sns: '',
@@ -182,7 +195,16 @@ export default handleActions({
     type: CALL_SELLER_CATEGORY,
     onSuccess: (state, action) => {
       const { data: sellerCategory } = action.payload;
-      return state.setIn(['signupMoreModal', 'sellerCategory'], sellerCategory)
+      return state.setIn(['signupMoreModal', 'sellerCategory'], sellerCategory);
+    }
+  }),
+  ...pender({
+    type: GET_AUTH_NUMBER,
+    onSuccess: (state, action) => {
+      const { isSent, authNum, message } = action.payload.data;
+      return state.setIn(['signupMoreModal', 'authInfo', 'isSent'], isSent)
+                  .setIn(['signupMoreModal', 'authInfo', 'authNum'], authNum)
+                  .setIn(['signupMoreModal', 'authInfo', 'message'], message);
     }
   }),
   [CHANGE_EMAIL_INPUT]: (state, action) => {
@@ -226,6 +248,13 @@ export default handleActions({
   [CHANGE_MORE_TEL]: (state, action) => {
     const { payload: value } = action;
     return state.setIn(['signupMoreModal', 'tel'], value);
+  },
+  [CHANGE_MORE_CHKNUM]: (state, action) => {
+    const { payload: value } = action;
+    return state.setIn(['signupMoreModal', 'checkNum'], value);
+  },
+  [CHANGE_MORE_AUTH]: (state, action) => {
+    return state.setIn(['signupMoreModal', 'isAuthenticated'], action.payload);
   },
   [CHANGE_MORE_CATEGORY]: (state, action) => {
     const { payload: value } = action;

@@ -12,7 +12,7 @@ const MarketPost = ({onChange,onCreate}) => {
           <label for="poster">포스터</label>
         </div>
         <div className={cx('input-space')}>
-          <input type="text" id="poster" name="poster" onChange={onChange}/>
+          <input type="file" id="poster" name="poster" onChange={onChange}/>
         </div>
       </div>
       <div className={cx('row')}>

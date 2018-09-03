@@ -7,9 +7,11 @@ import {withRouter} from 'react-router-dom';
 import * as postActions from 'store/modules/marketPost';
 
 class MarketPostContainer extends Component {
-  createMarket = () => {
+  createMarket = async () => {
     const {PostActions,poster,name,place,period,endDate,desc} = this.props;
-    PostActions.postMarket({poster,name,place,period,endDate,desc});
+    await PostActions.postMarket(poster)
+      .then(results => console.log(results));
+    // await PostActions.postMarket({poster,name,place,period,endDate,desc});
   }
 
   handleChange = (e) => {
@@ -17,7 +19,10 @@ class MarketPostContainer extends Component {
     const {value,name} = e.target;
 
     if(name === 'poster'){
-      PostActions.changeMarketPoster(value);
+      let bodyData = new FormData();
+      bodyData.append('poster', e.target.files[0]);
+      PostActions.changeMarketPoster(bodyData);
+      // PostActions.changeMarketPoster(value);
     }else if(name === 'name'){
       PostActions.changeMarketName(value);
     }else if(name === 'place'){
@@ -34,7 +39,7 @@ class MarketPostContainer extends Component {
   handleCreate = () => {
     this.createMarket();
     const {history} = this.props;
-    history.push('/markets');
+    // history.push('/markets');
   }
 
   render() {
