@@ -59,6 +59,7 @@ class SellersListContainer extends Component {
           visible = { visible }
           sellerDetail = { sellerDetail }
           onCancel = { handleCancel } 
+          onModal = {getSellerDetail}
          />
       </div>
     );
