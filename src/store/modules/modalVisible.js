@@ -1,6 +1,6 @@
 import {createAction,handleActions} from 'redux-actions';
 
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 import {pender} from 'redux-pender';
 
 const SHOW_MODAL = 'modalVisible/SHOW_MODAL';
@@ -31,10 +31,9 @@ const initialState = Map({
 
 export default handleActions({
   [SHOW_MODAL]: (state,action) => {
-    const {modalName} = action.payload;
-    console.log(action.payload);
+    const {modalName,marketDetail} = action.payload;
     return state.setIn(['modal', modalName], true)
-                .set(modalName,action.payload.marketDetail);
+                .set(modalName,marketDetail);
   },
   [HIDE_MODAL]: (state,action) => {
     const modalName = action.payload;
@@ -42,6 +41,7 @@ export default handleActions({
   },
   [CHANGE_INPUT]: (state,action) => {
     const { name, value, modalName } = action.payload;
+    console.log(action.payload)
     return state.setIn([modalName, name], value)
   }
 }, initialState);

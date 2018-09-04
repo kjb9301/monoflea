@@ -5,7 +5,7 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const MarketDetailModal = ({visible,marketDetail}) => {
+const MarketDetailModal = ({visible,marketDetail,handleChange}) => {
   const {market_name,market_place,market_poster,market_desc,market_period,end_date} = marketDetail;
   return (
     <ModalWrapper visible={visible}>
@@ -13,7 +13,7 @@ const MarketDetailModal = ({visible,marketDetail}) => {
         {/* <div className={cx('close')} onClick={onCancel}>&times;</div> */}
         <div className={cx('wrapper')}>
           <div className={cx('info')}>
-            <div>{market_name}</div>
+            <div><input type="text" name="name" value={market_name} onChange={handleChange}/></div>
             <div>{market_place}</div>
             <div>{market_period} ~ {end_date}</div>
           </div>

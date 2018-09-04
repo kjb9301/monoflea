@@ -12,7 +12,19 @@ import * as listActions from 'store/modules/marketList';
 import * as detailActions from 'store/modules/marketDetail';
 import * as modalActions from 'store/modules/modalVisible';
 
-class MarketListContainer extends Component {
+class MarketDetailContainer extends Component {
+
+  modalName = 'market';
+
+  handleChange = (e) => {
+    const {ModalActions} = this.props;
+    const {name,value} = e.target;
+    const {modalName} = this;
+    console.log(this.props.marketDetail.market_name);
+
+    // ModalActions.changeInput({modalName,name,value});
+  }
+  /*
   getMarketList = () => {
     const {ListActions} = this.props;
     ListActions.getMarketList();
@@ -24,9 +36,9 @@ class MarketListContainer extends Component {
     const marketDetail = list.marketList[idx];
     const modalName = 'market';
     ModalActions.showModal({modalName,marketDetail});
-    //DetailActions.getMarketDetail(id);
+    DetailActions.getMarketDetail(id);
   }
-/*
+
   handleSelect = (category) => {
     const {ListActions} = this.props;
     ListActions.getMarketList(category);
@@ -58,14 +70,13 @@ class MarketListContainer extends Component {
   }
   */
 
-  componentDidMount() {
-    this.getMarketList();
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.list === this.props.list ? false : true; 
+  // }
 
   render() {
-    const {list,loading,detailVisible,marketDetail} = this.props;
-    const {marketList,marketComingList} = list;
-    const {handleDetail} = this;
+    const {loading,detailVisible,marketDetail} = this.props;
+    const {handleDetail,handleChange} = this;
     /* const {handleDetail,handleSelect,handleCancel,handleRemove,handleAskRemove,AskRemoveCancel} = this;
     const id = marketDetail.market_id;
     const date = new Date();
@@ -74,9 +85,7 @@ class MarketListContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <MarketList markets={marketComingList}/>
-        <MarketList markets={marketList} onDetail={handleDetail}/>
-        {/* <MarketDetailModal visible={detailVisible} marketDetail={marketDetail}/> */}
+        <MarketDetailModal visible={detailVisible} marketDetail={marketDetail} handleChange={handleChange}/>
       </div>
     );
   }
@@ -85,6 +94,7 @@ class MarketListContainer extends Component {
 export default connect(
   (state) => ({
     list: state.marketList.get('data'),
+    // detailVisible: state.modalVisible.getIn(['modal','market']),
     detailVisible: state.modalVisible.getIn(['modal','market']),
     marketDetail: state.modalVisible.get('market'),
     /* message: state.marketList.get('message'),
@@ -95,9 +105,8 @@ export default connect(
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
-    ListActions: bindActionCreators(listActions,dispatch),
     ModalActions: bindActionCreators(modalActions,dispatch)
     /* DetailActions: bindActionCreators(detailActions,dispatch),
     ModalActions: bindActionCreators(modalActions,dispatch) */
   })
-)(withRouter(MarketListContainer));
+)(withRouter(MarketDetailContainer));
