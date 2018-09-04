@@ -28,6 +28,7 @@ export const getMarketList = (category) => axios.get(`/markets?category=${catego
 export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
 export const postMarket = (newMarket) => axios.post('/markets',{newMarket});
 export const removeMarket = (id) => axios.delete(`/markets/${id}`);
+export const updateMarket = (id) => axios.patch(`/markets/${id}`);
 
 // class
 export const getClassList = (category) => axios.get(`/classes?category=${category}`);
