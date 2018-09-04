@@ -5,6 +5,8 @@ import * as baseActions from 'store/modules/base';
 import SignupMoreDataModal from 'components/modal/SignupMoreDataModal';
 import axios from 'axios';
 
+const bodyData = new FormData();
+
 class SignupMoreDataModalContainer extends Component {
 
   onChangeValue = (e) => {
@@ -55,7 +57,7 @@ class SignupMoreDataModalContainer extends Component {
       showTF
     } = this.props;    
     
-    if(!this.checkValidations()) return;
+    // if(!this.checkValidations()) return;
     
 
     if(!modalNickname) {

@@ -6,40 +6,52 @@ import {withRouter} from 'react-router-dom';
 
 import * as postActions from 'store/modules/marketPost';
 
+const bodyData = new FormData();
+
 class MarketPostContainer extends Component {
   createMarket = async () => {
     const {PostActions,poster,name,place,period,endDate,desc} = this.props;
-    await PostActions.postMarket(poster)
-      .then(results => console.log(results));
-    // await PostActions.postMarket({poster,name,place,period,endDate,desc});
+    await PostActions.postMarket(bodyData);
+    // await PostActions.postMarket(poster, {name,place,period,endDate,desc});
   }
 
   handleChange = (e) => {
     const {PostActions} = this.props;
     const {value,name} = e.target;
-
+    
+    
     if(name === 'poster'){
-      let bodyData = new FormData();
+      
       bodyData.append('poster', e.target.files[0]);
       PostActions.changeMarketPoster(bodyData);
       // PostActions.changeMarketPoster(value);
     }else if(name === 'name'){
-      PostActions.changeMarketName(value);
+      bodyData.set('name', value);
+      PostActions.changeMarketName(bodyData);
+      // PostActions.changeMarketName(value);
     }else if(name === 'place'){
-      PostActions.changeMarketPlace(value);
+      bodyData.set('place', value);
+      PostActions.changeMarketPlace(bodyData);
+      // PostActions.changeMarketPlace(value);
     }else if(name === 'period'){
-      PostActions.changeMarketPeriod(value);
+      bodyData.set('period', value);
+      PostActions.changeMarketPeriod(bodyData);
+      // PostActions.changeMarketPeriod(value);
     }else if(name === 'endDate'){
-      PostActions.changeEndDate(value);
+      bodyData.set('endDate', value);
+      PostActions.changeEndDate(bodyData);
+      // PostActions.changeEndDate(value);
     }else if(name === 'desc'){
-      PostActions.changeMarketDesc(value);
+      bodyData.set('desc', value);
+      PostActions.changeMarketDesc(bodyData);
+      // PostActions.changeMarketDesc(value);
     }
   }
 
   handleCreate = () => {
     this.createMarket();
     const {history} = this.props;
-    // history.push('/markets');
+    history.push('/markets');
   }
 
   render() {
