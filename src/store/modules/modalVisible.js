@@ -13,6 +13,7 @@ const initialState = Map({
   modal: Map({
     market: false,
     seller : false,
+    oneday : false,
     remove: false
   })
 });

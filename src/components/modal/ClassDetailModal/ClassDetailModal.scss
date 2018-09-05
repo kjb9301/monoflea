@@ -1,0 +1,321 @@
+@import 'common';
+
+.modalForm {
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    font-size: 5rem;
+    font-weight: bold;
+    margin-left: 0;
+    right: 0;
+    top: -1rem;
+    line-height: 1;
+    color: #aaa;
+
+    &:hover,
+    &:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @include media ("<medium") {
+      font-size: 4rem;
+    }
+  }
+
+  .modalTitle {
+    margin-top: 1rem;
+
+    .classCategory {
+      display: inline-block;
+      padding: 0 2rem;
+      margin-bottom: .5rem;
+      margin-right: 1rem;
+      line-height: 1.8;
+      border: 1px solid #c4d4e0;
+      font-size: 1rem;
+      border-radius: .5rem;
+      color: #aec9dd;
+    }
+
+    .className {
+      margin-right: 2rem;
+      display: inline-block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+
+      @include media ("<medium") {
+        margin-right: 1rem;
+      }
+
+      @include media ("<small") {
+        width: 100%;
+        margin: 0;
+        padding: .3rem;
+        border-radius: 1rem;
+        background: #f2f2f2;
+      }
+    }
+  }
+
+
+  .modalInfo {
+    padding-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    // font-size: 2rem;
+    // border: 1px solid black;
+    
+    .classProfileImg {
+      display: inline-block;
+      // padding-left: 1rem;
+      // padding-right: 1rem;
+      width: 40%;
+      text-align: center;
+      // border: 1px solid orange;
+
+      img {
+        max-width: 100%;
+        border-radius: 50%;
+      }
+
+      @include media ("<large") {
+        width: 30%;
+      }
+
+      @include media ("<medium") {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      @include media ("<small") {
+
+      }
+    }
+
+    .classInfo {
+      display: inline-block;
+      width: 60%;
+      vertical-align: top;
+      // line-height: 1.6;
+      // border: 1px solid orangered;
+
+      .classNickname {
+        margin-bottom: .5rem;
+      }
+
+      .classPlace {
+        margin-right: 0;
+      }
+
+      .classPlaceContent {
+        display: inline-block;
+        width: auto;
+        min-width: 8rem;
+        margin-left: 1rem;
+        border: initial;
+        color: inherit;
+        margin-top: .3rem;
+      }
+
+      div {
+        padding: .2rem;
+        font-size: .8rem;
+      }
+
+      span {
+        display: inline-block;
+        width: 5rem;
+        margin-right: 1rem;
+        text-align: center;
+        color: #aec9dd;
+        border: 1px solid #c4d4e0;
+        border-radius: .5rem;
+      }
+
+      @include media ("<large") {
+        width: 70%;
+        padding-left: 1rem;
+      }
+
+      @include media ("<medium") {
+        width: 100%;
+      }
+
+      @include media ("<small") {
+
+      }
+    }
+
+    .classBtn {
+      width: 70%;
+      margin: 1rem auto;
+      padding: .5rem 1rem;
+      text-align: right;
+
+      button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      @include media("<medium") {
+        text-align: center;
+      }
+    }
+  }
+
+  .modalDesc {
+    margin: 1rem 0 2rem 0;
+    padding: 2rem;
+    font-size: .8rem;
+    line-height: 2;
+    border-radius: .5rem;
+    border: 1px solid #f2f2f2;
+
+    @include media("<medium") {
+      padding: 2rem 1rem;
+    }
+  }
+
+  .modalImage {
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+}
+
+
+
+
+// .modalForm {
+//   border: 1px solid orange;
+//   background: rgba(0,0,0, .5);
+  
+//   .imgList img {
+//     width: 20rem;
+//     height: auto;
+//   }
+
+//   .wrapper {
+//     border: 1px solid orangered;
+//     width: 100vh;
+//     height: 100vw;
+//   }
+  
+// }
+
+
+// .modalForm {
+//   background: white;
+//   padding: 2rem;
+//   position: relative;
+//   padding-top: 2.5rem;
+//   width: 50rem;
+//   height: 50rem;
+//   .close {
+//     line-height: 2rem;
+//     font-size: 2rem;
+//     position: absolute;
+//     right: 1rem;
+//     top: 0.5rem;
+//     cursor: pointer;
+//     &:hover {
+//       color: $oc-gray-6;
+//     }
+//   }
+//   .wrapper {
+//     .poster {
+//       width: 20rem;
+//       height: 20rem;
+//       padding: 2rem;
+//       border: 1px solid black;
+//       font-size: 1.25rem;
+//       font-weight: 500;
+//       margin: 1rem;
+//       display: inline-block;
+//     }
+//     .info {
+//       width: 20rem;
+//       height: 20rem;
+//       padding: 2rem;
+//       margin: 1rem;
+//       border: 1px solid black;
+//       display: inline-block;
+//     }
+//     .desc {
+//       width: 40rem;
+//       height: 20rem;
+//       border: 1px solid black;
+//     }
+//   } 
+  
+  /* 
+  .description {
+    margin-top: 0.25rem;
+  }
+  .error {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: $oc-red-6;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  input {
+    width: 100%;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-bottom: 1px solid $oc-gray-3;
+    padding: 0.25rem;
+    outline: none;
+    border-radius: 4px;
+  }
+  .login {
+    background: $oc-blue-6;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    &:hover {
+      background: $oc-blue-5;
+    }
+    &:active {
+      background: $oc-blue-6;
+    }
+  }
+  .social-login-wrap {
+    display: flex;
+    .kakao-login, .naver-login {
+      text-align: center;
+      flex: 1;
+      margin: 5px;
+      padding: 0.5rem;
+      font-weight: 5000;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: white;
+    }
+    .kakao-login {
+      background-color: $oc-yellow-3;
+    }
+    .naver-login {
+      background-color: $oc-green-4;
+    }
+  } 
+  */
+// }

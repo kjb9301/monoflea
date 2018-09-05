@@ -18,7 +18,7 @@ export default handleActions({
     type: GET_CLASS_LIST,
     onSuccess : (state,action) => {
       const  classList  = action.payload.data;
-      console.log('============= action.payload.data ============');
+      console.log('============= action.payload.data : classList ============');
       console.log(classList);
       return state.set('classList', classList.list)
                   .set('categories', classList.category)
