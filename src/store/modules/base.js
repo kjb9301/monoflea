@@ -10,34 +10,19 @@ const LOGIN = 'base/LOGIN';
 const LOGOUT = 'base/LOGOUT';
 const LOGIN_USER_CHECK = 'base/LOGIN_USER_CHECK';
 const INITIALIZE_LOGIN_MODAL = 'base/INITIALIZE_LOGIN_MODAL';
-const CHANGE_PASSWORD_INPUT = 'base/CHANGE_PASSWORD_INPUT';
-const CHANGE_EMAIL_INPUT = 'base/CHANGE_EMAIL_INPUT';
+const CHANGE_LOGIN_INFO = 'base/CHANGE_LOGIN_INFO';
 
 const SIGNUP = 'base/SIGNUP';
 // const SOCIAL_ACCOUNT_SIGNUP ='base/SOCIAL_ACCOUNT_SIGNUP';
-const CHANGE_SIGNUP_EMAIL = 'base/CHANGE_SIGNUP_EMAIL';
-const CHANGE_SIGNUP_NICK = 'base/CHANGE_SIGNUP_NICK';
-const CHANGE_SIGNUP_PASSWORD = 'base/CHANGE_SIGNUP_PASSWORD';
-const CHANGE_SIGNUP_PASSWORD_CHECK = 'base/CHANGE_SIGNUP_PASSWORD_CHECK';
+const CHANGE_SIGNUP_INFO = 'base/CHANGE_SIGNUP_INFO';
 const INITIALIZE_SIGNUP_MODAL = 'base/INITIALIZE_SIGNUP_MODAL';
 const CHECK_EMAIL = 'base/CHECK_EMAIL';
 const CHECK_NICKNAME = 'base/CHECK_NICKNAME';
 
 const CHANGE_USER_TYPE = 'base/CHAGE_USER_TYPE';
 
-// const CHANGE_MORE_NAME = 'base/CHANGE_MORE_NAME';
-// const CHANGE_MORE_TEL = 'base/CHANGE_MORE_TEL';
-// const CHANGE_MORE_CHKNUM = 'base/CHANGE_MORE_CHKNUM';
 const CHANGE_MORE_AUTH = 'base/CHANGE_MORE_AUTH';
 const CHANGE_MORE_INFO = 'base/CHANGE_MORE_INFO';
-// const CHANGE_MORE_CATEGORY = 'base/CHANGE_MORE_CATEGORY';
-// const CHANGE_MORE_CAREER = 'base/CHANGE_MORE_CAREER';
-// const CHANGE_MORE_SNS = 'base/CHANGE_MORE_SNS';
-// const CHANGE_MORE_PROFILEIMG = 'base/CHANGE_MORE_PROFILEIMG';
-// const CHANGE_MORE_BIZ = 'base/CHANGE_MORE_BIZ';
-// const CHANGE_MORE_DESC = 'base/CHANGE_MORE_DESC';
-// const CHANGE_MORE_CLASS = 'base/CHANGE_MORE_CLASS';
-// const CHANGE_MORE_SHOW = 'base/CHANGE_MORE_SHOW';
 
 const GET_AUTH_NUMBER = 'base/GET_AUTH_NUMBER';
 
@@ -51,15 +36,11 @@ export const login = createAction(LOGIN, api.login);
 export const logout = createAction(LOGOUT, api.logout);
 export const loginUserCheck = createAction(LOGIN_USER_CHECK, api.loginUserCheck)
 export const initializeLoginModal = createAction(INITIALIZE_LOGIN_MODAL);
-export const changePasswordInput = createAction(CHANGE_PASSWORD_INPUT);
-export const changeEmailInput = createAction(CHANGE_EMAIL_INPUT);
+export const changeLoginInfo = createAction(CHANGE_LOGIN_INFO);
 
 // signup
 export const signup = createAction(SIGNUP, api.signup);
-export const changeSignupEmail = createAction(CHANGE_SIGNUP_EMAIL);
-export const changeSignupNick = createAction(CHANGE_SIGNUP_NICK);
-export const changeSignupPassword = createAction(CHANGE_SIGNUP_PASSWORD);
-export const changeSignupPasswordCheck = createAction(CHANGE_SIGNUP_PASSWORD_CHECK);
+export const changeSignupInfo = createAction(CHANGE_SIGNUP_INFO);
 export const initializeSignupModal = createAction(INITIALIZE_SIGNUP_MODAL);
 export const checkEmail = createAction(CHECK_EMAIL, api.checkEmail);
 export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
@@ -69,19 +50,8 @@ export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
 export const changeUserType = createAction(CHANGE_USER_TYPE);
 
 // signupMoreData
-// export const changeMoreName = createAction(CHANGE_MORE_NAME);
-// export const changeMoreTel = createAction(CHANGE_MORE_TEL);
-// export const changeMoreChkNum = createAction(CHANGE_MORE_CHKNUM);
 export const changeMoreAuth = createAction(CHANGE_MORE_AUTH);
 export const changeMoreInfo = createAction(CHANGE_MORE_INFO);
-// export const changeMoreCategory = createAction(CHANGE_MORE_CATEGORY);
-// export const changeMoreCareer = createAction(CHANGE_MORE_CAREER);
-// export const changeMoreSNS = createAction(CHANGE_MORE_SNS);
-// export const changeMoreProfileImg = createAction(CHANGE_MORE_PROFILEIMG);
-// export const changeMoreBiz = createAction(CHANGE_MORE_BIZ);
-// export const changeMoreDesc = createAction(CHANGE_MORE_DESC);
-// export const changeMoreClass = createAction(CHANGE_MORE_CLASS);
-// export const changeMoreShow = createAction(CHANGE_MORE_SHOW);
 export const getAuthNumber = createAction(GET_AUTH_NUMBER, api.getAuthNumber);
 
 export const callSellerCategory = createAction(CALL_SELLER_CATEGORY, api.getSellerCategory);
@@ -121,14 +91,14 @@ const initialState = Map({
       authNum: '',
       message: ''
     }),
-    category: '',
+    category_id: '',
     career: '',
     sns: '',
-    profile_img: '',
-    biz: '',
-    desc: '',
-    classTF: '',
-    showTF: '',
+    profileImg: '',
+    biz_YN: '',
+    seller_desc: '',
+    class_TF: '',
+    show_TF: '',
     sellerCategory: List([])
   }),
   logged: false,
@@ -210,13 +180,9 @@ export default handleActions({
                   .setIn(['signupMoreModal', 'authInfo', 'message'], message);
     }
   }),
-  [CHANGE_EMAIL_INPUT]: (state, action) => {
-    const { payload: value } = action;
-    return state.setIn(['loginModal', 'email'], value);
-  },
-  [CHANGE_PASSWORD_INPUT]: (state, action) => {
-    const { payload: value } = action;
-    return state.setIn(['loginModal', 'password'], value);
+  [CHANGE_LOGIN_INFO]: (state, action) => {
+    const { name, value } = action.payload;
+    return state.setIn(['loginModal', name], value);
   },
   [INITIALIZE_LOGIN_MODAL]: (state, action) => {
     return state.set('loginModal', initialState.get('loginModal'));
@@ -224,77 +190,19 @@ export default handleActions({
   [INITIALIZE_SIGNUP_MODAL]: (state, action) => {
     return state.set('signupModal', initialState.get('signupModal'));
   },
-  [CHANGE_SIGNUP_EMAIL]: (state, action) => {
-    const { payload: value } = action;
-    return state.setIn(['signupModal', 'email'], value);
-  },
-  [CHANGE_SIGNUP_NICK]: (state, action) => {
-    const { payload: value } = action;
-    return state.setIn(['signupModal', 'nickName'], value);
-  },
-  [CHANGE_SIGNUP_PASSWORD]: (state, action) => {
-    const { payload: value } = action;
-    return state.setIn(['signupModal', 'password'], value);
-  },
-  [CHANGE_SIGNUP_PASSWORD_CHECK]: (state, action) => {
-    const { payload: value } = action;
-    return state.setIn(['signupModal', 'passwordCheck'], value);
+  [CHANGE_SIGNUP_INFO]: (state, action) => {
+    const { name, value } = action.payload;
+    return state.setIn(['signupModal', name], value);
   },
   [CHANGE_USER_TYPE]: (state, action) => {
     const { payload: value } = action;
     return state.setIn(['signupTypeModal', 'type'], value);
   },
   [CHANGE_MORE_INFO]: (state, action) => {
-    const { name, value , files } = action.payload;
-    // const bodyData = new FormData();
-    // files ? bodyData.set(name, files[0]) : bodyData.set(name, value);
+    const { name, value } = action.payload;
     return state.setIn(['signupMoreModal', name], value);
   },
-  // [CHANGE_MORE_NAME]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'name'], value);
-  // },
-  // [CHANGE_MORE_TEL]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'tel'], value);
-  // },
-  // [CHANGE_MORE_CHKNUM]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'checkNum'], value);
-  // },
   [CHANGE_MORE_AUTH]: (state, action) => {
     return state.setIn(['signupMoreModal', 'isAuthenticated'], action.payload);
   },
-  // [CHANGE_MORE_CATEGORY]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'category'], value);
-  // },
-  // [CHANGE_MORE_CAREER]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'career'], value);
-  // },
-  // [CHANGE_MORE_SNS]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'sns'], value);
-  // },
-  // [CHANGE_MORE_PROFILEIMG]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'profile_img'], value);
-  // },
-  // [CHANGE_MORE_BIZ]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'biz'], value);
-  // },
-  // [CHANGE_MORE_DESC]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'desc'], value);
-  // },
-  // [CHANGE_MORE_CLASS]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'classTF'], value);
-  // },
-  // [CHANGE_MORE_SHOW]: (state, action) => {
-  //   const { payload: value } = action;
-  //   return state.setIn(['signupMoreModal', 'showTF'], value);
-  // },
 }, initialState);

@@ -12,32 +12,8 @@ class SignupMoreDataModalContainer extends Component {
   onChangeValue = (e) => {
     const { name, value, files } = e.target;
     const { BaseActions } = this.props;
-    console.log(files);
-    files ? bodyData.set(name, files[0]) : bodyData.set(name, value);
+    files ? bodyData.append(name, files[0]) : bodyData.set(name, value);
     BaseActions.changeMoreInfo({ name, value, files });
-    // if(name === 'name') {
-    //   BaseActions.changeMoreName(value);
-    // } else if(name === 'tel') {
-    //   BaseActions.changeMoreTel(value);
-    // } else if(name === 'checkNum') {
-    //   BaseActions.changeMoreChkNum(value);
-    // } else if(name === 'category') {
-    //   BaseActions.changeMoreCategory(value);
-    // } else if(name === 'career') {
-    //   BaseActions.changeMoreCareer(value);
-    // } else if(name === 'sns') {
-    //   BaseActions.changeMoreSNS(value);
-    // } else if(name === 'profileImg') {
-    //   BaseActions.changeMoreProfileImg(value);
-    // } else if(name === 'biz') {
-    //   BaseActions.changeMoreBiz(value);
-    // } else if(name === 'desc') {
-    //   BaseActions.changeMoreDesc(value);
-    // } else if(name === 'class') {
-    //   BaseActions.changeMoreClass(value);
-    // } else if(name === 'show') {
-    //   BaseActions.changeMoreShow(value);
-    // }
   }
 
   onSignup = async () => {
@@ -46,32 +22,21 @@ class SignupMoreDataModalContainer extends Component {
       modalEmail,
       modalNickname,
       modalPassword,
-      userType,
-      name,
-      tel,
-      category,
-      career,
-      sns,
-      profile_img,
-      biz,
-      desc,
-      classTF,
-      showTF
+      userType
     } = this.props;    
     
-    // if(!this.checkValidations()) return;
+    if(!this.checkValidations()) return;
     
 
     if(!modalNickname) {
       await BaseActions.loginUserCheck();
       const { nickName } = this.props;
-      console.log(bodyData.get('name'));
-      console.log(bodyData.get('tel'));
-      console.log(bodyData.get('profile_img'));
+      bodyData.set('nickName', nickName);
+      bodyData.set('userType', userType);
       await axios.post('/users/social-signup', bodyData);
       // await axios.post('/users/social-signup', { userType, nickName, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
     } else {
-      await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
+      // await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
     }
     alert('가입이 완료되었습니다!');
     BaseActions.hideModal('signupMore');
@@ -207,14 +172,14 @@ export default connect(
     isAuthenticated: state.base.getIn(['signupMoreModal', 'isAuthenticated']),
     checkNum: state.base.getIn(['signupMoreModal', 'checkNum']),
     authInfo: state.base.getIn(['signupMoreModal', 'authInfo']),
-    category: state.base.getIn(['signupMoreModal', 'category']),
+    category: state.base.getIn(['signupMoreModal', 'category_id']),
     career: state.base.getIn(['signupMoreModal', 'career']),
     sns: state.base.getIn(['signupMoreModal', 'sns']),
-    profile_img: state.base.getIn(['signupMoreModal', 'profile_img']),
-    biz: state.base.getIn(['signupMoreModal', 'biz']),
-    desc: state.base.getIn(['signupMoreModal', 'desc']),
-    classTF: state.base.getIn(['signupMoreModal', 'classTF']),
-    showTF: state.base.getIn(['signupMoreModal', 'showTF']),
+    profile_img: state.base.getIn(['signupMoreModal', 'profileImg']),
+    biz: state.base.getIn(['signupMoreModal', 'biz_YN']),
+    desc: state.base.getIn(['signupMoreModal', 'seller_desc']),
+    classTF: state.base.getIn(['signupMoreModal', 'class_TF']),
+    showTF: state.base.getIn(['signupMoreModal', 'show_TF']),
     modalEmail: state.base.getIn(['signupModal', 'email']),
     modalNickname: state.base.getIn(['signupModal', 'nickName']),
     modalPassword: state.base.getIn(['signupModal', 'password']),

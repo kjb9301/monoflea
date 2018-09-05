@@ -34,10 +34,7 @@ class LoginModalContainer extends Component {
   handleChange = (e) => {
     const { value, name } = e.target;
     const { BaseActions } = this.props;
-    if(name === 'email') {
-      return BaseActions.changeEmailInput(value);
-    }
-    BaseActions.changePasswordInput(value);
+    BaseActions.changeLoginInfo({ name, value });
   }
 
   handleSocialLogin = (url) => {

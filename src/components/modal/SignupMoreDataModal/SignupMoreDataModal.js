@@ -21,7 +21,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
           {
             userType === 'H' ? null :
             <div className={cx('input-container')}>
-              <select name="category" onChange={onChangeValue}>
+              <select name="category_id" onChange={onChangeValue}>
                 {/* TODO: select db & map */}
                 <option value="0">카테고리</option>
                 {categories}
@@ -106,7 +106,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
                   type="text"
                   className={cx('item-input')}
                   placeholder="사업자 여부를 입력하세요(Y/N)" 
-                  name="biz"
+                  name="biz_YN"
                   onChange={onChangeValue}
                 />
               </div>
@@ -114,7 +114,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
                 <textarea 
                   className={cx('item-input')}
                   placeholder="자기소개를 입력하세요!" 
-                  name="desc"
+                  name="seller_desc"
                   onChange={onChangeValue}
                 >
                 </textarea>
@@ -124,7 +124,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
                   type="text"
                   className={cx('item-input')}
                   placeholder="원데이클래스 주최여부를 입력하세요(Y/N)" 
-                  name="class"
+                  name="class_TF"
                   onChange={onChangeValue}
                 />
               </div>
@@ -133,7 +133,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
                   type="text"
                   className={cx('item-input')}
                   placeholder="입력한 셀러정보를 타인이 볼수있도록 합니다.(Y/N)" 
-                  name="show"
+                  name="show_TF"
                   onChange={onChangeValue}
                 />
               </div>

@@ -86,7 +86,7 @@ class SignupModal extends Component {
           <div>
             <input
               type="password"
-              name="password-check" 
+              name="passwordCheck" 
               placeholder="Password 확인" 
               value={modalPasswordCheck}
               onChange={(e) => this.comparePassword(e)}

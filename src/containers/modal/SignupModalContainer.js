@@ -73,15 +73,7 @@ class SignupModalContainer extends Component {
   handleChange = (e) => {
     const { value, name } = e.target;
     const { BaseActions } = this.props;
-    if(name === 'email') {
-      BaseActions.changeSignupEmail(value);
-    } else if(name === 'nickName') {
-      BaseActions.changeSignupNick(value);
-    } else if(name === 'password'){
-      BaseActions.changeSignupPassword(value);
-    } else if(name === 'password-check'){
-      BaseActions.changeSignupPasswordCheck(value);
-    }
+    BaseActions.changeSignupInfo({ name, value });
   }
 
   callNextModal = (validatedEmail, validatedPassword, comparedPassword) => {
