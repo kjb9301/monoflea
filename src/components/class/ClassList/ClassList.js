@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const ClassItem = ({name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName}) => {
+const ClassItem = ({name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName, id, onModal}) => {
   return (
     <div className={cx('item-boxframe')}>
       <div className={cx('item-box')}>
@@ -25,13 +25,14 @@ const ClassItem = ({name, desc, place, limit, reg, date, images, category, categ
           <div className={cx('item-nickname')}>{nickName}</div>
           <div className={cx('item-category')}>카테고리 : {categoryName}</div>
           <div className={cx('item-place')}>{place}</div>
+          <div><button onClick={() => onModal(id)}>상세보기</button></div>
         </div>
       </div>
     </div>
   );
 };
 
-const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
+const ClassList = ({onedayLists, categoryList, bestOnedayLists, onModal}) => {
 
   const classList = onedayLists.map(
     (onedayList) => {
@@ -40,7 +41,8 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
       return (
         <ClassItem
           key={class_id}
-          seller = {seller_id}
+          id={class_id}
+          seller={seller_id}
           name={class_name}
           desc={class_desc}
           place={class_place}
@@ -52,6 +54,7 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
           categoryName = {onedayCategory.category_ko_name}
           profileImg = {seller.profile_img}
           nickName = {seller.user.nickName}
+          onModal = { onModal }
         />
       )
     }
@@ -64,6 +67,7 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
       return (
         <ClassItem
           key={class_id}
+          id = {class_id}
           seller = {seller_id}
           name={class_name}
           desc={class_desc}
@@ -76,6 +80,7 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists}) => {
           categoryName = {onedayCategory.category_ko_name}
           profileImg = {seller.profile_img}
           nickName = {seller.user.nickName}
+          onModal = { onModal }
         />
       )
     }
