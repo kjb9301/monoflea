@@ -7,7 +7,6 @@ const cx = classNames.bind(styles)
 
 const SellerItem = ({user, sellerCategory, seller_desc, profile_img, id, onModal}) =>{
   return (
-    
     <figure onClick = {() => onModal(id)}>
       <img src = {profile_img}/>
         <figcaption> 

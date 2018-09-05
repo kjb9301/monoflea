@@ -21,7 +21,7 @@ export const getAuthNumber = (tel) => axios.post('/certification-number', { tel 
 export const getSellersList = (category) => axios.get(`/sellers?category=${category}`);
 export const getSellerId = (id) => axios.get(`/sellers/${id}`);
 export const getSellerCategory = () => axios.get('/sellers/category-list');
-export const postSeller = (newSeller) => axios.post('/sellers' , {newSeller});
+export const postSeller = (editSeller) => axios.post('/sellers' , {editSeller});
 
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);

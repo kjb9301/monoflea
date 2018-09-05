@@ -3,101 +3,53 @@
 .modalForm {
   background: white;
   padding: 2rem;
-  position: relative;
-  padding-top: 2.5rem;
+  padding-top: 1.5rem;
+  padding-bottom : 1.5rem;
   width: 50rem;
-  height: 50rem;
+  height: auto;
   .close {
     line-height: 2rem;
     font-size: 2rem;
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    cursor: pointer;
-    &:hover {
-      color: $oc-gray-6;
+    span{
+      cursor: pointer;
+      &:hover {
+        color: $oc-gray-6;
+      }
+    }
+    text-align: right;
+  }
+  .seller_img {
+    width: 20rem;
+    height: 26rem;
+    margin: 2rem;
+    display: inline-block;
+    img{
+      width :20rem;
+      height: 7rem;
     }
   }
   .wrapper {
-    .poster {
+    display: inline-block;
+    vertical-align: top;
+    height: auto;
+    text-align: center;
+    .profile {
       width: 20rem;
-      height: 20rem;
-      padding: 2rem;
-      border: 1px solid black;
+      height: auto;
+      padding: 1rem;
+      text-align: center;
       font-size: 1.25rem;
       font-weight: 500;
-      margin: 1rem;
       display: inline-block;
     }
-    .info {
-      width: 20rem;
-      height: 20rem;
-      padding: 2rem;
+    .desc{
+      text-align: left;
+      width : 20rem;
+      height: auto;
+      padding : 1rem;
+      border : 1px solid black;
       margin: 1rem;
-      border: 1px solid black;
-      display: inline-block;
-    }
-    .desc {
-      width: 40rem;
-      height: 20rem;
-      border: 1px solid black;
     }
   } 
   
-  /* .description {
-    margin-top: 0.25rem;
-  }
-  .error {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    color: $oc-red-6;
-    text-align: center;
-    font-size: 0.85rem;
-  }
-  input {
-    width: 100%;
-    font-size: 1.25rem;
-    margin-top: 0.5rem;
-    border: none;
-    border-bottom: 1px solid $oc-gray-3;
-    padding: 0.25rem;
-    outline: none;
-    border-radius: 4px;
-  }
-  .login {
-    background: $oc-blue-6;
-    text-align: center;
-    color: white;
-    font-weight: 500;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    &:hover {
-      background: $oc-blue-5;
-    }
-    &:active {
-      background: $oc-blue-6;
-    }
-  }
-  .social-login-wrap {
-    display: flex;
-    .kakao-login, .naver-login {
-      text-align: center;
-      flex: 1;
-      margin: 5px;
-      padding: 0.5rem;
-      font-weight: 5000;
-      font-size: 1.25rem;
-      cursor: pointer;
-      color: white;
-    }
-    .kakao-login {
-      background-color: $oc-yellow-3;
-    }
-    .naver-login {
-      background-color: $oc-green-4;
-    }
-  } */
 }
