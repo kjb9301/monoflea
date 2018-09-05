@@ -17,12 +17,10 @@ class MarketDetailContainer extends Component {
   modalName = 'market';
 
   handleChange = (e) => {
-    const {ModalActions} = this.props;
+    const {ModalActions,marketDetail} = this.props;
     const {name,value} = e.target;
     const {modalName} = this;
-    console.log(this.props.marketDetail.market_name);
-
-    // ModalActions.changeInput({modalName,name,value});
+    ModalActions.changeInput({modalName,name,value});
   }
   /*
   getMarketList = () => {
@@ -83,6 +81,7 @@ class MarketDetailContainer extends Component {
     const curGetTime = date.getTime(); */
 
     if(loading) return null;
+    // console.log(marketDetail);
     return (
       <div>
         <MarketDetailModal visible={detailVisible} marketDetail={marketDetail} handleChange={handleChange}/>

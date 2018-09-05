@@ -13,7 +13,7 @@ const MarketDetailModal = ({visible,marketDetail,handleChange}) => {
         {/* <div className={cx('close')} onClick={onCancel}>&times;</div> */}
         <div className={cx('wrapper')}>
           <div className={cx('info')}>
-            <div><input type="text" name="name" value={market_name} onChange={handleChange}/></div>
+            <div><input type="text" name="market_name" value={market_name} onChange={handleChange}/></div>
             <div>{market_place}</div>
             <div>{market_period} ~ {end_date}</div>
           </div>
