@@ -15,6 +15,8 @@ class SignupMoreDataModalContainer extends Component {
       BaseActions.changeMoreName(value);
     } else if(name === 'tel') {
       BaseActions.changeMoreTel(value);
+    } else if(name === 'checkNum') {
+      BaseActions.changeMoreChkNum(value);
     } else if(name === 'category') {
       BaseActions.changeMoreCategory(value);
     } else if(name === 'career') {
@@ -85,10 +87,21 @@ class SignupMoreDataModalContainer extends Component {
     BaseActions.showModal('signup');
   }
 
+  checkAuthNum = () => {
+    const { checkNum, authInfo, BaseActions } = this.props;
+    if(authInfo.get('authNum') == checkNum) {
+      BaseActions.changeMoreAuth(true);
+      return alert('정상적으로 인증되었습니다!');
+    }
+    BaseActions.changeMoreAuth(false);
+    return alert('인증번호 확인 및 재전송 해주세요!');
+  }
+
   checkValidations = () => {
     const {
       name,
       tel,
+      isAuthenticated,
       category,
       career,
       profile_img,
@@ -106,6 +119,9 @@ class SignupMoreDataModalContainer extends Component {
       return false;
     } else if(tel.length === 0 || !telReg.test(tel)) {
       alert('전화번호는 필수사항입니다! (ex. 010-1234-1234)');
+      return false;
+    } else if(!isAuthenticated){
+      alert('인증번호 전송후 인증번호를 확인해주세요!');
       return false;
     }
     
@@ -141,13 +157,21 @@ class SignupMoreDataModalContainer extends Component {
     await BaseActions.callSellerCategory();
   }
 
+  getAuthNumber = async (tel) => {
+    const { BaseActions } = this.props;
+    await BaseActions.getAuthNumber(tel);
+    const { authInfo } = this.props;
+    if(!authInfo.get('isSent')) return alert(authInfo.get('message'));
+    return alert('정상적으로 전송되었습니다. 인증번호를 확인해주세요!');
+  }
+
   componentDidMount() {
     this.getSellerCategory();
   }
 
   render() {
     const { visible, sellerCategory, userType, modalNickname } = this.props;
-    const { onChangeValue, onSignup, onCancel, onMovePrev } = this;
+    const { onChangeValue, onSignup, onCancel, onMovePrev, getAuthNumber, checkAuthNum } = this;
     return (
       <SignupMoreDataModal 
         visible={visible}
@@ -158,6 +182,8 @@ class SignupMoreDataModalContainer extends Component {
         sellerCategory={sellerCategory}
         userType={userType}
         nickName={modalNickname}
+        getAuthNumber={getAuthNumber}
+        checkAuthNum={checkAuthNum}
       />
     );
   }
@@ -170,6 +196,9 @@ export default connect(
     sellerCategory: state.base.getIn(['signupMoreModal', 'sellerCategory']),
     name: state.base.getIn(['signupMoreModal', 'name']),
     tel: state.base.getIn(['signupMoreModal', 'tel']),
+    isAuthenticated: state.base.getIn(['signupMoreModal', 'isAuthenticated']),
+    checkNum: state.base.getIn(['signupMoreModal', 'checkNum']),
+    authInfo: state.base.getIn(['signupMoreModal', 'authInfo']),
     category: state.base.getIn(['signupMoreModal', 'category']),
     career: state.base.getIn(['signupMoreModal', 'career']),
     sns: state.base.getIn(['signupMoreModal', 'sns']),

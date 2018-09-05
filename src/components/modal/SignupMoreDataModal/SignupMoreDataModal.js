@@ -5,14 +5,13 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const SignupMoreDataModal = ({ visible, nickName, sellerCategory, userType, onCancel, onChangeValue, onSignup, onMovePrev }) => {
+const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, sellerCategory, userType, onCancel, onChangeValue, onSignup, onMovePrev }) => {
   let categories = sellerCategory.map(category => {
     let { category_id, category_ko } = category;
    return (
      <option key={category_id} value={category_id}>{category_ko}</option>
    ); 
   });
-
   return (
     <ModalWrapper visible={visible}>
       <div className={cx('SignupMoreDataModal')}>
@@ -45,7 +44,31 @@ const SignupMoreDataModal = ({ visible, nickName, sellerCategory, userType, onCa
               placeholder="전화번호를 입력하세요! (ex. 010-1234-1234)" 
               name="tel"
               onChange={onChangeValue}
+              ref={ref => this.tel = ref}
             />
+            <div className={cx('button-wrap')}>
+              <div
+                className={cx('button')}
+                onClick={() => getAuthNumber(this.tel.value)}
+              >인증하기
+              </div>
+            </div>
+          </div>
+          <div className={cx('input-container')}>
+            <input 
+              type="text"
+              className={cx('item-input')}
+              placeholder="인증번호를 입력하세요!" 
+              name="checkNum"
+              onChange={onChangeValue}
+            />
+            <div className={cx('button-wrap')}>
+              <div
+                className={cx('button')}
+                onClick={checkAuthNum}
+              >확인
+              </div>
+            </div>
           </div>
           {
             userType === 'H' ? null :
@@ -71,7 +94,7 @@ const SignupMoreDataModal = ({ visible, nickName, sellerCategory, userType, onCa
               </div>
               <div className={cx('input-container')}>
                 <input
-                  type="text"
+                  type="file"
                   className={cx('item-input')}
                   placeholder="프로필 이미지를 등록하세요!" 
                   name="profileImg"

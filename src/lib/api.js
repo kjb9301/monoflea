@@ -15,7 +15,7 @@ export const logout = () => axios.delete('/users/logout');
 export const signup = (newUser) => axios.post('/users/signup', { newUser });
 export const checkEmail = (email) => axios.post('/users/check-email', { email });
 export const checkNickname = (nickName) => axios.post('/users/check-nickname', { nickName });
-// export const signupSocialAccount = (newUser) => axios.post('/users/social-signup', { newUser });
+export const getAuthNumber = (tel) => axios.post('/certification-number', { tel });
 
 // seller
 export const getSellersList = (category) => axios.get(`/sellers?category=${category}`);
@@ -25,8 +25,11 @@ export const postSeller = (newSeller) => axios.post('/sellers' , {newSeller});
 
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
-export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
-export const postMarket = (newMarket) => axios.post('/markets',{newMarket});
+//export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
+// export const postMarket = (newMarket) => axios.post('/markets', {newMarket});
+export const postMarket = (poster) => axios.post('/markets', poster);
+export const updateMarket = (id,marketDetail) => axios.put(`/markets/${id}`,marketDetail);
+
 export const removeMarket = (id) => axios.delete(`/markets/${id}`);
 export const updateMarket = (id) => axios.patch(`/markets/${id}`);
 
