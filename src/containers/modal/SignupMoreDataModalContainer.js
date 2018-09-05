@@ -10,32 +10,34 @@ const bodyData = new FormData();
 class SignupMoreDataModalContainer extends Component {
 
   onChangeValue = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     const { BaseActions } = this.props;
-
-    if(name === 'name') {
-      BaseActions.changeMoreName(value);
-    } else if(name === 'tel') {
-      BaseActions.changeMoreTel(value);
-    } else if(name === 'checkNum') {
-      BaseActions.changeMoreChkNum(value);
-    } else if(name === 'category') {
-      BaseActions.changeMoreCategory(value);
-    } else if(name === 'career') {
-      BaseActions.changeMoreCareer(value);
-    } else if(name === 'sns') {
-      BaseActions.changeMoreSNS(value);
-    } else if(name === 'profileImg') {
-      BaseActions.changeMoreProfileImg(value);
-    } else if(name === 'biz') {
-      BaseActions.changeMoreBiz(value);
-    } else if(name === 'desc') {
-      BaseActions.changeMoreDesc(value);
-    } else if(name === 'class') {
-      BaseActions.changeMoreClass(value);
-    } else if(name === 'show') {
-      BaseActions.changeMoreShow(value);
-    }
+    console.log(files);
+    files ? bodyData.set(name, files[0]) : bodyData.set(name, value);
+    BaseActions.changeMoreInfo({ name, value, files });
+    // if(name === 'name') {
+    //   BaseActions.changeMoreName(value);
+    // } else if(name === 'tel') {
+    //   BaseActions.changeMoreTel(value);
+    // } else if(name === 'checkNum') {
+    //   BaseActions.changeMoreChkNum(value);
+    // } else if(name === 'category') {
+    //   BaseActions.changeMoreCategory(value);
+    // } else if(name === 'career') {
+    //   BaseActions.changeMoreCareer(value);
+    // } else if(name === 'sns') {
+    //   BaseActions.changeMoreSNS(value);
+    // } else if(name === 'profileImg') {
+    //   BaseActions.changeMoreProfileImg(value);
+    // } else if(name === 'biz') {
+    //   BaseActions.changeMoreBiz(value);
+    // } else if(name === 'desc') {
+    //   BaseActions.changeMoreDesc(value);
+    // } else if(name === 'class') {
+    //   BaseActions.changeMoreClass(value);
+    // } else if(name === 'show') {
+    //   BaseActions.changeMoreShow(value);
+    // }
   }
 
   onSignup = async () => {
@@ -63,7 +65,11 @@ class SignupMoreDataModalContainer extends Component {
     if(!modalNickname) {
       await BaseActions.loginUserCheck();
       const { nickName } = this.props;
-      await axios.post('/users/social-signup', { userType, nickName, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
+      console.log(bodyData.get('name'));
+      console.log(bodyData.get('tel'));
+      console.log(bodyData.get('profile_img'));
+      await axios.post('/users/social-signup', bodyData);
+      // await axios.post('/users/social-signup', { userType, nickName, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
     } else {
       await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
     }
