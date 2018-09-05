@@ -25,9 +25,10 @@ export const postSeller = (newSeller) => axios.post('/sellers' , {newSeller});
 
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
-export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
+//export const getMarketDetail = (id) => axios.get(`/markets/${id}`);
 // export const postMarket = (newMarket) => axios.post('/markets', {newMarket});
 export const postMarket = (poster) => axios.post('/markets', poster);
+export const updateMarket = (id,marketDetail) => axios.put(`/markets/${id}`,marketDetail);
 
 export const removeMarket = (id) => axios.delete(`/markets/${id}`);
 

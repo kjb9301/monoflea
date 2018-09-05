@@ -22,6 +22,22 @@ class MarketDetailContainer extends Component {
     const {modalName} = this;
     ModalActions.changeInput({modalName,name,value});
   }
+
+  handleEdit = () => {
+    const {ModalActions } = this.props;
+    ModalActions.editTF();
+  }
+
+  handleClose = () => {
+    const {ModalActions} = this.props;
+    const {modalName} = this;
+    ModalActions.hideModal(modalName);
+  }
+
+  handleUpdate = (id) => {
+    const {ListActions,marketDetail} = this.props;
+    ListActions.updateMarket(id,marketDetail.toJS());
+  }
   /*
   getMarketList = () => {
     const {ListActions} = this.props;
@@ -59,7 +75,7 @@ class MarketDetailContainer extends Component {
 
   handleAskRemove = () => {
     const {ModalActions} = this.props;
-    ModalActions.showModal('remove');
+    ModalActions.showModal('remove');d
   }
 
   AskRemoveCancel = () => {
@@ -68,23 +84,27 @@ class MarketDetailContainer extends Component {
   }
   */
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.list === this.props.list ? false : true; 
-  // }
-
   render() {
-    const {loading,detailVisible,marketDetail} = this.props;
-    const {handleDetail,handleChange} = this;
+    const {loading,detailVisible,marketDetail,editTF} = this.props;
+    const {handleChange,handleEdit,handleClose,handleUpdate} = this;
     /* const {handleDetail,handleSelect,handleCancel,handleRemove,handleAskRemove,AskRemoveCancel} = this;
     const id = marketDetail.market_id;
     const date = new Date();
     const curGetTime = date.getTime(); */
 
     if(loading) return null;
-    // console.log(marketDetail);
+    const DetailInfo = marketDetail.toJS();
     return (
       <div>
-        <MarketDetailModal visible={detailVisible} marketDetail={marketDetail} handleChange={handleChange}/>
+        <MarketDetailModal 
+              visible={detailVisible} 
+              marketDetail={DetailInfo} 
+              handleChange={handleChange} 
+              editTF={editTF} 
+              onEdit={handleEdit}
+              onClose={handleClose}
+              onUpdate={handleUpdate}
+        />
       </div>
     );
   }
@@ -93,9 +113,9 @@ class MarketDetailContainer extends Component {
 export default connect(
   (state) => ({
     list: state.marketList.get('data'),
-    // detailVisible: state.modalVisible.getIn(['modal','market']),
     detailVisible: state.modalVisible.getIn(['modal','market']),
     marketDetail: state.modalVisible.get('market'),
+    editTF: state.modalVisible.get('editTF'),
     /* message: state.marketList.get('message'),
     removeVisible: state.modalVisible.getIn(['modal','remove']),
     
@@ -104,7 +124,8 @@ export default connect(
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
-    ModalActions: bindActionCreators(modalActions,dispatch)
+    ModalActions: bindActionCreators(modalActions,dispatch),
+    ListActions: bindActionCreators(listActions,dispatch)
     /* DetailActions: bindActionCreators(detailActions,dispatch),
     ModalActions: bindActionCreators(modalActions,dispatch) */
   })
