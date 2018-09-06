@@ -16,3 +16,11 @@ $navy: #193446;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin d-inline-block() {
+  display: inline-block;
+}
+
+@mixin vertical-top() {
+  vertical-align: top;
+}

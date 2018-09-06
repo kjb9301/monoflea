@@ -1,10 +1,11 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
+import About from 'components/about/About';
 
 const AboutPage = () => {
   return (
     <PageTemplate>
-      Aboout 페이지 템플릿 적용
+      <About/>
     </PageTemplate>
   );
 };

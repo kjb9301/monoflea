@@ -1,0 +1,42 @@
+@import 'common';
+
+.About {
+  width: 100%;
+  height: auto;
+  .about-background {
+    width: 100%;
+    min-height: calc(100vh - 10rem);
+    background-image: url('./image/index-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .section {
+    width: 80%;
+    margin: 5rem auto;
+    padding: 1rem;
+    .section-container {
+      width: 90%;
+      margin: auto;
+      .section-title {
+        padding: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      .image-container {
+        @include d-inline-block();
+        @include vertical-top();
+        width: 30%;
+        padding: 1rem;
+        img {
+          width: 100%;
+        }
+      }
+      .content-container {
+        @include d-inline-block();
+        @include vertical-top();
+        width: 70%;
+        padding: 1rem;
+      }
+    }
+  }
+}
