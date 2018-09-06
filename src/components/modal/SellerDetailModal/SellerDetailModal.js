@@ -8,8 +8,9 @@ const cx = classNames.bind(styles);
 
 
 
-const SellerDetailModal = ({visible, sellerDetail, onCancel, onModal}) => {
-  const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory } = sellerDetail;
+const SellerDetailModal = ({visible, seller, onModal, onCancel}) => {
+   const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory } = seller;
+  console.log(seller)
   if(!user) return null;
   console.log(seller_images)
   const imgList = seller_images.map(
@@ -20,7 +21,7 @@ const SellerDetailModal = ({visible, sellerDetail, onCancel, onModal}) => {
               />
     }
   )
-  console.log(imgList)
+ console.log(imgList)
   return (
   <ModalWrapper  visible={visible}  > 
       <div className={cx('modalForm')}>

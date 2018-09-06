@@ -4,9 +4,10 @@ import { pender} from 'redux-pender';
 import * as api from 'lib/api';
 
 const GET_SELLERS_LIST = 'GET_SELLERS_LIST';
+const CHANGE_INPUT = 'sellerUI/CHANGE_INPUT';
 
 export const getSellersList = createAction(GET_SELLERS_LIST, api.getSellersList);
-
+export const changeInput = createAction(CHANGE_INPUT);
 const initialState = Map({
   sellers : List(),
   categories : List()
