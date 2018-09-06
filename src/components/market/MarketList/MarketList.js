@@ -5,13 +5,15 @@ import {Link} from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const MarketItem = ({id,name,place,poster,period,end,onDetail}) => {
-
+const MarketItem = ({id,name,place,poster,period,end,onDetail,curGetTime}) => {
+  const marketGetTime = new Date(period).getTime();
+  const gap = marketGetTime - curGetTime;
+  const dDay = Math.ceil(gap/(1000*60*60*24));
   return (
     <div className={cx('market-item')}>
       <div className={cx('market-item-top')}>
         <div className={cx('market-dday')}>
-          {/* <p>{dDay >= 0 ? `D-${dDay}` : '종료'}</p> */}
+          <p>{dDay >= 0 ? `D-${dDay}` : '종료'}</p>
         </div>
         <img src={poster}/>
       </div>
@@ -35,7 +37,7 @@ const MarketItem = ({id,name,place,poster,period,end,onDetail}) => {
   );
 };
 
- const MarketList = ({markets,onDetail}) => {
+ const MarketList = ({markets,onDetail,curGetTime,children}) => {
   if(!markets) return null; 
   const marketList = markets.map(
     (market) => {
@@ -50,6 +52,7 @@ const MarketItem = ({id,name,place,poster,period,end,onDetail}) => {
           period={market_period}
           end={end_date}
           onDetail={onDetail}
+          curGetTime={curGetTime}
         />
       )
     }
@@ -57,7 +60,7 @@ const MarketItem = ({id,name,place,poster,period,end,onDetail}) => {
   return (
     <div className={cx('wrapper')}>
       <div>
-        {/* <div>{children}</div> */}
+        <div>{children}</div>
       </div>
       {marketList}
     </div>

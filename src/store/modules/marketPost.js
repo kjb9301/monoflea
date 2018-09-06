@@ -1,4 +1,4 @@
-import {createAction,handleActions} from 'redux-actions';
+/* import {createAction,handleActions} from 'redux-actions';
 import {Map} from 'immutable';
 import {pender} from 'redux-pender';
 
@@ -30,4 +30,4 @@ export default handleActions({
     const { name, value } = action.payload;
     return state.set(name, value);
   }
-},initailState);
+},initailState); */
