@@ -40,14 +40,14 @@ class MarketPostContainer extends Component {
 
 export default connect(
   (state) => ({
-    poster: state.marketPost.get('poster'),
+    /* poster: state.marketPost.get('poster'),
     name: state.marketPost.get('name'),
     place: state.marketPost.get('place'),
     desc: state.marketPost.get('desc'),
     period: state.marketPost.get('period'),
-    endDate: state.marketPost.get('endDate')
+    endDate: state.marketPost.get('endDate') */
   }),
   (dispatch) => ({
-    PostActions: bindActionCreators(postActions,dispatch)
+    //PostActions: bindActionCreators(postActions,dispatch)
   })
 )(withRouter(MarketPostContainer));

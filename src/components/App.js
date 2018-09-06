@@ -10,7 +10,8 @@ import {
   BoardDetailPage, 
   BoardPostPage,
   BoardListPage,
-  MarketPostPage
+  MarketPostPage,
+  MarketRegPage
 } from 'pages';
 import Base from 'containers/common/Base';
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/boards/notice/:id" component={BoardDetailPage}/>
         <Route exact path="/markets" component={MarketPage}/>
         <Route path="/markets/post" component={MarketPostPage}/>
+        <Route path="/hosts" component={MarketRegPage}/>
         <Route exact path="/classes" component={ClassPage}/>
         <Route exact path="/sellers" component={SellerPage}/>
       </Switch>

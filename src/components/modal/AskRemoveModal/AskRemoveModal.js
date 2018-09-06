@@ -6,7 +6,7 @@ import AskButton from 'components/common/AskButton';
 
 const cx = classNames.bind(styles);
 
-const AskRemoveModal = ({id,visible,onRemove,onCancel}) => {
+const AskRemoveModal = ({id,visible,onRemove/*,onCancel */}) => {
   return (
     <ModalWrapper visible={visible}>
       <div className={cx('question')}>
@@ -14,7 +14,7 @@ const AskRemoveModal = ({id,visible,onRemove,onCancel}) => {
         <div className={cx('description')}>정말로 삭제하시겠습니까?</div>
       </div>
       <div className={cx('options')}>
-        <AskButton theme="gray" onClick={onCancel}>취소</AskButton>
+        <AskButton theme="gray" /* onClick={onCancel} */>취소</AskButton>
         <AskButton onClick={() => onRemove(id)}>삭제</AskButton>
       </div>
     </ModalWrapper>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from 'query-string';
 
 // notice
 export const getNoticeList = () => axios.get('/notices');
@@ -25,10 +24,9 @@ export const postSeller = (editSeller) => axios.post('/sellers' , {editSeller});
 
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
-export const postMarket = (info) => axios.post('/markets', info);
+export const createMarket = (info) => axios.post('/markets', info);
 export const updateMarket = (id,marketDetail) => axios.put(`/markets/${id}`,marketDetail);
-export const removeMarket = (id) => axios.delete(`/markets/${id}`);
-
+export const deleteMarket = (id) => axios.delete(`/markets/${id}`);
 
 // class
 export const getClassList = (category) => axios.get(`/classes?category=${category}`);
