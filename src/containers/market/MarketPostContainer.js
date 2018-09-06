@@ -16,36 +16,10 @@ class MarketPostContainer extends Component {
   }
 
   handleChange = (e) => {
-    const {PostActions} = this.props;
-    const {value,name} = e.target;
-    
-    
-    if(name === 'poster'){
-      
-      bodyData.append('poster', e.target.files[0]);
-      PostActions.changeMarketPoster(bodyData);
-      // PostActions.changeMarketPoster(value);
-    }else if(name === 'name'){
-      bodyData.set('name', value);
-      PostActions.changeMarketName(bodyData);
-      // PostActions.changeMarketName(value);
-    }else if(name === 'place'){
-      bodyData.set('place', value);
-      PostActions.changeMarketPlace(bodyData);
-      // PostActions.changeMarketPlace(value);
-    }else if(name === 'period'){
-      bodyData.set('period', value);
-      PostActions.changeMarketPeriod(bodyData);
-      // PostActions.changeMarketPeriod(value);
-    }else if(name === 'endDate'){
-      bodyData.set('endDate', value);
-      PostActions.changeEndDate(bodyData);
-      // PostActions.changeEndDate(value);
-    }else if(name === 'desc'){
-      bodyData.set('desc', value);
-      PostActions.changeMarketDesc(bodyData);
-      // PostActions.changeMarketDesc(value);
-    }
+    const { PostActions } = this.props;
+    const { value, name, files } = e.target;    
+    files ? bodyData.append(name, files[0]) : bodyData.set(name, value);
+    PostActions.changeMarketInfo({ name, value });
   }
 
   handleCreate = () => {

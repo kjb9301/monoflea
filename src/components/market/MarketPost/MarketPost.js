@@ -9,7 +9,7 @@ const MarketPost = ({onChange,onCreate}) => {
     <div className={cx('form')}>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label for="poster">포스터</label>
+          <label htmlFor="poster">포스터</label>
         </div>
         <div className={cx('input-space')}>
           <input type="file" id="poster" name="poster" onChange={onChange}/>
@@ -17,7 +17,7 @@ const MarketPost = ({onChange,onCreate}) => {
       </div>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label for="name">마켓이름</label>
+          <label htmlFor="name">마켓이름</label>
         </div>
         <div className={cx('input-space')}>
           <input type="text" id="name" name="name" onChange={onChange}/>
@@ -25,7 +25,7 @@ const MarketPost = ({onChange,onCreate}) => {
       </div>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label for="place">마켓장소</label>
+          <label htmlFor="place">마켓장소</label>
         </div>
         <div className={cx('input-space')}>
           <input type="text" id="place" name="place" onChange={onChange}/>
@@ -33,7 +33,7 @@ const MarketPost = ({onChange,onCreate}) => {
       </div>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label for="period">시작일</label>
+          <label htmlFor="period">시작일</label>
         </div>
         <div className={cx('input-space')}>
           <input type="text" id="period" name="period" onChange={onChange}/>
@@ -41,7 +41,7 @@ const MarketPost = ({onChange,onCreate}) => {
       </div>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label for="endDate">종료일</label>
+          <label htmlFor="endDate">종료일</label>
         </div>
         <div className={cx('input-space')}>
           <input type="text" id="endDate" name="endDate" onChange={onChange}/>
@@ -49,7 +49,7 @@ const MarketPost = ({onChange,onCreate}) => {
       </div>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label for="desc">설명</label>
+          <label htmlFor="desc">설명</label>
         </div>
         <div className={cx('input-space')}>
         <textarea cols="100" rows="10" id="desc" name="desc" onChange={onChange}></textarea>
