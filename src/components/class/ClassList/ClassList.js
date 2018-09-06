@@ -89,15 +89,15 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists, onModal}) => {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('visual')}>
-        <div className={cx('inner')}>
+        <div className={cx('visual-inner', 'inner')}>
           <h1>"Oneday Class"</h1>
           <p>"일상의 작은 <strong>'소·확·행'</strong><br/>관심 있던 수업을 체험 해보고 나의 취미를 찾아보세요"</p>
         </div>
       </div>
 
-      <div className={cx('best-itemlist')}>
-        <div className={cx('inner')}>
-          <div className={cx('best-itemlist-title')}><h2>Best Oneday Class</h2></div>
+      <div className={cx('bestlist')}>
+        <div className={cx('bestlist-inner', 'inner')}>
+          <div className={cx('bestlist-title')}><h2>Best Oneday Class</h2></div>
           <div className={cx('itemlist-box')}>
             {bestClassList}
           </div>
@@ -105,9 +105,9 @@ const ClassList = ({onedayLists, categoryList, bestOnedayLists, onModal}) => {
       </div>
 
       <div className={cx('itemlist')}>
-        <div className={cx('inner')}>
+        <div className={cx('itemlist-inner', 'inner')}>
           <div className={cx('itemlist-title')}><h2>Oneday Class List</h2></div>
-          <div className={cx('categoryList')}>{categoryList}</div>
+          <div className={cx('category-list')}>{categoryList}</div>
           <div className={cx('itemlist-box')}>
             {classList}
           </div>
