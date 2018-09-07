@@ -1,12 +1,11 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import ClassContainer from 'containers/class/ClassContainer';
-
+import ClassWrapper from 'components/class/ClassWrapper';
 
 const ClassPage = () => {
   return (
     <PageTemplate>
-      <ClassContainer/>
+      <ClassWrapper />
     </PageTemplate>
   );
 };

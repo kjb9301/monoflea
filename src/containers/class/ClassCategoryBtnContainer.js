@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import styles from './ClassCategoryBtn.scss';
-import classNames from 'classnames/bind';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Button from 'components/common/Button';
 
-const cx = classNames.bind(styles);
+import * as classActions from 'store/modules/class';
 
-class ClassCategoryBtn extends Component {
+class ClassCategoryBtnContainer extends Component {
+
+  getSpecificClassList = async (category) => {
+    const { ClassActions } = this.props;
+    await ClassActions.getClassList(category);
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.categories.length !== this.props.categories.length;
   }
 
   render() {
-    const { categories, getSpecificClassList } = this.props;
+    const { categories } = this.props;
+    const { getSpecificClassList } = this;
     let lists = categories.map(category => {
       const { class_category_id, category_name, category_ko_name } = category;
       return (
@@ -36,4 +42,11 @@ class ClassCategoryBtn extends Component {
   }
 }
 
-export default ClassCategoryBtn;
+export default connect(
+  (state) => ({
+    categories: state.class.get('categories')
+  }),
+  (dispatch) => ({
+    ClassActions: bindActionCreators(classActions, dispatch)
+  })
+)(ClassCategoryBtnContainer);

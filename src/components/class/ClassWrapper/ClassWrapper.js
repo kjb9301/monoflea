@@ -1,25 +1,22 @@
 import React from 'react';
 import styles from './ClassWrapper.scss';
 import classNames from 'classnames/bind';
-import ClassList from 'components/class/ClassList';
-import ClassCategoryBtn from 'components/class/ClassCategoryBtn';
+import ClassCategoryBtnContainer from 'containers/class/ClassCategoryBtnContainer';
+import ClassListContainer from 'containers/class/ClassListContainer';
 
 const cx = classNames.bind(styles);
 
-const ClassWrapper = ({ classList, categories, getSpecificClassList }) => {
+const ClassWrapper = () => {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('itemlist')}>
         <div className={cx('itemlist-inner', 'inner')}>
           <div className={cx('itemlist-title')}><h2>Oneday Class List</h2></div>
           <div className={cx('category-list')}>
-            <ClassCategoryBtn 
-              categories={categories} 
-              getSpecificClassList={getSpecificClassList}
-            />
+            <ClassCategoryBtnContainer />
           </div>
           <div className={cx('itemlist-box')}>
-            <ClassList classList={classList}/>
+            <ClassListContainer />
           </div>
         </div>
       </div>
