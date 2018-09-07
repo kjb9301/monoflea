@@ -14,7 +14,6 @@ const Button = ({ children, to, theme='default', disabled,  toGetData, onHandleP
       to={to}
       className={cx('button', theme, {disabled})} 
       onClick={() => toGetData(onHandleParams)}
-      //onClick={() => onSelect('2018-08-30')}
     >
       {children}
     </Element>

@@ -10,19 +10,17 @@ export const getClassList = createAction(GET_CLASS_LIST, api.getClassList);
 const initialState = Map({
   classList : List(),
   categories : List(),
-  bestClassList : List()
+  bestClassList : List(),
+  classDetail: Map({})
 })
 
 export default handleActions({
   ...pender({
     type: GET_CLASS_LIST,
     onSuccess : (state,action) => {
-      const  classList  = action.payload.data;
-      console.log('============= action.payload.data : classList ============');
-      console.log(classList);
-      return state.set('classList', classList.list)
-                  .set('categories', classList.category)
-                  .set('bestClassList', classList.bestList)
+      const { classList, categories } = action.payload.data;
+      return state.set('classList', classList)
+                  .set('categories', categories);
     }
   })
 }, initialState)

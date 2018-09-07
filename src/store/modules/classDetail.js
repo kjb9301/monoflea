@@ -17,8 +17,6 @@ export default handleActions({
     type : GET_CLASS_DETAIL,
     onSuccess : (state, action) => {
       const classDetail = action.payload.data;
-      console.log('=========================== action.payload.data : classDetail =================');
-      console.log(classDetail);
       return state.set('classDetail', classDetail)
     }
   })

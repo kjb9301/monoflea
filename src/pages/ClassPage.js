@@ -1,12 +1,12 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import ClassListContainer from 'containers/class/ClassListContainer';
+import ClassContainer from 'containers/class/ClassContainer';
 
 
 const ClassPage = () => {
   return (
     <PageTemplate>
-      <ClassListContainer/>
+      <ClassContainer/>
     </PageTemplate>
   );
 };
