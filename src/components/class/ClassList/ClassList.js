@@ -7,8 +7,8 @@ const cx = classNames.bind(styles);
 
 const ClassItem = ({name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName, id, onModal}) => {
   return (
-    <div className={cx('item-boxframe')}>
-      <div className={cx('item-box')}>
+    <div className={cx('item-boxframe')}> 
+      <div className={cx('item-box')}  onClick={() => onModal(id)}>
         <div className={cx('item-posterframe')}>
           <div className={cx('item-poster')}><img src={images} /></div>
         </div>
@@ -22,10 +22,11 @@ const ClassItem = ({name, desc, place, limit, reg, date, images, category, categ
 
         <div className={cx('item-profile')}>
           <div className={cx('item-profile-img')}><img src={profileImg}/></div>
-          <div className={cx('item-nickname')}>{nickName}</div>
-          <div className={cx('item-category')}>카테고리 : {categoryName}</div>
-          <div className={cx('item-place')}>{place}</div>
-          <div><button onClick={() => onModal(id)}>상세보기</button></div>
+          <div className={cx('item-profile-info')}>
+            <div className={cx('item-nickname')}>{nickName}</div>
+            <div className={cx('item-category')}>카테고리 : {categoryName}</div>
+            <div className={cx('item-place')}>{place}</div>
+          </div>
         </div>
       </div>
     </div>

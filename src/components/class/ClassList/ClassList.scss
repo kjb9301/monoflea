@@ -3,7 +3,7 @@
 .wrapper {
 
   .inner {
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
 
     @include media ("<wide") {
@@ -31,8 +31,10 @@
       padding: 1.5rem 2rem 2rem;
           
       h1 {
+        padding-bottom: 1rem;
         font-size: 3rem;
         letter-spacing: -.1rem;
+        text-align: center;
         color: rgba(204, 67, 67, 0.849);
         text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
       }
@@ -61,58 +63,84 @@
       padding: 2rem 0 2.5rem;
 
       .bestlist-title {
-        margin-left: 1.2rem;
-        margin-right: 1.2rem;
         padding: .5rem .5rem .5rem 1rem;
-        border-radius: .5rem;
-        background: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1rem;
+        border-radius: .7rem;
+        background: #ff6666;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
         h2 {
           padding-left: .7rem;
           font-size: 2rem;
           line-height: 1;
           letter-spacing: -.1rem;
-          // color: #f2f2f2;
           color: #fff;
           text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
         }
       }
     }
+
+    .item-boxframe {
+
+      @media screen and (max-width: 1200px) {
+        width: 50%;
+        padding: .7rem;
+      }
+  
+      @media screen and (max-width: 900px) {
+        width: 50%;
+        padding: 0.5rem;
+      }
+  
+      @media screen and (max-width: 600px) {
+        width: 100%;
+        padding: 1rem;
+      }
+    }
+
   }
 
   .itemlist {
     
     .itemlist-inner {
-      padding: 2rem 0 2.5rem;
+      padding: 3rem 0 2.5rem;
 
       .itemlist-title {
-        margin-top: 2rem;
-        margin-left: .3rem;
-        margin-right: .3rem;
+        // margin-top: 2rem;
+        // margin-left: .3rem;
+        // margin-right: .3rem;
         padding: .5rem .5rem .5rem 1rem;
         border-radius: .5rem;
-        background-color: rgba(200, 0, 0, 0.7);
+        background-color: #ff6666;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
         h2 {
           padding-left: 1rem;
           font-size: 2rem;
           letter-spacing: -.1rem; 
-          // color: #434a53;
           color: white;
           text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
         }
       }
 
       .category-list {
-        position: relative;
-        top: -3.2rem;
-        padding-right: 2rem;
-        text-align: right;
+        // position: relative;
+        // top: -3.2rem;
+        // padding-right: 2rem;
+        padding-top: 1rem;
+        text-align: center;
+        // display: flex;
+
+        & > div {
+          border-radius: 2rem;
+          padding: .3rem 1rem;
+          text-align: center;
+        }
       }
 
       .itemlist-box {
         padding: .5rem;
-        margin-top: 1.2rem;
+        // margin-top: 1.2rem;
         font-size: .9rem;
         line-height: 1.5;
         border-radius: 1rem;
@@ -138,6 +166,7 @@
 
       &:hover {
         border: 1px solid rgb(255, 128, 128);
+        cursor: pointer;
       }
 
       .item-posterframe {
@@ -191,26 +220,25 @@
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
-          line-height: 16px;     /* fallback */
-          max-height: 105px;      /* fallback */
-          -webkit-line-clamp: 6; /* number of lines to show */
+          line-height: 1.8;
+          max-height: 98px;      
+          -webkit-line-clamp: 6; 
           -webkit-box-orient: vertical;
         }        
       }
 
       .item-profile {
-        position: relative;
-        padding-left: 25%;
         height: 5rem;
+        line-height: 1.8;
 
         .item-profile-img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: inline-block;
+          float: left;
           width: 20%;
+          max-width: 75px;
+          margin-right: 1rem;
+          margin-bottom: 1rem;
           border-radius: 50%;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
           img {
             max-width: 100%;
@@ -218,42 +246,29 @@
           }
         }
 
+        .item-profile-info {
+
+        }
+
         .item-nickname {}
         .item-category {}
         .item-place {}
       }
     }
-  }
 
-} // wrapper
-
-.wrapper {
-  .itemlist-box {
-    display: flex;
-    flex-wrap: wrap;
-
-    .item-boxframe {
-      flex: 1;
-      // min-width: 300px;
-      // width: 25%;
-      min-width: 25% !important;
-
-      @include media ("<wide") {
-        min-width: 25% !important;
-      }
-  
-      @include media ("<large") {
-        min-width: 33%!important;
-      }
-  
-      @include media ("<medium") {
-        min-width: 50%!important;
-      }
-  
-      @include media ("<500px") {
-        min-width: 100%!important;
-      }     
+    @media screen and (max-width: 1200px) {
+      width: 33%;
+      padding: .5rem;
     }
 
+    @media screen and (max-width: 900px) {
+      width: 50%;
+      padding: 0.5rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      padding: 1rem;
+    }
   }
 }
