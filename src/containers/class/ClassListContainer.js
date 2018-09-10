@@ -34,7 +34,7 @@ class ClassListContainer extends Component {
   render() {
     const { loading, classList, categories, bestClassList, visible,  classDetail } = this.props;
     const { getClassList, getClassDetail, handleCancel } = this
-
+    console.log(1);
     const categoryList = categories.map(
       (categoryItem) => {
         const { class_category_id, category_name, category_ko_name } = categoryItem;

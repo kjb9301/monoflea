@@ -3,28 +3,30 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import SellerDetailModal from 'components/modal/SellerDetailModal';
 
-import * as sellerActions from 'store/module/seller';
-import * as sellerUIActions from 'store/module/sellerUI'
+import * as sellerActions from 'store/modules/seller';
+import * as sellerUIActions from 'store/modules/sellerUI'
 class SellerDetailContainer extends Component {
 
   
   handleCancel = () =>{
-    const { ModalActions } = this.props;
-    ModalActions.hideModal('seller');
+    const { SellerUIActions } = this.props;
+    SellerUIActions.hideModal('seller');
   }
 
+  handleChange = (e) => {
+
+  }
   
   render() {
-    const {visible, seller , loading} = this.props;
+    const {visible, sellerDetail , loading} = this.props;
     const { handleCancel} = this
+    const detailInfo = sellerDetail.toJS();
     if(loading) return null;
-    const detailInfo = seller.toJS();
     return (
       <div>
           <SellerDetailModal
-            seller = {seller}
             visible = { visible }
-            sellerDetail = {detailInfo}
+            sellerDetailData = {detailInfo}
             onCancel = {handleCancel}
          />
       </div>
@@ -33,9 +35,9 @@ class SellerDetailContainer extends Component {
 }
 
 export default connect((state ) =>({
-  seller : state.sellerUI.get('seller'),
+  sellerDetail : state.sellerUI.get('seller'),
   sellerList  : state.seller.get('seller'),
-  visible : state.sellerUI.get(['modal','seller']),
+  visible : state.sellerUI.getIn(['modal','seller']),
   editTF : state.sellerUI.get('editTF'),
   loading :state.pender.pending['/seller/GET_SELLER_LIST']
 }),

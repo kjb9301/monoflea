@@ -9,6 +9,7 @@ const MarketItem = ({id,name,place,poster,period,end,onDetail,curGetTime}) => {
   const marketGetTime = new Date(period).getTime();
   const gap = marketGetTime - curGetTime;
   const dDay = Math.ceil(gap/(1000*60*60*24));
+  console.log('[MarketList]')
   return (
     <div className={cx('market-item')}>
       <div className={cx('market-item-top')}>

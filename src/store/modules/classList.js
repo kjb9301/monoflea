@@ -19,7 +19,8 @@ export default handleActions({
     onSuccess : (state,action) => {
       const  classList  = action.payload.data;
       console.log('============= action.payload.data : classList ============');
-      console.log(classList);
+      console.log(classList.category);
+      console.log(classList.list);
       return state.set('classList', classList.list)
                   .set('categories', classList.category)
                   .set('bestClassList', classList.bestList)
