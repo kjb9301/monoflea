@@ -6,37 +6,39 @@ const cx = classNames.bind(styles);
 
 
 
-const ClassDetailModal = ({visible, classDetail, onCancel}) => {
-  const { class_id, seller_id, class_name, class_desc, class_place, class_limit_cnt, class_reg_cnt, reg_date, onedayImages, onedayCategory, seller } = classDetail;
+const ClassDetailModal = ({ visible, classDetail, hideModal }) => {
+  const { 
+    class_category_id,
+    class_desc,
+    class_id,
+    class_limit_cnt,
+    class_name,
+    class_place,
+    class_reg_cnt,
+    onedayCategory,
+    onedayImages,
+    reg_date,
+    seller,
+    seller_id
+   } = classDetail;
 
-  // if(!user) return null;
   if(!seller) return null;
 
-  const imageList = onedayImages.map(
-    (onedayImage, index) => {
-      return <img src={onedayImage.class_imgurl} key={index} />
-    }
-  );
-
-  const categoryName = onedayCategory.category_ko_name;
-  // const { sell_id }
-  // profileImg = {seller.profile_img}
-  // nickName = {seller.user.nickName}
-  
-
+  const images = onedayImages.map(img => 
+    <img key={img.class_img_id} src={img.class_imgurl}/>
+  );  
   return (
-    <ClassModalWrapper  visible={visible}  > 
-
+    <ClassModalWrapper  visible={visible}> 
       <div className={cx('modalForm')}>
-        <span className={cx('close')} onClick={onCancel}>&times;</span>
-
+        <span className={cx('close')} onClick={hideModal}>&times;</span>
         <div className={cx('modalTitle')}>
           <span className={cx('classCategory')}>{onedayCategory.category_ko_name}</span>
           <span className={cx('className')}>{class_name}</span>
         </div>
-
         <div className={cx('modalInfo')}>
-          <div className={cx('classProfileImg')}><img src={seller.profile_img} /></div>
+          <div className={cx('classProfileImg')}>
+            <img src={seller.profile_img} />
+          </div>
           <div className={cx('classInfo')}>
             <div><span>모집분야</span>{onedayCategory.category_ko_name}</div>
             <div className={cx('classNickname')}><span>아이디</span>{seller.user.nickName}</div>
@@ -48,15 +50,11 @@ const ClassDetailModal = ({visible, classDetail, onCancel}) => {
           </div>
           <div className={cx('classBtn')}><button >강좌등록하기</button></div>
         </div>
-
-        <div className={cx('modalDesc')}>상세설명 {class_desc}</div>
-
+        <div className={cx('modalDesc')}>상세설명 : {class_desc}</div>
         <div className={cx('modalImage')}>
-          {imageList}
+          {images}
         </div>
-
-      </div>
-    
+      </div>    
     </ClassModalWrapper>
   )
 }

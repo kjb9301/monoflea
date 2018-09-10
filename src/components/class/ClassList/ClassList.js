@@ -4,17 +4,17 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const ClassItem = ({ name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName, id, /* onModal */}) => {
+const ClassItem = ({ name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName, id, showClassModal}) => {
   return (
     <div className={cx('item-boxframe')}>
-      <div className={cx('item-box')}>
+      <div className={cx('item-box')} onClick={() => showClassModal(id)}>
         <div className={cx('item-posterframe')}>
           <div className={cx('item-poster')}><img src={images} /></div>
         </div>
         
         <div className={cx('item-contents')}>
           <div className={cx('item-name')}>{name}</div>
-          <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
+          <div className={cx('item-limit')}>모집인원 : {limit} / {reg}</div>
           <div className={cx('item-period')}>모집기간 : {date} ~ {date}</div>
           <div className={cx('item-desc')}>{desc}</div>
         </div>
@@ -24,14 +24,13 @@ const ClassItem = ({ name, desc, place, limit, reg, date, images, category, cate
           <div className={cx('item-nickname')}>{nickName}</div>
           <div className={cx('item-category')}>카테고리 : {categoryName}</div>
           <div className={cx('item-place')}>{place}</div>
-          {/* <div><button onClick={() => onModal(id)}>상세보기</button></div> */}
         </div>
       </div>
     </div>
   );
 };
 
-const ClassList = ({ classList }) => {
+const ClassList = ({ classList, showClassModal }) => {
   const classes = classList.map(classItem => {
     
     const { 
@@ -63,7 +62,8 @@ const ClassList = ({ classList }) => {
         category={onedayCategory.class_category_id}
         categoryName={onedayCategory.category_ko_name}
         profileImg={seller.profile_img}
-        nickName={seller.user.nickName} 
+        nickName={seller.user.nickName}
+        showClassModal={showClassModal}
       />
     )
   })

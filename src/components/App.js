@@ -6,7 +6,8 @@ import {
   BoardPage, 
   SellerPage, 
   MarketPage, 
-  ClassPage, 
+  ClassPage,
+  ClassPostPage,
   BoardDetailPage, 
   BoardPostPage,
   BoardListPage,
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/markets/post" component={MarketPostPage}/>
         <Route path="/hosts" component={MarketRegPage}/>
         <Route exact path="/classes" component={ClassPage}/>
+        <Route path="/classes/post" component={ClassPostPage}/>
         <Route exact path="/sellers" component={SellerPage}/>
       </Switch>
       <Base/>

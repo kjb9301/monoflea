@@ -15,7 +15,6 @@ export { default as marketUI } from './marketUI';
 
 export { default as class } from './class';
 export { default as classUI } from './classUI';
-// export { default as classDetail } from './classDetail';
 
 export { default as seller } from './seller';
 export { default as sellerUI } from './sellerUI';

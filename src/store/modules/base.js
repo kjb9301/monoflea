@@ -61,7 +61,8 @@ const initialState = Map({
     login: false,
     signup: false,
     signupType: false,
-    signupMore: false
+    signupMore: false,
+    class: false,
   }),
   loginModal: Map({
     email: '',

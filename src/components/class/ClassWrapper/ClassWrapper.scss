@@ -84,6 +84,23 @@
     
     .itemlist-inner {
       padding: 2rem 0 2.5rem;
+      
+      .post-wrap {
+        @include text-right();
+        .post-btn {
+          padding: 10px;
+          background-color: orange;
+          color: white;
+          outline: none;
+          border: none;
+          font-size: 1rem;
+          &:hover {
+            border: 1px solid orange;
+            background-color: white;
+            color: orange;
+          }
+        }
+      }
 
       .itemlist-title {
         margin-top: 2rem;

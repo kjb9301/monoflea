@@ -24,3 +24,15 @@ $navy: #193446;
 @mixin vertical-top() {
   vertical-align: top;
 }
+
+@mixin text-center() {
+  text-align: center;
+}
+
+@mixin text-left() {
+  text-align: left;
+}
+
+@mixin text-right() {
+  text-align: right;
+}
