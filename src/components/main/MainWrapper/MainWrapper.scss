@@ -1,38 +1,92 @@
 @import 'common';
 
 .main-wrapper {
-  .main-background {
-    background-image: url('./image/index-background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: calc(100vh - 10rem);
+  background-image: url('./image/index-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include media ("<medium") {
+    background-image: url('./image/index-bg-medium.png');
   }
+
+  @include media ("<small") {
+    background-image: url('./image/index-bg-small.jpg');
+  }
+  
+  .main-visual {
+    width: 100%;
+    height: calc(100vh - 10rem);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .main-title > h1 {
+      padding-bottom: 2rem;
+      text-align: center;
+      color: white;
+      font-size: 4.5rem;
+      text-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.7);
+
+      @include media ("<medium") {
+        font-size: 3rem;
+      }
+  
+      @include media ("<small") {
+        font-size: 2rem;
+      }
+    }
+
+    .main-title > p {
+      font-size: 2rem;
+      width: 60%;
+      color: white;
+      text-align: center;
+      margin: 0 auto;
+      
+
+      @include media ("<medium") {
+        font-size: 1.5rem;
+        width: 80%;
+      }
+  
+      @include media ("<small") {
+        font-size: 1rem;
+        width: 90%;
+      }
+    }
+  }
+
   .main-navigation-wrap {
     display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
   }
   .main-nav {
     flex: 1;
     height: 7rem;
     &:nth-child(1) {
-      background-color: $lightgray;
+      background-color: rgba($lightgray, 0.8);
     }
     &:nth-child(2) {
-      background-color: $darkgray;
+      background-color: rgba($darkgray, 0.8);
     }
     &:nth-child(3) {
-      background-color: $lightorange;
+      background-color: rgba($lightorange, 0.8);
     }
     &:nth-child(4) {
-      background-color: #D6C1C1;
+      background-color: rgba(#D6C1C1, 0.8);
     }
     &:nth-child(5) {
-      background-color: $lightyellow;
+      background-color: rgba($lightyellow, 0.8);
     }
     &:nth-child(6) {
-      background-color: #93B7B7;
+      background-color: rgba(#93B7B7, 0.8);
     }
     &:nth-child(7) {
-      background-color: $navy;
+      background-color: rgba($navy, 0.8);
     }
     &:hover {
       opacity: 0.7;
@@ -48,6 +102,19 @@
         font-weight: 800;
         color: white;
       }
+    }
+  }
+  @include media ("<medium") {
+    .main-nav {
+      min-width: 33.3%;
+    }
+  }
+  @include media ("<small") {
+    .main-background {
+      height: 50vh;
+    }
+    .main-nav {
+      min-width: 100%;
     }
   }
 }

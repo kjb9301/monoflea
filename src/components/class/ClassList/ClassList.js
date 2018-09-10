@@ -21,9 +21,11 @@ const ClassItem = ({ name, desc, place, limit, reg, date, images, category, cate
 
         <div className={cx('item-profile')}>
           <div className={cx('item-profile-img')}><img src={profileImg}/></div>
-          <div className={cx('item-nickname')}>{nickName}</div>
-          <div className={cx('item-category')}>카테고리 : {categoryName}</div>
-          <div className={cx('item-place')}>{place}</div>
+          <div className={cx('item-profile-info')}>
+            <div className={cx('item-nickname')}>{nickName}</div>
+            <div className={cx('item-category')}>카테고리 : {categoryName}</div>
+            <div className={cx('item-place')}>{place}</div>
+          </div>
         </div>
       </div>
     </div>

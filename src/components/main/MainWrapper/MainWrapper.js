@@ -16,7 +16,12 @@ const cx = classNames.bind(styles);
 const MainWrapper = () => {
   return (
     <div className={cx('main-wrapper')}>
-      <div className={cx('main-background')}>
+      <div className={cx('main-visual')}>
+        <div className={cx('main-title')}>
+          <h1>MONOFLEA</h1>
+          <p>Building Greatness With MonoFlea<br/></p>
+          <p>We’re a team of super heroes making the most awesome MonoFlea Support System</p>
+        </div>
       </div>
       <div className={cx('main-navigation-wrap')}>
         <Link to="/about" className={cx('main-nav')}>
