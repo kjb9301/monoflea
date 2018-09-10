@@ -8,35 +8,53 @@ import * as sellerUIActions from 'store/modules/sellerUI';
 
 class SellersListContainer extends Component {
   
-  getSellersList = (category) =>{
-    const { SellerActions } = this.props;
-    SellerActions.getSellersList(category);
-  } 
-
   getSellerDetail  = (id) =>{
     const {SellerUIActions,sellers} = this.props;
     const idx = sellers.findIndex(seller => seller.seller_id ===id);
     const sellerDetail = sellers[idx];
-    const modalName = 'seller';
-    SellerUIActions.showModal({modalName, sellerDetail});
+    SellerUIActions.detailData({sellerDetail});
   }
 
+  getSellersList = () => {
+    const { SellerActions } = this.props;
+    SellerActions.getSellersList();
+  }
+
+  handleModal = ()=>{
+    const {SellerUIActions} = this.props;
+    const modalName = 'seller';
+    SellerUIActions.showModal({modalName});
+  }
   componentDidMount(){
     this.getSellersList()
+    console.log('========= cDm ============');
   }
-  
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.categories !== this.props.categories;
+  // }
   render() {
-    const { sellers, loading, categories} = this.props;
-    const { getSellersList, getSellerDetail} = this
-   
-    
-    
+    const { sellers, loading ,categories} = this.props;
+    const { getSellerDetail, handleModal , getSellersList} = this;
+    console.log(sellers);
+    const categoryList = categories.map(
+      (categoryItem) => {
+        const {category_id, category_ko, category} = categoryItem;
+          return <Button
+            key = {category_id}
+            onHandleParams = {category}
+            toGetData = {getSellersList}
+          > {category_ko} </Button>
+      } 
+    )
+    categoryList.unshift(<Button key = {'All'} toGetData = {getSellersList} >전체</Button>);
     if(loading) return null;
     return (  
       <div>
+        {categoryList}
         <SellerList
           sellers = { sellers } 
-          onModal = { getSellerDetail }
+          onModal = { handleModal }
+          detailData = {getSellerDetail}
         />
       </div>
     );
@@ -46,7 +64,7 @@ class SellersListContainer extends Component {
 export default connect((state) => ({
   sellers : state.seller.get('sellers'),
   categories : state.seller.get('categories'),
-  loading : state.pender.pending['seller/GET_SELLERS_LIST']
+  loading : state.pender.pending['seller/GET_SELLERS_LIST'],
 }),
 (dispatch) => ({
   SellerActions : bindActionCreators(sellerActions,dispatch),

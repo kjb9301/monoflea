@@ -5,9 +5,10 @@ import styles from './SellerList.scss';
 
 const cx = classNames.bind(styles)
 
-const SellerItem = ({user, sellerCategory, seller_desc, profile_img, id, onModal}) =>{
+const SellerItem = ({user, sellerCategory, seller_desc, profile_img, id, onModal,detailData}) =>{
   return (
-    <figure onClick = {() => onModal(id)}>
+    <figure onClick = {() => {onModal()
+                              detailData(id)}}>
       <img src = {profile_img}/>
         <figcaption> 
           <p>닉네임  : {user} </p>
@@ -20,7 +21,7 @@ const SellerItem = ({user, sellerCategory, seller_desc, profile_img, id, onModal
   );
 };
 
-const SellerList = ({sellers, onModal}) =>{
+const SellerList = ({sellers, onModal,detailData}) =>{
   const sellerlist  = sellers.map(
     (seller) => {
       const { seller_id, user, sellerCategory, seller_desc, profile_img} = seller;
@@ -33,6 +34,7 @@ const SellerList = ({sellers, onModal}) =>{
           seller_desc = {seller_desc}
           profile_img = {profile_img}
           onModal = { onModal }
+          detailData = {detailData}
         />
       )
     }

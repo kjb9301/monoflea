@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const Div = ({ children, ...rest }) => <div {...rest}>{children}</div>;
 
 const Button = ({ children, to, theme='default', disabled,  toGetData, onHandleParams }) => {
-  const Element = (to && !disabled ? Link : Div)
+  const Element = (to && !disabled ? Link : Div);
   return (
     <Element
       to={to}

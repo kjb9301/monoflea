@@ -6,15 +6,25 @@ import * as sellerActions from 'store/modules/seller';
 
 class CategoryButton extends Component {
 
-  getSellersList = (category) =>{
+  getSellersList = () => {
     const { SellerActions } = this.props;
-    SellerActions.getSellersList(category);
+    SellerActions.getSellersList();
   }
 
+    componentDidMount(){
+      this.getSellersList()
+      console.log('========= cDm ============');
+    }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.categories !== this.props.categories;
+  // }
+  
   render() {
     const { loading, categories} = this.props;
     const { getSellersList} = this
-    console.log(1);
+    console.log('CategoryButton');
+    if(loading) return null;
     const categoryList = categories.map(
       (categoryItem) => {
         const {category_id, category_ko, category} = categoryItem;
@@ -25,7 +35,9 @@ class CategoryButton extends Component {
           > {category_ko} </Button>
       } 
     )
-    
+    categoryList.unshift(<Button 
+                            key = {'All'} 
+                            toGetData = {getSellersList} >전체</Button>);
     if(loading) return null;
     return (
       <div>
@@ -36,7 +48,6 @@ class CategoryButton extends Component {
 }
 
 export default connect((state) => ({
-  sellers : state.seller.get('sellers'),
   categories : state.seller.get('categories'),
   loading : state.pender.pending['seller/GET_SELLERS_LIST']
 }),
