@@ -5,8 +5,8 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,onUpdate,onAskRemove}) => {
-  const {market_id,market_name,market_place,market_poster,market_desc,market_period,end_date} = marketDetail;
+const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove}) => {
+  const {market_id,market_name,market_place,market_poster,market_desc,start_date,end_date} = marketDetail;
 
   return (
     <ModalWrapper visible={visible}>
@@ -22,7 +22,7 @@ const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,
                 <input type="text" name="market_place" value={market_place} onChange={onChange}/>
               </div>
               <div>
-                <input type="date" name="market_period" value={market_period} onChange={onChange}/> ~ 
+                <input type="date" name="start_date" value={start_date} onChange={onChange}/> ~ 
                 <input type="date" name="end_date" value={end_date} onChange={onChange}/>
               </div>
             </div>
@@ -34,7 +34,7 @@ const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,
             </div>
           </div>
           <div>
-            <button onClick={onEdit}>취소</button>
+            <button onClick={() => onCancel(market_id)}>취소</button>
             <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
           </div>
         </div>
@@ -45,7 +45,7 @@ const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,
             <div className={cx('info')}>
               <div>{market_name}</div>
               <div>{market_place}</div>
-              <div>{market_period} ~ {end_date}</div>
+              <div>{start_date} ~ {end_date}</div>
             </div>
             <div className={cx('poster')}>
               <img src={market_poster}/>

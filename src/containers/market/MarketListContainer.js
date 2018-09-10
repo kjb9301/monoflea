@@ -18,7 +18,7 @@ class MarketListContainer extends Component {
     const idx = list.marketList.findIndex(market => market.market_id === id);
     const marketDetail = list.marketList[idx];
     MarketUIActions.showModal('market');
-    MarketUIActions.inputValue({marketDetail});
+    MarketUIActions.getValue({marketDetail});
   }
 
   handleSelect = (category) => {

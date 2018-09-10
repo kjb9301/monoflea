@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import MarketPost from 'components/market/MarketPost/MarketPost';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom';
+import MarketPost from 'components/market/MarketPost/MarketPost';
 
-import * as postActions from 'store/modules/marketPost';
+import * as marketActions from 'store/modules/market';
+import * as marketUIActions from 'store/modules/marketUI';
 
 const bodyData = new FormData();
 
 class MarketPostContainer extends Component {
   createMarket = async () => {
-    const {PostActions,poster,name,place,period,endDate,desc} = this.props;
-    await PostActions.postMarket(bodyData);
-    // await PostActions.postMarket(poster, {name,place,period,endDate,desc});
+    const {MarketActions} = this.props;
+    await MarketActions.createMarket(bodyData);
   }
 
   handleChange = (e) => {
-    const { PostActions } = this.props;
-    const { value, name, files } = e.target;    
+    const {MarketUIActions} = this.props;
+    const {name,value,files} = e.target;    
     files ? bodyData.append(name, files[0]) : bodyData.set(name, value);
-    PostActions.changeMarketInfo({ name, value });
+    MarketUIActions.changeInput({ name, value });
   }
 
   handleCreate = () => {
@@ -40,14 +40,15 @@ class MarketPostContainer extends Component {
 
 export default connect(
   (state) => ({
-    /* poster: state.marketPost.get('poster'),
-    name: state.marketPost.get('name'),
-    place: state.marketPost.get('place'),
-    desc: state.marketPost.get('desc'),
-    period: state.marketPost.get('period'),
-    endDate: state.marketPost.get('endDate') */
+    poster: state.marketUI.getIn(['market','market_poster']),
+    name: state.marketUI.getIn(['market','market_name']),
+    place: state.marketUI.getIn(['market','market_place']),
+    desc: state.marketUI.getIn(['market','market_desc']),
+    startDate: state.marketUI.getIn(['market','start_date']),
+    endDate: state.marketUI.getIn(['market','end_date'])
   }),
   (dispatch) => ({
-    //PostActions: bindActionCreators(postActions,dispatch)
+    MarketActions: bindActionCreators(marketActions,dispatch),
+    MarketUIActions: bindActionCreators(marketUIActions,dispatch)
   })
 )(withRouter(MarketPostContainer));

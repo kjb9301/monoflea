@@ -1,7 +1,6 @@
 import React from 'react';
-import styles from './MarketList.scss';
+import styles from './MarketRegList.scss';
 import classNames from 'classnames/bind';
-import {Link} from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -37,7 +36,7 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
   );
 };
 
- const MarketList = ({markets,onDetail,curGetTime,children}) => {
+ const MarketRegList = ({markets,onDetail,curGetTime,children}) => {
   if(!markets) return null; 
   const marketList = markets.map(
     (market) => {
@@ -67,4 +66,4 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
   )
 }
 
-export default MarketList;
+export default MarketRegList;
