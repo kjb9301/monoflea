@@ -11,7 +11,7 @@ import {
   BoardDetailPage, 
   BoardPostPage,
   BoardListPage,
-  MarketPostPage,
+  MarketRegListPage,
   MarketRegPage
 } from 'pages';
 import Base from 'containers/common/Base';
@@ -27,7 +27,8 @@ const App = () => {
         <Route path="/boards/notice/post" component={BoardPostPage}/>
         <Route path="/boards/notice/:id" component={BoardDetailPage}/>
         <Route exact path="/markets" component={MarketPage}/>
-        <Route path="/markets/post" component={MarketPostPage}/>
+        <Route path="/markets/recruitment" component={MarketRegListPage}/>
+        <Route path="/markets/registration" component={MarketRegPage}/>
         <Route path="/hosts" component={MarketRegPage}/>
         <Route exact path="/classes" component={ClassPage}/>
         <Route path="/classes/post" component={ClassPostPage}/>

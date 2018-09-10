@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const MarketRegButton = () => {
   return (
     <div className={cx('button-space')}>
-      <Link className={cx('reg-button')} to="/markets/post">마켓등록</Link>
+      <Link className={cx('reg-button')} to="/markets/registration">마켓등록</Link>
     </div>
   );
 };

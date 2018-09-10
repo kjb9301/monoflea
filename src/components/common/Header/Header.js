@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Header.scss';
 import classNames from 'classnames/bind';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +19,17 @@ const Header = ({ onLoginClick, onLogout, isLogin, userName, match, onSignupClic
             <Link className={cx('nav-item')} to='/about'>소개</Link>
             <Link className={cx('nav-item')} to='/boards'>게시판</Link>
             <Link className={cx('nav-item')} to='/sellers'>셀러</Link>
-            <Link className={cx('nav-item')} to='/markets'>마켓</Link>
+            <div className={cx('dropdown')}>
+              <button className={cx('dropbtn')}>마켓</button>
+              <div className={cx('dropdown-content')}>
+                <div>
+                  <Link to='/markets'>일정</Link>
+                </div>
+                <div>
+                  <Link to='/markets/recruitment'>등록</Link>
+                </div>
+              </div>
+            </div>
             <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
           </div>
         }

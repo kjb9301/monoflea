@@ -33,10 +33,10 @@ const MarketPost = ({onChange,onCreate}) => {
       </div>
       <div className={cx('row')}>
         <div className={cx('label-space')}>
-          <label htmlFor="period">시작일</label>
+          <label htmlFor="startDate">시작일</label>
         </div>
         <div className={cx('input-space')}>
-          <input type="text" id="period" name="period" onChange={onChange}/>
+          <input type="text" id="startDate" name="startDate" onChange={onChange}/>
         </div>
       </div>
       <div className={cx('row')}>
