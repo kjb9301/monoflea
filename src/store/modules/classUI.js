@@ -2,8 +2,10 @@ import { createAction, handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
 const CHANGE_CLASS_INFO = 'classUI/CHANGE_CLASS_INFO';
+const TOGGLE_EDIT = 'classUI/TOGGLE_EDIT';
 
 export const changeClassInfo = createAction(CHANGE_CLASS_INFO);
+export const toggleEdit = createAction(TOGGLE_EDIT);
 
 const initialState = Map({
   classInfo: Map({
@@ -28,5 +30,8 @@ export default handleActions({
   [CHANGE_CLASS_INFO]: (state, action) => {
     const { name, value } = action.payload;
     return state.setIn(['classInfo', name], value);
+  },
+  [TOGGLE_EDIT]: (state, action) => {
+    return state.set('editing', !state.get('editing'));
   }
 }, initialState);

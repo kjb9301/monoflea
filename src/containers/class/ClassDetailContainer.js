@@ -6,6 +6,7 @@ import ClassDetailModal from 'components/modal/ClassDetailModal'
 
 import * as baseActions from 'store/modules/base';
 import * as classActions from 'store/modules/class';
+import * as classUIActions from 'store/modules/classUI';
 
 class ClassDetailContainer extends Component {
 
@@ -30,13 +31,19 @@ class ClassDetailContainer extends Component {
     }
   }
 
+  updateOnedayClass = async (id) => {
+    const { ClassUIActions } = this.props;
+    ClassUIActions.toggleEdit();
+    console.log(id);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return (nextProps.editing !== this.props.editing) || (nextProps.visible !== this.props.visible);
   }
 
   render() {
     const { visible, classDetail, nickName, editing } = this.props;
-    const { hideModal, deleteOnedayClass } = this;
+    const { hideModal, deleteOnedayClass, updateOnedayClass } = this;
     return (
       <ClassDetailModal 
         visible={visible}
@@ -44,6 +51,8 @@ class ClassDetailContainer extends Component {
         hideModal={hideModal}
         nickName={nickName}
         deleteOnedayClass={deleteOnedayClass}
+        updateOnedayClass={updateOnedayClass}
+        editing={editing}
       />
     );
   }
@@ -58,6 +67,7 @@ export default connect(
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch),
-    ClassActions: bindActionCreators(classActions, dispatch)
+    ClassActions: bindActionCreators(classActions, dispatch),
+    ClassUIActions: bindActionCreators(classUIActions, dispatch)
   })
 )(ClassDetailContainer);
