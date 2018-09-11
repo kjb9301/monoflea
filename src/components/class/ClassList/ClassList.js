@@ -4,7 +4,8 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const ClassItem = ({ name, desc, place, limit, reg, date, images, category, categoryName, profileImg, nickName, id, showClassModal}) => {
+const ClassItem = 
+  ({ name, desc, place, limit, reg, date, recruit_start_date, recruit_end_date, event_date, view_cnt, images, category, categoryName, profileImg, nickName, id, showClassModal}) => {
   return (
     <div className={cx('item-boxframe')}>
       <div className={cx('item-box')} onClick={() => showClassModal(id)}>
@@ -14,8 +15,10 @@ const ClassItem = ({ name, desc, place, limit, reg, date, images, category, cate
         
         <div className={cx('item-contents')}>
           <div className={cx('item-name')}>{name}</div>
-          <div className={cx('item-limit')}>모집인원 : {limit} / {reg}</div>
-          <div className={cx('item-period')}>모집기간 : {date} ~ {date}</div>
+          <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
+          <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
+          <div className={cx('item-period')}>주최일 : {event_date}</div>
+          <div className={cx('item-period')}>조회수 : {view_cnt}</div>
           <div className={cx('item-desc')}>{desc}</div>
         </div>
 
@@ -34,7 +37,6 @@ const ClassItem = ({ name, desc, place, limit, reg, date, images, category, cate
 
 const ClassList = ({ classList, showClassModal }) => {
   const classes = classList.map(classItem => {
-    
     const { 
       class_id, 
       seller_id, 
@@ -43,7 +45,11 @@ const ClassList = ({ classList, showClassModal }) => {
       class_place, 
       class_limit_cnt, 
       class_reg_cnt, 
-      reg_date, 
+      reg_date,
+      recruit_start_date,
+      recruit_end_date,
+      event_date,
+      view_cnt,
       onedayImages, 
       onedayCategory, 
       seller 
@@ -60,6 +66,10 @@ const ClassList = ({ classList, showClassModal }) => {
         limit={class_limit_cnt}
         reg={class_reg_cnt}
         date={reg_date}
+        recruit_start_date={recruit_start_date}
+        recruit_end_date={recruit_end_date}
+        event_date={event_date}
+        view_cnt={view_cnt}
         images={onedayImages[0].class_imgurl}
         category={onedayCategory.class_category_id}
         categoryName={onedayCategory.category_ko_name}

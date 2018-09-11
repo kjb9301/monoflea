@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 
 
 const ClassDetailModal = ({ visible, classDetail, hideModal }) => {
+  console.log(classDetail);
   const { 
     class_category_id,
     class_desc,
@@ -18,6 +19,10 @@ const ClassDetailModal = ({ visible, classDetail, hideModal }) => {
     onedayCategory,
     onedayImages,
     reg_date,
+    recruit_start_date,
+    recruit_end_date,
+    view_cnt,
+    event_date,
     seller,
     seller_id
    } = classDetail;
@@ -43,10 +48,10 @@ const ClassDetailModal = ({ visible, classDetail, hideModal }) => {
             <div><span>모집분야</span>{onedayCategory.category_ko_name}</div>
             <div className={cx('classNickname')}><span>아이디</span>{seller.user.nickName}</div>
             <div><span className={cx('classPlace')}>개설장소</span><span className={cx('classPlaceContent')}>{class_place}</span></div>
-            <div><span>개설일자</span>{reg_date}</div>
-            <div><span>모집기간</span>{reg_date}</div>
-            <div><span>모집인원</span>{class_limit_cnt}</div>
-            <div><span>등록인원</span>{class_reg_cnt}</div>
+            <div><span>주최일</span>{event_date}</div>
+            <div><span>모집기간</span>{recruit_start_date} ~ {recruit_end_date}</div>
+            <div><span>모집인원</span>{class_reg_cnt} / {class_limit_cnt}</div>
+            <div><span>조회수</span>{view_cnt}</div>
           </div>
           <div className={cx('classBtn')}><button >강좌등록하기</button></div>
         </div>
