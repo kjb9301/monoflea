@@ -44,7 +44,7 @@ class ClassListContainer extends Component {
 
 export default connect(
   (state) => ({
-    classList: state.class.get('classList')
+    classList: state.class.get('classList'),
   }),
   (dispatch) => ({
     ClassActions: bindActionCreators(classActions, dispatch),

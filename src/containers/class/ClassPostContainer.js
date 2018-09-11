@@ -41,6 +41,8 @@ class ClassPostContainer extends Component {
 
   componentDidMount() {
     this.getClassCategory();
+    const { userType, history } = this.props;
+    if(userType !== 'S') return history.go(-1);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -66,6 +68,7 @@ class ClassPostContainer extends Component {
 export default connect(
   (state) => ({
     nickName: state.base.get('nickName'),
+    userType: state.base.get('userType'),
     categories: state.class.get('categories'),
     class_category: state.classUI.getIn(['classInfo', 'class_category']),
     class_name: state.classUI.getIn(['classInfo', 'class_name']),

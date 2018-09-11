@@ -104,6 +104,7 @@ const initialState = Map({
   }),
   logged: false,
   nickName: '',
+  userType: '',
   loginMessage: ''
 });
 
@@ -129,9 +130,10 @@ export default handleActions({
     type: LOGIN_USER_CHECK,
     onSuccess: (state, action) => {
       const { data: userState } = action.payload;
-      const { isLogin, nickName } = userState;
+      const { isLogin, nickName, userType } = userState;
       return state.set('logged', isLogin)
-                  .set('nickName',nickName);
+                  .set('nickName', nickName)
+                  .set('userType', userType);
     }
   }),
   ...pender({

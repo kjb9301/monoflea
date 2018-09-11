@@ -13,13 +13,14 @@ class ClassDetailContainer extends Component {
   }
 
   render() {
-    const { visible, classDetail } = this.props;
+    const { visible, classDetail, nickName } = this.props;
     const { hideModal } = this;
     return (
       <ClassDetailModal 
         visible={visible}
         classDetail={classDetail}
         hideModal={hideModal}
+        nickName={nickName}
       />
     );
   }
@@ -28,7 +29,8 @@ class ClassDetailContainer extends Component {
 export default connect(
   (state) => ({
     visible: state.base.getIn(['modal', 'class']),
-    classDetail: state.class.get('classDetail')
+    classDetail: state.class.get('classDetail'),
+    nickName: state.base.get('nickName')
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)

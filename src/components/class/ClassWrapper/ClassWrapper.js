@@ -7,13 +7,13 @@ import ClassListContainer from 'containers/class/ClassListContainer';
 
 const cx = classNames.bind(styles);
 
-const ClassWrapper = () => {
+const ClassWrapper = ({ userType }) => {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('itemlist')}>
         <div className={cx('itemlist-inner', 'inner')}>
           <div className={cx('post-wrap')}>
-            <Link className={cx('post-btn')} to="/classes/post">등록하기</Link>
+            {userType === 'S' && <Link className={cx('post-btn')} to="/classes/post">등록하기</Link>}
           </div>
           <div className={cx('itemlist-title')}><h2>Oneday Class List</h2></div>
           <div className={cx('category-list')}>

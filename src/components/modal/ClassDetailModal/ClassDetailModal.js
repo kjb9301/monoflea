@@ -6,8 +6,7 @@ const cx = classNames.bind(styles);
 
 
 
-const ClassDetailModal = ({ visible, classDetail, hideModal }) => {
-  console.log(classDetail);
+const ClassDetailModal = ({ visible, classDetail, hideModal, nickName }) => {
   const { 
     class_category_id,
     class_desc,
@@ -53,7 +52,17 @@ const ClassDetailModal = ({ visible, classDetail, hideModal }) => {
             <div><span>모집인원</span>{class_reg_cnt} / {class_limit_cnt}</div>
             <div><span>조회수</span>{view_cnt}</div>
           </div>
-          <div className={cx('classBtn')}><button >강좌등록하기</button></div>
+          {
+            nickName === seller.user.nickName 
+            ?
+            (
+              <div className={cx('classBtn')}><span onClick={hideModal}>삭제</span></div>
+            )
+            :
+            (
+              <div className={cx('classBtn')}>강좌등록하기</div>
+            )
+          }
         </div>
         <div className={cx('modalDesc')}>상세설명 : {class_desc}</div>
         <div className={cx('modalImage')}>
