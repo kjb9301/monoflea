@@ -32,4 +32,6 @@ export const deleteMarket = (id) => axios.delete(`/markets/${id}`);
 export const getClassList = (category) => axios.get(`/classes?category=${category}`);
 export const getClassDetail = (id) => axios.get(`/classes/${id}`);
 export const getClassCategory = () => axios.get('/classes/category-list');
-export const postNewClass = (newClass) => axios.post('/classes', newClass);
+export const postNewClass = (newClass) => axios.post('/classes', newClass)
+                                                // .then(results => console.log(results))
+                                                // .catch(e => console.log(e.response));

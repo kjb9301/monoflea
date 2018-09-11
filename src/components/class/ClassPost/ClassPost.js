@@ -23,7 +23,7 @@ const ClassPost = ({ categories, changeValue, postNewClass }) => {
       </h1>
       <div className={cx('content-wrap')}>
         <div className={cx('input-box')}>
-          <select name="class_category" onChange={changeValue}>
+          <select name="class_category_id" onChange={changeValue}>
             <option value="0">카테고리</option>
             {classCategories}
           </select>

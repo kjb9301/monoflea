@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import ClassPost from 'components/class/ClassPost';
 
 import * as classActions from 'store/modules/class';
@@ -16,8 +17,19 @@ class ClassPostContainer extends Component {
   }
 
   postNewClass = async () => {
-    const { ClassActions } = this.props;
-    await ClassActions.postNewClass(bodyData);
+    const { ClassActions, nickName, history } = this.props;
+    bodyData.set('nickName', nickName);
+    try {
+      const newClass = await ClassActions.postNewClass(bodyData);
+      const { isSaved, message } = newClass.data;
+      if(isSaved) {
+        alert(message);
+        return history.push('/classes');
+      }
+    } catch(e) {
+      const { isSaved, message } = e.response.data;
+      if(!isSaved) return alert(message);
+    }
   }
 
   changeValue = (e) => {
@@ -53,6 +65,7 @@ class ClassPostContainer extends Component {
 
 export default connect(
   (state) => ({
+    nickName: state.base.get('nickName'),
     categories: state.class.get('categories'),
     class_category: state.classUI.getIn(['classInfo', 'class_category']),
     class_name: state.classUI.getIn(['classInfo', 'class_name']),
@@ -72,4 +85,4 @@ export default connect(
     ClassActions: bindActionCreators(classActions, dispatch),
     ClassUIActions: bindActionCreators(classUIActions, dispatch)
   })
-)(ClassPostContainer);
+)(withRouter(ClassPostContainer));
