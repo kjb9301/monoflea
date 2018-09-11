@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
-const CHANGE_CLASS_INFO = 'class/CHANGE_CLASS_INFO';
+const CHANGE_CLASS_INFO = 'classUI/CHANGE_CLASS_INFO';
 
 export const changeClassInfo = createAction(CHANGE_CLASS_INFO);
 
@@ -20,7 +20,8 @@ const initialState = Map({
     class_img3: '',
     class_img4: '',
     class_img5: '',
-  })
+  }),
+  editing: false
 });
 
 export default handleActions({

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import ClassDetailModal from 'components/modal/ClassDetailModal'
 
 import * as baseActions from 'store/modules/base';
+import * as classActions from 'store/modules/class';
 
 class ClassDetailContainer extends Component {
 
@@ -12,15 +14,36 @@ class ClassDetailContainer extends Component {
     BaseActions.hideModal('class');
   }
 
+  deleteOnedayClass = async (id) => {
+    try {
+      const { BaseActions, ClassActions } = this.props;
+      const deleteResult = await axios.delete(`/classes/${id}`);
+      const { isDeleted } = deleteResult.data;
+      if(!isDeleted) return alert('삭제에 실패했습니다. 다시 시도하세요!');
+      await ClassActions.getClassList();
+      alert('등록된 클래스가 삭제됐습니다!');
+      return BaseActions.hideModal('class');
+    } catch(e) {
+      const { isDeleted, message } = e.response;
+      if(!isDeleted) return alert(message);
+      return alert('알수 없는 에러발생!');
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.editing !== this.props.editing) || (nextProps.visible !== this.props.visible);
+  }
+
   render() {
-    const { visible, classDetail, nickName } = this.props;
-    const { hideModal } = this;
+    const { visible, classDetail, nickName, editing } = this.props;
+    const { hideModal, deleteOnedayClass } = this;
     return (
       <ClassDetailModal 
         visible={visible}
         classDetail={classDetail}
         hideModal={hideModal}
         nickName={nickName}
+        deleteOnedayClass={deleteOnedayClass}
       />
     );
   }
@@ -30,9 +53,11 @@ export default connect(
   (state) => ({
     visible: state.base.getIn(['modal', 'class']),
     classDetail: state.class.get('classDetail'),
-    nickName: state.base.get('nickName')
+    nickName: state.base.get('nickName'),
+    editing: state.classUI.get('editing')
   }),
   (dispatch) => ({
-    BaseActions: bindActionCreators(baseActions, dispatch)
+    BaseActions: bindActionCreators(baseActions, dispatch),
+    ClassActions: bindActionCreators(classActions, dispatch)
   })
 )(ClassDetailContainer);

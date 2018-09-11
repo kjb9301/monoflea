@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 
 
 
-const ClassDetailModal = ({ visible, classDetail, hideModal, nickName }) => {
+const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOnedayClass }) => {
   const { 
     class_category_id,
     class_desc,
@@ -56,7 +56,10 @@ const ClassDetailModal = ({ visible, classDetail, hideModal, nickName }) => {
             nickName === seller.user.nickName 
             ?
             (
-              <div className={cx('classBtn')}><span onClick={hideModal}>삭제</span></div>
+              <div>
+                <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>수정</div>
+                <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</div>
+              </div>
             )
             :
             (
