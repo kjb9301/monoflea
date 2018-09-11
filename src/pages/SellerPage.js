@@ -5,7 +5,6 @@ import CategoryButton from '../containers/seller/CategoryButton';
 import SellerDetailContainer from '../containers/seller/SellerDetailContainer';
 // import SellerApp from '../containers/seller/SellerApp';
 const SellerPage = () => {
-  console.log('12')
   return (
     <PageTemplate>
       {/* <CategoryButton/> */}
