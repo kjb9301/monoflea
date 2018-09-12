@@ -17,7 +17,6 @@ class ClassListContainer extends Component {
     const { ClassActions, BaseActions, classList } = this.props;
     const idx = classList.findIndex(item => item.class_id === id);
     console.log(classList[idx]);
-    // ClassActions.setDetailClass(classList[idx]);
     BaseActions.showModal('class');
   }
 
