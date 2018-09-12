@@ -26,6 +26,7 @@ export default handleActions({
     type: GET_MARKET_LIST,
     onSuccess: (state,action) => {
       const list = action.payload.data;
+      console.log(list.marketComingList)
       return state.set('data', list)
     }
   }),

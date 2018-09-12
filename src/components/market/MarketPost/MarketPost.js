@@ -1,64 +1,52 @@
 import React from 'react';
 import styles from './MarketPost.scss';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const MarketPost = ({onChange,onCreate}) => {
   return (
-    <div className={cx('form')}>
-      <div className={cx('row')}>
-        <div className={cx('label-space')}>
-          <label htmlFor="poster">포스터</label>
-        </div>
-        <div className={cx('input-space')}>
-          <input type="file" id="poster" name="poster" onChange={onChange}/>
-        </div>
-      </div>
-      <div className={cx('row')}>
-        <div className={cx('label-space')}>
-          <label htmlFor="name">마켓이름</label>
-        </div>
-        <div className={cx('input-space')}>
-          <input type="text" id="name" name="name" onChange={onChange}/>
-        </div>
-      </div>
-      <div className={cx('row')}>
-        <div className={cx('label-space')}>
-          <label htmlFor="place">마켓장소</label>
-        </div>
-        <div className={cx('input-space')}>
-          <input type="text" id="place" name="place" onChange={onChange}/>
-        </div>
-      </div>
-      <div className={cx('row')}>
-        <div className={cx('label-space')}>
-          <label htmlFor="startDate">시작일</label>
-        </div>
-        <div className={cx('input-space')}>
-          <input type="text" id="startDate" name="startDate" onChange={onChange}/>
-        </div>
-      </div>
-      <div className={cx('row')}>
-        <div className={cx('label-space')}>
-          <label htmlFor="endDate">종료일</label>
-        </div>
-        <div className={cx('input-space')}>
-          <input type="text" id="endDate" name="endDate" onChange={onChange}/>
-        </div>
-      </div>
-      <div className={cx('row')}>
-        <div className={cx('label-space')}>
-          <label htmlFor="desc">설명</label>
-        </div>
-        <div className={cx('input-space')}>
-        <textarea cols="100" rows="10" id="desc" name="desc" onChange={onChange}></textarea>
-        </div>
-      </div>
-      <div>
-        <button className={cx('submit-button')} onClick={onCreate}>등록</button>
-      </div>
-    </div>
+     <div className={cx('form')}>
+     <h1 className={cx('title')}>
+       마켓 등록
+     </h1>
+     <div className={cx('content-wrap')}>
+       <div className={cx('input-box')}>
+         <input type='text' name='name' placeholder='마켓 이름을 입력해주세요!' onChange={onChange}/>
+       </div>
+       <div className={cx('input-box')}>
+         <input type='text' name='place' placeholder='마켓 주최 장소를 입력해주세요!' onChange={onChange}/>
+       </div>
+       <div className={cx('input-box')}>
+         <div>
+           <label htmlFor='period'>마켓 주최 기간 입력해주세요!</label>
+         </div>
+         <input className={cx('period')} type='date' name='startDate' onChange={onChange}/>
+          <input className={cx('period')} type='date' name='endDate' onChange={onChange}/>
+       </div>
+       <div className={cx('input-box')}>
+         <div>
+           <label htmlFor='sellerLimitCnt'>셀러 모집 인원을 설정하세요!</label>
+         </div>
+         <input type="number" name="sellerLimitCnt" onChange={onChange}/>
+       </div>
+       <div className={cx('input-box')}>
+         <textarea name="desc" rows="20" cols="50" placeholder="마켓에 대한 상세한 설명을 적어주세요! 최소 350자 이상" onChange={onChange}/>
+       </div>
+       <div className={cx('input-box')}>
+         <div>
+           <label htmlFor='poster'>마켓 관련 포스터를 업로드해주세요!</label>
+         </div>
+         <input type="file" name="poster" onChange={onChange}/>
+       </div>
+       <div className={cx('btn-box')}>
+         <button className={cx('submit-btn')} onClick={onCreate}>등록</button>
+         <Link className={cx('cancel-btn')} to="/markets/recruitment">취소</Link>
+       </div>
+     </div>
+   </div>
+
   );
 };
 
