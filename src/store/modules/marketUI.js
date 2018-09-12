@@ -25,7 +25,9 @@ const initialState = fromJS({
     market_poster: '',
     start_date: '',
     end_date: '',
-    market_desc: ''
+    market_desc: '',
+    seller_cnt: '',
+    seller_limit_cnt: ''
   },
   editTF: false
 });
@@ -48,7 +50,9 @@ export default handleActions({
       market_poster,
       start_date,
       end_date,
-      market_desc
+      market_desc,
+      seller_cnt,
+      seller_limit_cnt
     } = marketDetail;
 
     return state.setIn(['market', 'market_id'], market_id)
@@ -57,7 +61,9 @@ export default handleActions({
                 .setIn(['market', 'market_poster'], market_poster)
                 .setIn(['market', 'start_date'], start_date)
                 .setIn(['market', 'end_date'], end_date)
-                .setIn(['market', 'market_desc'], market_desc);
+                .setIn(['market', 'market_desc'], market_desc)
+                .setIn(['market','seller_cnt'],seller_cnt)
+                .setIn(['market','seller_limit_cnt'],seller_limit_cnt);
   },
   [CHANGE_INPUT]: (state,action) => {
     const { name, value } = action.payload;

@@ -39,7 +39,37 @@ const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,
           </div>
         </div>
       :
-        <div className={cx('modalForm')}>
+      <div className={cx('modalForm')}>
+        <span className={cx('close')} onClick={onClose}>&times;</span>
+        <div className={cx('modalTitle')}>
+          <span className={cx('marketName')}>{market_name}</span>
+        </div>
+        <div className={cx('modalInfo')}>
+          <div className={cx('marketPoster')}>
+            <img src={market_poster} />
+          </div>
+          <div className={cx('marketInfo')}>
+            {/* <div><span>모집분야</span>{onedayCategory.category_ko_name}</div> */}
+            {/* <div className={cx('classNickname')}><span>아이디</span>{seller.user.nickName}</div> */}
+            <div><span className={cx('marketPlace')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span></div>
+            <div><span>마켓일정</span>{start_date}~{end_date}</div>
+            {/* <div><span>개설일자</span>{reg_date}</div> */}
+            <div><span>모집기간</span>////////////////</div>
+            {/* <div><span>모집인원</span>{seller_cnt}/{seller_limit_cnt}</div> */}
+          </div>
+          <div className={cx('classBtn')}><button >신청하기</button></div>
+          <div className={cx('classBtn')}>
+            <button >마감하기</button>
+            <button >참여자확인</button>
+            <button >수정하기</button>
+            <button >삭제하기</button>
+          </div>
+        </div>
+        <div className={cx('modalDesc')}>상세설명 : {market_desc}</div>
+      </div>
+      }
+
+       {/* <div className={cx('modalForm')}>
           <div className={cx('close')} onClick={onClose}>&times;</div>
           <div className={cx('wrapper')}>
             <div className={cx('info')}>
@@ -56,8 +86,7 @@ const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,
             <button onClick={onAskRemove}>삭제</button>
             <button onClick={onEdit}>수정</button>
           </div>
-        </div>
-      }
+        </div> */}
     </ModalWrapper>
   );
 };

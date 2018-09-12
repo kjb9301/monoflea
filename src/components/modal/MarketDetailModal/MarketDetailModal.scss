@@ -1,6 +1,178 @@
 @import 'common';
 
 .modalForm {
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-left: 0;
+    right: 0;
+    line-height: 2rem;
+
+    &:hover,
+    &:focus {
+      color: red;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @include media ("<medium") {
+      font-size: 4rem;
+    }
+  }
+
+  .modalTitle {
+    margin-top: 2rem;
+
+    .marketName {
+      margin-right: 2rem;
+      display: inline-block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+
+      @include media ("<medium") {
+        margin-right: 1rem;
+      }
+
+      @include media ("<small") {
+        width: 100%;
+        margin: 0;
+        padding: .3rem;
+        border-radius: 1rem;
+        background: #f2f2f2;
+      }
+    }
+  }
+
+  .modalInfo {
+    padding-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 2rem;
+    // border: 1px solid black;
+    
+    .marketPoster {
+      display: inline-block;
+      margin: 2rem;
+      // padding-left: 1rem;
+      // padding-right: 1rem;
+      width: 40%;
+      text-align: center;
+      // border: 1px solid orange;
+
+      img {
+        max-width: 100%;
+      }
+
+      @include media ("<large") {
+        width: 30%;
+      }
+
+      @include media ("<medium") {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      @include media ("<small") {
+
+      }
+    }
+
+    .marketInfo {
+      display: inline-block;
+      width: 60%;
+      vertical-align: top;
+      // line-height: 1.6;
+      // border: 1px solid orangered;
+
+      .classNickname {
+        margin-bottom: .5rem;
+      }
+
+      .marketPlace {
+        margin-right: 0;
+      }
+
+      .marketPlaceContent {
+        display: inline-block;
+        width: auto;
+        min-width: 8rem;
+        margin-left: 1rem;
+        border: initial;
+        color: inherit;
+        margin-top: .3rem;
+      }
+
+      div {
+        padding: .5rem;
+        font-size: 1rem;
+      }
+
+      span {
+        display: inline-block;
+        width: 7rem;
+        margin-right: 1rem;
+        text-align: center;
+        color: navy;
+        border: 1px solid navy;
+        border-radius: .3rem;
+      }
+
+      @include media ("<large") {
+        width: 70%;
+        padding-left: 1rem;
+      }
+
+      @include media ("<medium") {
+        width: 100%;
+      }
+
+      @include media ("<small") {
+
+      }
+    }
+
+    .classBtn {
+      width: 70%;
+      margin: 1rem auto;
+      padding: .5rem 1rem;
+      text-align: right;
+
+      button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      @include media("<medium") {
+        text-align: center;
+      }
+    }
+  }
+
+  .modalDesc {
+    margin: 1rem 0 2rem 0;
+    padding: 2rem;
+    font-size: .8rem;
+    line-height: 2;
+    border-radius: .5rem;
+    border: 1px solid #f2f2f2;
+
+    @include media("<medium") {
+      padding: 2rem 1rem;
+    }
+  }
+
+}
+
+/* .modalForm {
   background: white;
   padding: 2rem;
   position: relative;
@@ -53,4 +225,4 @@
       border: 1px solid black;
     }
   } 
-}
+} */

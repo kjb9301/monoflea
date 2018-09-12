@@ -10,6 +10,11 @@ import * as marketUIActions from 'store/modules/marketUI';
 const bodyData = new FormData();
 
 class MarketPostContainer extends Component {
+  getMarketList = () => {
+    const {MarketActions} = this.props;
+    MarketActions.getMarketList();
+  }
+
   createMarket = async () => {
     const {MarketActions} = this.props;
     await MarketActions.createMarket(bodyData);
@@ -25,7 +30,11 @@ class MarketPostContainer extends Component {
   handleCreate = () => {
     this.createMarket();
     const {history} = this.props;
-    history.push('/markets');
+    history.push('/markets/recruitment');
+  }
+
+  componentDidMount() {
+    this.getMarketList();
   }
 
   render() {

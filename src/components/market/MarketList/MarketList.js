@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './MarketList.scss';
 import classNames from 'classnames/bind';
-import {Link} from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -9,7 +8,7 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
   const marketGetTime = new Date(start).getTime();
   const gap = marketGetTime - curGetTime;
   const dDay = Math.ceil(gap/(1000*60*60*24));
-  console.log('[MarketList]')
+
   return (
     <div className={cx('market-item')}>
       <div className={cx('market-item-top')}>
@@ -42,20 +41,22 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
   if(!markets) return null; 
   const marketList = markets.map(
     (market) => {
-      const {market_id, market_name, market_place, market_poster,start_date,end_date} = market;
-      return (
-        <MarketItem
-          key={market_id}
-          id={market_id}
-          name={market_name}
-          place={market_place}
-          poster={market_poster}
-          start={start_date}
-          end={end_date}
-          onDetail={onDetail}
-          curGetTime={curGetTime}
-        />
-      )
+      const {market_id, market_name, market_place, market_poster,start_date,end_date,confirmYN} = market;
+      //if(confirmYN === 'N'){
+        return (
+          <MarketItem
+            key={market_id}
+            id={market_id}
+            name={market_name}
+            place={market_place}
+            poster={market_poster}
+            start={start_date}
+            end={end_date}
+            onDetail={onDetail}
+            curGetTime={curGetTime}
+          />
+        )
+     // }
     }
   );
   return (
