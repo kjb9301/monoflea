@@ -34,7 +34,14 @@ class ClassDetailContainer extends Component {
   updateOnedayClass = async (id) => {
     const { ClassUIActions } = this.props;
     ClassUIActions.toggleEdit();
-    console.log(id);
+  }
+
+  changeValue = (e) => {
+    const { name, value, files } = e.target;
+    const { classDetail } = this.props;
+    console.log(name);
+    console.log(value);
+    console.log(classDetail);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -43,7 +50,7 @@ class ClassDetailContainer extends Component {
 
   render() {
     const { visible, classDetail, nickName, editing } = this.props;
-    const { hideModal, deleteOnedayClass, updateOnedayClass } = this;
+    const { hideModal, deleteOnedayClass, updateOnedayClass, changeValue } = this;
     return (
       <ClassDetailModal 
         visible={visible}
@@ -52,6 +59,7 @@ class ClassDetailContainer extends Component {
         nickName={nickName}
         deleteOnedayClass={deleteOnedayClass}
         updateOnedayClass={updateOnedayClass}
+        changeValue={changeValue}
         editing={editing}
       />
     );

@@ -38,17 +38,10 @@ export default handleActions({
   }),
   ...pender({
     type: POST_NEW_CLASS,
-    // onSuccess: (state, action) => {
-    //   console.log(action);
-    //   return state;
-    // },
-    // onFailure: (state, action) => {
-    //   console.log(action.payload.response)
-    //   return state;
-    // }
   }),
   [SET_DETAIL_CLASS]: (state, action) => {
     const detailInfo = action.payload;
+    console.log(detailInfo);
     return state.set('classDetail', detailInfo);
   }
 }, initialState)
