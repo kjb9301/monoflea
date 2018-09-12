@@ -9,33 +9,30 @@ import * as sellerUIActions from 'store/modules/sellerUI';
 class SellersListContainer extends Component {
   
   getSellerDetail  = (id) =>{
-    const {SellerUIActions,sellers} = this.props;
-    const idx = sellers.findIndex(seller => seller.seller_id ===id);
-    const sellerDetail = sellers[idx];
+    const {SellerUIActions,sellerList} = this.props;
+    const idx = sellerList.findIndex(seller => seller.seller_id ===id);
+    const sellerDetail = sellerList[idx];
     SellerUIActions.detailData({sellerDetail});
   }
 
-  getSellersList = () => {
+  getSellersList = (category) => {
     const { SellerActions } = this.props;
-    SellerActions.getSellersList();
+    SellerActions.getSellersList(category);
   }
 
   handleModal = ()=>{
     const {SellerUIActions} = this.props;
-    const modalName = 'seller';
-    SellerUIActions.showModal({modalName});
+    SellerUIActions.showModal('seller');
   }
   componentDidMount(){
     this.getSellersList()
-    console.log('========= cDm ============');
   }
   // shouldComponentUpdate(nextProps, nextState) {
   //   return nextProps.categories !== this.props.categories;
   // }
   render() {
-    const { sellers, loading ,categories} = this.props;
+    const { sellerList, loading ,categories} = this.props;
     const { getSellerDetail, handleModal , getSellersList} = this;
-    console.log(sellers);
     const categoryList = categories.map(
       (categoryItem) => {
         const {category_id, category_ko, category} = categoryItem;
@@ -52,7 +49,7 @@ class SellersListContainer extends Component {
       <div>
         {categoryList}
         <SellerList
-          sellers = { sellers } 
+          sellerList = { sellerList } 
           onModal = { handleModal }
           detailData = {getSellerDetail}
         />
@@ -62,7 +59,7 @@ class SellersListContainer extends Component {
 }
 
 export default connect((state) => ({
-  sellers : state.seller.get('sellers'),
+  sellerList : state.seller.get('sellers'),
   categories : state.seller.get('categories'),
   loading : state.pender.pending['seller/GET_SELLERS_LIST'],
 }),

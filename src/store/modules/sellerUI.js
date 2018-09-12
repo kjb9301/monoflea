@@ -5,11 +5,15 @@ const SHOW_MODAL = 'sellerUI/SHOW_MODAL';
 const HIDE_MODAL = 'sellerUI/HIDE_MODAL';
 const EDIT_TF = 'sellerUI/EDIT_TF'
 const DETAIL_DATA = 'sellerUI/DETAIL_DATA';
+const CHANGED_DATA = 'sellerUI/CHANGED_DATA'
+const SHOW_TF = 'sellerUI/SHOW_TF';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
-export const editRf = createAction(EDIT_TF);
+export const editTF = createAction(EDIT_TF);
 export const detailData = createAction(DETAIL_DATA);
+export const changedData =  createAction(CHANGED_DATA);
+export const showTF = createAction(SHOW_TF);
 
 const initialState = fromJS({
   modal : {
@@ -18,6 +22,7 @@ const initialState = fromJS({
   seller : {
     seller_id : '',
     sns: '',
+    show_TF : true,
     career : '',
     seller_desc : '',
     profile_img : '',
@@ -36,16 +41,22 @@ const initialState = fromJS({
 
 export default handleActions({
  [SHOW_MODAL] : (state, action) => {
-   const { modalName} = action.payload;
+   const  modalName = action.payload;
+   console.log(modalName)
     return state.setIn(['modal',modalName], true)
  },
  [HIDE_MODAL] : (state, action) =>{
    const modalName = action.payload;
    return state.setIn(['modal', modalName], false);
  },
+ [SHOW_TF] : (state,action) => {
+   const {name,value} = action.payload;
+   return state.setIn(['seller', name], value);
+ },
  [DETAIL_DATA] : (state, action) => {
     const {sellerDetail} = action.payload
-    const { seller_id, career, sns, seller_desc, profile_img, seller_images : imgUrl,
+    console.log(sellerDetail);
+    const { seller_id, career, sns, seller_desc, profile_img, show_TF, seller_images : imgUrl,
     user : nickName, sellerCategory : category_ko} = sellerDetail;
     return state.setIn(['seller','seller_id'], seller_id)
                 .setIn(['seller','user','nickName'], nickName )
@@ -55,10 +66,16 @@ export default handleActions({
                 .setIn(['seller','profile_img'], profile_img)
                 .setIn(['seller','seller_images','imgUrl'], imgUrl)
                 .setIn(['seller','sellerCategory','category_ko'], category_ko)
- }
- ,
+                .setIn(['seller', 'show_TF'], show_TF)
+ },
  [EDIT_TF] : (state, action) =>{
-   return state.set('editTF', true)
+   const edit = action.payload;
+   return state.set('editTF',!edit)
+ },
+ [CHANGED_DATA] : (state,action) => {
+   const { name, value } = action.payload
+  return state.setIn(['seller', name], value)
+
  }
  
 }, initialState)
