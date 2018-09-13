@@ -25,6 +25,7 @@ const initialState = fromJS({
     show_TF : true,
     career : '',
     seller_desc : '',
+    like_cnt : '',
     profile_img : '',
     user : {
               nickName : '',
@@ -42,7 +43,6 @@ const initialState = fromJS({
 export default handleActions({
  [SHOW_MODAL] : (state, action) => {
    const  modalName = action.payload;
-   console.log(modalName)
     return state.setIn(['modal',modalName], true)
  },
  [HIDE_MODAL] : (state, action) =>{
@@ -55,8 +55,7 @@ export default handleActions({
  },
  [DETAIL_DATA] : (state, action) => {
     const {sellerDetail} = action.payload
-    console.log(sellerDetail);
-    const { seller_id, career, sns, seller_desc, profile_img, show_TF, seller_images : imgUrl,
+    const { seller_id, career, sns, seller_desc, like_cnt, profile_img, show_TF, seller_images : imgUrl,
     user : nickName, sellerCategory : category_ko} = sellerDetail;
     return state.setIn(['seller','seller_id'], seller_id)
                 .setIn(['seller','user','nickName'], nickName )
@@ -67,6 +66,7 @@ export default handleActions({
                 .setIn(['seller','seller_images','imgUrl'], imgUrl)
                 .setIn(['seller','sellerCategory','category_ko'], category_ko)
                 .setIn(['seller', 'show_TF'], show_TF)
+                .setIn(['seller', 'like_cnt'],like_cnt)
  },
  [EDIT_TF] : (state, action) =>{
    const edit = action.payload;
@@ -75,7 +75,7 @@ export default handleActions({
  [CHANGED_DATA] : (state,action) => {
    const { name, value } = action.payload
   return state.setIn(['seller', name], value)
-
- }
+ },
+ 
  
 }, initialState)

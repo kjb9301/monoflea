@@ -5,20 +5,14 @@ import SellerDetailModal from 'components/modal/SellerDetailModal';
 import { Map, List } from  'immutable';
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI'
+import * as baseActions from 'store/modules/base';
 class SellerDetailContainer extends Component {
 
   //각각 데이터 바꾸는 방법 찾아보기
   handleCancel = (id) =>{
     const {SellerUIActions ,sellerList, editTF} = this.props;
-    console.log(sellerList);
     const idx  = sellerList.findIndex((seller => seller.seller_id === id))
-    console.log(idx);
     const sellerDetail = sellerList[idx];
-    // console.log(sellerData);
-    // const sellerDetail = sellerData.toJS();
-    // console.log(sellerData.seller_desc)
-    // console.log(sellerData.setIn(['seller',sellerDetail.seller_desc], sellerDetail.seller_desc))
-
     SellerUIActions.editTF(editTF);
     SellerUIActions.hideModal('seller');
     SellerUIActions.showModal('seller');
@@ -36,12 +30,11 @@ class SellerDetailContainer extends Component {
   }
   
   handleUpdate = (id) => {
-    const { SellerActions,SellerUIActions,sellerData, sellerList, editTF } = this.props;
-    // const idx = sellerList.findIndex((seller => seller.seller_id == id));
-    // const sellerDetail = sellerList[idx];
+    const { SellerActions,SellerUIActions,sellerData,  editTF } = this.props;
     const sellerDetail = sellerData.toJS();
     SellerUIActions.editTF(editTF);
     SellerActions.updateSeller(id,sellerDetail);
+    SellerActions.getSellersList();
   }
 
   handleChange = (e) => {
@@ -75,15 +68,18 @@ class SellerDetailContainer extends Component {
 }
 
 export default connect((state ) =>({
-  sellerData : state.sellerUI.get('seller'),
   sellerList  : state.seller.get('sellers'),
+  categories : state.seller.get('sellers'),
+  sellerData : state.sellerUI.get('seller'),
   visible : state.sellerUI.getIn(['modal','seller']),
   editTF : state.sellerUI.get('editTF'),
-  loading :state.pender.pending['/seller/GET_SELLER_LIST']
+  loading :state.pender.pending['/seller/GET_SELLER_LIST'],
+  isLogin : state.base.get('logged')
 }),
   (dispatch) =>({
     SellerActions : bindActionCreators(sellerActions, dispatch),
-    SellerUIActions : bindActionCreators(sellerUIActions, dispatch)
+    SellerUIActions : bindActionCreators(sellerUIActions, dispatch),
+    BaseActions : bindActionCreators(baseActions,dispatch)
   })
 
 )(SellerDetailContainer);

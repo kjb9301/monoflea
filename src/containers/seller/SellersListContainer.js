@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI';
-
+import * as baseActions from 'store/modules/base';
 class SellersListContainer extends Component {
   
   getSellerDetail  = (id) =>{
@@ -24,15 +24,32 @@ class SellersListContainer extends Component {
     const {SellerUIActions} = this.props;
     SellerUIActions.showModal('seller');
   }
+
+  getLoginData = () =>{
+    const { isLogin,nickName } = this.props;
+    console.log(isLogin)
+    console.log(nickName);
+  }
   componentDidMount(){
-    this.getSellersList()
+    this.getSellersList('All')
   }
   // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.categories !== this.props.categories;
+  //   return nextProps.sellerList == this.props.sellerList;
   // }
+
+  // 최적화할때 해보기
+  // static getDerivedStateFromProps(nextProps,prevState){
+  //   if(nextProps !== prevState) {
+  //     if(prevState){
+  //       console.log(prevState.sellerList);
+  //       return {sellerList :  nextProps.sellerList}
+  //     }
+  //   }
+  // }
+  
   render() {
-    const { sellerList, loading ,categories} = this.props;
-    const { getSellerDetail, handleModal , getSellersList} = this;
+    const { sellerList, loading ,categories } = this.props;
+    const { getSellerDetail, handleModal , getSellersList, getLoginData} = this;
     const categoryList = categories.map(
       (categoryItem) => {
         const {category_id, category_ko, category} = categoryItem;
@@ -43,7 +60,7 @@ class SellersListContainer extends Component {
           > {category_ko} </Button>
       } 
     )
-    categoryList.unshift(<Button key = {'All'} toGetData = {getSellersList} >전체</Button>);
+    categoryList.unshift(<Button key = {'All'} onHandleParams = 'All' toGetData = {getSellersList} >전체</Button>);
     if(loading) return null;
     return (  
       <div>
@@ -52,6 +69,7 @@ class SellersListContainer extends Component {
           sellerList = { sellerList } 
           onModal = { handleModal }
           detailData = {getSellerDetail}
+          getLoginData = {getLoginData}
         />
       </div>
     );
@@ -65,6 +83,7 @@ export default connect((state) => ({
 }),
 (dispatch) => ({
   SellerActions : bindActionCreators(sellerActions,dispatch),
-  SellerUIActions : bindActionCreators(sellerUIActions,dispatch)
+  SellerUIActions : bindActionCreators(sellerUIActions,dispatch),
+  BaseActions : bindActionCreators(baseActions,dispatch)
 })
 )(SellersListContainer);
