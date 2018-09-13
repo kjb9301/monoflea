@@ -16,12 +16,8 @@ const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,onD
         </div>
         
         <div className={cx('item-contents')}>
-          <div className={cx('item-name')}>{name}</div>
-          <div className={cx('item-name')}>{place}</div>
-          <div className={cx('item-period')}>마켓기간 : {start} ~ {end}</div>
+          <div className={cx('item-period')}>모집기간 : {start} ~ {end}</div>
           <div className={cx('item-limit')}>모집인원 : {sellerCnt} / {sellerLimitCnt}</div>
-          <button className={cx('button')}>마감하기</button>
-          <button className={cx('button')}>신청하기</button>
           {/* <div className={cx('item-desc')}>{desc}</div> */}
         </div>
       </div>
