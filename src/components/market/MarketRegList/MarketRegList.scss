@@ -38,26 +38,22 @@
     .item-contents {
       margin-bottom: 1rem;
 
-      .item-name {
-        font-size: 1rem;
+      .item-period {
+        font-size: .9rem;
         padding-bottom: .5rem;
         font-weight: bold;
-        width:100%; 
+        width:100%;
+        line-height: 2; 
         overflow:hidden;
         white-space:nowrap; 
         text-overflow:ellipsis;
       }
 
       .item-limit {
+        border: 1px solid black;
         padding-bottom: .3rem;
-        font-size: .8rem;
-        line-height: 1.3;
-        font-weight: bold;
-        color: #333333;
-      }
-
-      .item-period {
-        font-size: .8rem;
+        font-size: 1rem;
+        line-height: 2;
         font-weight: bold;
         color: #333333;
       }

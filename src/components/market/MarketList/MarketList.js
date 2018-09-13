@@ -42,7 +42,6 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
   const marketList = markets.map(
     (market) => {
       const {market_id, market_name, market_place, market_poster,start_date,end_date,confirmYN} = market;
-      //if(confirmYN === 'N'){
         return (
           <MarketItem
             key={market_id}
@@ -56,7 +55,6 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
             curGetTime={curGetTime}
           />
         )
-     // }
     }
   );
   return (

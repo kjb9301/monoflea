@@ -16,7 +16,8 @@ export const editTF = createAction(EDIT_TF);
 const initialState = fromJS({
   modal: {
     market: false,
-    remove: false
+    remove: false,
+    apply: false
   },
   market: {
     market_id: '',

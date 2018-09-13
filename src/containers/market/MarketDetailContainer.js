@@ -47,14 +47,26 @@ class MarketDetailContainer extends Component {
     MarketUIActions.showModal('remove');
   }
 
+  handleApplyModal = (id) => {
+    const {MarketActions,MarketUIActions} = this.props;
+    MarketUIActions.showModal('apply');
+    MarketActions.getApplyList(id);
+  }
+
+  handleApply = (id) => {
+    const {logged,nickName,MarketActions} = this.props;
+    MarketActions.applyMarket({nickName,id});
+  }
+
   render() {
-    const {loading,visible,marketDetail,editTF} = this.props;
-    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel} = this;
+    const {loading,visible,marketDetail,editTF,userType} = this.props;
+    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply} = this;
     const detailInfo = marketDetail.toJS();
     if(loading) return null;
     return (
       <div>
         <MarketDetailModal 
+              userType={userType}
               visible={visible} 
               marketDetail={detailInfo} 
               onChange={handleChange} 
@@ -64,6 +76,8 @@ class MarketDetailContainer extends Component {
               onUpdate={handleUpdate}
               onAskRemove={handleAskRemove}
               onCancel={handleCancel}
+              onApplyModal={handleApplyModal}
+              onApply={handleApply}
         />
       </div>
     );
@@ -72,6 +86,9 @@ class MarketDetailContainer extends Component {
 
 export default connect(
   (state) => ({
+    userType: state.base.get('userType'),
+    logged: state.base.get('logged'),
+    nickName: state.base.get('nickName'),
     list: state.market.get('data'),
     message: state.market.get('message'),
     visible: state.marketUI.getIn(['modal','market']),

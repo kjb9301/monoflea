@@ -5,9 +5,8 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove}) => {
+const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove,onApplyModal,onApply}) => {
   const {market_id,market_name,market_place,market_poster,market_desc,start_date,end_date} = marketDetail;
-
   return (
     <ModalWrapper visible={visible}>
       {editTF === true?
@@ -57,13 +56,18 @@ const MarketDetailModal = ({visible,marketDetail,onChange,editTF,onEdit,onClose,
             <div><span>모집기간</span>////////////////</div>
             {/* <div><span>모집인원</span>{seller_cnt}/{seller_limit_cnt}</div> */}
           </div>
-          <div className={cx('classBtn')}><button >신청하기</button></div>
-          <div className={cx('classBtn')}>
-            <button >마감하기</button>
-            <button >참여자확인</button>
-            <button >수정하기</button>
-            <button >삭제하기</button>
-          </div>
+          {userType === 'S'?
+            <div className={cx('classBtn')}>
+              <button onClick={() => onApply(market_id)}>신청하기</button>
+            </div>
+          :
+            <div className={cx('classBtn')}>
+              <button>마감하기</button>
+              <button onClick={() => onApplyModal(market_id)}>참여자확인</button>
+              <button>수정하기</button>
+              <button>삭제하기</button>
+            </div>
+          }
         </div>
         <div className={cx('modalDesc')}>상세설명 : {market_desc}</div>
       </div>
