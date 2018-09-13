@@ -5,11 +5,11 @@ import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
 const cx = classNames.bind(styles);
 
 const ClassDetailModal = 
-  ({ visible, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories }) => {
+  ({ visible, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
   const { 
     class_category_id, class_desc, class_id, class_limit_cnt, class_name, class_place,
     class_reg_cnt, onedayCategory, onedayImages, reg_date, recruit_start_date, 
-    recruit_end_date, view_cnt, event_date, seller, seller_id
+    recruit_end_date, view_cnt, event_date, seller, seller_id, onedayRegs
    } = classDetail;
 
    const categoryList = categories.map(category => (
@@ -42,7 +42,8 @@ const ClassDetailModal =
         }
       </div>
     )
-  );  
+  );
+
   return (
     <ClassModalWrapper  visible={visible}> 
       { !editing ?
@@ -77,7 +78,12 @@ const ClassDetailModal =
                 )
                 :
                 (
-                  <div className={cx('classBtn')}>강좌등록하기</div>
+                  
+                  onedayRegs[0] 
+                  ?                     
+                  <div className={cx('classBtn')} onClick={() => cancelOnedayClass(class_id)}>취소하기</div>
+                  :
+                  <div className={cx('classBtn')} onClick={() => enrollOnedayClass(class_id)}>강좌등록하기</div>
                 )
               }
             </div>
@@ -193,7 +199,11 @@ const ClassDetailModal =
                 )
                 :
                 (
-                  <div className={cx('classBtn')}>강좌등록하기</div>
+                  onedayRegs[0] 
+                  ?                     
+                  <div className={cx('classBtn')} onClick={() => cancelOnedayClass(class_id)}>취소하기</div>
+                  :
+                  <div className={cx('classBtn')} onClick={() => enrollOnedayClass(class_id)}>강좌등록하기</div>
                 )
               }
             </div>

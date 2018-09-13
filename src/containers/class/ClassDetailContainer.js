@@ -70,6 +70,30 @@ class ClassDetailContainer extends Component {
     return alert('일시적인 오류입니다. 다시 시도 해주세요!');
   }
 
+  enrollOnedayClass = async (id) => {
+    const { logged } = this.props;
+    if(logged) {
+      const enrolled = await axios.post('/classes/recruitment', { id });
+      const { isEnrolled, message } = enrolled.data;
+      if(isEnrolled) {
+        return alert(message)
+      }
+      return alert('잘못된 접근입니다. 다시 시도해주세요!');
+    }
+    return alert('로그인 이후에 사용할 수 있는 서비스입니다.');
+  }
+
+  cancelOnedayClass = async (id) => {
+    const { logged } = this.props;
+    if(logged) {
+      const cancelResult = await axios.delete(`/classes/recruitment/${id}`);
+      const { isCancel, message } = cancelResult.data;
+      if(!isCancel) return alert('잘못된 접근입니다. 다시 시도해주세요!');
+      return alert(message);
+    }
+    return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
+  }
+
   // TODO: editing state change --> rerender ?
   // shouldComponentUpdate(nextProps, nextState) {
   //   return (nextProps.editing !== this.props.editing) || (nextProps.visible !== this.props.visible);
@@ -77,7 +101,10 @@ class ClassDetailContainer extends Component {
 
   render() {
     const { visible, classInfo, nickName, editing, categories } = this.props;
-    const { hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, cancelEditClass, updateOnedayClass } = this;
+    const {
+      hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue,
+      cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass
+    } = this;
     if(!categories.length) return null;
     return (
       <ClassDetailModal 
@@ -92,6 +119,8 @@ class ClassDetailContainer extends Component {
         changeValue={changeValue}
         editing={editing}
         categories={categories}
+        enrollOnedayClass={enrollOnedayClass}
+        cancelOnedayClass={cancelOnedayClass}
       />
     );
   }
@@ -99,6 +128,7 @@ class ClassDetailContainer extends Component {
 
 export default connect(
   (state) => ({
+    logged: state.base.get('logged'),
     visible: state.base.getIn(['modal', 'class']),
     classList: state.class.get('classList'),
     classInfo: state.classUI.get('classInfo'),

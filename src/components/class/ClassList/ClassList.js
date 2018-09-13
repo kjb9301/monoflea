@@ -59,9 +59,9 @@ const ClassList = ({ classList, showClassModal }) => {
       view_cnt,
       onedayImages, 
       onedayCategory, 
-      seller 
-    } = classItem
-
+      seller,
+    } = classItem;
+    
     return (
       <ClassItem 
         key={class_id}
