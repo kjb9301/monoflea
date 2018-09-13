@@ -191,10 +191,19 @@
   }
 
   .modalImage {
-
-    img {
-      max-width: 100%;
-      height: auto;
+    .img-box {
+      display: inline-block;
+      .img-btn {
+        span {
+          cursor: pointer;
+          font-size: 2rem;
+        }
+        @include text-right();
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
 

@@ -8,7 +8,13 @@ const ClassItem =
   ({ name, desc, place, limit, reg, date, recruit_start_date, recruit_end_date, event_date, view_cnt, images, category, categoryName, profileImg, nickName, id, showClassModal}) => {
   return (
     <div className={cx('item-boxframe')}>
-      <div className={cx('item-box')} onClick={() => showClassModal(id)}>
+      <div className={cx('item-box')} 
+          onClick={() => {
+            showClassModal(id);
+            console.log(this.viewCnt);
+            this.viewCnt.innerText = parseInt(this.viewCnt.innerText) + 1;
+          }
+        }>
         <div className={cx('item-posterframe')}>
           <div className={cx('item-poster')}><img src={images} /></div>
         </div>
@@ -18,7 +24,7 @@ const ClassItem =
           <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
           <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
           <div className={cx('item-period')}>주최일 : {event_date}</div>
-          <div className={cx('item-period')}>조회수 : {view_cnt}</div>
+          <div className={cx('item-period')}>조회수 : <span ref={(ref) => this.viewCnt = ref}>{view_cnt}</span></div>
           <div className={cx('item-desc')}>{desc}</div>
         </div>
 
@@ -53,7 +59,7 @@ const ClassList = ({ classList, showClassModal }) => {
       onedayImages, 
       onedayCategory, 
       seller 
-    } = classItem; 
+    } = classItem
 
     return (
       <ClassItem 

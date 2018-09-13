@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import ClassList from 'components/class/ClassList';
 
 import * as classActions from 'store/modules/class';
+import * as classUIActions from 'store/modules/classUI';
 import * as baseActions from 'store/modules/base';
 
 class ClassListContainer extends Component {
@@ -13,10 +15,13 @@ class ClassListContainer extends Component {
     await ClassActions.getClassList();
   }
 
-  showClassModal = (id) => {
-    const { ClassActions, BaseActions, classList } = this.props;
+  showClassModal = async (id) => {
+    const { ClassUIActions, BaseActions, classList } = this.props;
     const idx = classList.findIndex(item => item.class_id === id);
-    console.log(classList[idx]);
+    const updateResult = await axios.put('/classes/view-count', { id });
+    const { countUp, view_cnt } = updateResult.data;
+    if(countUp) classList[idx].view_cnt = view_cnt;
+    ClassUIActions.setClassInfo(classList[idx]);
     BaseActions.showModal('class');
   }
 
@@ -48,6 +53,7 @@ export default connect(
   }),
   (dispatch) => ({
     ClassActions: bindActionCreators(classActions, dispatch),
+    ClassUIActions: bindActionCreators(classUIActions, dispatch),
     BaseActions: bindActionCreators(baseActions, dispatch)
   })
 )(ClassListContainer);

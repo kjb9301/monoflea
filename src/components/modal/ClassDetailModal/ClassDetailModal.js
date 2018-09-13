@@ -1,29 +1,54 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './ClassDetailModal.scss';
 import classNames from 'classnames/bind';
 import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
 const cx = classNames.bind(styles);
 
-
-
-const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOnedayClass, updateOnedayClass, changeValue, editing }) => {
+const ClassDetailModal = 
+  ({ visible, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories }) => {
   const { 
     class_category_id, class_desc, class_id, class_limit_cnt, class_name, class_place,
     class_reg_cnt, onedayCategory, onedayImages, reg_date, recruit_start_date, 
     recruit_end_date, view_cnt, event_date, seller, seller_id
    } = classDetail;
 
+   const categoryList = categories.map(category => (
+    <option key={category.class_category_id} value={category.class_category_id}>
+      {category.category_ko_name}
+    </option>
+   ));
+
   if(!seller) return null;
 
-  const images = onedayImages.map(img => 
-    <img key={img.class_img_id} src={img.class_imgurl}/>
+  const images = onedayImages.map((img, idx) => (
+      <div key={img.class_img_id} className={cx('img-box')}>
+        {
+          nickName === seller.user.nickName && editing ? 
+          (
+            <Fragment>
+              <div className={cx('img-btn')}>
+                <span>이미지변경 <input type="file" onChange={changeValue} name={img.class_img_id}/></span>
+                <span>&times;</span>
+              </div>
+              <img src={img.class_imgurl}/>
+            </Fragment>
+          )
+          :
+          (
+            <Fragment>
+              <img src={img.class_imgurl}/>
+            </Fragment>
+          )
+        }
+      </div>
+    )
   );  
   return (
     <ClassModalWrapper  visible={visible}> 
       { !editing ?
         (
           <div className={cx('modalForm')}>
-            <span className={cx('close')} onClick={hideModal}>&times;</span>
+            <span className={cx('close')} onClick={() => hideModal(class_id)}>&times;</span>
             <div className={cx('modalTitle')}>
               <span className={cx('classCategory')}>{onedayCategory.category_ko_name}</span>
               <span className={cx('className')}>{class_name}</span>
@@ -46,7 +71,7 @@ const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOne
                 ?
                 (
                   <div>
-                    <div className={cx('classBtn')} onClick={() => updateOnedayClass(class_id)}>수정</div>
+                    <div className={cx('classBtn')} onClick={() => toggleEditOnedayClass(class_id)}>수정</div>
                     <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</div>
                   </div>
                 )
@@ -65,9 +90,13 @@ const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOne
         :
         (
           <div className={cx('modalForm')}>
-            <span className={cx('close')} onClick={hideModal}>&times;</span>
+            <span className={cx('close')} onClick={() => hideModal(class_id)}>&times;</span>
             <div className={cx('modalTitle')}>
-              <span className={cx('classCategory')}>{onedayCategory.category_ko_name}</span>
+              <span className={cx('classCategory')}>
+                <select onChange={changeValue} name="class_category_id" defaultValue={onedayCategory.category_ko_name}>
+                  {categoryList}
+                </select>
+              </span>
               <input 
                 type="text"
                 name="class_name"
@@ -83,13 +112,15 @@ const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOne
               <div className={cx('classInfo')}>
                 <div>
                   <span>
-                    모집분야 {onedayCategory.category_ko_name}
+                    모집분야 
                   </span>
+                  {onedayCategory.category_ko_name}
                 </div>
                 <div className={cx('classNickname')}>
                   <span>
-                    아이디 {seller.user.nickName}
+                    아이디 
                   </span>
+                  {seller.user.nickName}
                 </div>
                 <div>
                   <span className={cx('classPlace')}>
@@ -134,8 +165,9 @@ const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOne
                 </div>
                 <div>
                   <span>
-                    모집인원 {class_reg_cnt} / 
+                    모집인원 
                   </span> 
+                  {class_reg_cnt} / 
                   <input 
                     type="text" 
                     name="class_limit_cnt"
@@ -145,17 +177,18 @@ const ClassDetailModal = ({ visible, classDetail, hideModal, nickName, deleteOne
                 </div>
                 <div>
                   <span>
-                    조회수 {view_cnt}
+                    조회수 
                   </span>
+                  {view_cnt}
                 </div>
               </div>
               {
-                nickName === seller.user.nickName 
+                nickName === seller.user.nickName
                 ?
                 (
                   <div>
-                    <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>수정</div>
-                    <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</div>
+                    <div className={cx('classBtn')} onClick={() => updateOnedayClass(class_id)}>수정완료</div>
+                    <div className={cx('classBtn')} onClick={() => cancelEditClass(class_id)}>취소</div>
                   </div>
                 )
                 :

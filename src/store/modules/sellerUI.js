@@ -55,7 +55,6 @@ export default handleActions({
  },
  [DETAIL_DATA] : (state, action) => {
     const {sellerDetail} = action.payload
-    console.log(sellerDetail);
     const { seller_id, career, sns, seller_desc, profile_img, show_TF, seller_images : imgUrl,
     user : nickName, sellerCategory : category_ko} = sellerDetail;
     return state.setIn(['seller','seller_id'], seller_id)
