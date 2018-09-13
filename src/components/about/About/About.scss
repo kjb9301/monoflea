@@ -1,45 +1,258 @@
 @import 'common';
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300');
 
 .About {
   width: 100%;
   height: auto;
-  .about-background {
+
+  .about-intro {
     width: 100%;
-    min-height: calc(100vh - 10rem);
-    background-image: url('./image/index-background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .section {
-    width: 80%;
-    margin: 5rem auto;
-    padding: 1rem;
-    .section-container {
-      width: 90%;
-      margin: auto;
-      border: 1px solid blue;
-      .section-title {
-        padding: 1rem;
+    min-height: calc(100vh);
+    background-image: url('./image/bg.svg'), url('./image/intro.jpg');
+    background-attachment: scroll, fixed;
+    background-size: auto, cover;
+    background-position: bottom center, top center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @include media("<medium") {
+      flex-direction: row;
+    }
+
+    .about-intro-head {
+      flex: 1;
+      color: white;
+      font-size: 5rem;
+      text-align: right;
+      padding-right: 2rem;
+      line-height: .5;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
+
+      .about-intro-subtitle {
         font-size: 1.5rem;
-        font-weight: 600;
+        line-height: .9;
+        color:#dfdddd;
       }
-      .image-container {
-        @include d-inline-block();
-        @include vertical-top();
-        width: 30%;
-        padding: 1rem;
-        border: 1px solid red;
-        img {
-          width: 100%;
+      
+      @include media("<large") {
+        font-size: 4rem;
+      }
+
+      @include media("<medium") {
+        flex: initial;
+        width: 100%;
+        font-size: 4rem;
+        padding-right: 10%;
+
+        .about-intro-subtitle {
+          font-size: 1.5rem;
         }
       }
-      .content-container {
-        @include d-inline-block();
-        @include vertical-top();
-        width: 70%;
-        padding: 1rem;
-        border: 1px solid yellow;
+      @include media("<small") {
+        font-size: 2.5rem;
+      }
+    }
+    
+    .about-intro-body {
+      flex: 2;
+      padding: 2rem;
+      padding-left: 5%;
+      border-left: 10px solid orange;
+      color: white;
+      font-size: 1.2rem;
+      font-family: 'Sunflower', sans-serif;
+      line-height: 1.8;
+      background-color: rgba(black, 0.4);
+
+      strong {
+        color: rgb(252, 227, 181);
+        padding-left: 1rem;
+        font-size: 1.5rem;
+      }
+
+      @include media("<large") {
+        font-size: 1rem;
+      }
+      @include media("<medium") {
+        text-align: center;
+        font-size: .9rem;
+        padding: 2.5rem 0.5rem;
+        line-height: 1.8;
+      }
+      @include media("<small") {
+        font-size: .8rem;
       }
     }
   }
+
+  .section-title {
+    padding: 5rem 3rem;
+    color: orange;
+    text-align: center;
+    font-family: 'Sunflower', sans-serif;
+    // text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    
+    h2 {
+      display: inline-block;
+      padding: .5rem;
+      font-size: 3rem;
+      border-bottom: 2px solid orange;
+    }
+
+    @media screen and (max-width: 480px) {
+      padding: 3rem 1.5rem;
+
+      h2 {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .section {
+    min-height: calc(100vh);
+    color: #f2f2f2;
+    font-family: 'Sunflower', sans-serif;
+    background-attachment: scroll, fixed;
+    background-size: auto, cover;
+    background-position: bottom center, top center;
+
+    .section-inner {
+      min-height: calc(100vh);
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .section-contents {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #f2f2f2;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+        h3 {
+          text-align: center;
+          font-size: 2rem;
+          padding: 1rem 1rem 2rem;
+        }
+
+        p {
+          text-align: center;
+          font-size: inherit;
+          padding-left: .5rem;
+        }
+
+        @include media("<medium") {
+          font-size: 1rem;
+
+          h3 {
+            font-size: 1.5rem;
+          }
+        }
+
+        @include media("<small") {
+          font-size: 1rem;
+
+          h3 {
+            font-size: 1.2rem;
+          }
+
+          p {
+            font-size: .8rem;
+          }
+        }
+      }
+    }
+  }
+
+  .section-step1 {
+    background-image: url('./image/line1.svg'), url('./image/step1.png');
+
+    .section-contents {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  .section-step2 {
+    background-image: url('./image/line2.svg'), url('./image/step2-bg.jpg');
+  }
+
+  .section-step3{
+    background-image: url('./image/line1.svg'), url('./image/step2-bg.jpg');
+  }
+  
+  .section-step4 {
+    background-image: url('./image/line2.svg'), url('./image/step6-bg.jpg');
+  }
+
+  .section-step5 {
+    background-image: url('./image/line1.svg'), url('./image/step6-bg.jpg');
+  }
+
+  .section-step6 {
+    background-image: url('./image/line2.svg'), url('./image/step8-bg.jpg');
+  }
+
+  .section-step7 {
+    background-image: url('./image/line1.svg'), url('./image/step8-bg.jpg');
+
+    h3 {
+      font-size: 3rem!important;
+    }
+    .section-team {
+      // max-width: 1320px;
+      display: flex;
+      // flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      // flex-wrap: wrap;
+      margin: 1rem;
+
+      .team {
+        // flex-grow: 1;
+        // flex: 1;
+        padding: 1rem;
+        text-align: center;
+
+        img {
+          max-width: 150px;
+          border-radius: 50%;
+        }
+
+        .team-info {
+
+        }
+      }
+
+      @include media("<large") {
+        flex-wrap: wrap;
+
+        .team {
+          width: 33.3%;
+        }
+      }
+
+      @include media("<medium") {
+        flex-wrap: wrap;
+
+        .team {
+          width: 50%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        
+        .team {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
 }
