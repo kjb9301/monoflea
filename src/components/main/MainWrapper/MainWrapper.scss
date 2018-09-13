@@ -1,18 +1,11 @@
 @import 'common';
 
 .main-wrapper {
-  background-image: url('./image/index-background.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url('./image/bg.svg'), url('./image/index-background.jpg');
+  background-attachment: scroll, fixed;
+  background-size: auto,cover;
+  background-position: bottom center, top center;
 
-  @include media ("<medium") {
-    background-image: url('./image/index-bg-medium.png');
-  }
-
-  @include media ("<small") {
-    background-image: url('./image/index-bg-small.jpg');
-  }
-  
   .main-visual {
     width: 100%;
     height: calc(100vh - 10rem);
@@ -22,12 +15,17 @@
     justify-content: center;
     flex-wrap: wrap;
 
+    .main-title {
+      position: relative;
+      top: -10%;
+    }
+
     .main-title > h1 {
-      padding-bottom: 2rem;
+      padding-bottom: 3rem;
       text-align: center;
       color: white;
       font-size: 4.5rem;
-      text-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.7);
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 
       @include media ("<medium") {
         font-size: 3rem;
@@ -39,16 +37,21 @@
     }
 
     .main-title > p {
-      font-size: 2rem;
-      width: 60%;
+      font-size: 1.5rem;
+      width: 80%;
       color: white;
       text-align: center;
       margin: 0 auto;
+      padding: 1.5rem;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+      background: rgba(white, .2);
+      border: 1px solid lightblue;
       
 
       @include media ("<medium") {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         width: 80%;
+        padding: 1rem;
       }
   
       @include media ("<small") {

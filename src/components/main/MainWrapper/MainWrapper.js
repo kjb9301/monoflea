@@ -19,8 +19,7 @@ const MainWrapper = () => {
       <div className={cx('main-visual')}>
         <div className={cx('main-title')}>
           <h1>MONOFLEA</h1>
-          <p>Building Greatness With MonoFlea<br/></p>
-          <p>We’re a team of super heroes making the most awesome MonoFlea Support System</p>
+          <p>Building Greatness With MonoFlea<br/>We’re a team of super heroes making the most awesome MonoFlea Support System</p>
         </div>
       </div>
       <div className={cx('main-navigation-wrap')}>

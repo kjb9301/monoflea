@@ -1,22 +1,119 @@
 @import 'common';
 
-.board-wrap {
-  width: 80%;
-  border: 1px solid black;
-  margin: auto;
-  padding: 2rem;
-  text-align: center;
-  .board-item {
-    display: inline-block;
-    width: 30%;
-    min-height: 250px;
-    margin: 3rem 1rem;
-    border: 1px solid yellow;
-    position: relative;
+
+.board {
+  width: 100%;
+  height: auto;
+
+  .board-intro {
+    width: 100%;
+    min-height: calc(100vh);
+    background-image: url('./image/bg.svg'), url('./image/intro.jpg');
+    background-attachment: scroll, fixed;
+    background-size: auto, cover;
+    background-position: bottom center, top center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @include media("<medium") {
+      flex-direction: row;
+    }
+
+    .board-intro-head {
+      flex: 1;
+      color: white;
+      font-size: 5rem;
+      text-align: right;
+      padding-right: 2rem;
+      line-height: .5;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
+
+      .board-intro-subtitle {
+        font-size: 1.5rem;
+        line-height: .9;
+        color:#dfdddd;
+      }
+      
+      @include media("<large") {
+        font-size: 4rem;
+      }
+
+      @include media("<medium") {
+        flex: initial;
+        width: 100%;
+        font-size: 4rem;
+        padding-right: 10%;
+
+        .about-intro-subtitle {
+          font-size: 1.5rem;
+        }
+      }
+      @include media("<small") {
+        font-size: 2.5rem;
+      }
+    }
+    
+    .board-intro-body {
+      flex: 2;
+      padding: 2rem;
+      padding-left: 5%;
+      border-left: 10px solid orange;
+      color: white;
+      font-size: 1.2rem;
+      font-family: 'Sunflower', sans-serif;
+      line-height: 1.8;
+      background-color: rgba(black, 0.4);
+
+      strong {
+        color: rgb(252, 227, 181);
+        padding-left: 1rem;
+        font-size: 1.5rem;
+      }
+
+      @include media("<large") {
+        font-size: 1rem;
+      }
+      @include media("<medium") {
+        text-align: center;
+        font-size: .9rem;
+        padding: 2.5rem 0.5rem;
+        line-height: 1.8;
+      }
+      @include media("<small") {
+        font-size: .8rem;
+      }
+    }
   }
-  .board-name {
-    font-size: 20px;
-    color: purple;
-    @include position-center();
+
+  .board-menu {
+    width: 100%;
   }
+
+
+
 }
+
+// .board-wrap {
+//   width: 80%;
+//   border: 1px solid black;
+//   margin: auto;
+//   padding: 2rem;
+//   text-align: center;
+//   .board-item {
+//     display: inline-block;
+//     width: 30%;
+//     min-height: 250px;
+//     margin: 3rem 1rem;
+//     border: 1px solid yellow;
+//     position: relative;
+//   }
+//   .board-name {
+//     font-size: 20px;
+//     color: purple;
+//     @include position-center();
+//   }
+// }
