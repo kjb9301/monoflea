@@ -1,0 +1,12 @@
+@import 'common';
+
+.like{
+  font-size : 1rem;
+  .heart{
+      &:hover {
+          color: $oc-gray-5;
+      }
+      &:active {
+          color: $oc-pink-6};
+  }
+}

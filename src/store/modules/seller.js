@@ -9,6 +9,7 @@ const UPDATE_SELLER = 'seller/UPDATE_SELLER'
 
 export const getSellersList = createAction(GET_SELLRS_LIST,api.getSellersList);
 export const updateSeller = createAction(UPDATE_SELLER,api.updateSeller);
+
 const initialState = fromJS({
   sellers : [],
   categories : [],
@@ -31,5 +32,6 @@ export default handleActions({
       const newData = action.payload.data;
       return state.set('update', newData);
     }
-  })
+  }),
+  
 }, initialState)

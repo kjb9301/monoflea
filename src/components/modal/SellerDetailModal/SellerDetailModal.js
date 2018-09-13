@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './SellerDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
-import Button from '../../common/Button'
-
+import Like from '../../common/Like'
+import { GoHeart } from "react-icons/go";
 const cx = classNames.bind(styles);
 
-const SellerDetailModal = ({visible, sellerDetailData, onChange, onClose,editTF,onUpdate, onEdit, onOff, onCancel}) => {
+const SellerDetailModal = ({visible, sellerDetailData, onChange, onClose,editTF,onUpdate, onEdit, onOff, onCancel,likeUp}) => {
    const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory,seller_id } = sellerDetailData;
    const { nickName } = user.nickName;
    let  { imgUrl }  = seller_images; 
@@ -32,12 +32,12 @@ const SellerDetailModal = ({visible, sellerDetailData, onChange, onClose,editTF,
                       <div>이름 : {nickName} </div>
                       <div>분야 : {category_ko}</div>
                       <div>경력 : {career}년  <br/> SNS : <input name='sns' value = {sns} onChange = {onChange}/> </div>
-                      자기소개 : <textarea name='seller_desc' value = {seller_desc} onChange = {onChange}/>
+                        자기소개 : <textarea name='seller_desc' value = {seller_desc} onChange = {onChange}/>
                         <div className = {cx('radio')}> 공개여부 :
                           공개 <input type ='radio' name = 'show_TF' value = '1' onChange = {onOff} />
                           비공개 <input type ='radio' name = 'show_TF' value = '0'  onChange = {onOff}/>
-                        
                         </div>
+                        <div> <GoHeart/> 좋아요  </div> 
                     </div>
                 </div>
               </div>
@@ -57,6 +57,7 @@ const SellerDetailModal = ({visible, sellerDetailData, onChange, onClose,editTF,
                     <div>분야 : {category_ko}</div>
                     <div>경력 : {career}년  <br/> SNS : {sns} </div>
                     자기소개 : {seller_desc}
+                    <div className = {cx('like')}> <GoHeart className= {cx('heart')} onClick = {likeUp}/> 좋아요  </div> 
                   </div>
                 </div>
               </div>
