@@ -11,7 +11,6 @@ const ClassItem =
       <div className={cx('item-box')} 
           onClick={() => {
             showClassModal(id);
-            console.log(this.viewCnt);
             this.viewCnt.innerText = parseInt(this.viewCnt.innerText) + 1;
           }
         }>
