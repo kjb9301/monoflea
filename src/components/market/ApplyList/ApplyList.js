@@ -9,10 +9,10 @@ const Apply = ({name,tel,category}) => {
   return (
     <div className={cx('apply-item')}>
       <input className={cx('tick')} type="checkbox" readOnly/>
-      <div className={cx('text')}>
-        <p>{name}</p>
-        <p>{tel}</p>
-        <p>{category}</p>
+      <div className={cx('content')}>
+        <div className={cx('text')}>이름:{name}</div>
+        <div className={cx('text')}>전화번호:{tel}</div>
+        <div className={cx('text')}>분야:{category}</div>
       </div>
       <div className={cx('delete')}>[지우기]</div>
     </div>

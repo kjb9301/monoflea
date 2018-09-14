@@ -26,7 +26,7 @@ class MarketListRegContainer extends Component {
   }
 
   render() {
-    const {list,loading} = this.props;
+    const {list,loading,count} = this.props;
     const {handleDetail} = this;
     const {marketRegList} = list;
 
@@ -34,7 +34,7 @@ class MarketListRegContainer extends Component {
     return (
       <div>
         <MarketRegButton/>
-        <MarketRegList markets={marketRegList} onDetail={handleDetail}/>
+        <MarketRegList markets={marketRegList} onDetail={handleDetail} count={count}/>
       </div>
     );
   }
@@ -43,6 +43,7 @@ class MarketListRegContainer extends Component {
 export default connect(
   (state) => ({
     list: state.market.get('data'),
+    count: state.marketUI.get('count'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({

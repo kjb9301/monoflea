@@ -53,14 +53,23 @@ class MarketDetailContainer extends Component {
     MarketActions.getApplyList(id);
   }
 
-  handleApply = (id) => {
-    const {logged,nickName,MarketActions} = this.props;
-    MarketActions.applyMarket({nickName,id});
+  handleApply = (id,applyTF,count) => {
+    const {nickName,MarketActions,MarketUIActions} = this.props;
+    MarketActions.applyMarket({nickName,id,count});
+    MarketUIActions.applyTF(applyTF);
+    MarketUIActions.countUp(count);
+  }
+
+  handleApplyCancel = (id,applyTF,count) => {
+    const {nickName,MarketActions,MarketUIActions} = this.props;
+    MarketActions.applyCancel(id,nickName,count);
+    MarketUIActions.applyTF(applyTF);
+    MarketUIActions.countDown(count);
   }
 
   render() {
-    const {loading,visible,marketDetail,editTF,userType} = this.props;
-    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply} = this;
+    const {loading,visible,marketDetail,editTF,userType,applyTF,count} = this.props;
+    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel} = this;
     const detailInfo = marketDetail.toJS();
     if(loading) return null;
     return (
@@ -70,7 +79,8 @@ class MarketDetailContainer extends Component {
               visible={visible} 
               marketDetail={detailInfo} 
               onChange={handleChange} 
-              editTF={editTF} 
+              editTF={editTF}
+              applyTF={applyTF} 
               onEdit={handleEdit}
               onClose={handleClose}
               onUpdate={handleUpdate}
@@ -78,6 +88,8 @@ class MarketDetailContainer extends Component {
               onCancel={handleCancel}
               onApplyModal={handleApplyModal}
               onApply={handleApply}
+              onApplyCancel={handleApplyCancel}
+              count={count}
         />
       </div>
     );
@@ -86,6 +98,7 @@ class MarketDetailContainer extends Component {
 
 export default connect(
   (state) => ({
+    count: state.marketUI.get('count'),
     userType: state.base.get('userType'),
     logged: state.base.get('logged'),
     nickName: state.base.get('nickName'),
@@ -94,6 +107,7 @@ export default connect(
     visible: state.marketUI.getIn(['modal','market']),
     marketDetail: state.marketUI.get('market'),
     editTF: state.marketUI.get('editTF'),
+    applyTF: state.marketUI.get('applyTF'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({

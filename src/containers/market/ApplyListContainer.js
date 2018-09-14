@@ -7,16 +7,21 @@ import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
 
 class ApplyListContainer extends Component {
+  HandleClose = () => {
+    const {MarketUIActions} =this.props;
+    MarketUIActions.hideModal('apply');
+  }
 
   render() {
     const {visible,loading,applyListData} = this.props;
-    const {} = this;
+    const {HandleClose} = this;
     if(loading) return null;
     return (
       <div>
         <ApplyListModal 
           visible={visible} 
           applyListData={applyListData}
+          onClose={HandleClose}
         />
       </div>
     );

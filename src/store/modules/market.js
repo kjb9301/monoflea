@@ -11,6 +11,7 @@ const UPDATE_MARKET = 'markets/UPDATE_MARKET';
 const DELETE_MARKET = 'markets/DELETE_MARKET';
 const APPLY_MARKET = 'markets/APPLY_MARKET';
 const GET_APPLY_LIST = 'markets/GET_APPLY_LIST';
+const APPLY_CANCEL = 'markets/APPLY_CANCEL';
 
 export const getMarketList = createAction(GET_MARKET_LIST,api.getMarketList);
 //export const getMarketDetail = createAction(GET_MARKET_DETAIL,api.getMarketDetail);
@@ -19,6 +20,7 @@ export const updateMarket = createAction(UPDATE_MARKET,api.updateMarket);
 export const deleteMarket = createAction(DELETE_MARKET,api.deleteMarket);
 export const applyMarket = createAction(APPLY_MARKET,api.applyMarket);
 export const getApplyList = createAction(GET_APPLY_LIST,api.getApplyList);
+export const applyCancel = createAction(APPLY_CANCEL,api.applyCancel);
 
 
 const initialState = Map({
@@ -38,7 +40,7 @@ export default handleActions({
   ...pender({
     type: CREATE_MARKET,
     onSuccess: (state,action) => {
-
+      const {message} = action.payload.data;
     }
   }),
   ...pender({
@@ -66,6 +68,12 @@ export default handleActions({
     onSuccess: (state,action) => {
       const applyList = action.payload.data;
       return state.set('applyList',applyList);
+    }
+  }),
+  ...pender({
+    type: APPLY_CANCEL,
+    onSuccess: (state,action) => {
+      
     }
   })
   /*,
