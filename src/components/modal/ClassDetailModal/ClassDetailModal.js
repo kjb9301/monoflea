@@ -51,21 +51,48 @@ const ClassDetailModal =
           <div className={cx('modalForm')}>
             <span className={cx('close')} onClick={() => hideModal(class_id)}>&times;</span>
             <div className={cx('modalTitle')}>
-              <span className={cx('classCategory')}>{onedayCategory.category_ko_name}</span>
-              <span className={cx('className')}>{class_name}</span>
+              <span className={cx('classCategory')}>
+                {onedayCategory.category_ko_name}
+              </span>
+              <span className={cx('className')}>
+                {class_name}
+              </span>
             </div>
             <div className={cx('modalInfo')}>
               <div className={cx('classProfileImg')}>
                 <img src={seller.profile_img} />
               </div>
               <div className={cx('classInfo')}>
-                <div><span>모집분야</span>{onedayCategory.category_ko_name}</div>
-                <div className={cx('classNickname')}><span>아이디</span>{seller.user.nickName}</div>
-                <div><span className={cx('classPlace')}>개설장소</span><span className={cx('classPlaceContent')}>{class_place}</span></div>
-                <div><span>주최일</span>{event_date}</div>
-                <div><span>모집기간</span>{recruit_start_date} ~ {recruit_end_date}</div>
-                <div><span>모집인원</span>{class_reg_cnt} / {class_limit_cnt}</div>
-                <div><span>조회수</span>{view_cnt}</div>
+                <div>
+                  <span>모집분야</span>
+                  {onedayCategory.category_ko_name}
+                </div>
+                <div className={cx('classNickname')}>
+                  <span>아이디</span>
+                  {seller.user.nickName}
+                </div>
+                <div>
+                  <span className={cx('classPlace')}>개설장소</span>
+                  <span className={cx('classPlaceContent')}>{class_place}</span>
+                </div>
+                <div>
+                  <span>주최일</span>
+                  {event_date}
+                </div>
+                <div>
+                  <span>모집기간</span>
+                  {recruit_start_date} ~ {recruit_end_date}
+                </div>
+                <div>
+                  <span>모집인원</span>
+                  <span ref={ref => this.regCnt = ref}>{class_reg_cnt}</span> 
+                  / 
+                  <span>{class_limit_cnt}</span>
+                </div>
+                <div>
+                  <span>조회수</span>
+                  {view_cnt}
+                </div>
               </div>
               {
                 nickName === seller.user.nickName 
@@ -81,9 +108,25 @@ const ClassDetailModal =
                   
                   onedayRegs[0] 
                   ?                     
-                  <div className={cx('classBtn')} onClick={() => cancelOnedayClass(class_id)}>취소하기</div>
+                  <div 
+                    className={cx('classBtn')} 
+                    ref={ref => this.cancelBtn = ref}
+                    onClick={() => {
+                      cancelOnedayClass(class_id);
+                      // this.regCnt.innerText = Number(this.regCnt.innerText) - 1;
+                    }
+                  }>취소하기
+                  </div>
                   :
-                  <div className={cx('classBtn')} onClick={() => enrollOnedayClass(class_id)}>강좌등록하기</div>
+                  <div 
+                    className={cx('classBtn')}
+                    ref={ref => this.enrollBtn = ref}
+                    onClick={() => {
+                      enrollOnedayClass(class_id);
+                      // this.regCnt.innerText = Number(this.regCnt.innerText) + 1;
+                    }
+                  }>강좌등록하기
+                  </div>
                 )
               }
             </div>
@@ -173,7 +216,10 @@ const ClassDetailModal =
                   <span>
                     모집인원 
                   </span> 
-                  {class_reg_cnt} / 
+                  <span ref={ref => this.regCnt = ref}>
+                    {class_reg_cnt}  
+                  </span>
+                  /
                   <input 
                     type="text" 
                     name="class_limit_cnt"

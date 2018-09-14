@@ -75,10 +75,15 @@ class ClassDetailContainer extends Component {
     if(logged) {
       const enrolled = await axios.post('/classes/recruitment', { id });
       const { isEnrolled, message } = enrolled.data;
-      if(isEnrolled) {
-        return alert(message)
-      }
-      return alert('잘못된 접근입니다. 다시 시도해주세요!');
+      const { ClassActions, ClassUIActions, BaseActions } = this.props;
+      if(!isEnrolled) return alert('잘못된 접근입니다. 다시 시도해주세요!');
+      await ClassActions.getClassList();
+      const { classList } = this.props;
+      const idx = classList.findIndex(classItem => classItem.class_id === id);
+      ClassUIActions.setClassInfo(classList[idx]);
+      BaseActions.hideModal('class');
+      BaseActions.showModal('class');
+      return alert(message)
     }
     return alert('로그인 이후에 사용할 수 있는 서비스입니다.');
   }
@@ -88,7 +93,14 @@ class ClassDetailContainer extends Component {
     if(logged) {
       const cancelResult = await axios.delete(`/classes/recruitment/${id}`);
       const { isCancel, message } = cancelResult.data;
+      const { ClassActions, ClassUIActions, BaseActions } = this.props;
       if(!isCancel) return alert('잘못된 접근입니다. 다시 시도해주세요!');
+      await ClassActions.getClassList();
+      const { classList } = this.props;
+      const idx = classList.findIndex(classItem => classItem.class_id === id);
+      ClassUIActions.setClassInfo(classList[idx]);
+      BaseActions.hideModal('class');
+      BaseActions.showModal('class');
       return alert(message);
     }
     return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
