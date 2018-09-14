@@ -5,7 +5,7 @@ import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
 const cx = classNames.bind(styles);
 
 const ClassDetailModal = 
-  ({ visible, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
+  ({ visible, getEnrollList, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
   const { 
     class_category_id, class_desc, class_id, class_limit_cnt, class_name, class_place,
     class_reg_cnt, onedayCategory, onedayImages, reg_date, recruit_start_date, 
@@ -101,6 +101,7 @@ const ClassDetailModal =
                   <div>
                     <div className={cx('classBtn')} onClick={() => toggleEditOnedayClass(class_id)}>수정</div>
                     <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</div>
+                    <div className={cx('classBtn')} onClick={() => getEnrollList(class_id)}>신청자 목록</div>
                   </div>
                 )
                 :

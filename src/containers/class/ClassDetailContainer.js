@@ -106,6 +106,10 @@ class ClassDetailContainer extends Component {
     return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
   }
 
+  getEnrollList = (class_id) => {
+    console.log(class_id);
+  }
+
   // TODO: editing state change --> rerender ?
   // shouldComponentUpdate(nextProps, nextState) {
   //   return (nextProps.editing !== this.props.editing) || (nextProps.visible !== this.props.visible);
@@ -114,7 +118,7 @@ class ClassDetailContainer extends Component {
   render() {
     const { visible, classInfo, nickName, editing, categories } = this.props;
     const {
-      hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue,
+      hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, getEnrollList,
       cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass
     } = this;
     if(!categories.length) return null;
@@ -133,6 +137,7 @@ class ClassDetailContainer extends Component {
         categories={categories}
         enrollOnedayClass={enrollOnedayClass}
         cancelOnedayClass={cancelOnedayClass}
+        getEnrollList={getEnrollList}
       />
     );
   }
