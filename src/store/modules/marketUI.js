@@ -37,8 +37,7 @@ const initialState = fromJS({
     seller_limit_cnt: ''
   },
   editTF: false,
-  applyTF: false,
-  count: 0
+  applyTF: false
 });
 
 export default handleActions({
@@ -85,14 +84,5 @@ export default handleActions({
   [APPLY_TF]: (state,action) => {
     const applyTF = action.payload;
     return (applyTF === true? state.set('applyTF',false) : state.set('applyTF',true));
-  },
-  [COUNT_UP]: (state,action) => {
-    const count = action.payload + 1;
-    console.log(count)
-    return state.set('count',count);
-  },
-  [COUNT_DOWN]: (state,action) => {
-    const {count} = action.payload;
-    return state.set('count',count);
   }
 }, initialState);

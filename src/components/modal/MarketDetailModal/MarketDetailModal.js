@@ -5,7 +5,7 @@ import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const MarketDetailModal = ({count,userType,visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove,onApplyModal,onApply,applyTF,onApplyCancel}) => {
+const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove,onApplyModal,onApply,applyTF,onApplyCancel}) => {
   const {market_id,market_name,market_place,market_poster,market_desc,start_date,end_date,seller_cnt,seller_limit_cnt} = marketDetail;
   return (
     <ModalWrapper visible={visible}>
@@ -54,24 +54,24 @@ const MarketDetailModal = ({count,userType,visible,marketDetail,onChange,editTF,
             <div><span>마켓일정</span>{start_date}~{end_date}</div>
             {/* <div><span>개설일자</span>{reg_date}</div> */}
             <div><span>모집기간</span>////////////////</div>
-            <div><span>모집인원</span>{count}/{seller_limit_cnt}</div>
+            <div><span>모집인원</span>{seller_cnt}/{seller_limit_cnt}</div>
           </div>
-          {userType === 'S'?
-            <div className={cx('classBtn')}>
-              {applyTF === false?
-                <button onClick={() => onApply(market_id,applyTF,count)}>신청하기</button>
-              :
-                <button onClick={() => onApplyCancel(market_id,applyTF,count)}>취소하기</button>
-              }
-            </div>
-          :
-            <div className={cx('classBtn')}>
-              <button>마감하기</button>
-              <button onClick={() => onApplyModal(market_id)}>참여자확인</button>
-              <button>수정하기</button>
-              <button>삭제하기</button>
-            </div>
-          }
+
+          <div className={cx('classBtn')}>
+            {applyTF === false?
+              <button onClick={() => onApply(market_id,applyTF)}>신청하기</button>
+            :
+              <button onClick={() => onApplyCancel(market_id,applyTF)}>취소하기</button>
+            }
+          </div>
+        
+          <div className={cx('classBtn')}>
+            <button>마감하기</button>
+            <button onClick={() => onApplyModal(market_id)}>참여자확인</button>
+            <button>수정하기</button>
+            <button>삭제하기</button>
+          </div>
+          
         </div>
         <div className={cx('modalDesc')}>상세설명 : {market_desc}</div>
       </div>
