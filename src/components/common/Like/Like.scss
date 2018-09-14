@@ -2,11 +2,29 @@
 
 .like{
   font-size : 1rem;
-  .heart{
-      &:hover {
-          color: $oc-gray-5;
-      }
-      &:active {
-          color: $oc-pink-6};
+  padding: 0.5rem;
+  border-top : 1px solid $oc-gray-1;
+  display: flex;
+  color : $oc-gray-5;
+  svg {
+      font-size: 1.75rem;
+      cursor: pointer;
   }
+  span{
+      margin-left : 0.25rem;
+      font-size: 0.8rem;
+      padding-bottom : 0.25rem;
+      .heart{
+          display: flex;
+          align-items: center;
+          &:hover {
+            color: $oc-gray-7;
+          }
+          &.likeOn {
+            color: $oc-pink-6;
+          };
+          
+      }
+  }
+  
 }

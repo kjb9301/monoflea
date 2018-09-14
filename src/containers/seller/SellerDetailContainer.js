@@ -34,7 +34,7 @@ class SellerDetailContainer extends Component {
     const sellerDetail = sellerData.toJS();
     SellerUIActions.editTF(editTF);
     SellerActions.updateSeller(id,sellerDetail);
-    SellerActions.getSellersList();
+    SellerActions.getSellersList('All');
   }
 
   handleChange = (e) => {

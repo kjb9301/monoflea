@@ -7,6 +7,7 @@ const EDIT_TF = 'sellerUI/EDIT_TF'
 const DETAIL_DATA = 'sellerUI/DETAIL_DATA';
 const CHANGED_DATA = 'sellerUI/CHANGED_DATA'
 const SHOW_TF = 'sellerUI/SHOW_TF';
+const CHANGED_LIKE_CNT = 'sellerUI/CHANGED_LIKE_CNT';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -14,6 +15,7 @@ export const editTF = createAction(EDIT_TF);
 export const detailData = createAction(DETAIL_DATA);
 export const changedData =  createAction(CHANGED_DATA);
 export const showTF = createAction(SHOW_TF);
+export const changedLikeCnt = createAction(CHANGED_LIKE_CNT);
 
 const initialState = fromJS({
   modal : {
@@ -25,7 +27,7 @@ const initialState = fromJS({
     show_TF : true,
     career : '',
     seller_desc : '',
-    like_cnt : '',
+    like_cnt : 0,
     profile_img : '',
     user : {
               nickName : '',
@@ -76,6 +78,11 @@ export default handleActions({
    const { name, value } = action.payload
   return state.setIn(['seller', name], value)
  },
- 
+ [CHANGED_LIKE_CNT] : (state, action) =>{
+   console.log(action.payload)
+   let { payload: like_cnt } = action;
+   
+   return state.setIn(['seller', 'like_cnt'], like_cnt )
+ }
  
 }, initialState)

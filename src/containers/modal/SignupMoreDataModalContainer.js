@@ -144,6 +144,7 @@ class SignupMoreDataModalContainer extends Component {
 
   render() {
     const { visible, sellerCategory, userType, modalNickname } = this.props;
+    console.log(sellerCategory)
     const { onChangeValue, onSignup, onCancel, onMovePrev, getAuthNumber, checkAuthNum } = this;
     return (
       <SignupMoreDataModal 
