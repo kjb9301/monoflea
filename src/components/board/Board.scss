@@ -1,11 +1,11 @@
 @import 'common';
 
-
 .board {
   width: 100%;
   height: auto;
 
   .board-intro {
+    padding-top: 1rem;
     width: 100%;
     min-height: calc(100vh);
     background-image: url('./image/bg.svg'), url('./image/intro.jpg');
@@ -28,6 +28,7 @@
       font-size: 5rem;
       text-align: right;
       padding-right: 2rem;
+      // margin-bottom: 1rem;
       line-height: .5;
       border-top: 1px solid white;
       border-bottom: 1px solid white;
@@ -47,6 +48,8 @@
         width: 100%;
         font-size: 4rem;
         padding-right: 10%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
 
         .about-intro-subtitle {
           font-size: 1.5rem;
@@ -89,31 +92,163 @@
     }
   }
 
-  .board-menu {
+  .board-menu-wrap {
     width: 100%;
   }
 
+  .board-menu {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 10%;
 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 
+    @include media("<large") {
+      padding: 15%;
+    }
+    @include media("<medium") {
+      padding: 15%;
+    }
+    @media screen and (max-width: 480px) {
+      padding: 5%;
+    }
+
+    .board-item {
+      display: inline-block;
+      width: 20%;
+
+      @include media("<medium") {
+        width: 33.3%;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5rem;
+        border-right: 1px solid white;
+        color: white;
+        text-align: center;
+
+        @include media("<large") {
+          height: 4rem;
+        }
+
+        strong {
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          font-size: 1rem;
+          font-weight: 400;
+          background: rgba(0,0,0,.35);
+
+          @include media ("<large") {
+            font-size: .8rem;
+          }
+          @include media ("<medium") {
+            font-size: .7rem;
+          }
+          @media screen and (max-width: 480px) {
+            padding: 0.25rem 0.5rem;
+          }
+        }
+      }
+      
+      &:before {
+        content: " ";
+        display: block;
+        min-height: 6rem;
+        border: 1px solid white;
+        border-left-width: 0;
+        background-color: rgba(0,0,0,0.35);
+
+        @include media("<medium") {
+          min-height: 5rem;
+        }
+      }
+    }
+
+    .board-free {
+      &:before {
+        border-left-width: 1px;
+        border-radius: 6px 0 0 6px;
+        background-image: url('./image/board-free.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.8;
+      }
+    }
+
+    .board-market {
+      &:before {
+        background-image: url('./image/board-market.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.8;
+      }
+    }
+
+    .board-seller {
+      &:before {
+        background-image: url('./image/board-seller.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.8;
+      }
+    }
+
+    .board-notice {
+      &:before {
+        background-image: url('./image/board-notice.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.8;
+      }
+    }
+
+    .board-qna {
+      span {
+        border-right: none;
+      }
+      &:before {
+        border-radius: 0 6px 6px 0;
+        background-image: url('./image/board-qna.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.8;
+      }
+    }
+
+    @include media("<medium") {
+      .board-seller {
+        span {
+          border-right: none;
+        }
+        &:before {
+          border-radius: 0 6px 6px 0;
+        }
+      }
+    }
+
+    @include media("<medium") {
+      .board-notice {
+        &:before {
+          border-left-width: 1px;
+          border-radius: 6px 0 0 6px;
+        }
+      }
+    }
+
+    @include media("<medium") {
+      .board-qna {
+        span {
+          border-right: none;
+        }
+        &:before {
+          border-radius: 0 6px 6px 0;
+        }
+      }
+    }
+  }
 }
-
-// .board-wrap {
-//   width: 80%;
-//   border: 1px solid black;
-//   margin: auto;
-//   padding: 2rem;
-//   text-align: center;
-//   .board-item {
-//     display: inline-block;
-//     width: 30%;
-//     min-height: 250px;
-//     margin: 3rem 1rem;
-//     border: 1px solid yellow;
-//     position: relative;
-//   }
-//   .board-name {
-//     font-size: 20px;
-//     color: purple;
-//     @include position-center();
-//   }
-// }
