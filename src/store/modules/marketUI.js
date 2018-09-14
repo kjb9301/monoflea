@@ -6,12 +6,18 @@ const HIDE_MODAL = 'marketUI/HIDE_MODAL';
 const GET_VALUE = 'marketUI/GET_VALUE';
 const CHANGE_INPUT = 'marketUI/CHANGE_INPUT';
 const EDIT_TF = 'marketUI/EDIT_TF';
+const APPLY_TF = 'marketUI/APPLY_TF';
+const COUNT_UP = 'marketUI/COUNT_UP';
+const COUNT_DOWN = 'marketUI/COUNT_DOWN';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 export const getValue = createAction(GET_VALUE);
 export const changeInput = createAction(CHANGE_INPUT);
 export const editTF = createAction(EDIT_TF);
+export const applyTF = createAction(APPLY_TF);
+export const countUp = createAction(COUNT_UP);
+export const countDown = createAction(COUNT_DOWN);
 
 const initialState = fromJS({
   modal: {
@@ -30,7 +36,9 @@ const initialState = fromJS({
     seller_cnt: '',
     seller_limit_cnt: ''
   },
-  editTF: false
+  editTF: false,
+  applyTF: false,
+  count: 0
 });
 
 export default handleActions({
@@ -73,5 +81,18 @@ export default handleActions({
   [EDIT_TF]: (state,action) => {
     const editTF = action.payload;
     return (editTF === true? state.set('editTF',false) : state.set('editTF',true));
+  },
+  [APPLY_TF]: (state,action) => {
+    const applyTF = action.payload;
+    return (applyTF === true? state.set('applyTF',false) : state.set('applyTF',true));
+  },
+  [COUNT_UP]: (state,action) => {
+    const count = action.payload + 1;
+    console.log(count)
+    return state.set('count',count);
+  },
+  [COUNT_DOWN]: (state,action) => {
+    const {count} = action.payload;
+    return state.set('count',count);
   }
 }, initialState);
