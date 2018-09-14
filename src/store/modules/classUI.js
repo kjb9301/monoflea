@@ -30,6 +30,7 @@ const initialState = fromJS({
     onedayImages: [
 
     ],
+    onedayRegs: [],
     recruit_start_date: '',
     recruit_end_date: '',
     reg_date: '',
@@ -53,7 +54,7 @@ export default handleActions({
     const { 
       class_category_id, class_desc, class_id, class_limit_cnt, view_cnt,
       class_name, class_place, class_reg_cnt, event_date, onedayCategory,
-      onedayImages, recruit_start_date, recruit_end_date, reg_date, seller,
+      onedayImages, recruit_start_date, recruit_end_date, reg_date, seller, onedayRegs
     } = action.payload;
     return state.setIn(['classInfo', 'class_category_id'], class_category_id)
                 .setIn(['classInfo', 'class_desc'], class_desc)
@@ -64,6 +65,7 @@ export default handleActions({
                 .setIn(['classInfo', 'class_reg_cnt'], class_reg_cnt)
                 .setIn(['classInfo', 'event_date'], event_date)
                 .setIn(['classInfo', 'view_cnt'], view_cnt)
+                .setIn(['classInfo', 'onedayRegs'], onedayRegs)
                 .setIn(['classInfo', 'onedayCategory', 'category_ko_name'], onedayCategory.category_ko_name)
                 .setIn(['classInfo', 'onedayCategory', 'category_name'], onedayCategory.category_name)
                 .setIn(['classInfo', 'onedayCategory', 'class_category_id'], onedayCategory.class_category_id)
