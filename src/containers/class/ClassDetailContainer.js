@@ -107,6 +107,7 @@ class ClassDetailContainer extends Component {
   }
 
   getEnrollList = (class_id) => {
+    // class_id
     console.log(class_id);
   }
 
