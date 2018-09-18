@@ -60,8 +60,9 @@ export default handleActions({
   ...pender({
     type: APPLY_MARKET,
     onSuccess: (state,action) => {
-      console.log(action.payload);
-      const {message} = action.payload.data;
+      console.log(111);
+      console.log(action.payload.data);
+      //const {message} = action.payload.data;
     }
   }),
   ...pender({

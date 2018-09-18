@@ -55,21 +55,30 @@ class MarketDetailContainer extends Component {
 
   handleApply = async (id,applyTF) => {
     const {nickName,MarketActions,MarketUIActions,list} = this.props;
-    MarketActions.applyMarket({nickName,id});
+    await MarketActions.applyMarket(id);
     MarketUIActions.applyTF(applyTF);
     await MarketActions.getMarketList();
-    const idx = list.marketList.findIndex(market => market.market_id === id);
-    const marketDetail = list.marketList[idx];
+    
+    const idx = list.marketRegList.findIndex(market => market.market_id === id);
+    const marketDetail = list.marketRegList[idx];
 
     MarketUIActions.hideModal('market');
-    MarketUIActions.showModal('market');
     MarketUIActions.getValue({marketDetail});
+    MarketUIActions.showModal('market');
   }
 
-  handleApplyCancel = (id,applyTF) => {
-    const {nickName,MarketActions,MarketUIActions} = this.props;
+  handleApplyCancel = async (id,applyTF) => {
+    const {nickName,MarketActions,MarketUIActions,list} = this.props;
     MarketActions.applyCancel(id,nickName);
     MarketUIActions.applyTF(applyTF);
+    await MarketActions.getMarketList();
+    
+    const idx = list.marketRegList.findIndex(market => market.market_id === id);
+    const marketDetail = list.marketRegList[idx];
+
+    MarketUIActions.hideModal('market');
+    MarketUIActions.getValue({marketDetail});
+    MarketUIActions.showModal('market');
   }
 
   render() {
