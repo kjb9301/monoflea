@@ -3,11 +3,12 @@ import classNames from 'classnames/bind';
 import styles from './SellerList.scss';
 import { GoHeart } from "react-icons/go";
 import Like from 'components/common/Like'
-import { SSL_OP_NO_TICKET } from 'constants';
 
 const cx = classNames.bind(styles)
 
-const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id, onModal,detailData, likeUp, like_cnt ,isLogged}) =>{
+const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id, 
+                    onModal,detailData, onLike,likeUp,sellerLikeCnt,seller, UILikeCnt ,isLogged}) =>{
+  let likeOn = seller.seller_likes.length > 0 ? true : false
   return (
     <figure >
       <img alt = "img" src = {profile_img} />
@@ -19,18 +20,19 @@ const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id, onModal,
             분야 :  {sellerCategory} <br/>  
             {seller_desc}
           </div>
-          {/* <div className = {cx('like')}> <GoHeart onClick = {likeUp} className= {cx('heart')}  /> 좋아요 {like_cnt}개  </div> */}
       </figcaption>
+      <Like onLike ={()=> {onLike(id,seller,likeOn)}  } like_cnt = {sellerLikeCnt} likeOn = {likeOn}/>
     </figure>
   );
 };
 
-const SellerList = ({sellerList, onModal,detailData, handleLike, getLoginData}) =>{
+const SellerList = ({sellerList, onModal,detailData,UILikeCnt, onLike, getLoginData}) =>{
   const sellerlist  = sellerList.map(
     (seller) => {
       const { seller_id, user, sellerCategory, seller_desc, profile_img, like_cnt} = seller;
       return(
         <SellerItem
+          seller = {seller}
           key = {seller_id}
           id = {seller_id}
           user = {user.nickName}
@@ -39,8 +41,9 @@ const SellerList = ({sellerList, onModal,detailData, handleLike, getLoginData}) 
           profile_img = {profile_img}
           onModal = { onModal }
           detailData = {detailData}
-          like_cnt = { like_cnt }
-          likeUp = {handleLike}
+          // UILikeCnt = { UILikeCnt }
+          sellerLikeCnt = {like_cnt}
+          onLike = {onLike}
           isLogged = {getLoginData}
         />
       )
