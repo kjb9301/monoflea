@@ -204,18 +204,14 @@
     h3 {
       font-size: 3rem!important;
     }
+    
     .section-team {
-      // max-width: 1320px;
       display: flex;
-      // flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      // flex-wrap: wrap;
       margin: 1rem;
 
       .team {
-        // flex-grow: 1;
-        // flex: 1;
         padding: 1rem;
         text-align: center;
 
@@ -253,6 +249,4 @@
       }
     }
   }
-
-
 }
