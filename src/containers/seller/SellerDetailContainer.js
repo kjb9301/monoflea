@@ -32,6 +32,7 @@ class SellerDetailContainer extends Component {
   handleUpdate = (id) => {
     const { SellerActions,SellerUIActions,sellerData,  editTF } = this.props;
     const sellerDetail = sellerData.toJS();
+    console.log(sellerDetail);
     SellerUIActions.editTF(editTF);
     SellerActions.updateSeller(id,sellerDetail);
     SellerActions.getSellersList('All');
@@ -40,8 +41,10 @@ class SellerDetailContainer extends Component {
   handleChange = (e) => {
     const { SellerUIActions } = this.props;
     let { name, value } = e.target;
-    name === 'show_TF' ? SellerUIActions.showTF({name,value}) 
-                       : SellerUIActions.changedData({name,value});
+    console.log(value)
+    // name === 'show_TF' ? SellerUIActions.showTF({name,value}) 
+    //                    : SellerUIActions.changedData({name,value})
+    SellerUIActions.changedData({name,value});
   }
 
   render() {

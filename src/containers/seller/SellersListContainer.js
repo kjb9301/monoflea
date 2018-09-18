@@ -8,20 +8,25 @@ import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI';
 import * as baseActions from 'store/modules/base';
 class SellersListContainer extends Component {
-  // handelLike = (UILikeCnt,sellerLikeCnt,seller) => {
   handelLike = (id,seller, likeOn) => {
     const { SellerActions,nickName} = this.props;
-    console.log(seller.seller_likes)
-    console.log(likeOn);
     if(nickName){
       if(!likeOn){
         seller.like_cnt = (seller.like_cnt+1);
-        SellerActions.incrementLike(id,seller).then(()=>{
+        SellerActions.incrementLike(id, seller).then(()=>{
           this.getSellersList('All')  
         })
-      } return false;
+      }else{
+        seller.like_cnt= seller.like_cnt > 0 ?(seller.like_cnt-1) : 0;
+        likeOn = false;
+        SellerActions.decrementLike(id, seller)
+        .then(()=>{
+          console.log(seller.like_cnt);
+          this.getSellersList('All')  
+        })
+      }
     }else {
-      alert("로그인 이후 사용 가능합니다.")
+      alert("로그인 이후 사용 가능합니다.");
       return false;
     }
   }
@@ -43,11 +48,7 @@ class SellersListContainer extends Component {
     SellerUIActions.showModal('seller');
   }
 
-  getLoginData = () =>{
-    const { nickName, isLogined } = this.props;
-    console.log(nickName);
-    console.log(isLogined)
-  }
+
   componentDidMount(){
     this.getSellersList('All');
   }
@@ -66,9 +67,8 @@ class SellersListContainer extends Component {
   // }
   
   render() {
-    const { sellerList, loading ,categories ,UILikeCnt, nickName} = this.props;
+    const { sellerList, loading ,categories ,UILikeCnt} = this.props;
     const { getSellerDetail, handleModal , getSellersList, getLoginData,handelLike} = this;
-    console.log(nickName);
     const categoryList = categories.map(
       (categoryItem) => {
         const {category_id, category_ko, category} = categoryItem;

@@ -34,8 +34,8 @@ const SellerDetailModal = ({visible, sellerDetailData, onChange, onClose,editTF,
                       <div>경력 : {career}년  <br/> SNS : <input name='sns' value = {sns} onChange = {onChange}/> </div>
                         자기소개 : <textarea name='seller_desc' value = {seller_desc} onChange = {onChange}/>
                         <div className = {cx('radio')}> 공개여부 :
-                          공개 <input type ='radio' name = 'show_TF' value = '1' onChange = {onOff} />
-                          비공개 <input type ='radio' name = 'show_TF' value = '0'  onChange = {onOff}/>
+                          공개 <input type ='radio' name = 'show_TF' value = 'true' defaultChecked ='true'  onChange = {onOff} />
+                          비공개 <input type ='radio' name = 'show_TF' value = 'false'  onChange = {onOff}/>
                         </div>
                         <div> <GoHeart/> 좋아요  </div> 
                     </div>
