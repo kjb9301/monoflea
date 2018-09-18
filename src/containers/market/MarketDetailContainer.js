@@ -53,22 +53,36 @@ class MarketDetailContainer extends Component {
     MarketActions.getApplyList(id);
   }
 
-  handleApply = (id,applyTF,count) => {
-    const {nickName,MarketActions,MarketUIActions} = this.props;
-    MarketActions.applyMarket({nickName,id,count});
+  handleApply = async (id,applyTF) => {
+    const {nickName,MarketActions,MarketUIActions,list} = this.props;
+    await MarketActions.applyMarket(id);
     MarketUIActions.applyTF(applyTF);
-    MarketUIActions.countUp(count);
+    await MarketActions.getMarketList();
+    
+    const idx = list.marketRegList.findIndex(market => market.market_id === id);
+    const marketDetail = list.marketRegList[idx];
+
+    MarketUIActions.hideModal('market');
+    MarketUIActions.getValue({marketDetail});
+    MarketUIActions.showModal('market');
   }
 
-  handleApplyCancel = (id,applyTF,count) => {
-    const {nickName,MarketActions,MarketUIActions} = this.props;
-    MarketActions.applyCancel(id,nickName,count);
+  handleApplyCancel = async (id,applyTF) => {
+    const {nickName,MarketActions,MarketUIActions,list} = this.props;
+    MarketActions.applyCancel(id,nickName);
     MarketUIActions.applyTF(applyTF);
-    MarketUIActions.countDown(count);
+    await MarketActions.getMarketList();
+    
+    const idx = list.marketRegList.findIndex(market => market.market_id === id);
+    const marketDetail = list.marketRegList[idx];
+
+    MarketUIActions.hideModal('market');
+    MarketUIActions.getValue({marketDetail});
+    MarketUIActions.showModal('market');
   }
 
   render() {
-    const {loading,visible,marketDetail,editTF,userType,applyTF,count} = this.props;
+    const {loading,visible,marketDetail,editTF,userType,applyTF} = this.props;
     const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel} = this;
     const detailInfo = marketDetail.toJS();
     if(loading) return null;
@@ -89,7 +103,6 @@ class MarketDetailContainer extends Component {
               onApplyModal={handleApplyModal}
               onApply={handleApply}
               onApplyCancel={handleApplyCancel}
-              count={count}
         />
       </div>
     );
@@ -98,7 +111,7 @@ class MarketDetailContainer extends Component {
 
 export default connect(
   (state) => ({
-    count: state.marketUI.get('count'),
+    list: state.market.get('data'),
     userType: state.base.get('userType'),
     logged: state.base.get('logged'),
     nickName: state.base.get('nickName'),

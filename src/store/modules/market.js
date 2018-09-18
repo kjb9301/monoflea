@@ -1,5 +1,5 @@
 import { createAction, handleActions} from 'redux-actions';
-import { List,Map,fromJS} from 'immutable';
+import { List, Map } from 'immutable';
 import { pender} from 'redux-pender';
 
 import * as api from 'lib/api';
@@ -60,7 +60,9 @@ export default handleActions({
   ...pender({
     type: APPLY_MARKET,
     onSuccess: (state,action) => {
-      const {message} = action.payload.data;
+      console.log(111);
+      console.log(action.payload.data);
+      //const {message} = action.payload.data;
     }
   }),
   ...pender({

@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const MarketItem = ({count,id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,onDetail,curGetTime}) => {
+const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,onDetail,curGetTime}) => {
   const marketGetTime = new Date(start).getTime();
   const gap = marketGetTime - curGetTime;
   const dDay = Math.ceil(gap/(1000*60*60*24));
@@ -17,7 +17,7 @@ const MarketItem = ({count,id,name,place,poster,start,end,sellerCnt,sellerLimitC
         
         <div className={cx('item-contents')}>
           <div className={cx('item-period')}>모집기간 : {start} ~ {end}</div>
-          <div className={cx('item-limit')}>모집인원 : {count} / {sellerLimitCnt}</div>
+          <div className={cx('item-limit')}>모집인원 : {sellerCnt} / {sellerLimitCnt}</div>
           {/* <div className={cx('item-desc')}>{desc}</div> */}
         </div>
       </div>
