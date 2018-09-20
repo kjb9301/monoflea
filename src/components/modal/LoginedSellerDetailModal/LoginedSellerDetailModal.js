@@ -3,6 +3,7 @@ import styles from './LoginedSellerDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 import { GoHeart } from "react-icons/go";
+import ImageGallery from 'react-image-gallery';
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +12,19 @@ const LoginedSellerDetailModal = ({visible, loginedSellerData, onChange,loggedNi
   const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory,seller_id ,show_TF} = loginedSellerData;
   const { nickName } = user.nickName;
   let  { imgUrl }  = seller_images; 
+  console.log(imgUrl);
   const { category_ko } = sellerCategory.category_ko;
+  // if( !user || !imgUrl ) return null;
+  //  const imgList = imgUrl.map(
+  //    (imgItem, idx) => {
+  //      const { imgUrl } = imgItem;
+  //      return  {
+  //       original : imgUrl,
+  //       thumbnail : imgUrl
+  //      }
+  //    }
+  //  )
+  //  console.log(imgList)
   if( !user || !imgUrl ) return null;
    const imgList = imgUrl.map(
      (imgItem, idx) => {
@@ -54,6 +67,7 @@ const LoginedSellerDetailModal = ({visible, loginedSellerData, onChange,loggedNi
                    </div>
                </div>
              </div>
+             {/* <ImageGallery key = '1' items = {imgList}/> */}
            <div className = {cx('seller_img')}> {imgList} </div>
          <button onClick = {() => onUpdate(seller_id)}> 저장 </button>
          <button onClick = { () => {onEdit() 
