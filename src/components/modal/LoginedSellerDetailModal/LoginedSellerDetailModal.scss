@@ -1,0 +1,67 @@
+@import 'common';
+
+.modalForm {
+  background: white;
+  padding: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom : 1.5rem;
+  width: 50rem;
+  height: auto;
+  .close {
+    line-height: 2rem;
+    font-size: 2rem;
+    span{
+      cursor: pointer;
+      &:hover {
+        color: $oc-gray-6;
+      }
+    }
+    text-align: right;
+  }
+  .seller_img {
+    width: 20rem;
+    height: 26rem;
+    margin: 2rem;
+    display: inline-block;
+    img{
+      width :20rem;
+      height: 7rem;
+    }
+  }
+  .wrapper {
+    display: inline-block;
+    vertical-align: top;
+    height: auto;
+    text-align: center;
+    .profile {
+      width: 20rem;
+      height: auto;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .desc{
+      text-align: left;
+      width : 20rem;
+      height: auto;
+      padding : 1rem;
+      border : 1px solid black;
+      margin: 1rem;
+      .info{
+        .like{
+          font-size : 1rem;
+          .heart{
+              &:hover {
+                  color: $oc-gray-5;
+              }
+              &:active {
+                  color: $oc-pink-6};
+          }
+        }
+      }
+    }
+  } 
+  
+}

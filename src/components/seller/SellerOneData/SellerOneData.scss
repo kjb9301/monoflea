@@ -1,0 +1,14 @@
+@import 'common';
+
+.Edit{
+  
+  display: inline-block;
+  vertical-align: middle;
+  user-select: none;
+  font-weight: 600;
+  margin-bottom :5px;
+  svg{
+    font-size: 3rem;
+    cursor: pointer;
+  }
+}

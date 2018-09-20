@@ -7,7 +7,7 @@ import Like from 'components/common/Like'
 const cx = classNames.bind(styles)
 
 const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id, 
-                    onModal,detailData, onLike,likeUp,sellerLikeCnt,seller, UILikeCnt ,isLogged}) =>{
+                    onModal,detailData, onLike,sellerLikeCnt,seller}) =>{
   let likeOn = seller.seller_likes.length > 0 ? true : false
   return (
     <figure >
@@ -26,11 +26,12 @@ const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id,
   );
 };
 
-const SellerList = ({sellerList, onModal,detailData,UILikeCnt, onLike, getLoginData}) =>{
+const SellerList = ({sellerList, onModal,detailData,UILikeCnt, onLike, getLoginData, }) =>{
   const sellerlist  = sellerList.map(
     (seller) => {
       const { seller_id, user, sellerCategory, seller_desc, profile_img, like_cnt} = seller;
       return(
+        
         <SellerItem
           seller = {seller}
           key = {seller_id}
