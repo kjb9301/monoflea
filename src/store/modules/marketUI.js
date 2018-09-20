@@ -34,7 +34,8 @@ const initialState = fromJS({
     end_date: '',
     market_desc: '',
     seller_cnt: '',
-    seller_limit_cnt: ''
+    seller_limit_cnt: '',
+    market_regs: []
   },
   editTF: false,
   applyTF: false
@@ -60,7 +61,8 @@ export default handleActions({
       end_date,
       market_desc,
       seller_cnt,
-      seller_limit_cnt
+      seller_limit_cnt,
+      market_regs
     } = marketDetail;
 
     return state.setIn(['market', 'market_id'], market_id)
@@ -71,7 +73,8 @@ export default handleActions({
                 .setIn(['market', 'end_date'], end_date)
                 .setIn(['market', 'market_desc'], market_desc)
                 .setIn(['market','seller_cnt'],seller_cnt)
-                .setIn(['market','seller_limit_cnt'],seller_limit_cnt);
+                .setIn(['market','seller_limit_cnt'],seller_limit_cnt)
+                .setIn(['market','market_regs'],market_regs);
   },
   [CHANGE_INPUT]: (state,action) => {
     const { name, value } = action.payload;
@@ -80,9 +83,9 @@ export default handleActions({
   [EDIT_TF]: (state,action) => {
     const editTF = action.payload;
     return (editTF === true? state.set('editTF',false) : state.set('editTF',true));
-  },
-  [APPLY_TF]: (state,action) => {
+  }
+  /* [APPLY_TF]: (state,action) => {
     const applyTF = action.payload;
     return (applyTF === true? state.set('applyTF',false) : state.set('applyTF',true));
-  }
+  } */
 }, initialState);

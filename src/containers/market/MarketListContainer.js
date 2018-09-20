@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import MarketList from 'components/market/MarketList';
+import MarketHeader from 'components/market/MarketHeader';
 import Button from 'components/common/Button/Button';
 
 import * as marketActions from 'store/modules/market';
@@ -40,6 +41,7 @@ class MarketListContainer extends Component {
     if(loading) return null;
     return (
       <div>
+        <MarketHeader/>
         <MarketList markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
         <hr/>
         <MarketList markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>

@@ -60,9 +60,8 @@ export default handleActions({
   ...pender({
     type: APPLY_MARKET,
     onSuccess: (state,action) => {
-      console.log(111);
-      console.log(action.payload.data);
-      //const {message} = action.payload.data;
+      const {message} = action.payload.data;
+      return state.set('message',message);
     }
   }),
   ...pender({
@@ -75,7 +74,8 @@ export default handleActions({
   ...pender({
     type: APPLY_CANCEL,
     onSuccess: (state,action) => {
-      
+      const {message} = action.payload.data;
+      return state.set('message',message);
     }
   })
   /*,

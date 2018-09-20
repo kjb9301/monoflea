@@ -12,9 +12,14 @@ class ApplyListContainer extends Component {
     MarketUIActions.hideModal('apply');
   }
 
+  HandleDeleteApply = (seller_id,market_id) => {
+    const {MarketActions} = this.props;
+    MarketActions.applyCancel({seller_id,market_id});
+  }
+
   render() {
     const {visible,loading,applyListData} = this.props;
-    const {HandleClose} = this;
+    const {HandleClose,HandleDeleteApply} = this;
     if(loading) return null;
     return (
       <div>
@@ -22,6 +27,7 @@ class ApplyListContainer extends Component {
           visible={visible} 
           applyListData={applyListData}
           onClose={HandleClose}
+          onDeleteApply={HandleDeleteApply}
         />
       </div>
     );

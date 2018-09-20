@@ -6,7 +6,7 @@ import ApplyList from 'components/market/ApplyList/ApplyList';
 
 const cx = classNames.bind(styles);
 
-const ApplyListModal = ({visible,children,applyListData,onClose}) => {
+const ApplyListModal = ({visible,children,applyListData,onClose,onDeleteApply}) => {
   return (
     <ModalWrapper visible={visible}>
       <div className={cx('applyForm')}>
@@ -15,7 +15,7 @@ const ApplyListModal = ({visible,children,applyListData,onClose}) => {
           <h2>신청자 관리</h2>
         </div>
         <div className={cx('content')}>
-          <ApplyList applyListData={applyListData}/>
+          <ApplyList applyListData={applyListData} onDeleteApply={onDeleteApply}/>
         </div>
       </div>
     </ModalWrapper>
