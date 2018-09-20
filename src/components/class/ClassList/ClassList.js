@@ -59,6 +59,7 @@ const ClassItem =
         <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
         <div className={cx('item-period')}>주최일 : {event_date}</div>
         <div className={cx('item-period')}>조회수 : <span ref={(ref) => this.viewCnt = ref}>{view_cnt}</span></div>
+        <div className={cx('item-period')}>찜한사람 : <span>{taken_cnt}</span></div>
         <div className={cx('item-desc')}>{desc}</div>
       </div>
 
@@ -70,6 +71,14 @@ const ClassItem =
           <div className={cx('item-place')}>{place}</div>
         </div>
       </div>
+
+      <GoHeart 
+          className={cx('taken-btn', { taken: oneday_takens.length})}
+          onClick={async (e) => {
+            e.stopPropagation();
+            oneday_takens.length > 0 ? cancelOnedayClass(id) : takeOnedayClass(id);
+          }}
+      />
 
     </div>
   );
