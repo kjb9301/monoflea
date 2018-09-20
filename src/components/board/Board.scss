@@ -7,8 +7,8 @@
   .board-intro {
     padding-top: 1rem;
     width: 100%;
-    min-height: calc(100vh);
-    background-image: url('./image/bg.svg'), url('./image/intro.jpg');
+    min-height: 100vh;
+    background-image: url('/images/bg.svg'), url('/images/intro.jpg');
     background-attachment: scroll, fixed;
     background-size: auto, cover;
     background-position: bottom center, top center;
