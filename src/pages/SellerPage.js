@@ -5,13 +5,12 @@ import CategoryButton from '../containers/seller/CategoryButton';
 import SellerDetailContainer from '../containers/seller/SellerDetailContainer';
 import LoginedSellerDetailContainer from '../containers/seller/LoginedSellerDetailContainer';
 import SellerOneData from '../containers/seller/SellerOneData';
+import SellerWrapper from '../components/seller/SellerWrapper';
 // import SellerApp from '../containers/seller/SellerApp';
 const SellerPage = () => {
   return (
     <PageTemplate>
-      <div><CategoryButton/> <SellerOneData/></div>
-      <LoginedSellerDetailContainer/>
-      <SellerListContainer/>
+      <SellerWrapper/>
       <SellerDetailContainer/>
       {/* <SellerApp/> */}
     </PageTemplate>
