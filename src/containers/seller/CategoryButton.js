@@ -3,27 +3,29 @@ import Button from 'components/common/Button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from  'redux';
 import * as sellerActions from 'store/modules/seller';
+import * as sellerUIActions from 'store/modules/sellerUI';
+import * as baseActions from 'store/modules/base';
 
 class CategoryButton extends Component {
 
-  getSellersList = () => {
-    const { SellerActions } = this.props;
-    SellerActions.getSellersList();
+  handleClose = () =>{
+    const { SellerUIActions } = this.props;
+    SellerUIActions.hideModal('seller');
   }
 
+  getSellersList = (category) => {
+    const { SellerActions } = this.props;
+    SellerActions.getSellersList(category);
+  }
+ 
     componentDidMount(){
-      this.getSellersList()
-      console.log('========= cDm ============');
+      this.getSellersList('All')
     }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.categories !== this.props.categories;
-  // }
-  
   render() {
-    const { loading, categories} = this.props;
-    const { getSellersList} = this
-    console.log('CategoryButton');
+    const { loading, categories, nickName,userType} = this.props;
+    const { getSellersList, handleModal, getSellerDetail} = this
+    // console.log('CategoryButton');
     if(loading) return null;
     const categoryList = categories.map(
       (categoryItem) => {
@@ -35,8 +37,13 @@ class CategoryButton extends Component {
           > {category_ko} </Button>
       } 
     )
+    categoryList.unshift(<Button
+                            key = {'Like'}
+                            onHandleParams ='Like'
+                            toGetData = {getSellersList}> 좋아요</Button>)
     categoryList.unshift(<Button 
                             key = {'All'} 
+                            onHandleParams = 'All'
                             toGetData = {getSellersList} >전체</Button>);
     if(loading) return null;
     return (
@@ -49,9 +56,14 @@ class CategoryButton extends Component {
 
 export default connect((state) => ({
   categories : state.seller.get('categories'),
-  loading : state.pender.pending['seller/GET_SELLERS_LIST']
+  sellerList : state.seller.get('sellers'),
+  loading : state.pender.pending['seller/GET_SELLERS_LIST'],
+  nickName : state.base.get('nickName'),
+  userType : state.base.get('userType')
 }),
 (dispatch) => ({
   SellerActions : bindActionCreators(sellerActions,dispatch),
+  SellerUIActions : bindActionCreators(sellerUIActions,dispatch),
+  BaseActions : bindActionCreators(baseActions,dispatch)
 })
 )(CategoryButton);

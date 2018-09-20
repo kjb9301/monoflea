@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import SellerDetailModal from 'components/modal/SellerDetailModal';
 import { Map, List } from  'immutable';
+
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI'
 import * as baseActions from 'store/modules/base';
@@ -41,16 +42,15 @@ class SellerDetailContainer extends Component {
   handleChange = (e) => {
     const { SellerUIActions } = this.props;
     let { name, value } = e.target;
-    console.log(value)
     // name === 'show_TF' ? SellerUIActions.showTF({name,value}) 
     //                    : SellerUIActions.changedData({name,value})
     SellerUIActions.changedData({name,value});
   }
 
   render() {
-    const {visible, editTF, sellerData , loading} = this.props;
+    const {visible, editTF, sellerData , loading, oneSeller, nickName} = this.props;
     const { handleClose, handleEdit, handleChange, handleUpdate, handleShow, handleCancel} = this
-    const detailInfo = sellerData.toJS();
+    const detailInfo = sellerData.toJS()
     if(loading) return null;
     return (
       <div>
@@ -64,6 +64,7 @@ class SellerDetailContainer extends Component {
             editTF = {editTF}
             sellerDetailData = {detailInfo}
             onClose = {handleClose}
+            loggedNickName = {nickName}
          />
       </div>
     );
@@ -77,7 +78,9 @@ export default connect((state ) =>({
   visible : state.sellerUI.getIn(['modal','seller']),
   editTF : state.sellerUI.get('editTF'),
   loading :state.pender.pending['/seller/GET_SELLER_LIST'],
-  isLogin : state.base.get('logged')
+  isLogin : state.base.get('logged'),
+  nickName : state.base.get('nickName'),
+  oneSeller : state.seller.get('oneSeller')
 }),
   (dispatch) =>({
     SellerActions : bindActionCreators(sellerActions, dispatch),

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SellerList from '../../components/seller/SellerList'
 import Button from '../../components/common/Button'
-import Like from 'components/common/Like';
+import Edit from 'components/seller/SellerOneData';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as sellerActions from 'store/modules/seller';
@@ -35,16 +35,19 @@ class SellersListContainer extends Component {
     const {SellerUIActions,sellerList} = this.props;
     const idx = sellerList.findIndex(seller => seller.seller_id ===id);
     const sellerDetail = sellerList[idx];
+    // console.log(sellerDetail)
     SellerUIActions.detailData({sellerDetail});
   }
 
   getSellersList = (category) => {
     const { SellerActions } = this.props;
     SellerActions.getSellersList(category);
+    
   }
 
   handleModal = ()=>{
     const {SellerUIActions} = this.props;
+    console.log('1111');
     SellerUIActions.showModal('seller');
   }
 
@@ -68,7 +71,7 @@ class SellersListContainer extends Component {
   
   render() {
     const { sellerList, loading ,categories ,UILikeCnt} = this.props;
-    const { getSellerDetail, handleModal , getSellersList, getLoginData,handelLike} = this;
+    const { getSellerDetail, handleModal , getSellersList, handelLike} = this;
     const categoryList = categories.map(
       (categoryItem) => {
         const {category_id, category_ko, category} = categoryItem;
@@ -83,14 +86,13 @@ class SellersListContainer extends Component {
     if(loading) return null;
     return (  
       <div>
-        {categoryList}
         <SellerList 
           UILikeCnt = {UILikeCnt}
           onLike = {handelLike}
           sellerList = { sellerList } 
           onModal = { handleModal }
           detailData = {getSellerDetail}
-          getLoginData = {getLoginData}
+          categoryList ={categoryList}
         />
       </div>
     );
