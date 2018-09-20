@@ -26,7 +26,6 @@ class SignupMoreDataModalContainer extends Component {
     } = this.props;    
     
     if(!this.checkValidations()) return;
-    
 
     if(!modalNickname) {
       await BaseActions.loginUserCheck();

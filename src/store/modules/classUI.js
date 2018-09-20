@@ -5,11 +5,13 @@ const CHANGE_CLASS_INFO = 'classUI/CHANGE_CLASS_INFO';
 const SET_CLASS_INFO = 'classUI/SET_CLASS_INFO';
 const TOGGLE_EDIT = 'classUI/TOGGLE_EDIT';
 const INITIALIZE_EDITING_STATE = 'classUI/INITIALIZE_EDITING_STATE';
+const CHANGE_ENROLL_INFO = 'classUI/CHANGE_ENROLL_INFO';
 
 export const changeClassInfo = createAction(CHANGE_CLASS_INFO);
 export const setClassInfo = createAction(SET_CLASS_INFO);
 export const toggleEdit = createAction(TOGGLE_EDIT);
 export const initializeEditState = createAction(INITIALIZE_EDITING_STATE);
+export const changeEnrollInfo = createAction(CHANGE_ENROLL_INFO);
 
 const initialState = fromJS({
   classInfo: {
@@ -42,13 +44,21 @@ const initialState = fromJS({
     },
     seller_id: '',
   },
-  editing: false
+  enroll: {
+    name: '',
+    tel: '',
+  },
+  editing: false,
 });
 
 export default handleActions({
   [CHANGE_CLASS_INFO]: (state, action) => {
     const { name, value } = action.payload;
     return state.setIn(['classInfo', name], value);
+  },
+  [CHANGE_ENROLL_INFO]: (state, action) => {
+    const { name, value } = action.payload;
+    return state.setIn(['enroll', name], value);
   },
   [SET_CLASS_INFO]: (state, action) => {
     const { 

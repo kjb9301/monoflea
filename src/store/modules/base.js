@@ -63,6 +63,8 @@ const initialState = Map({
     signupType: false,
     signupMore: false,
     class: false,
+    enrolledClassList: false,
+    enrolledUserInfo: false,
   }),
   loginModal: Map({
     email: '',
@@ -105,6 +107,8 @@ const initialState = Map({
   logged: false,
   nickName: '',
   userType: '',
+  name: '',
+  tel: '',
   loginMessage: ''
 });
 
@@ -130,10 +134,12 @@ export default handleActions({
     type: LOGIN_USER_CHECK,
     onSuccess: (state, action) => {
       const { data: userState } = action.payload;
-      const { isLogin, nickName, userType } = userState;
+      const { isLogin, nickName, userType, name, tel } = userState;
       return state.set('logged', isLogin)
                   .set('nickName', nickName)
-                  .set('userType', userType);
+                  .set('userType', userType)
+                  .set('name', name)
+                  .set('tel', tel);
     }
   }),
   ...pender({

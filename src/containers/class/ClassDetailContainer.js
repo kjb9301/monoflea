@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import ClassDetailModal from 'components/modal/ClassDetailModal'
+import EnrolledClassList from 'components/modal/ClassDetailModal/EnrolledClassListModal';
+import EnrolledUserInfoContainer from 'containers/class/EnrolledUserInfoContainer';
 
 import * as baseActions from 'store/modules/base';
 import * as classActions from 'store/modules/class';
@@ -17,6 +19,11 @@ class ClassDetailContainer extends Component {
     const idx = classList.findIndex(item => item.class_id === id);
     ClassUIActions.setClassInfo(classList[idx]);
     ClassUIActions.initializeEditState();
+  }
+
+  closeEnrollList = () => {
+    const { BaseActions } = this.props;
+    BaseActions.hideModal('enrolledClassList');
   }
 
   deleteOnedayClass = async (id) => {
@@ -71,19 +78,23 @@ class ClassDetailContainer extends Component {
   }
 
   enrollOnedayClass = async (id) => {
-    const { logged } = this.props;
+    const { logged, name, tel } = this.props;
     if(logged) {
-      const enrolled = await axios.post('/classes/recruitment', { id });
-      const { isEnrolled, message } = enrolled.data;
       const { ClassActions, ClassUIActions, BaseActions } = this.props;
-      if(!isEnrolled) return alert('잘못된 접근입니다. 다시 시도해주세요!');
-      await ClassActions.getClassList();
-      const { classList } = this.props;
-      const idx = classList.findIndex(classItem => classItem.class_id === id);
-      ClassUIActions.setClassInfo(classList[idx]);
-      BaseActions.hideModal('class');
-      BaseActions.showModal('class');
-      return alert(message)
+      if(name && tel) {
+        const enrolled = await axios.post('/classes/recruitment', { id });
+        const { isEnrolled, message } = enrolled.data;
+        if(!isEnrolled) return alert('잘못된 접근입니다. 다시 시도해주세요!');
+        await ClassActions.getClassList();
+        const { classList } = this.props;
+        const idx = classList.findIndex(classItem => classItem.class_id === id);
+        ClassUIActions.setClassInfo(classList[idx]);
+        BaseActions.hideModal('class');
+        BaseActions.showModal('class');
+        return alert(message);
+      }
+      const { enrolledUserInfo } = this.props;
+      return BaseActions.showModal('enrolledUserInfo');
     }
     return alert('로그인 이후에 사용할 수 있는 서비스입니다.');
   }
@@ -106,9 +117,10 @@ class ClassDetailContainer extends Component {
     return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
   }
 
-  getEnrollList = (class_id) => {
-    // class_id
-    console.log(class_id);
+  getEnrollList = async (class_id) => {
+    const { BaseActions, ClassActions } = this.props;
+    await ClassActions.getEnrolledList(class_id);
+    BaseActions.showModal('enrolledClassList');
   }
 
   // TODO: editing state change --> rerender ?
@@ -117,29 +129,37 @@ class ClassDetailContainer extends Component {
   // }
 
   render() {
-    const { visible, classInfo, nickName, editing, categories } = this.props;
+    const { visible, classInfo, nickName, editing, categories, enrollListVisible, enrolledList } = this.props;
     const {
       hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, getEnrollList,
-      cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass
+      cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass, closeEnrollList
     } = this;
     if(!categories.length) return null;
     return (
-      <ClassDetailModal 
-        visible={visible}
-        classDetail={classInfo.toJS()}
-        hideModal={hideModal}
-        nickName={nickName}
-        deleteOnedayClass={deleteOnedayClass}
-        toggleEditOnedayClass={toggleEditOnedayClass}
-        cancelEditClass={cancelEditClass}
-        updateOnedayClass={updateOnedayClass}
-        changeValue={changeValue}
-        editing={editing}
-        categories={categories}
-        enrollOnedayClass={enrollOnedayClass}
-        cancelOnedayClass={cancelOnedayClass}
-        getEnrollList={getEnrollList}
-      />
+      <Fragment>
+        <ClassDetailModal 
+          visible={visible}
+          classDetail={classInfo.toJS()}
+          hideModal={hideModal}
+          nickName={nickName}
+          deleteOnedayClass={deleteOnedayClass}
+          toggleEditOnedayClass={toggleEditOnedayClass}
+          cancelEditClass={cancelEditClass}
+          updateOnedayClass={updateOnedayClass}
+          changeValue={changeValue}
+          editing={editing}
+          categories={categories}
+          enrollOnedayClass={enrollOnedayClass}
+          cancelOnedayClass={cancelOnedayClass}
+          getEnrollList={getEnrollList}
+        />
+        <EnrolledClassList 
+          visible={enrollListVisible}
+          enrolledList={enrolledList}
+          closeEnrollList={closeEnrollList}
+        />
+        <EnrolledUserInfoContainer/>
+      </Fragment>
     );
   }
 }
@@ -147,7 +167,11 @@ class ClassDetailContainer extends Component {
 export default connect(
   (state) => ({
     logged: state.base.get('logged'),
+    name: state.base.get('name'),
+    tel: state.base.get('tel'),
     visible: state.base.getIn(['modal', 'class']),
+    enrollListVisible: state.base.getIn(['modal', 'enrolledClassList']),
+    enrolledList: state.class.get('enrolledList'),
     classList: state.class.get('classList'),
     classInfo: state.classUI.get('classInfo'),
     nickName: state.base.get('nickName'),

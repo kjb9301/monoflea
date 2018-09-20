@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import styles from './ClassDetailModal.scss';
 import classNames from 'classnames/bind';
 import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
+// 공용 modal wrapper - scss 통일
+// import ModalWrapper from '../ModalWrapper';
+
 const cx = classNames.bind(styles);
 
 const ClassDetailModal = 
@@ -176,7 +179,7 @@ const ClassDetailModal =
                   <span className={cx('classPlace')}>
                     개설장소
                   </span>
-                  <input 
+                  <input
                     type="text" 
                     name="class_place"
                     className={cx('classPlaceContent')}

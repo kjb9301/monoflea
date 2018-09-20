@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroller';
 import ClassList from 'components/class/ClassList';
 
 import * as classActions from 'store/modules/class';
@@ -25,6 +26,30 @@ class ClassListContainer extends Component {
     BaseActions.showModal('class');
   }
 
+  takeOnedayClass = async (id) => {
+    const { ClassActions } = this.props;
+    const takenResult = await ClassActions.takeOnedayClass(id);
+    const { isTaken } = takenResult.data;
+    if(isTaken) {
+      alert('해당 클래스를 찜목록에 추가했습니다!');
+      await ClassActions.getClassList();
+    }
+  }
+  
+  cancelOnedayClass = async (id) => {
+    const { ClassActions } = this.props;
+    const cancelResult = await ClassActions.cancelOnedayClass(id);
+    const { isCancel } = cancelResult.data;
+    if(isCancel) {
+      alert('해당 클래스를 찜목록에서 삭제했습니다!');
+      await ClassActions.getClassList();
+    }
+  }
+
+  loadItems = () => {
+
+  }
+
   componentDidMount() {
     this.getClassList();
   }
@@ -35,13 +60,27 @@ class ClassListContainer extends Component {
 
   render() {
     const { classList } = this.props;
-    const { showClassModal } = this;
+    const { showClassModal, takeOnedayClass, cancelOnedayClass } = this;
+    const loader = <div className="loader">Loading ...</div>;
+    const items = <div>추가</div>;
     return (
       <div>
         <ClassList 
           classList={classList}
           showClassModal={showClassModal}
+          takeOnedayClass={takeOnedayClass}
+          cancelOnedayClass={cancelOnedayClass}
         />
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.loadItems}
+          hasMore={true}
+          loader={loader}
+        >
+          <div className="tracks">
+            {items}
+          </div>
+        </InfiniteScroll>
       </div>
     );
   }

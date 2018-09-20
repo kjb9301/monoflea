@@ -1,21 +1,36 @@
 import React from 'react';
 import styles from './ClassList.scss';
 import classNames from 'classnames/bind';
+import { GoHeart } from 'react-icons/go';
 
 const cx = classNames.bind(styles);
 
 const viewCnt = {};
 
 const ClassItem = 
-  ({ name, desc, place, limit, reg, date, recruit_start_date, recruit_end_date, event_date, view_cnt, images, category, categoryName, profileImg, nickName, id, showClassModal}) => {
+  ({ 
+    name, desc, place, limit, reg, date, 
+    recruit_start_date, recruit_end_date, 
+    event_date, view_cnt, images, category, 
+    categoryName, profileImg, nickName, id, 
+    showClassModal, takeOnedayClass, oneday_takens, 
+    cancelOnedayClass, taken_cnt
+  }) => {
   return (
     <div className={cx('item-boxframe')}>
       <div className={cx('item-box')} 
-          onClick={() => {
-            showClassModal(id);
-            viewCnt[id].innerText = parseInt(viewCnt[id].innerText) + 1;
-          }
-        }>
+        onClick={() => {
+          showClassModal(id);
+          viewCnt[id].innerText = parseInt(viewCnt[id].innerText) + 1;
+        }
+      }>
+        <GoHeart 
+          className={cx('taken-btn', { taken: oneday_takens.length})}
+          onClick={async (e) => {
+            e.stopPropagation();
+            oneday_takens.length > 0 ? cancelOnedayClass(id) : takeOnedayClass(id);
+          }}
+        />
         <div className={cx('item-posterframe')}>
           <div className={cx('item-poster')}><img src={images} /></div>
         </div>
@@ -26,6 +41,7 @@ const ClassItem =
           <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
           <div className={cx('item-period')}>주최일 : {event_date}</div>
           <div className={cx('item-period')}>조회수 : <span ref={(ref) => viewCnt[id] = ref}>{view_cnt}</span></div>
+          <div className={cx('item-period')}>찜한사람 : <span>{taken_cnt}</span></div>
           <div className={cx('item-desc')}>{desc}</div>
         </div>
 
@@ -42,7 +58,7 @@ const ClassItem =
   );
 };
 
-const ClassList = ({ classList, showClassModal }) => {
+const ClassList = ({ classList, showClassModal, takeOnedayClass, cancelOnedayClass }) => {
   const classes = classList.map(classItem => {
     const { 
       class_id, 
@@ -60,6 +76,8 @@ const ClassList = ({ classList, showClassModal }) => {
       onedayImages, 
       onedayCategory, 
       seller,
+      oneday_takens,
+      taken_cnt
     } = classItem;
     
     return (
@@ -83,6 +101,10 @@ const ClassList = ({ classList, showClassModal }) => {
         profileImg={seller.profile_img}
         nickName={seller.user.nickName}
         showClassModal={showClassModal}
+        takeOnedayClass={takeOnedayClass}
+        cancelOnedayClass={cancelOnedayClass}
+        oneday_takens={oneday_takens}
+        taken_cnt={taken_cnt}
       />
     )
   })

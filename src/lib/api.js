@@ -37,6 +37,8 @@ export const applyCancel = (info) => axios.delete('/markets/recruitment',info);
 export const getClassList = (category) => axios.get(`/classes?category=${category}`);
 export const getClassDetail = (id) => axios.get(`/classes/${id}`);
 export const getClassCategory = () => axios.get('/classes/category-list');
-export const postNewClass = (newClass) => axios.post('/classes', newClass)
-                                                // .then(results => console.log(results))
-                                                // .catch(e => console.log(e.response));
+export const postNewClass = (newClass) => axios.post('/classes', newClass);
+export const getEnrolledList = (class_id) => axios.get(`/classes/enroll/${class_id}`);
+export const saveEnrolledUser = (userInfo) => axios.post(`/users/enroll-info`, { userInfo });
+export const takeOnedayClass = (id) => axios.post(`/classes/taken`, { id });
+export const cancelOnedayClass = (id) => axios.delete(`/classes/taken`, { params: { id } })
