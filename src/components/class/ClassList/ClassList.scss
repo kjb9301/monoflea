@@ -13,6 +13,7 @@
 }
 
 .item-box {
+  position: relative;
   padding: 1rem;
   border-radius: 10px;
   background: white;
@@ -105,17 +106,7 @@
       }
     }
 
-    .taken-btn {
-      position: absolute;
-      right: 25px;
-      top: 25px;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      &.taken {
-        color: red;
-      }
-    }
+
 
     // @media screen and (max-width: 1200px) {
     //   width: 33%;
@@ -138,6 +129,19 @@
           font-size: 18px;
         }
       }
+    }
+  }
+
+  .taken-btn {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+
+    &.taken {
+      color: red;
     }
   }
 }
