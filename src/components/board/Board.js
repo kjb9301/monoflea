@@ -10,7 +10,7 @@ const Board = () => {
     <div className={cx('board')}>
 
       <div className={cx('board-intro')}>
-        <div className={cx('board-intro-head')}><span>Board</span><br/><span className={cx('board-intro-subtitle')}>Monoflea</span></div>
+        <div className={cx('board-intro-head')}><span>Board</span><br/><span className={cx('board-intro-subtitle')}>MonoFlea</span></div>
         <div className={cx('board-intro-body')}>
           "플리마켓과 원데이 클래스에 대해서 자유롭게 이야기를 나눠요"
         </div>

@@ -7,33 +7,35 @@ const cx = classNames.bind(styles);
 const ClassItem = 
   ({ name, desc, place, limit, reg, date, recruit_start_date, recruit_end_date, event_date, view_cnt, images, category, categoryName, profileImg, nickName, id, showClassModal}) => {
   return (
-    <div className={cx('item-box')} 
-        onClick={() => {
-          showClassModal(id);
-          this.viewCnt.innerText = parseInt(this.viewCnt.innerText) + 1;
-        }
-      }>
+    <div className={cx('item-boxframe')}>
+      <div className={cx('item-box')} 
+          onClick={() => {
+            showClassModal(id);
+            this.viewCnt.innerText = parseInt(this.viewCnt.innerText) + 1;
+          }
+        }>
+        <div className={cx('item-posterframe')}>
+          <div className={cx('item-poster')}><img src={images} /></div>
+        </div>
+        
+        <div className={cx('item-contents')}>
+          <div className={cx('item-name')}>{name}</div>
+          <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
+          <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
+          <div className={cx('item-period')}>주최일 : {event_date}</div>
+          <div className={cx('item-period')}>조회수 : <span ref={(ref) => this.viewCnt = ref}>{view_cnt}</span></div>
+          <div className={cx('item-desc')}>{desc}</div>
+        </div>
 
-      <div className={cx('item-poster')}><img src={images} /></div>
-      
-      <div className={cx('item-name')}>{name}</div>
-      <div className={cx('item-contents')}>
-        <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
-        <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
-        <div className={cx('item-period')}>주최일 : {event_date}</div>
-        <div className={cx('item-period')}>조회수 : <span ref={(ref) => this.viewCnt = ref}>{view_cnt}</span></div>
-        <div className={cx('item-desc')}>{desc}</div>
-      </div>
-
-      <div className={cx('item-profile')}>
-        <div className={cx('item-profile-img')}><img src={profileImg}/></div>
-        <div className={cx('item-profile-info')}>
-          <div className={cx('item-nickname')}>{nickName}</div>
-          <div className={cx('item-category')}>카테고리 : <span>{categoryName}</span></div>
-          <div className={cx('item-place')}>{place}</div>
+        <div className={cx('item-profile')}>
+          <div className={cx('item-profile-img')}><img src={profileImg}/></div>
+          <div className={cx('item-profile-info')}>
+            <div className={cx('item-nickname')}>{nickName}</div>
+            <div className={cx('item-category')}>카테고리 : {categoryName}</div>
+            <div className={cx('item-place')}>{place}</div>
+          </div>
         </div>
       </div>
-
     </div>
   );
 };
@@ -83,7 +85,7 @@ const ClassList = ({ classList, showClassModal }) => {
     )
   })
   return (
-    <div className={cx('class-list')}>
+    <div>
       {classes}
     </div>
   );
