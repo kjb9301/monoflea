@@ -47,7 +47,7 @@ class ClassListContainer extends Component {
   }
 
   loadItems = () => {
-
+    // inifinite
   }
 
   componentDidMount() {
