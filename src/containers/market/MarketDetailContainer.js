@@ -54,31 +54,32 @@ class MarketDetailContainer extends Component {
   }
 
   handleApply = async (id,applyTF) => {
-    const {nickName,MarketActions,MarketUIActions,list} = this.props;
+    const {MarketActions,MarketUIActions} = this.props;
     await MarketActions.applyMarket(id);
-    MarketUIActions.applyTF(applyTF);
     await MarketActions.getMarketList();
-    
+    const {list,message} = this.props; 
     const idx = list.marketRegList.findIndex(market => market.market_id === id);
     const marketDetail = list.marketRegList[idx];
-
+    await MarketUIActions.getValue({marketDetail});
     MarketUIActions.hideModal('market');
-    MarketUIActions.getValue({marketDetail});
+    MarketUIActions.applyTF(applyTF);
     MarketUIActions.showModal('market');
+    alert(message);
   }
 
   handleApplyCancel = async (id,applyTF) => {
-    const {nickName,MarketActions,MarketUIActions,list} = this.props;
-    MarketActions.applyCancel(id,nickName);
-    MarketUIActions.applyTF(applyTF);
+    const {MarketActions,MarketUIActions} = this.props;
+    MarketActions.applyCancel({id});
     await MarketActions.getMarketList();
-    
+    const {list,message} = this.props; 
     const idx = list.marketRegList.findIndex(market => market.market_id === id);
     const marketDetail = list.marketRegList[idx];
 
-    MarketUIActions.hideModal('market');
     MarketUIActions.getValue({marketDetail});
+    MarketUIActions.hideModal('market');
+    MarketUIActions.applyTF(applyTF);
     MarketUIActions.showModal('market');
+    alert(message);
   }
 
   render() {
@@ -114,7 +115,6 @@ export default connect(
     list: state.market.get('data'),
     userType: state.base.get('userType'),
     logged: state.base.get('logged'),
-    nickName: state.base.get('nickName'),
     list: state.market.get('data'),
     message: state.market.get('message'),
     visible: state.marketUI.getIn(['modal','market']),

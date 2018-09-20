@@ -29,7 +29,7 @@ class MarketListRegContainer extends Component {
     const {list,loading} = this.props;
     const {handleDetail} = this;
     const {marketRegList} = list;
-
+    console.log(marketRegList)
     if(loading) return null;
     return (
       <div>

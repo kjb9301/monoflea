@@ -59,6 +59,7 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
   );
   return (
     <div className={cx('wrapper')}>
+      <div>----------header------------</div>
       <div>
         <div>{children}</div>
       </div>
