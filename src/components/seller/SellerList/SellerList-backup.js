@@ -10,33 +10,19 @@ const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id,
                     onModal,detailData, onLike,sellerLikeCnt,seller}) =>{
   let likeOn = seller.seller_likes.length > 0 ? true : false
   return (
-    <div className = {cx('seller-list')}>
+    <figure >
       <img alt = "img" src = {profile_img} />
-      <div className={cx('seller-body')} onClick = {() => {onModal()
-                                    detailData(id)
-                                  }}> 
-        <div>닉네임  : {user} </div>
-        <div>분야 :  {sellerCategory}</div>
-        <div className={cx('seller-desc')}>{seller_desc}</div>
-      </div>
+        <figcaption onClick = {() => {onModal()
+                                      detailData(id)
+                                    }}> 
+          <p>닉네임  : {user} </p>
+          <div>
+            분야 :  {sellerCategory} <br/>  
+            {seller_desc}
+          </div>
+      </figcaption>
       <Like onLike ={()=> {onLike(id,seller,likeOn)}  } like_cnt = {sellerLikeCnt} likeOn = {likeOn}/>
-    </div>
-
-    // <figure >
-    //   <img alt = "img" src = {profile_img} />
-    //     <figcaption onClick = {() => {onModal()
-    //                                   detailData(id)
-    //                                 }}> 
-    //       <div>
-    //         <p>닉네임  : {user} </p>
-    //         <div>
-    //           분야 :  {sellerCategory} <br/>  
-    //           {seller_desc}
-    //           </div>
-    //       </div>
-    //   </figcaption>
-    //   <Like onLike ={()=> {onLike(id,seller,likeOn)}  } like_cnt = {sellerLikeCnt} likeOn = {likeOn}/>
-    // </figure>
+    </figure>
   );
 };
 
@@ -65,7 +51,7 @@ const SellerList = ({sellerList, onModal,detailData,UILikeCnt, onLike, getLoginD
     }
   );
   return (
-    <div className = {cx('seller-wrapper')}>
+    <div className = {cx('wrapper')}>
       {sellerlist}
     </div>
   )

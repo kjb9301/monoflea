@@ -44,14 +44,16 @@ const ClassItem =
           <div className={cx('item-place')}>{place}</div>
         </div>
       </div>
-
-      <GoHeart 
+      
+      <div className={cx('taken-btn-wrap')}>
+        <GoHeart 
           className={cx('taken-btn', { taken: oneday_takens.length})}
           onClick={async (e) => {
             e.stopPropagation();
             oneday_takens.length > 0 ? cancelOnedayClass(id) : takeOnedayClass(id);
           }}
-      />
+        />
+      </div>
     </div>
   );
 };

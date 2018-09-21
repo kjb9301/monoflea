@@ -1,0 +1,54 @@
+@import 'common';
+
+
+//pinterest ui ********
+.wrapper {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+  column-width : 200px;
+  column-gap: 25px;
+  column-count: 5;
+  // 
+  &:hover {
+    figure {
+      &:not(:hover){
+        opacity: 0.4;  
+      }
+    }
+  }
+  figure {
+    max-width: 200px;
+    background: white;
+    display : inline-block;
+    padding : 10px;
+    padding-bottom : 10px;
+    box-shadow: 0 4px 4px rgba(34, 25, 25, 0.4);
+    margin: 0 2px 15px;
+    img{
+      width :100%;
+      height: auto;
+    }
+    figcaption {
+      p{
+        font-weight: bold;
+        border-bottom :1px solid gray;
+        text-align: center;
+        margin-bottom : 10px;
+        margin-left: 3px;
+        padding :10px;
+      }
+      text-align: left;
+      .like{
+        font-size : 1rem;
+        .heart{
+            &:hover {
+                color: $oc-gray-5;
+            }
+            &:active {
+                color: $oc-pink-6};
+        }
+      }
+    }
+  }
+}
