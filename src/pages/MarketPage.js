@@ -1,13 +1,13 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import MarketListContainer from 'containers/market/MarketListContainer';
 import MarketDetailContainer from 'containers/market/MarketDetailContainer';
 import MarketDeleteContainer from 'containers/market/MarketDeleteContainer';
+import MarketWrapperContainer from 'containers/market/MarketWrapperContainer';
 
 const MarketPage = () => {
   return (
     <PageTemplate>
-      <MarketListContainer/>
+      <MarketWrapperContainer/>
       <MarketDetailContainer/>
       <MarketDeleteContainer/>
     </PageTemplate>

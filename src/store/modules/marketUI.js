@@ -6,18 +6,14 @@ const HIDE_MODAL = 'marketUI/HIDE_MODAL';
 const GET_VALUE = 'marketUI/GET_VALUE';
 const CHANGE_INPUT = 'marketUI/CHANGE_INPUT';
 const EDIT_TF = 'marketUI/EDIT_TF';
-const APPLY_TF = 'marketUI/APPLY_TF';
-const COUNT_UP = 'marketUI/COUNT_UP';
-const COUNT_DOWN = 'marketUI/COUNT_DOWN';
+const LIST_TYPE = 'marketUI/LIST_TYPE';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 export const getValue = createAction(GET_VALUE);
 export const changeInput = createAction(CHANGE_INPUT);
 export const editTF = createAction(EDIT_TF);
-export const applyTF = createAction(APPLY_TF);
-export const countUp = createAction(COUNT_UP);
-export const countDown = createAction(COUNT_DOWN);
+export const listType = createAction(LIST_TYPE);
 
 const initialState = fromJS({
   modal: {
@@ -35,10 +31,12 @@ const initialState = fromJS({
     market_desc: '',
     seller_cnt: '',
     seller_limit_cnt: '',
-    market_regs: []
+    market_regs: [],
+    reg_start_date: '',
+    reg_end_date: '',
+    confirmYN: ''
   },
-  editTF: false,
-  applyTF: false
+  editTF: false
 });
 
 export default handleActions({
@@ -62,7 +60,10 @@ export default handleActions({
       market_desc,
       seller_cnt,
       seller_limit_cnt,
-      market_regs
+      market_regs,
+      reg_start_date,
+      reg_end_date,
+      confirmYN
     } = marketDetail;
 
     return state.setIn(['market', 'market_id'], market_id)
@@ -74,7 +75,10 @@ export default handleActions({
                 .setIn(['market', 'market_desc'], market_desc)
                 .setIn(['market','seller_cnt'],seller_cnt)
                 .setIn(['market','seller_limit_cnt'],seller_limit_cnt)
-                .setIn(['market','market_regs'],market_regs);
+                .setIn(['market','market_regs'],market_regs)
+                .setIn(['market','reg_start_date'],reg_start_date)
+                .setIn(['market','reg_end_date'],reg_end_date)
+                .setIn(['market','confirmYN'],confirmYN);
   },
   [CHANGE_INPUT]: (state,action) => {
     const { name, value } = action.payload;
@@ -84,8 +88,4 @@ export default handleActions({
     const editTF = action.payload;
     return (editTF === true? state.set('editTF',false) : state.set('editTF',true));
   }
-  /* [APPLY_TF]: (state,action) => {
-    const applyTF = action.payload;
-    return (applyTF === true? state.set('applyTF',false) : state.set('applyTF',true));
-  } */
 }, initialState);

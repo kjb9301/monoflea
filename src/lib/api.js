@@ -32,6 +32,7 @@ export const deleteMarket = (id) => axios.delete(`/markets/${id}`);
 export const getApplyList = (id) =>axios.get(`/markets/recruitment/${id}`);
 export const applyMarket = (id) => axios.post('/markets/recruitment',{id});
 export const applyCancel = (id) => axios.delete('/markets/recruitment',{params:id});
+export const applyClose = (id) => axios.put(`/markets/recruitment/${id}`);
 
 // class
 export const getClassList = (category) => axios.get(`/classes?category=${category}`);

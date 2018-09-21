@@ -24,10 +24,18 @@ class MarketDetailContainer extends Component {
     MarketUIActions.hideModal('market');
   }
 
-  handleCancel = (id) => {
+  handleCancel = (id,confirmYN) => {
     const {MarketUIActions,list,editTF} = this.props;
-    const idx = list.marketList.findIndex(market => market.market_id === id);
-    const marketDetail = list.marketList[idx];
+    let idx = '';
+    let marketDetail = '';
+
+    if(confirmYN === 'Y'){
+      idx = list.marketList.findIndex(market => market.market_id === id);
+      marketDetail = list.marketList[idx];
+    }else{
+      idx = list.marketRegList.findIndex(market => market.market_id === id);
+      marketDetail = list.marketRegList[idx];
+    }
     MarketUIActions.editTF(editTF);
     MarketUIActions.hideModal('market');
     MarketUIActions.showModal('market');
@@ -53,7 +61,7 @@ class MarketDetailContainer extends Component {
     MarketActions.getApplyList(id);
   }
 
-  handleApply = async (id,applyTF) => {
+  handleApply = async (id) => {
     const {MarketActions,MarketUIActions} = this.props;
     await MarketActions.applyMarket(id);
     await MarketActions.getMarketList();
@@ -62,12 +70,11 @@ class MarketDetailContainer extends Component {
     const marketDetail = list.marketRegList[idx];
     await MarketUIActions.getValue({marketDetail});
     MarketUIActions.hideModal('market');
-    MarketUIActions.applyTF(applyTF);
     MarketUIActions.showModal('market');
     alert(message);
   }
 
-  handleApplyCancel = async (id,applyTF) => {
+  handleApplyCancel = async (id) => {
     const {MarketActions,MarketUIActions} = this.props;
     MarketActions.applyCancel({id});
     await MarketActions.getMarketList();
@@ -77,15 +84,21 @@ class MarketDetailContainer extends Component {
 
     MarketUIActions.getValue({marketDetail});
     MarketUIActions.hideModal('market');
-    MarketUIActions.applyTF(applyTF);
     MarketUIActions.showModal('market');
     alert(message);
   }
 
+  handleApplyClose = (id) => {
+    const {MarketActions,message} = this.props;
+    MarketActions.applyClose(id);
+    alert(message);
+  }
+
   render() {
-    const {loading,visible,marketDetail,editTF,userType,applyTF} = this.props;
-    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel} = this;
+    const {loading,visible,marketDetail,editTF,userType} = this.props;
+    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel,handleRegUpdate,handleApplyClose} = this;
     const detailInfo = marketDetail.toJS();
+
     if(loading) return null;
     return (
       <div>
@@ -95,7 +108,6 @@ class MarketDetailContainer extends Component {
               marketDetail={detailInfo} 
               onChange={handleChange} 
               editTF={editTF}
-              applyTF={applyTF} 
               onEdit={handleEdit}
               onClose={handleClose}
               onUpdate={handleUpdate}
@@ -104,6 +116,7 @@ class MarketDetailContainer extends Component {
               onApplyModal={handleApplyModal}
               onApply={handleApply}
               onApplyCancel={handleApplyCancel}
+              onApplyClose={handleApplyClose}
         />
       </div>
     );
@@ -120,7 +133,6 @@ export default connect(
     visible: state.marketUI.getIn(['modal','market']),
     marketDetail: state.marketUI.get('market'),
     editTF: state.marketUI.get('editTF'),
-    applyTF: state.marketUI.get('applyTF'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({

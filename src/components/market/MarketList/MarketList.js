@@ -4,8 +4,8 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
-  const marketGetTime = new Date(start).getTime();
+const MarketItem = ({listType,market_id,market_name,market_place,market_poster,start_date,end_date,onDetail,curGetTime}) => {
+  const marketGetTime = new Date(start_date).getTime();
   const gap = marketGetTime - curGetTime;
   const dDay = Math.ceil(gap/(1000*60*60*24));
 
@@ -15,44 +15,45 @@ const MarketItem = ({id,name,place,poster,start,end,onDetail,curGetTime}) => {
         <div className={cx('market-dday')}>
           <p>{dDay >= 0 ? `D-${dDay}` : '종료'}</p>
         </div>
-        <img src={poster}/>
+        <img src={market_poster}/>
       </div>
       <div className={cx('market-item-bottom')}>
         <div className={cx('bot-inner-top')}>
           <p className={cx('item-left')}>
-            {name}
+            {market_name}
           </p>
           <p className={cx('item-right')}>
-            {place}
+            {market_place}
           </p>
           <div className={cx('item-left')}>
-            <p className={cx('block-to-inline')}>{start} ~ {end}</p>
+            <p className={cx('block-to-inline')}>{start_date} ~ {end_date}</p>
           </div>
         </div>
         <div className={cx('bot-inner-bot')}>
-          <button className={cx('reg-button')} onClick={() => onDetail(id)}>상세보기</button>
+          <button className={cx('reg-button')} onClick={() => onDetail(market_id,listType)}>상세보기</button>
         </div>
       </div>
     </div>
   );
 };
 
- const MarketList = ({markets,onDetail,curGetTime,children}) => {
+ const MarketList = ({listType,markets,onDetail,curGetTime,children}) => {
   if(!markets) return null; 
   const marketList = markets.map(
-    (market) => {
-      const {market_id, market_name, market_place, market_poster,start_date,end_date,confirmYN} = market;
+    (market,index) => {
+      const {market_id, market_name, market_place, market_poster,start_date,end_date} = market;
         return (
           <MarketItem
-            key={market_id}
-            id={market_id}
-            name={market_name}
-            place={market_place}
-            poster={market_poster}
-            start={start_date}
-            end={end_date}
+            key={index}
+            market_id={market_id}
+            market_name={market_name}
+            market_place={market_place}
+            market_poster={market_poster}
+            start_date={start_date}
+            end_date={end_date}
             onDetail={onDetail}
             curGetTime={curGetTime}
+            listType={listType}
           />
         )
     }

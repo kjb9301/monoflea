@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import MarketList from 'components/market/MarketList';
-import MarketHeader from 'components/market/MarketHeader';
 import Button from 'components/common/Button/Button';
 
 import * as marketActions from 'store/modules/market';
@@ -14,10 +13,19 @@ class MarketListContainer extends Component {
     MarketActions.getMarketList();
   }
 
-  handleDetail = (id) => {
+  handleDetail = (id,listType) => {
     const {MarketUIActions,list} = this.props;
-    const idx = list.marketList.findIndex(market => market.market_id === id);
-    const marketDetail = list.marketList[idx];
+    let marketDetail = ''
+    let idx = ''
+    
+    if(listType === 'B'){
+      idx = list.marketList.findIndex(market => market.market_id == id);
+      marketDetail = list.marketList[idx];
+    }else{
+      idx = list.marketComingList.findIndex(market => market.market_id == id);
+      marketDetail = list.marketComingList[idx];
+    }
+    console.log(marketDetail);
     MarketUIActions.showModal('market');
     MarketUIActions.getValue({marketDetail});
   }
@@ -41,10 +49,9 @@ class MarketListContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <MarketHeader/>
-        <MarketList markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
+        <MarketList listType='C' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
         <hr/>
-        <MarketList markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
+        <MarketList listType='B' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
           <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
         </MarketList>
       </div>
