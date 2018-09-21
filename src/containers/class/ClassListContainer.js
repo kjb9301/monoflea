@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import ClassList from 'components/class/ClassList';
 
 import * as classActions from 'store/modules/class';
@@ -46,25 +46,33 @@ class ClassListContainer extends Component {
     }
   }
 
-  loadItems = () => {
-    // inifinite scroll
-  }
-
   componentDidMount() {
     this.getClassList();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return JSON.stringify(nextProps.classList) !== JSON.stringify(this.props.classList);
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return JSON.stringify(nextProps.classList) !== JSON.stringify(this.props.classList);
+  // }
+
+  getMoreData = () => {
+    const { ClassActions, classList, category } = this.props;
+    let len = parseInt(classList.length/10)*10;
+    if(len>classList.length-10) {
+      setTimeout(async () => {
+        await ClassActions.getClassList(category, len+10);
+        // await ClassActions.getClassCount();
+        const { totalCnt } = this.props;
+        if(classList.length>=totalCnt) return ClassActions.toggleMoreState(false);
+      }, 350);
+    }
   }
 
   render() {
-    const { classList } = this.props;
+    const { classList, hasMore } = this.props;
     const { showClassModal, takeOnedayClass, cancelOnedayClass } = this;
-    const loader = <div className="loader">Loading ...</div>;
-    const items = <div>추가</div>;
+    const loader = <div className="loader" key={0}>Loading ...</div>;
     return (
-      <div>
+      <Fragment>
         <ClassList 
           classList={classList}
           showClassModal={showClassModal}
@@ -72,16 +80,13 @@ class ClassListContainer extends Component {
           cancelOnedayClass={cancelOnedayClass}
         />
         <InfiniteScroll
-          pageStart={0}
-          loadMore={this.loadItems}
-          hasMore={true}
-          loader={loader}
+          dataLength={classList.length}
+          next={this.getMoreData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
         >
-          <div className="tracks">
-            {items}
-          </div>
         </InfiniteScroll>
-      </div>
+      </Fragment>
     );
   }
 }
@@ -89,6 +94,9 @@ class ClassListContainer extends Component {
 export default connect(
   (state) => ({
     classList: state.class.get('classList'),
+    totalCnt: state.class.get('totalCnt'),
+    hasMore: state.class.get('hasMore'),
+    category: state.class.get('category'),
   }),
   (dispatch) => ({
     ClassActions: bindActionCreators(classActions, dispatch),

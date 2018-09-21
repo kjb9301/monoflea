@@ -10,6 +10,8 @@ class ClassCategoryBtnContainer extends Component {
   getSpecificClassList = async (category) => {
     const { ClassActions } = this.props;
     await ClassActions.getClassList(category);
+    ClassActions.toggleMoreState(true);
+    ClassActions.setCategory(category);
   }
 
   shouldComponentUpdate(nextProps, nextState) {

@@ -124,10 +124,13 @@ export default handleActions({
   ...pender({
     type: LOGIN,
     onSuccess: (state, action) => {
-      const { isLogin, nickName, message } = action.payload.data;
+      const { isLogin, nickName, message, userType, name, tel } = action.payload.data;
       return state.set('logged', isLogin)
                   .set('nickName', nickName)
-                  .set('loginMessage', message);
+                  .set('loginMessage', message)
+                  .set('userType', userType)
+                  .set('name', name)
+                  .set('tel', tel);
     }
   }),
   ...pender({
