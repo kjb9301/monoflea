@@ -90,6 +90,33 @@ box-sizing: border-box;
       width: 100%;
       border-radius: 100%;
       border: 3px solid blueviolet;
+// .wrapper {
+//   width: 80%;
+//   margin: 50px auto;
+//   text-align: center;
+//   column-width : 200px;
+//   column-gap: 25px;
+//   column-count: 5;
+//   // 
+//   &:hover {
+//     figure {
+//       &:not(:hover){
+//         opacity: 0.4;  
+//       }
+//     }
+//   }
+//   figure {
+//     max-width: 200px;
+//     background: white;
+//     display : inline-block;
+//     padding : 10px;
+//     padding-bottom : 10px;
+//     box-shadow: 0 4px 4px rgba(34, 25, 25, 0.4);
+//     margin: 0 2px 15px;
+    
+//     img{
+//       width :100%;
+//       height: auto;
     }
 
     .seller-body {

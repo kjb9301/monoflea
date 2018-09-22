@@ -13,9 +13,9 @@ class CategoryButton extends Component {
     SellerUIActions.hideModal('seller');
   }
 
-  getSellersList = (category) => {
+  getSellersList = (category,like) => {
     const { SellerActions } = this.props;
-    SellerActions.getSellersList(category);
+    SellerActions.getSellersList(category,like);
   }
  
     componentDidMount(){
@@ -39,7 +39,8 @@ class CategoryButton extends Component {
     )
     categoryList.unshift(<Button
                             key = {'Like'}
-                            onHandleParams ='Like'
+                            onHandleParams ='All'
+                            anotherOnHandleParams = 'like'
                             toGetData = {getSellersList}> 좋아요</Button>)
     categoryList.unshift(<Button 
                             key = {'All'} 
