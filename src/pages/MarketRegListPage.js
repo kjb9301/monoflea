@@ -1,6 +1,6 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import MarketRegListContainer from 'containers/market/MarketRegListContainer';
+import MarketRegWrapperContainer from 'containers/market/MarketRegWrapperContainer';
 import MarketDetailContainer from 'containers/market/MarketDetailContainer';
 import MarketDeleteContainer from 'containers/market/MarketDeleteContainer';
 import ApplyListContainer from 'containers/market/ApplyListContainer';
@@ -8,7 +8,7 @@ import ApplyListContainer from 'containers/market/ApplyListContainer';
 const MarketRegListPage = () => {
   return (
     <PageTemplate>
-      <MarketRegListContainer/>
+      <MarketRegWrapperContainer/>
       <MarketDetailContainer/>
       <MarketDeleteContainer/>
       <ApplyListContainer/>

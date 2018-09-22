@@ -15,8 +15,10 @@ class MarketListRegContainer extends Component {
 
   handleDetail = (id) => {
     const {MarketUIActions,list} = this.props;
+    console.log(list.marketRegList)
     const idx = list.marketRegList.findIndex(market => market.market_id === id);
     const marketDetail = list.marketRegList[idx];
+    console.log(marketDetail.market_id)
     MarketUIActions.showModal('market');
     MarketUIActions.getValue({marketDetail});
   }
@@ -29,7 +31,6 @@ class MarketListRegContainer extends Component {
     const {list,loading} = this.props;
     const {handleDetail} = this;
     const {marketRegList} = list;
-    console.log(marketRegList)
     if(loading) return null;
     return (
       <div>
