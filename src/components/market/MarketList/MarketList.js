@@ -10,27 +10,16 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
   const dDay = Math.ceil(gap/(1000*60*60*24));
 
   return (
-    <div className={cx('market-item')}>
-      <div className={cx('market-item-top')}>
-        <div className={cx('market-dday')}>
-          <p>{dDay >= 0 ? `D-${dDay}` : '종료'}</p>
-        </div>
-        <img src={market_poster}/>
-      </div>
-      <div className={cx('market-item-bottom')}>
-        <div className={cx('bot-inner-top')}>
-          <p className={cx('item-left')}>
-            {market_name}
-          </p>
-          <p className={cx('item-right')}>
-            {market_place}
-          </p>
-          <div className={cx('item-left')}>
-            <p className={cx('block-to-inline')}>{start_date} ~ {end_date}</p>
+    <div className={cx('item-boxframe')} onClick={() => onDetail(market_id,listType)}>
+      <div className={cx('item-box')}>
+        <div className={cx('item-posterframe')}>
+          <div className={cx('item-dDay')}>
+            {dDay >= 0 ? `D-${dDay}` : '종료'}
           </div>
+          <div className={cx('item-poster')}><img src={market_poster} /></div>
         </div>
-        <div className={cx('bot-inner-bot')}>
-          <button className={cx('reg-button')} onClick={() => onDetail(market_id,listType)}>상세보기</button>
+        <div className={cx('item-contents')}>
+          <div className={cx('item-name')}>{market_name}</div>
         </div>
       </div>
     </div>
@@ -60,11 +49,15 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
   );
   return (
     <div className={cx('wrapper')}>
-      <div>----------header------------</div>
+      <div className={cx('sub-header')}>
+        {listType === 'C' ? 'Coming Soon' : 'Market'}
+      </div>
       <div>
         <div>{children}</div>
       </div>
-      {marketList}
+      <div>
+        {marketList}
+      </div>
     </div>
   )
 }

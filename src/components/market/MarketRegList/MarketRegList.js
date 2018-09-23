@@ -5,9 +5,10 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,regStart,regEnd,onDetail,curGetTime}) => {
-  const marketGetTime = new Date(start).getTime();
-  const gap = marketGetTime - curGetTime;
-  const dDay = Math.ceil(gap/(1000*60*60*24));
+  // const getTime_start = new Date(regStart).getTime();
+  // const getTime_end = new Date(regEnd).getTime();
+  // const gap = getTime_end - getTime_start;
+  // const recruit_period = Math.ceil(gap/(1000*60*60*24));
   return (
     <div className={cx('item-boxframe')} onClick={() => onDetail(id)}>
       <div className={cx('item-box')}>
@@ -24,7 +25,7 @@ const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,reg
   );
 };
 
- const MarketRegList = ({count,markets,onDetail,curGetTime,children}) => {
+ const MarketRegList = ({markets,onDetail,curGetTime,children}) => {
   if(!markets) return null; 
   const marketRegList = markets.map(
     (market,index) => {
@@ -44,7 +45,6 @@ const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,reg
             regEnd={reg_end_date}
             onDetail={onDetail}
             curGetTime={curGetTime}
-            count={count}
           />
         )
     }

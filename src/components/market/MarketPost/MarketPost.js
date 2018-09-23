@@ -32,6 +32,13 @@ const MarketPost = ({onChange,onCreate}) => {
          <input type="number" name="sellerLimitCnt" onChange={onChange}/>
        </div>
        <div className={cx('input-box')}>
+          <div>
+            <label htmlFor='period'>셀러 모집 기간을 입력해주세요!</label>
+          </div>
+          <input className={cx('period')} type='date' name='regStartDate' onChange={onChange}/>
+          <input className={cx('period')} type='date' name='regEndDate' onChange={onChange}/>
+       </div>
+       <div className={cx('input-box')}>
          <textarea name="desc" rows="20" cols="50" placeholder="마켓에 대한 상세한 설명을 적어주세요! 최소 350자 이상" onChange={onChange}/>
        </div>
        <div className={cx('input-box')}>

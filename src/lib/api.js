@@ -31,8 +31,10 @@ export const updateMarket = (id,marketDetail) => axios.put(`/markets/${id}`,mark
 export const deleteMarket = (id) => axios.delete(`/markets/${id}`);
 export const getApplyList = (id) =>axios.get(`/markets/recruitment/${id}`);
 export const applyMarket = (id) => axios.post('/markets/recruitment',{id});
-export const applyCancel = (id) => axios.delete('/markets/recruitment',{params:id});
+export const applyCancel = (id) => axios.delete('/markets/recruitment/seller',{params:id});
 export const applyClose = (id) => axios.put(`/markets/recruitment/${id}`);
+export const applyDelete = (id) => axios.delete('/markets/recruitment/host',{params:id});
+export const viewCount = (id) => axios.put('/markets/view-count',{id});
 
 // class
 // export const getClassList = (category) => axios.get(`/classes?category=${category}`);

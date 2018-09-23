@@ -14,7 +14,7 @@ class MarketListContainer extends Component {
   }
 
   handleDetail = (id,listType) => {
-    const {MarketUIActions,list} = this.props;
+    const {MarketActions,MarketUIActions,list} = this.props;
     let marketDetail = ''
     let idx = ''
     
@@ -25,9 +25,9 @@ class MarketListContainer extends Component {
       idx = list.marketComingList.findIndex(market => market.market_id == id);
       marketDetail = list.marketComingList[idx];
     }
-    console.log(marketDetail);
     MarketUIActions.showModal('market');
     MarketUIActions.getValue({marketDetail});
+    MarketActions.viewCount(id);
   }
 
   handleSelect = (category) => {
@@ -50,7 +50,6 @@ class MarketListContainer extends Component {
     return (
       <div>
         <MarketList listType='C' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
-        <hr/>
         <MarketList listType='B' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
           <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
         </MarketList>

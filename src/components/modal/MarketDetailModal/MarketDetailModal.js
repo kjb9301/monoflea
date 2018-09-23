@@ -90,7 +90,7 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
                 <div className={cx('marketInfo')}>
                   <div>
                     <span className={cx('marketPlace')}>개설장소</span>
-                    <div><span className={cx('marketPlace')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span></div>
+                    <span className={cx('marketPlaceContent')}>{market_place}</span>
                   </div>
                   <div><span>마켓일정</span>{start_date}~{end_date}</div>
                   <div><span>모집기간</span>{reg_start_date}~{reg_end_date}</div>
@@ -161,7 +161,7 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
               <div className={cx('marketInfo')}>
                 <div>
                   <span className={cx('marketPlace')}>개설장소</span>
-                  <div><span className={cx('marketPlace')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span></div>
+                  <span className={cx('marketPlaceContent')}>{market_place}</span>
                 </div>
                 <div><span>마켓일정</span>{start_date}~{end_date}</div>
                 <div><span>모집기간</span>{reg_start_date}~{reg_end_date}</div>
