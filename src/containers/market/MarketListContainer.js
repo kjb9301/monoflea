@@ -6,6 +6,7 @@ import Button from 'components/common/Button/Button';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
+import CalendarContainer from './CalendarContainer';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
@@ -52,6 +53,7 @@ class MarketListContainer extends Component {
         <MarketList listType='C' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
         <MarketList listType='B' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
           <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
+          <CalendarContainer/>
         </MarketList>
       </div>
     );

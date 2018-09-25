@@ -6,14 +6,16 @@ const HIDE_MODAL = 'marketUI/HIDE_MODAL';
 const GET_VALUE = 'marketUI/GET_VALUE';
 const CHANGE_INPUT = 'marketUI/CHANGE_INPUT';
 const EDIT_TF = 'marketUI/EDIT_TF';
-const LIST_TYPE = 'marketUI/LIST_TYPE';
+const PREV_MONTH = 'marketUI/PREV_MONTH';
+const NEXT_MONTH = 'marketUI/NEXT_MONTH';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 export const getValue = createAction(GET_VALUE);
 export const changeInput = createAction(CHANGE_INPUT);
 export const editTF = createAction(EDIT_TF);
-export const listType = createAction(LIST_TYPE);
+export const prevMonth = createAction(PREV_MONTH);
+export const nextMonth = createAction(NEXT_MONTH);
 
 const initialState = fromJS({
   modal: {
@@ -35,6 +37,9 @@ const initialState = fromJS({
     reg_start_date: '',
     reg_end_date: '',
     confirmYN: ''
+  },
+  calendar: {
+    currentDate: new Date()
   },
   editTF: false
 });
@@ -87,5 +92,13 @@ export default handleActions({
   [EDIT_TF]: (state,action) => {
     const editTF = action.payload;
     return (editTF === true? state.set('editTF',false) : state.set('editTF',true));
+  },
+  [PREV_MONTH]: (state,action) => {
+    const prevMonth = action.payload;
+    return state.setIn(['calendar','currentDate'],prevMonth);
+  },
+  [NEXT_MONTH]: (state,action) => {
+    const nextMonth = action.payload;
+    return state.setIn(['calendar','currentDate'],nextMonth);
   }
 }, initialState);
