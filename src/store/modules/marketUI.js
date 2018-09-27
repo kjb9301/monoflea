@@ -1,5 +1,6 @@
 import {createAction,handleActions} from 'redux-actions';
 import {fromJS} from 'immutable';
+import { pender } from 'redux-pender';
 
 const SHOW_MODAL = 'marketUI/SHOW_MODAL';
 const HIDE_MODAL = 'marketUI/HIDE_MODAL';
@@ -8,6 +9,7 @@ const CHANGE_INPUT = 'marketUI/CHANGE_INPUT';
 const EDIT_TF = 'marketUI/EDIT_TF';
 const PREV_MONTH = 'marketUI/PREV_MONTH';
 const NEXT_MONTH = 'marketUI/NEXT_MONTH';
+//const USER_TF = 'marketUI/USER_TF';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -16,6 +18,7 @@ export const changeInput = createAction(CHANGE_INPUT);
 export const editTF = createAction(EDIT_TF);
 export const prevMonth = createAction(PREV_MONTH);
 export const nextMonth = createAction(NEXT_MONTH);
+//export const userTF = createAction(USER_TF,api.userTF);
 
 const initialState = fromJS({
   modal: {
@@ -100,5 +103,11 @@ export default handleActions({
   [NEXT_MONTH]: (state,action) => {
     const nextMonth = action.payload;
     return state.setIn(['calendar','currentDate'],nextMonth);
-  }
+  },
+  // ...pender({
+  //   type: USER_TF,
+  //   onSuccess: (state,action) => {
+  //     console.log(action.payload.data);
+  //   }
+  // })
 }, initialState);

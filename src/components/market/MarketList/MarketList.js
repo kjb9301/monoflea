@@ -50,7 +50,7 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
   return (
     <div className={cx('wrapper')}>
       <div className={cx('sub-header')}>
-        {listType === 'C' ? 'Coming Soon' : 'Market'}
+        {listType === 'CL' ? 'Coming Soon' : 'Market'}
       </div>
       <div>
         <div>{children}</div>

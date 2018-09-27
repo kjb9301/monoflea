@@ -35,6 +35,7 @@ export const applyCancel = (id) => axios.delete('/markets/recruitment/seller',{p
 export const applyClose = (id) => axios.put(`/markets/recruitment/${id}`);
 export const applyDelete = (id) => axios.delete('/markets/recruitment/host',{params:id});
 export const viewCount = (id) => axios.put('/markets/view-count',{id});
+//export const userTF = () => axios.get('/markets/user');
 
 // class
 // export const getClassList = (category) => axios.get(`/classes?category=${category}`);

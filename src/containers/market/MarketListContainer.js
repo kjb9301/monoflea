@@ -3,10 +3,10 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import MarketList from 'components/market/MarketList';
 import Button from 'components/common/Button/Button';
+import CalendarContainer from './CalendarContainer';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
-import CalendarContainer from './CalendarContainer';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
@@ -19,7 +19,7 @@ class MarketListContainer extends Component {
     let marketDetail = ''
     let idx = ''
     
-    if(listType === 'B'){
+    if(listType === 'L'){
       idx = list.marketList.findIndex(market => market.market_id == id);
       marketDetail = list.marketList[idx];
     }else{
@@ -50,8 +50,8 @@ class MarketListContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <MarketList listType='C' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
-        <MarketList listType='B' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
+        <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
+        <MarketList listType='L' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
           <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
           <CalendarContainer/>
         </MarketList>
