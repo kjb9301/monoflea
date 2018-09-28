@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
-import { convertToRaw, EditorState } from 'draft-js';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import { Editor } from 'react-draft-wysiwyg';
-import draftToMarkdown from 'draftjs-to-markdown';
+// import draftToMarkdown from 'draftjs-to-markdown';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as newNoticeAction from 'store/modules/noticePost';
 
 class EditorMarkdown extends Component {
   state = {
-    editorState: undefined,
+    editorState: EditorState.createEmpty(),
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      editorState: EditorState.createEmpty(),
-    };
-  }
-
-  onContentStateChange = (contentState) => {
-    const { handleInputContent } = this.props;
+  onEditorStateChange = (editorState) => {
     this.setState({
-      contentState
+      editorState,
     });
-    handleInputContent(contentState);
-  }
+    const { NewNoticeAction } = this.props;
+    NewNoticeAction.changeInputContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+    // console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  };
+
+
+  // onContentStateChange = (contentState) => {
+  //   const { handleInputContent } = this.props;
+  //   this.setState({
+  //     contentState
+  //   });
+  //   console.log(this.state.contentState);
+  //   handleInputContent(contentState);
+  // }
 
   // onEditorStateChange = (editorState) => {
   //   this.setState({
@@ -30,26 +40,26 @@ class EditorMarkdown extends Component {
   //   });
   // };
 
-  uploadImage = (file) => {
-    return new Promise(
-      (resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://api.imgur.com/3/image');
-        xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
-        const data = new FormData();
-        data.append('image', file);
-        xhr.send(data);
-        xhr.addEventListener('load', () => {
-          const response = JSON.parse(xhr.responseText);
-          resolve(response);
-        });
-        xhr.addEventListener('error', () => {
-          const error = JSON.parse(xhr.responseText);
-          reject(error);
-        });
-      }
-    );
-  }
+  // uploadImage = (file) => {
+  //   return new Promise(
+  //     (resolve, reject) => {
+  //       const xhr = new XMLHttpRequest();
+  //       xhr.open('POST', 'https://api.imgur.com/3/image');
+  //       xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
+  //       const data = new FormData();
+  //       data.append('image', file);
+  //       xhr.send(data);
+  //       xhr.addEventListener('load', () => {
+  //         const response = JSON.parse(xhr.responseText);
+  //         resolve(response);
+  //       });
+  //       xhr.addEventListener('error', () => {
+  //         const error = JSON.parse(xhr.responseText);
+  //         reject(error);
+  //       });
+  //     }
+  //   );
+  // }
 
   render() {
     const { editorState } = this.state;
@@ -71,19 +81,21 @@ class EditorMarkdown extends Component {
             history: { inDropdown: false },
             image: { uploadCallback: uploadImage, alt: { present: true, mandatory: true } }
           }}
-          localization={{
-            locale: 'ko',
-          }}
-          onContentStateChange={this.onContentStateChange}
+          localization={{ locale: 'ko' }}
+          onEditorStateChange={this.onEditorStateChange}
+          // onContentStateChange={this.onContentStateChange}
           // onEditorStateChange={this.onEditorStateChange}
-        />
-        <textarea
-          disabled
-           value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}
         />
       </div>
     );
   }
 }
 
-export default EditorMarkdown;
+export default connect(
+  (state) => ({
+    content: state.noticePost.get('content'),
+  }),
+  (dispatch) => ({
+    NewNoticeAction: bindActionCreators(newNoticeAction, dispatch)
+  })
+)(EditorMarkdown);

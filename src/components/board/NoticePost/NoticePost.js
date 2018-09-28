@@ -5,7 +5,7 @@ import EditorMarkdown from 'components/common/EditorMarkdown';
 
 const cx = classNames.bind(styles);
 
-const NoticePost = ({ handleInputTitle, handleInputContent }) => {
+const NoticePost = ({ handleInputTitle, createNewPost }) => {
   return (
     <div className={cx('post-wrap')}>
       <div className={cx('post-title')}>
@@ -16,11 +16,9 @@ const NoticePost = ({ handleInputTitle, handleInputContent }) => {
           onChange={handleInputTitle}
         />
       </div>
-      <EditorMarkdown
-        handleInputContent={handleInputContent}
-      />
+      <EditorMarkdown />
       <div className={cx('post-btn-wrap')}>
-        <span className={cx('post-btn')}>작성</span>
+        <span className={cx('post-btn')} onClick={createNewPost}>작성</span>
       </div>
     </div>
   );

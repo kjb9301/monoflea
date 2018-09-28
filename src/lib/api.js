@@ -3,7 +3,7 @@ import axios from 'axios';
 // notice
 export const getNoticeList = () => axios.get('/notices');
 export const getNoticeDetail = (id) => axios.get(`/notices/${id}`);
-export const postNewNotice = (title, content) => axios.post('/notices');
+export const postNewNotice = (title, content) => axios.post('/notices', { title, content });
 
 // login
 export const login = (email, password) => axios.post('/users/login', { email, password });

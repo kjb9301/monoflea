@@ -6,27 +6,29 @@ import * as newNoticeAction from 'store/modules/noticePost';
 
 class NoticePostContainer extends Component {
   
-  createNewPost = () => {
-    
+  createNewPost = async () => {
+    const { NewNoticeAction, title, content } = this.props;
+    await NewNoticeAction.postNewNotice(title, content);
   }
 
   handleInputTitle = async (e) => {
     const { NewNoticeAction } = this.props;
     const { value } = e.target;
-    await NewNoticeAction.changeInputTitle(value);
+    NewNoticeAction.changeInputTitle(value);
   }
 
-  handleInputContent = (content) => {
-    const { blocks } = content;
-    console.log(JSON.stringify(blocks));
-  }
+  // handleInputContent = (content) => {
+  //   const { blocks } = content;
+  //   console.log(JSON.stringify(blocks));
+  // }
 
   render() {
-    const { handleInputTitle, handleInputContent } = this;
+    const { handleInputTitle, createNewPost } = this;
     return (
       <NoticePost 
         handleInputTitle={handleInputTitle}
-        handleInputContent={handleInputContent}
+        // handleInputContent={handleInputContent}
+        createNewPost={createNewPost}
       />
     );
   }

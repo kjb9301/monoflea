@@ -22,7 +22,10 @@ export default handleActions({
   ...pender({
     type: POST_NEW_NOTICE,
     onSuccess: (state, action) => {
-      console.log(action);
+      console.log(action.payload);
+    },
+    onFailure: (state, action) => {
+      console.log(action.payload.response.data.message);
     }
   }),
   [CHANGE_INPUT_TITLE]: (state, action) => {
