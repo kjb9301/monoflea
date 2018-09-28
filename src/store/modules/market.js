@@ -31,7 +31,9 @@ export const viewCount = createAction(VIEW_COUNT,api.viewCount);
 const initialState = Map({
   data: List(),
   applyList: List(),
-  message: '' 
+  message: '',
+  marketCount: 0,
+  marketRegCount: 0 
 });
 
 export default handleActions({
@@ -39,7 +41,12 @@ export default handleActions({
     type: GET_MARKET_LIST,
     onSuccess: (state,action) => {
       const list = action.payload.data;
+      console.log(list)
+      const marketCount = list.marketCount;
+      const marketRegCount = list.marketRegCount;
       return state.set('data', list)
+                  .set('marketCount', marketCount)
+                  .set('marketRegCount', marketRegCount)     
     }
   }),
   ...pender({
@@ -99,7 +106,6 @@ export default handleActions({
     }
   }),
   ...pender({
-    type: VIEW_COUNT,
-    onSuccess: (state,action) => {}
+    type: VIEW_COUNT
   })
 },initialState);

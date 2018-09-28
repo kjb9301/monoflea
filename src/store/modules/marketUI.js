@@ -10,6 +10,7 @@ const EDIT_TF = 'marketUI/EDIT_TF';
 const PREV_MONTH = 'marketUI/PREV_MONTH';
 const NEXT_MONTH = 'marketUI/NEXT_MONTH';
 //const USER_TF = 'marketUI/USER_TF';
+const TOGGLE_MORE_STATE = 'marketUI/TOGGLE_MORE_STATE';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -19,6 +20,7 @@ export const editTF = createAction(EDIT_TF);
 export const prevMonth = createAction(PREV_MONTH);
 export const nextMonth = createAction(NEXT_MONTH);
 //export const userTF = createAction(USER_TF,api.userTF);
+export const toggleMoreState = createAction(TOGGLE_MORE_STATE);
 
 const initialState = fromJS({
   modal: {
@@ -44,7 +46,9 @@ const initialState = fromJS({
   calendar: {
     currentDate: new Date()
   },
-  editTF: false
+  editTF: false,
+  hasMore: true,
+  totalCnt: 0
 });
 
 export default handleActions({
@@ -104,10 +108,7 @@ export default handleActions({
     const nextMonth = action.payload;
     return state.setIn(['calendar','currentDate'],nextMonth);
   },
-  // ...pender({
-  //   type: USER_TF,
-  //   onSuccess: (state,action) => {
-  //     console.log(action.payload.data);
-  //   }
-  // })
+  [TOGGLE_MORE_STATE]: (state, action) => {
+    return state.set('hasMore', action.payload);
+  }
 }, initialState);

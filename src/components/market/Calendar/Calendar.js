@@ -8,9 +8,9 @@ const Days = ({dayList}) => (
   dayList.map((days,index) => {
     const {day,weekday} = days;
     return (
-      <div key={index}>
+      <div className={cx('days')} key={index}>
         <div>{weekday}</div>
-        <div className={cx('days')}>{day}</div>
+        <div>{day}</div>
       </div>
     )
   })
@@ -19,7 +19,7 @@ const Days = ({dayList}) => (
 const Calendar = ({curMonth,curYear,dayList,onPrevMonth,onNextMonth}) => {
 
   return (
-    <div className={cx('calender')}>
+    <div className={cx('calendar')}>
 			<div>{curYear}</div>
       <div className={cx('header')}>
         <span onClick={onPrevMonth}>◀</span>
