@@ -17,7 +17,7 @@ export const checkNickname = (nickName) => axios.post('/users/check-nickname', {
 export const getAuthNumber = (tel) => axios.post('/certification-number', { tel });
 
 // seller
-export const getSellersList = (category,like) => axios.get(`/sellers?category=${category}&like=${like}`);
+export const getSellersList = (category,like,limit) => axios.get(`/sellers?category=${category}&like=${like}&limit=${limit}`);
 export const getSellerId = (id) => axios.get(`/sellers/${id}`);
 export const getSellerCategory = () => axios.get('/sellers/category-list');
 export const updateSeller = (id,updateData) => axios.put(`/sellers/${id}` , {updateData});

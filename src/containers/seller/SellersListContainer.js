@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SellerList from '../../components/seller/SellerList'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI';
 import * as baseActions from 'store/modules/base';
@@ -13,7 +15,7 @@ class SellersListContainer extends Component {
     const increLike = await SellerActions.incrementLike(id)
     const {increLiked} = increLike.data
     if(increLiked){
-      await SellerActions.getSellersList('All')
+      await SellerActions.getSellersList()
     }
   }
 
@@ -22,7 +24,7 @@ class SellersListContainer extends Component {
     const decreLike = await SellerActions.decrementLike(id)
     const { decreLiked } = decreLike.data;
     if(decreLiked){
-      await SellerActions.getSellersList('All');
+      await SellerActions.getSellersList();
     }
   }
 
@@ -45,14 +47,28 @@ class SellersListContainer extends Component {
     SellerUIActions.showModal('seller');
   }
 
-
+  getMoreData = () => {
+    const { SellerActions, sellerList, category } = this.props;
+    let len = parseInt(sellerList.length/10)*10;
+    if(len>sellerList.length-10) {
+      setTimeout(async () => {
+        await SellerActions.getSellersList(category,'undefined', len+10);
+        // await ClassActions.getClassCount();
+        const { totalCnt } = this.props;
+        console.log(totalCnt);
+        console.log(sellerList.length)
+        if(sellerList.length>=totalCnt) return SellerActions.toggleMoreState(false);
+      }, 350);
+    }
+  }
   componentDidMount(){
-    this.getSellersList('All');
+    this.getSellersList();
   }
    
   render() {
-    const { sellerList,loggedUser} = this.props;
+    const { sellerList,hasMore} = this.props;
     const { getSellerDetail, handleModal , handleDislike, handleLike} = this;
+    const loader = <div className="loader" key={0}>Loading ...</div>;
     console.log(sellerList, 2);
     return (  
       <div>
@@ -62,7 +78,12 @@ class SellersListContainer extends Component {
           onModal = { handleModal }
           detailData = {getSellerDetail}
           offLike = {handleDislike}
-          loggedUser = {loggedUser}
+        />
+        <InfiniteScroll
+          dataLength={sellerList.length}
+          next={this.getMoreData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
         />
       </div>
     );
@@ -71,7 +92,9 @@ class SellersListContainer extends Component {
 
 export default connect((state) => ({
   sellerList : state.seller.get('sellers'),
-  loggedUser : state.base.get('nickName')
+  category : state.seller.get('category'),
+  hasMore : state.seller.get('hasMore'),
+  totalCnt : state.seller.get('totalCnt')
 }),
 (dispatch) => ({
   SellerActions : bindActionCreators(sellerActions,dispatch),

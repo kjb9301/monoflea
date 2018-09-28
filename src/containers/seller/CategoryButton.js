@@ -8,6 +8,7 @@ class CategoryButton extends Component {
 
     getSellersList = (category,like) => {
     const { SellerActions } = this.props;
+    SellerActions.setCategory(category);
     SellerActions.getSellersList(category,like);
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -29,12 +30,10 @@ class CategoryButton extends Component {
     )
     categoryList.unshift(<Button
                             key = {'Like'}
-                            onHandleParams ='All'
                             anotherOnHandleParams = 'like'
                             toGetData = {getSellersList}> 좋아요</Button>)
     categoryList.unshift(<Button 
                             key = {'All'} 
-                            onHandleParams = 'All'
                             toGetData = {getSellersList} >전체</Button>);
     return (
       <div>

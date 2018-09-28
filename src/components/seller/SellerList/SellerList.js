@@ -4,6 +4,7 @@ import styles from './SellerList.scss';
 import Like from 'components/common/Like'
 
 const cx = classNames.bind(styles)
+const viewCnt = {};
 
 const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id, view_cnt,
                     onModal,  detailData, onLike, sellerLikeCnt, seller, offLike}) =>{
@@ -13,12 +14,14 @@ const SellerItem = ({user, sellerCategory, seller_desc,profile_img, id, view_cnt
       <img alt = "img" src = {profile_img} />
       <div className={cx('seller-body')} onClick = {() => {onModal()
                                                            detailData(id)
+                                                           viewCnt[id].innerText = parseInt(viewCnt[id].innerText) + 1;
                                                   }}> 
         <div>닉네임  : {user} </div>
         <div>분야 :  {sellerCategory}</div>
+        <div>조회수 :<span ref={(ref) => viewCnt[id] = ref }>{view_cnt}</span></div>
         <div className={cx('seller-desc')}>{seller_desc}</div>
       </div>
-      <Like onLike = {onLike} offLike = {offLike} view_cnt = {view_cnt}
+      <Like onLike = {onLike} offLike = {offLike} 
             likeOn = {likeOn} like_cnt = {sellerLikeCnt} id = {id}/>
     </div>
     );
