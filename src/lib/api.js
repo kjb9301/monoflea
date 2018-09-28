@@ -21,9 +21,10 @@ export const getSellersList = (category,like) => axios.get(`/sellers?category=${
 export const getSellerId = (id) => axios.get(`/sellers/${id}`);
 export const getSellerCategory = () => axios.get('/sellers/category-list');
 export const updateSeller = (id,updateData) => axios.put(`/sellers/${id}` , {updateData});
-export const incrementLike = (id, inc) => axios.post(`/sellers/like/${id}`, {inc});
-export const decrementLike = (id, dec) => axios.delete(`/sellers/dislike/${id}`, {dec});
+export const incrementLike = (id) => axios.post(`/sellers/like/${id}`);
+export const decrementLike = (id) => axios.delete(`/sellers/dislike/${id}`);
 export const getOneSeller = () => axios.get(`/sellers/mydata`);
+export const incViewCnt = (id) => axios.put(`sellers/view_cnt/${id}`);
 // market
 export const getMarketList = (category) => axios.get(`/markets?category=${category}`);
 export const createMarket = (info) => axios.post('/markets', info);

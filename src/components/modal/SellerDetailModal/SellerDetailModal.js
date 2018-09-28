@@ -7,7 +7,7 @@ import { GoHeart } from "react-icons/go";
 const cx = classNames.bind(styles);
 
 const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,  likeUp}) => {
-   const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory } = sellerDetailData;
+   const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory ,view_cnt} = sellerDetailData;
    const { nickName } = user.nickName;
    const On = loggedNickName !== nickName ? true : false
    let  { imgUrl }  = seller_images; 
@@ -34,7 +34,9 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
                   <div>분야 : {category_ko}</div>
                   <div>경력 : {career}년  <br/> SNS : {sns} </div>
                   ab자기소개 : {seller_desc}
+                  <div>조회수  : {view_cnt}</div>
                   <div className = {cx('like')}> <GoHeart className= {cx('heart')} onClick = {likeUp}/> 좋아요  </div> 
+                
                 </div>
               </div>
             </div>

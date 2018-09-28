@@ -1,17 +1,15 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './SellerWrapper.scss';
-import SellersListContainer from '../../../containers/seller/SellersListContainer';
-import CategoryButton from '../../../containers/seller/CategoryButton';
-import SellerOneData from '../../../containers/seller/SellerOneData';
-import LoginedSellerDetailContainer from '../../../containers/seller/LoginedSellerDetailContainer';
+import SellersListContainer from 'containers/seller/SellersListContainer';
+import CategoryButton from 'containers/seller/CategoryButton';
+import SellerOneData from 'containers/seller/SellerOneData';
+import LoginedSellerDetailContainer from 'containers/seller/LoginedSellerDetailContainer';
 
 const cx = classNames.bind(styles)
 
 const SellerWrapper = () =>{
-
   return (
-
     <div className={cx('wrapper')}>
       <div className={cx('seller-header')}>
         <h1 className={cx('seller-title')}><span>Seller<br/></span><span className={cx('seller-subtitle')}>Information</span><br/><span className={cx('seller-title-name')}>MonoFlea</span></h1>

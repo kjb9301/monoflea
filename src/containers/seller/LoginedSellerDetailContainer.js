@@ -47,9 +47,7 @@ class LoginedSellerDetailContainer extends Component {
     const { loginedSeller, loading,editTF,visible, loggedNickName} = this.props;
     const { handleEdit, handleUpdate, handleChange,handleCancel,handleClose} = this
     const loginedSellerData = loginedSeller.toJS();
-    console.log(loginedSellerData)
-
-    if(loading) return null;
+    
     return (
       <div>
         <LoginedSellerDetailModal
@@ -70,7 +68,7 @@ class LoginedSellerDetailContainer extends Component {
 
 
 export default connect((state ) =>({
-  loginedSeller : state.sellerUI.get('seller'),
+  loginedSeller : state.seller.get('oneSeller'),
   visible : state.sellerUI.getIn(['modal','loggedSeller']),
   editTF : state.sellerUI.get('editTF'),
   loading :state.pender.pending['/seller/GET_SELLER_LIST'],
