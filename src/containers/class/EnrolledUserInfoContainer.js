@@ -26,6 +26,7 @@ class EnrolledUserInfoContainer extends Component {
     const { isSaveInfo } = enrolledResult.data;
     if(isSaveInfo) {
       await BaseActions.loginUserCheck();
+      alert('정보가 정상적으로 등록되었습니다. 클래스 등록 버튼을 눌러주세요!');
       return BaseActions.hideModal('enrolledUserInfo');
     }
     return alert('일시적인 오류입니다. 다시 시도해주세요!');

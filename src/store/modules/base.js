@@ -109,6 +109,9 @@ const initialState = Map({
   userType: '',
   name: '',
   tel: '',
+  user_id: '',
+  seller_id: '',
+  host_id: '',
   loginMessage: ''
 });
 
@@ -124,25 +127,31 @@ export default handleActions({
   ...pender({
     type: LOGIN,
     onSuccess: (state, action) => {
-      const { isLogin, nickName, message, userType, name, tel } = action.payload.data;
+      const { isLogin, nickName, message, userType, name, tel, user_id, seller_id, host_id } = action.payload.data;
       return state.set('logged', isLogin)
                   .set('nickName', nickName)
                   .set('loginMessage', message)
                   .set('userType', userType)
                   .set('name', name)
-                  .set('tel', tel);
+                  .set('tel', tel)
+                  .set('user_id', user_id)
+                  .set('seller_id', seller_id)
+                  .set('host_id', host_id);
     }
   }),
   ...pender({
     type: LOGIN_USER_CHECK,
     onSuccess: (state, action) => {
       const { data: userState } = action.payload;
-      const { isLogin, nickName, userType, name, tel } = userState;
+      const { isLogin, nickName, userType, name, tel, user_id, seller_id, host_id } = userState;
       return state.set('logged', isLogin)
                   .set('nickName', nickName)
                   .set('userType', userType)
                   .set('name', name)
-                  .set('tel', tel);
+                  .set('tel', tel)
+                  .set('user_id', user_id)
+                  .set('seller_id', seller_id)
+                  .set('host_id', host_id);
     }
   }),
   ...pender({
