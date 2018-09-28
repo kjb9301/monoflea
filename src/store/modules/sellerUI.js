@@ -33,6 +33,7 @@ const initialState = fromJS({
     career : '',
     seller_desc : '',
     like_cnt : 0,
+    view_cnt : '',
     profile_img : '',
     user : {
               nickName : '',
@@ -50,7 +51,6 @@ const initialState = fromJS({
 export default handleActions({
  [SHOW_MODAL] : (state, action) => {
    const  modalName = action.payload;
-   console.log(1111111111111111111111)
     return state.setIn(['modal',modalName], true)
  },
  [SHOW_LOGGED_MODAL] : (state, action) => {
@@ -71,11 +71,10 @@ export default handleActions({
    return state.setIn(['seller', name], value);
  },
  [DETAIL_DATA] : (state, action) => {
-    const {sellerDetail} = action.payload
     console.log(action.payload)
-    const { seller_id, career, sns, seller_desc, like_cnt, profile_img,
+    const { seller_id, career, sns, seller_desc, like_cnt, profile_img, view_cnt,
             show_TF, seller_images : imgUrl, user : nickName,
-            sellerCategory : category_ko} = sellerDetail;
+            sellerCategory : category_ko} = action.payload
     return state.setIn(['seller','seller_id'], seller_id)
                 .setIn(['seller','user','nickName'], nickName )
                 .setIn(['seller','career'], career)
@@ -86,6 +85,7 @@ export default handleActions({
                 .setIn(['seller','sellerCategory','category_ko'], category_ko)
                 .setIn(['seller', 'show_TF'], show_TF)
                 .setIn(['seller', 'like_cnt'],like_cnt)
+                .setIn(['seller', 'view_cnt'], view_cnt)
  },
  [EDIT_TF] : (state, action) =>{
    const edit = action.payload;

@@ -24,6 +24,7 @@ class SellerOneData extends Component {
       SellerActions.getOneSeller()
         .then(result => {
           const  sellerDetail = result.data;
+          console.log(sellerDetail);
           SellerUIActions.detailData({sellerDetail})
           SellerUIActions.showLoggedModal('loggedSeller');
         })
