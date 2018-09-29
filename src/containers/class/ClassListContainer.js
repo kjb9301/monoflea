@@ -27,7 +27,8 @@ class ClassListContainer extends Component {
   }
 
   takeOnedayClass = async (id) => {
-    const { ClassActions } = this.props;
+    const { ClassActions,  logged } = this.props;
+    if(!logged) return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
     const takenResult = await ClassActions.takeOnedayClass(id);
     const { isTaken } = takenResult.data;
     if(isTaken) {
@@ -37,7 +38,8 @@ class ClassListContainer extends Component {
   }
   
   cancelOnedayClass = async (id) => {
-    const { ClassActions } = this.props;
+    const { ClassActions, logged } = this.props;
+    if(!logged) return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
     const cancelResult = await ClassActions.cancelOnedayClass(id);
     const { isCancel } = cancelResult.data;
     if(isCancel) {
@@ -97,6 +99,7 @@ export default connect(
     totalCnt: state.class.get('totalCnt'),
     hasMore: state.class.get('hasMore'),
     category: state.class.get('category'),
+    logged: state.base.get('logged')
   }),
   (dispatch) => ({
     ClassActions: bindActionCreators(classActions, dispatch),
