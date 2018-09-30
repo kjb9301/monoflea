@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MarketList from 'components/market/MarketList';
 import Button from 'components/common/Button/Button';
@@ -11,8 +12,9 @@ import * as marketUIActions from 'store/modules/marketUI';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
-    const {MarketActions} = this.props;
-    MarketActions.getMarketList();
+    const {MarketActions,location} = this.props;
+    const confirm = (location.pathname === '/markets'? 'Y' : 'N');
+    MarketActions.getMarketList(confirm);
   }
 
   handleDetail = (id,listType) => {
@@ -44,7 +46,7 @@ class MarketListContainer extends Component {
 
     if(len > marketList.length-10) {
       setTimeout(async () => {
-        await MarketActions.getMarketList('undefined',len+10);
+        await MarketActions.getMarketList('Y','undefined',len+10);
         const { marketCount } = this.props;
         if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
       }, 300);
@@ -94,4 +96,4 @@ export default connect(
     MarketActions: bindActionCreators(marketActions,dispatch),
     MarketUIActions: bindActionCreators(marketUIActions,dispatch)
   })
-)(MarketListContainer);
+)(withRouter(MarketListContainer));

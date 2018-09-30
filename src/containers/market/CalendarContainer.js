@@ -21,9 +21,21 @@ class CalendarContainer extends Component {
     MarketUIActions.prevMonth(prevMonth);
   }
 
+  HandlePrevDay = () => {
+    const {MarketUIActions,currentDate} = this.props;
+    const prevDay = dateFns.subDays(currentDate,1)
+    MarketUIActions.prevDay(prevDay);
+  }
+
+  HandleNextDay = () => {
+    const {MarketUIActions,currentDate} = this.props;
+    const nextDay = dateFns.addDays(currentDate,1)
+    MarketUIActions.nextDay(nextDay);
+  }
+
   render() {
     const {loading,currentDate} = this.props;
-    const {HandlePrevMonth,HandleNextMonth} = this;
+    const {HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay} = this;
 
     const startDate = dateFns.startOfMonth(currentDate);
     const endDate = dateFns.endOfMonth(currentDate);
@@ -34,9 +46,10 @@ class CalendarContainer extends Component {
     const dateFormat_M = "M";
     const dateFormat_D = "D";
     const dateFormat_d = "ddd";
-
+    console.log(dateFns.format(currentDate,dateFormat_D))
     const curMonth = dateFns.format(currentDate,dateFormat_M);
     const curYear = dateFns.format(currentDate,dateFormat_Y);
+    const curDay = dateFns.format(currentDate,dateFormat_D);
 
     let dayList = [];
 
@@ -49,7 +62,7 @@ class CalendarContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <Calendar curYear={curYear} curMonth={curMonth} dayList={dayList} onPrevMonth={HandlePrevMonth} onNextMonth={HandleNextMonth}/>
+        <Calendar curYear={curYear} curMonth={curMonth} curDay={curDay} dayList={dayList} onPrevMonth={HandlePrevMonth} onNextMonth={HandleNextMonth} onPrevDay={HandlePrevDay} onNextDay={HandleNextDay}/>
       </div>
     );
   }

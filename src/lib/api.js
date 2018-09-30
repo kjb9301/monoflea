@@ -26,7 +26,7 @@ export const decrementLike = (id) => axios.delete(`/sellers/dislike/${id}`);
 export const getOneSeller = () => axios.get(`/sellers/mydata`);
 export const incViewCnt = (id) => axios.put(`sellers/view_cnt/${id}`);
 // market
-export const getMarketList = (category,limit) => axios.get(`/markets?category=${category}&limit=${limit}`);
+export const getMarketList = (confirm,category,limit) => axios.get(`/markets?confirm=${confirm}&category=${category}&limit=${limit}`);
 export const createMarket = (info) => axios.post('/markets', info);
 export const updateMarket = (id,marketDetail) => axios.put(`/markets/${id}`,marketDetail);
 export const deleteMarket = (id) => axios.delete(`/markets/${id}`);
@@ -36,7 +36,6 @@ export const applyCancel = (id) => axios.delete('/markets/recruitment/seller',{p
 export const applyClose = (id) => axios.put(`/markets/recruitment/${id}`);
 export const applyDelete = (id) => axios.delete('/markets/recruitment/host',{params:id});
 export const viewCount = (id) => axios.put('/markets/view-count',{id});
-//export const userTF = () => axios.get('/markets/user');
 
 // class
 // export const getClassList = (category) => axios.get(`/classes?category=${category}`);

@@ -1,14 +1,67 @@
 @import 'common';
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.icon {
+  font-family: 'Material Icons', serif;
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
 
 .calendar {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
 
   .header {
+    display: flex;
+    justify-content: space-between;
     border: 1px solid black;
+    background-color: DodgerBlue;
+
+    div {
+      background-color: #f1f1f1;
+      width: 120px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+    }
   }
 
-  .days {
-    border: 1px solid black;
-    display: inline-block;
+  .days-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid red;
+
+    .days {
+      background-color: #f1f1f1;
+      width: 100px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+
+      .weekday {
+        border: 1px solid blue;
+      }
+
+      .day {
+        border: 1px solid green;
+      }
+    }
   }
 }
+
+
