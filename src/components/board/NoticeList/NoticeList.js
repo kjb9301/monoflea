@@ -5,14 +5,25 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
+const parser = new DOMParser();
+
 const NoticeItem = ({ board_no, user_id, title, content, img_file, reg_date, view_cnt }) => {
+  const htmlDoc = parser.parseFromString(content, 'text/html');
+  // const parsedContent = htmlDoc.querySelector('body').innerHTML;
+  const parsedContent = htmlDoc.body;
+  console.log(parsedContent.childNodes[0]);
+  // console.log(unescape(content));
   return (
     <Link to={`/boards/notice/${board_no}`}>
       <div className={cx('notice')}>
         <div>{board_no}</div>
         <div>{user_id}</div>
         <div>{title}</div>
-        <div>{content}</div>
+        {/* <div>{parsedContent}</div> */}
+        {/* <div>{JSON.parse(content)}</div> */}
+        {
+          parsedContent.childNodes
+        }
         <div>{img_file}</div>
         <div>{view_cnt}</div>
         <div>{reg_date}</div>

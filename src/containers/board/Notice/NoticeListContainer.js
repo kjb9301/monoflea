@@ -13,13 +13,10 @@ class NoticeListContainer extends Component {
   componentDidMount() {
     this.getNoticeList();
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    
-  }
-
+  
   render() {
     const { notices } = this.props;
+    if(!notices.length) return null;
     return (
       <div>
         <NoticeList notices={notices}/>
