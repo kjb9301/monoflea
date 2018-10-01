@@ -37,7 +37,7 @@ class LoginedSellerDetailContainer extends Component {
     const sellerDetail = loginedSeller.toJS();
     SellerUIActions.editTF(editTF);
     SellerActions.updateSeller(id,sellerDetail);
-    SellerActions.getSellersList('All');
+    SellerActions.getSellersList();
   }
   handleEdit = () =>{
     const { SellerUIActions ,editTF} = this.props;
