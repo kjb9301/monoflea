@@ -29,16 +29,16 @@ const MainWrapper = () => {
             <p>About</p>
           </div>
         </Link>
+        <Link to="/markets" className={cx('main-nav')}>
+          <div className={cx('nav-wrap')}>
+            <img src={marketImg}/>
+            <p>플리마켓</p>
+          </div>
+        </Link>
         <Link to="/sellers" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             <img src={sellerImg}/>
             <p>셀러</p>
-          </div>
-        </Link>
-        <Link to="/hosts" className={cx('main-nav')}>
-          <div className={cx('nav-wrap')}>
-            <img src={hostImg}/>
-            <p>주최사</p>
           </div>
         </Link>
         <Link to="/classes" className={cx('main-nav')}>
@@ -47,16 +47,16 @@ const MainWrapper = () => {
             <p>원데이클래스</p>
           </div>
         </Link>
+        <Link to="/markets/recruitment" className={cx('main-nav')}>
+          <div className={cx('nav-wrap')}>
+            <img src={hostImg}/>
+            <p>마켓등록/셀러모집</p>
+          </div>
+        </Link>
         <Link to="/boards" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             <img src={communityImg}/>
             <p>커뮤니티</p>
-          </div>
-        </Link>
-        <Link to="/markets" className={cx('main-nav')}>
-          <div className={cx('nav-wrap')}>
-            <img src={marketImg}/>
-            <p>플리마켓</p>
           </div>
         </Link>
         <Link to="/questions" className={cx('main-nav')}>

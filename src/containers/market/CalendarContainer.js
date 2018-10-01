@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import Calendar from 'components/market/Calendar';
 import dateFns from "date-fns";
+import Calendar from 'components/market/Calendar';
+import Button from 'components/common/Button/Button';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
@@ -21,48 +22,85 @@ class CalendarContainer extends Component {
     MarketUIActions.prevMonth(prevMonth);
   }
 
-  HandlePrevDay = () => {
+  HandlePrevWeek = () => {
     const {MarketUIActions,currentDate} = this.props;
-    const prevDay = dateFns.subDays(currentDate,1)
-    MarketUIActions.prevDay(prevDay);
+    const prevWeek = dateFns.subDays(currentDate,7)
+    MarketUIActions.prevWeek(prevWeek);
   }
 
-  HandleNextDay = () => {
+  HandleNextWeek = () => {
     const {MarketUIActions,currentDate} = this.props;
-    const nextDay = dateFns.addDays(currentDate,1)
-    MarketUIActions.nextDay(nextDay);
+    const nextWeek = dateFns.addDays(currentDate,7)
+    MarketUIActions.nextWeek(nextWeek);
   }
 
   render() {
-    const {loading,currentDate} = this.props;
-    const {HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay} = this;
+    const {loading,currentDate,onSelect} = this.props;
+    const {HandlePrevMonth,HandleNextMonth,HandlePrevWeek,HandleNextWeek} = this;
 
-    const startDate = dateFns.startOfMonth(currentDate);
-    const endDate = dateFns.endOfMonth(currentDate);
-
-    const day_length = dateFns.differenceInDays(endDate,startDate) + 1;
+    // const startDayOfMonth = dateFns.startOfMonth(currentDate);
+    // const endDayOfMonth = dateFns.endOfMonth(currentDate);
+    // const day_length = dateFns.differenceInDays(endDate,startDate) + 1;
 
     const dateFormat_Y = "YYYY";
     const dateFormat_M = "M";
     const dateFormat_D = "D";
     const dateFormat_d = "ddd";
-    console.log(dateFns.format(currentDate,dateFormat_D))
+  
     const curMonth = dateFns.format(currentDate,dateFormat_M);
     const curYear = dateFns.format(currentDate,dateFormat_Y);
     const curDay = dateFns.format(currentDate,dateFormat_D);
 
-    let dayList = [];
+    //const firstOfWeek = dateFns.startOfWeek(currentDate)
+    //const lastOfWeek = dateFns.endOfWeek(currentDate)
 
-    for(let i = 0; i< day_length; i++){
-      const weekday = dateFns.format(dateFns.addDays(startDate,i),dateFormat_d)
-      const day = dateFns.format(dateFns.addDays(startDate,i),dateFormat_D)
-      dayList.push({day,weekday})
-    }
+    //const weeksInMonth = dateFns.differenceInCalendarWeeks(endDayOfMonth,startDayOfMonth)
+
+    let daysInWeekList = [];
+    // let startDayOfFirstWeek = '';
+    // let startDayOfWeek = '';
+
+    // for(let i = 0; i < weeksInMonth+1; i++){
+    //   startDayOfFirstWeek = dateFns.startOfWeek(currentDate)
+    //   startDayOfWeek = dateFns.addWeeks(startDayOfFirstWeek,i)
+    //   let daysInWeek = [];
+
+    //   for(let j = 0; j < 7; j++) {
+    //     const days = dateFns.addDays(startDayOfWeek,j);
+    //     const isToday = dateFns.isSameDay(currentDate,days);
+    //     const weekday = dateFns.format(days,dateFormat_d);
+    //     const day = dateFns.format(days,dateFormat_D);
+    //     daysInWeek.push({day,weekday,isToday})   
+    //   }
+    //   daysInWeekList.push(daysInWeek)
+    // }
+    const startDayOfWeek = dateFns.startOfWeek(currentDate);
+    const endDayOfWeek = dateFns.endOfWeek(currentDate);
+    const daysInWeek_len = dateFns.differenceInDays(endDayOfWeek,startDayOfWeek) + 1;
     
+    for(let i = 0; i < daysInWeek_len; i++){
+      const daysInWeek = dateFns.addDays(startDayOfWeek,i);
+      const isToday = dateFns.isSameDay(currentDate,daysInWeek);
+      const weekday = dateFns.format(daysInWeek,dateFormat_d);
+      const day = dateFns.format(daysInWeek,dateFormat_D);
+      daysInWeekList.push({day,weekday,isToday});
+    }
+
     if(loading) return null;
     return (
       <div>
-        <Calendar curYear={curYear} curMonth={curMonth} curDay={curDay} dayList={dayList} onPrevMonth={HandlePrevMonth} onNextMonth={HandleNextMonth} onPrevDay={HandlePrevDay} onNextDay={HandleNextDay}/>
+        <Calendar 
+          currentDate={currentDate} 
+          curYear={curYear} 
+          curMonth={curMonth} 
+          curDay={curDay} 
+          daysInWeekList={daysInWeekList} 
+          onPrevMonth={HandlePrevMonth} 
+          onNextMonth={HandleNextMonth} 
+          onPrevWeek={HandlePrevWeek} 
+          onNextWeek={HandleNextWeek}
+          onSelect={onSelect}  
+        />
       </div>
     );
   }
@@ -71,6 +109,7 @@ class CalendarContainer extends Component {
 export default connect(
   (state) => ({
     currentDate: state.marketUI.getIn(['calendar','currentDate']),
+    daysInWeekArr: state.marketUI.getIn(['calendar','daysInWeekArr']),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({

@@ -36,7 +36,8 @@ class MarketListContainer extends Component {
 
   handleSelect = (category) => {
     const {MarketActions} = this.props;
-    MarketActions.getMarketList(category);
+    console.log(category)
+    MarketActions.getMarketList('Y',category);
   }
 
   getMoreData = () => {
@@ -71,7 +72,7 @@ class MarketListContainer extends Component {
         <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
         <MarketList listType='L' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
           <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
-          <CalendarContainer/>
+          <CalendarContainer onSelect={handleSelect}/>
         </MarketList>
         <InfiniteScroll
           dataLength={marketList.length}

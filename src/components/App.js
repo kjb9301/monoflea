@@ -29,7 +29,6 @@ const App = () => {
         <Route exact path="/markets" component={MarketPage}/>
         <Route path="/markets/recruitment" component={MarketRegListPage}/>
         <Route path="/markets/registration" component={MarketRegPage}/>
-        <Route path="/hosts" component={MarketRegPage}/>
         <Route exact path="/classes" component={ClassPage}/>
         <Route path="/classes/post" component={ClassPostPage}/>
         <Route exact path="/sellers" component={SellerPage}/>

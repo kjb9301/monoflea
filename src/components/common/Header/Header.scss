@@ -72,35 +72,6 @@
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         }
       }
-
-      .nav-item-market {
-        position: relative;
-
-        &:hover {
-          background: orange;
-        }
-
-        &:hover > .nav-subitem {
-          display: block;
-        }
-
-        .nav-subitem {
-          display: none;
-          position: absolute;
-          left: 0;
-          top: 100%;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
-          div {
-            padding: .7rem ;
-            background: orange;
-
-            &:hover {
-              background: rgba(orange, 0.9);
-            }
-          }
-        }
-      }
     }
 
     .header-login {
