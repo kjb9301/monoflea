@@ -33,8 +33,8 @@ class MarketDetailContainer extends Component {
       idx = list.marketList.findIndex(market => market.market_id === id);
       marketDetail = list.marketList[idx];
     }else{
-      idx = list.marketRegList.findIndex(market => market.market_id === id);
-      marketDetail = list.marketRegList[idx];
+      idx = list.marketList.findIndex(market => market.market_id === id);
+      marketDetail = list.marketList[idx];
     }
     MarketUIActions.editTF(editTF);
     MarketUIActions.hideModal('market');
@@ -64,10 +64,10 @@ class MarketDetailContainer extends Component {
   handleApply = async (id) => {
     const {MarketActions,MarketUIActions} = this.props;
     await MarketActions.applyMarket(id);
-    await MarketActions.getMarketList();
-    const {list,message} = this.props; 
-    const idx = list.marketRegList.findIndex(market => market.market_id === id);
-    const marketDetail = list.marketRegList[idx];
+    await MarketActions.getMarketList('N');
+    const {list,message} = this.props;
+    const idx = list.marketList.findIndex(market => market.market_id === id);
+    const marketDetail = list.marketList[idx];
     await MarketUIActions.getValue({marketDetail});
     MarketUIActions.hideModal('market');
     MarketUIActions.showModal('market');
@@ -77,10 +77,10 @@ class MarketDetailContainer extends Component {
   handleApplyCancel = async (id) => {
     const {MarketActions,MarketUIActions} = this.props;
     MarketActions.applyCancel({id});
-    await MarketActions.getMarketList();
+    await MarketActions.getMarketList('N');
     const {list,message} = this.props; 
-    const idx = list.marketRegList.findIndex(market => market.market_id === id);
-    const marketDetail = list.marketRegList[idx];
+    const idx = list.marketList.findIndex(market => market.market_id === id);
+    const marketDetail = list.marketList[idx];
 
     MarketUIActions.getValue({marketDetail});
     MarketUIActions.hideModal('market');
@@ -95,7 +95,7 @@ class MarketDetailContainer extends Component {
   }
 
   render() {
-    const {loading,visible,marketDetail,editTF,userType} = this.props;
+    const {loading,visible,marketDetail,editTF,userType,user_host_id} = this.props;
     const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel,handleRegUpdate,handleApplyClose} = this;
     const detailInfo = marketDetail.toJS();
 
@@ -104,6 +104,7 @@ class MarketDetailContainer extends Component {
       <div>
         <MarketDetailModal 
               userType={userType}
+              user_host_id={user_host_id}
               visible={visible} 
               marketDetail={detailInfo} 
               onChange={handleChange} 
@@ -128,7 +129,7 @@ export default connect(
     list: state.market.get('data'),
     userType: state.base.get('userType'),
     logged: state.base.get('logged'),
-    list: state.market.get('data'),
+    user_host_id: state.base.get('host_id'),
     message: state.market.get('message'),
     visible: state.marketUI.getIn(['modal','market']),
     marketDetail: state.marketUI.get('market'),

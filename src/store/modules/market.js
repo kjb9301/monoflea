@@ -5,7 +5,6 @@ import { pender} from 'redux-pender';
 import * as api from 'lib/api';
 
 const GET_MARKET_LIST = 'markets/GET_MARKET_LIST';
-//const GET_MARKET_DETAIL = 'markets/GET_MARKET_DETAIL';
 const CREATE_MARKET = 'markets/CREATE_MARKET';
 const UPDATE_MARKET = 'markets/UPDATE_MARKET';
 const DELETE_MARKET = 'markets/DELETE_MARKET';
@@ -27,11 +26,12 @@ export const applyClose = createAction(APPLY_CLOSE,api.applyClose);
 export const applyDelete = createAction(APPLY_DELETE,api.applyDelete);
 export const viewCount = createAction(VIEW_COUNT,api.viewCount);
 
-
 const initialState = Map({
   data: List(),
   applyList: List(),
-  message: '' 
+  message: '',
+  marketCount: 0,
+  marketRegCount: 0 
 });
 
 export default handleActions({
@@ -39,7 +39,11 @@ export default handleActions({
     type: GET_MARKET_LIST,
     onSuccess: (state,action) => {
       const list = action.payload.data;
+      const marketCount = list.marketCount;
+      //const marketRegCount = list.marketRegCount;
       return state.set('data', list)
+                  .set('marketCount', marketCount)
+                  //.set('marketRegCount', marketRegCount)     
     }
   }),
   ...pender({
@@ -99,7 +103,6 @@ export default handleActions({
     }
   }),
   ...pender({
-    type: VIEW_COUNT,
-    onSuccess: (state,action) => {}
+    type: VIEW_COUNT
   })
 },initialState);

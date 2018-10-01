@@ -1,13 +1,12 @@
 import React from 'react';
-import Fragment from 'react';
 import styles from './MarketDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
 
 const cx = classNames.bind(styles);
 
-const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove,onApplyModal,onApply,onApplyCancel,onApplyClose}) => {
-  const {market_id,market_name,market_place,market_poster,market_desc,start_date,end_date,seller_cnt,seller_limit_cnt,market_regs,reg_start_date,reg_end_date,confirmYN} = marketDetail;
+const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove,onApplyModal,onApply,onApplyCancel,onApplyClose}) => {
+  const {host_id,market_id,market_name,market_place,market_poster,market_desc,start_date,end_date,seller_cnt,seller_limit_cnt,market_regs,reg_start_date,reg_end_date,confirmYN} = marketDetail;
 
   return (
     <ModalWrapper visible={visible}>
@@ -39,10 +38,14 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
                   <input type="date" name="end_date" value={end_date} onChange={onChange}/>  
                 </div>
               </div>
-              <div className={cx('classBtn')}>
-                <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
-              </div>
+              {user_host_id === host_id?
+                <div className={cx('classBtn')}>
+                  <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                  <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                </div>
+              :
+                <div></div>
+              }
               <div className={cx('modalDesc')}>
                 상세설명 : <textarea cols="40" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
               </div>
@@ -64,10 +67,14 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
                 <div><span className={cx('marketPlace')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span></div>
                 <div><span>마켓일정</span>{start_date}~{end_date}</div>
               </div>
-              <div className={cx('classBtn')}>
-                <button onClick={onAskRemove}>삭제</button>
-                <button onClick={onEdit}>수정</button>
-              </div>
+              {user_host_id === host_id?
+                <div className={cx('classBtn')}>
+                  <button onClick={onAskRemove}>삭제</button>
+                  <button onClick={onEdit}>수정</button>
+                </div>
+                :
+                <div></div>
+              }
               <div className={cx('modalDesc')}>상세설명 : {market_desc}</div>
             </div>
           </div>
@@ -96,12 +103,16 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
                   <div><span>모집기간</span>{reg_start_date}~{reg_end_date}</div>
                   <div><span>모집인원</span>{seller_cnt}/{seller_limit_cnt}</div>
                 </div>
-                <div className={cx('classBtn')}>
-                  <button onClick={() => onApplyClose(market_id)}>마감하기</button>
-                  <button onClick={() => onApplyModal(market_id)}>참여자확인</button>
-                  <button onClick={onEdit}>수정하기</button>
-                  <button onClick={onAskRemove}>삭제하기</button>
-                </div>
+                {user_host_id === host_id?
+                  <div className={cx('classBtn')}>
+                    <button onClick={() => onApplyClose(market_id)}>마감하기</button>
+                    <button onClick={() => onApplyModal(market_id)}>참여자확인</button>
+                    <button onClick={onEdit}>수정하기</button>
+                    <button onClick={onAskRemove}>삭제하기</button>
+                  </div>
+                  :
+                  <div></div>
+                }
                 <div className={cx('modalDesc')}>상세설명 : {market_desc}</div>
               </div>
             </div>
@@ -138,10 +149,14 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
                     <span>모집인원</span>
                     {seller_cnt}/<input type="number" name="seller_limit_cnt" value={seller_limit_cnt} onChange={onChange}/> 
                   </div>
-                  <div className={cx('classBtn')}>
-                    <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                    <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
-                  </div>
+                  {user_host_id === host_id?
+                    <div className={cx('classBtn')}>
+                      <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                      <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                    </div>
+                    :
+                    <div></div>
+                  }
                   <div className={cx('modalDesc')}>상세설명 : {market_desc}</div>
                 </div>
               </div>
@@ -170,9 +185,9 @@ const MarketDetailModal = ({userType,visible,marketDetail,onChange,editTF,onEdit
               <div className={cx('classBtn')}>
                 <div>
                 {market_regs[0]?
-                  <button onClick={onApply}>신청</button>
+                  <button onClick={() => onApplyCancel(market_id)}>취소</button> 
                 :
-                  <button onClick={onApplyCancel}>취소</button>
+                  <button onClick={() => onApply(market_id)}>신청</button>
                 }
                 </div>
               </div>

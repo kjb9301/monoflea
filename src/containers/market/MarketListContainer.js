@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import MarketList from 'components/market/MarketList';
 import Button from 'components/common/Button/Button';
 import CalendarContainer from './CalendarContainer';
@@ -10,8 +12,9 @@ import * as marketUIActions from 'store/modules/marketUI';
 
 class MarketListContainer extends Component {
   getMarketList = () => {
-    const {MarketActions} = this.props;
-    MarketActions.getMarketList();
+    const {MarketActions,location} = this.props;
+    const confirm = (location.pathname === '/markets'? 'Y' : 'N');
+    MarketActions.getMarketList(confirm);
   }
 
   handleDetail = (id,listType) => {
@@ -36,18 +39,33 @@ class MarketListContainer extends Component {
     MarketActions.getMarketList(category);
   }
 
+  getMoreData = () => {
+    const { MarketActions, MarketUIActions, list } = this.props;
+    const marketList = list.marketList;
+    let len = parseInt(marketList.length/10)*10;
+
+    if(len > marketList.length-10) {
+      setTimeout(async () => {
+        await MarketActions.getMarketList('Y','undefined',len+10);
+        const { marketCount } = this.props;
+        if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
+      }, 300);
+    }
+  }
+
   componentDidMount() {
     this.getMarketList();
   }
 
   render() {
-    const {list,loading} = this.props;
+    const {list,hasMore,loading} = this.props;
     const {marketList,marketComingList} = list;
-    const {handleDetail,handleSelect} = this;
+    if(!marketList) return null;
+    const {handleDetail,handleSelect,getMoreData} = this;
     const date = new Date();
     const curGetTime = date.getTime();
 
-    if(loading) return null;
+    //if(loading) return null;
     return (
       <div>
         <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
@@ -55,6 +73,13 @@ class MarketListContainer extends Component {
           <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
           <CalendarContainer/>
         </MarketList>
+        <InfiniteScroll
+          dataLength={marketList.length}
+          next={getMoreData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+        >
+        </InfiniteScroll>
       </div>
     );
   }
@@ -63,10 +88,12 @@ class MarketListContainer extends Component {
 export default connect(
   (state) => ({
     list: state.market.get('data'),
-    loading: state.pender.pending['market/GET_MARKET_LIST']
+    hasMore: state.marketUI.get('hasMore'),
+    marketCount: state.market.get('marketCount'),
+    //loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
     MarketActions: bindActionCreators(marketActions,dispatch),
     MarketUIActions: bindActionCreators(marketUIActions,dispatch)
   })
-)(MarketListContainer);
+)(withRouter(MarketListContainer));

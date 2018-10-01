@@ -1,6 +1,5 @@
 import {createAction,handleActions} from 'redux-actions';
 import {fromJS} from 'immutable';
-import { pender } from 'redux-pender';
 
 const SHOW_MODAL = 'marketUI/SHOW_MODAL';
 const HIDE_MODAL = 'marketUI/HIDE_MODAL';
@@ -9,7 +8,9 @@ const CHANGE_INPUT = 'marketUI/CHANGE_INPUT';
 const EDIT_TF = 'marketUI/EDIT_TF';
 const PREV_MONTH = 'marketUI/PREV_MONTH';
 const NEXT_MONTH = 'marketUI/NEXT_MONTH';
-//const USER_TF = 'marketUI/USER_TF';
+const PREV_DAY = 'marketUI/PREV_DAY';
+const NEXT_DAY = 'marketUI/NEXT_DAY';
+const TOGGLE_MORE_STATE = 'marketUI/TOGGLE_MORE_STATE';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -18,7 +19,9 @@ export const changeInput = createAction(CHANGE_INPUT);
 export const editTF = createAction(EDIT_TF);
 export const prevMonth = createAction(PREV_MONTH);
 export const nextMonth = createAction(NEXT_MONTH);
-//export const userTF = createAction(USER_TF,api.userTF);
+export const prevDay = createAction(PREV_DAY);
+export const nextDay = createAction(NEXT_DAY);
+export const toggleMoreState = createAction(TOGGLE_MORE_STATE);
 
 const initialState = fromJS({
   modal: {
@@ -27,6 +30,7 @@ const initialState = fromJS({
     apply: false
   },
   market: {
+    host_id: '',
     market_id: '',
     market_name: '',
     market_place: '',
@@ -44,7 +48,8 @@ const initialState = fromJS({
   calendar: {
     currentDate: new Date()
   },
-  editTF: false
+  editTF: false,
+  hasMore: true
 });
 
 export default handleActions({
@@ -59,6 +64,7 @@ export default handleActions({
   [GET_VALUE]: (state,action) => {
     const {marketDetail} = action.payload;
     const {
+      host_id,
       market_id, 
       market_name, 
       market_place, 
@@ -86,7 +92,8 @@ export default handleActions({
                 .setIn(['market','market_regs'],market_regs)
                 .setIn(['market','reg_start_date'],reg_start_date)
                 .setIn(['market','reg_end_date'],reg_end_date)
-                .setIn(['market','confirmYN'],confirmYN);
+                .setIn(['market','confirmYN'],confirmYN)
+                .setIn(['market', 'host_id'], host_id);
   },
   [CHANGE_INPUT]: (state,action) => {
     const { name, value } = action.payload;
@@ -104,10 +111,15 @@ export default handleActions({
     const nextMonth = action.payload;
     return state.setIn(['calendar','currentDate'],nextMonth);
   },
-  // ...pender({
-  //   type: USER_TF,
-  //   onSuccess: (state,action) => {
-  //     console.log(action.payload.data);
-  //   }
-  // })
+  [PREV_DAY]: (state,action) => {
+    const prevDay = action.payload;
+    return state.setIn(['calendar','currentDate'],prevDay);
+  },
+  [NEXT_DAY]: (state,action) => {
+    const nextDay = action.payload;
+    return state.setIn(['calendar','currentDate'],nextDay);
+  },
+  [TOGGLE_MORE_STATE]: (state, action) => {
+    return state.set('hasMore', action.payload);
+  }
 }, initialState);
