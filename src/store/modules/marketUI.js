@@ -8,8 +8,9 @@ const CHANGE_INPUT = 'marketUI/CHANGE_INPUT';
 const EDIT_TF = 'marketUI/EDIT_TF';
 const PREV_MONTH = 'marketUI/PREV_MONTH';
 const NEXT_MONTH = 'marketUI/NEXT_MONTH';
-const PREV_DAY = 'marketUI/PREV_DAY';
-const NEXT_DAY = 'marketUI/NEXT_DAY';
+const PREV_WEEK = 'marketUI/PREV_WEEK';
+const NEXT_WEEK = 'marketUI/NEXT_WEEK';
+const CHANGE_DAYS = 'marketUI/CHANGE_DAYS';
 const TOGGLE_MORE_STATE = 'marketUI/TOGGLE_MORE_STATE';
 
 export const showModal = createAction(SHOW_MODAL);
@@ -19,8 +20,9 @@ export const changeInput = createAction(CHANGE_INPUT);
 export const editTF = createAction(EDIT_TF);
 export const prevMonth = createAction(PREV_MONTH);
 export const nextMonth = createAction(NEXT_MONTH);
-export const prevDay = createAction(PREV_DAY);
-export const nextDay = createAction(NEXT_DAY);
+export const prevWeek = createAction(PREV_WEEK);
+export const nextWeek = createAction(NEXT_WEEK);
+export const changeDays = createAction(CHANGE_DAYS);
 export const toggleMoreState = createAction(TOGGLE_MORE_STATE);
 
 const initialState = fromJS({
@@ -46,7 +48,8 @@ const initialState = fromJS({
     confirmYN: ''
   },
   calendar: {
-    currentDate: new Date()
+    currentDate: new Date(),
+    daysInWeekArr: []
   },
   editTF: false,
   hasMore: true
@@ -111,13 +114,17 @@ export default handleActions({
     const nextMonth = action.payload;
     return state.setIn(['calendar','currentDate'],nextMonth);
   },
-  [PREV_DAY]: (state,action) => {
-    const prevDay = action.payload;
-    return state.setIn(['calendar','currentDate'],prevDay);
+  [PREV_WEEK]: (state,action) => {
+    const prevWeek = action.payload;
+    return state.setIn(['calendar','currentDate'],prevWeek);
   },
-  [NEXT_DAY]: (state,action) => {
-    const nextDay = action.payload;
-    return state.setIn(['calendar','currentDate'],nextDay);
+  [NEXT_WEEK]: (state,action) => {
+    const nextWeek = action.payload;
+    return state.setIn(['calendar','currentDate'],nextWeek);
+  },
+  [CHANGE_DAYS]: (state,action) => {
+    const newArr = action.payload;
+    return state.setIn(['calendar','daysInWeekArr'],newArr);
   },
   [TOGGLE_MORE_STATE]: (state, action) => {
     return state.set('hasMore', action.payload);
