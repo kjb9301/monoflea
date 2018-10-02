@@ -1,31 +1,28 @@
 import React from 'react';
 import styles from './Calendar.scss';
 import classNames from 'classnames/bind';
-import Button from 'components/common/Button/Button';
 
 const cx = classNames.bind(styles);
 
-const Days = ({daysInWeekList,curYear,curMonth,onSelect}) => (
+const Days = ({daysInWeekList,curYear,curMonth,onSelect,onSelectDate}) => (
   daysInWeekList.map((daysInWeeks,index) => {
-    const {day,weekday,isToday} = daysInWeeks;
-    //const selectDate = new Date(curYear,curMonth,day);
-    let selectMonth = (curMonth.length < 2? '0'+curMonth : curMonth);
-    let selectDay = (day.length < 2? '0'+day : day);
-    //const selectYear = curYear;
-    //let selectMonth = selectDate.getMonth() + 1;
-    //let selectDay = selectDate.getDate();
-    const selectPeriod = `${curYear}-${selectMonth}-${selectDay}`;
-
+    const {day,weekday,isToday,selected,daysInWeek} = daysInWeeks;
+    const isSunday = weekday === 'Sun'? true : false;
+    const isSat = weekday === 'Sat'? true : false;
+    let selectMonth = curMonth.length < 2? '0' + curMonth.toString() : curMonth;
+    let selectDay = day.length < 2? '0' + day.toString() : day;
+    const selectDate = `${curYear}-${selectMonth}-${selectDay}`;
     return (
-      <div className={cx('days')} key={index}>
-        <div className={cx('weekday')}>{weekday}</div>
-        <Button className={cx('day')} toGetData={onSelect} onHandleParams={selectPeriod}>{day}</Button>
+      // <div className={cx('days',{isSunday:isSunday,isSat:isSat,selected:selected})} key={index} onClick={() => onSelect(selectDate)}>
+      <div className={cx('days',{isSunday:isSunday,isSat:isSat,selected:selected})} key={index} onClick={() => onSelectDate(daysInWeek)}>
+        <div className={cx('weekday',{isToday:isToday})}>{weekday}</div>
+        <div className={cx('day',{isToday:isToday})}>{day}</div>
       </div>
     )
   })
 )
 
-const Calendar = ({curMonth,curYear,daysInWeekList,onPrevMonth,onNextMonth,onPrevWeek,onNextWeek,onSelect}) => {
+const Calendar = ({curMonth,curYear,daysInWeekList,onPrevMonth,onNextMonth,onPrevDay,onNextDay,onSelect,onSelectDate}) => {
   // let dayList = ''
   // for(let daysInWeek of daysInWeekList){
   //   for(let i in daysInWeek){
@@ -46,9 +43,9 @@ const Calendar = ({curMonth,curYear,daysInWeekList,onPrevMonth,onNextMonth,onPre
         <div className={cx('icon')} onClick={onNextMonth}>chevron_right</div>
       </div>
       <div className={cx('days-wrapper')}>
-        <div className={cx('icon')} onClick={onPrevWeek}>chevron_left</div>
-        <Days daysInWeekList={daysInWeekList} curYear={curYear} curMonth={curMonth} onSelect={onSelect}/>
-        <div className={cx('icon')} onClick={onNextWeek}>chevron_right</div>
+        <div className={cx('icon')} onClick={onPrevDay}>chevron_left</div>
+        <Days daysInWeekList={daysInWeekList} curYear={curYear} curMonth={curMonth} onSelect={onSelect} onSelectDate={onSelectDate}/>
+        <div className={cx('icon')} onClick={onNextDay}>chevron_right</div>
       </div>
 		</div>
     ); 

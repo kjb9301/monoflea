@@ -10,8 +10,9 @@ const PREV_MONTH = 'marketUI/PREV_MONTH';
 const NEXT_MONTH = 'marketUI/NEXT_MONTH';
 const PREV_WEEK = 'marketUI/PREV_WEEK';
 const NEXT_WEEK = 'marketUI/NEXT_WEEK';
-const CHANGE_DAYS = 'marketUI/CHANGE_DAYS';
+const GET_SELECTED_DATE = 'marketUI/GET_SELECTED_DATE';
 const TOGGLE_MORE_STATE = 'marketUI/TOGGLE_MORE_STATE';
+const SELECT_BY_DATE = 'marketUI/SELECT_BY_DATE';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -22,8 +23,9 @@ export const prevMonth = createAction(PREV_MONTH);
 export const nextMonth = createAction(NEXT_MONTH);
 export const prevWeek = createAction(PREV_WEEK);
 export const nextWeek = createAction(NEXT_WEEK);
-export const changeDays = createAction(CHANGE_DAYS);
+export const getSelectedDate = createAction(GET_SELECTED_DATE);
 export const toggleMoreState = createAction(TOGGLE_MORE_STATE);
+export const selectByDate = createAction(SELECT_BY_DATE);
 
 const initialState = fromJS({
   modal: {
@@ -48,11 +50,13 @@ const initialState = fromJS({
     confirmYN: ''
   },
   calendar: {
+    today: new Date(),
     currentDate: new Date(),
-    daysInWeekArr: []
+    selectedDate: new Date()
   },
   editTF: false,
-  hasMore: true
+  hasMore: true,
+  isSelectedByDate: false
 });
 
 export default handleActions({
@@ -122,11 +126,16 @@ export default handleActions({
     const nextWeek = action.payload;
     return state.setIn(['calendar','currentDate'],nextWeek);
   },
-  [CHANGE_DAYS]: (state,action) => {
-    const newArr = action.payload;
-    return state.setIn(['calendar','daysInWeekArr'],newArr);
+  [GET_SELECTED_DATE]: (state,action) => {
+    const selectedDate = action.payload;
+    console.log(action.payload)
+    return state.setIn(['calendar','selectedDate'],selectedDate);
   },
   [TOGGLE_MORE_STATE]: (state, action) => {
     return state.set('hasMore', action.payload);
+  },
+  [SELECT_BY_DATE]: (state,action) => {
+    const selectByDate = action.payload;
+    return (selectByDate === true? state.set('isSelectedByDate',false) : state.set('isSelectedByDate',true));
   }
 }, initialState);

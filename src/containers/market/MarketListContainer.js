@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MarketList from 'components/market/MarketList';
-import Button from 'components/common/Button/Button';
 import CalendarContainer from './CalendarContainer';
+import Button from 'components/common/Button';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
@@ -34,12 +34,6 @@ class MarketListContainer extends Component {
     MarketActions.viewCount(id);
   }
 
-  handleSelect = (category) => {
-    const {MarketActions} = this.props;
-    console.log(category)
-    MarketActions.getMarketList('Y',category);
-  }
-
   getMoreData = () => {
     const { MarketActions, MarketUIActions, list } = this.props;
     const marketList = list.marketList;
@@ -54,25 +48,34 @@ class MarketListContainer extends Component {
     }
   }
 
+  selectByDate = () => {
+    const { MarketUIActions, isSelectedByDate } = this.props;
+    MarketUIActions.selectByDate(isSelectedByDate);
+  }
+
   componentDidMount() {
     this.getMarketList();
   }
 
   render() {
-    const {list,hasMore,loading} = this.props;
+    const {list,hasMore,isSelectedByDate,loading} = this.props;
     const {marketList,marketComingList} = list;
     if(!marketList) return null;
-    const {handleDetail,handleSelect,getMoreData} = this;
+    const {handleDetail,getMoreData,selectByDate} = this;
     const date = new Date();
     const curGetTime = date.getTime();
-
+ 
     //if(loading) return null;
     return (
       <div>
         <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
         <MarketList listType='L' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
-          <Button toGetData={handleSelect} onHandleParams="2018-09-03">기간별</Button>
-          <CalendarContainer onSelect={handleSelect}/>
+          <button onClick={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</button>
+          {isSelectedByDate?
+            <CalendarContainer/>
+          :
+            <div/>
+          }
         </MarketList>
         <InfiniteScroll
           dataLength={marketList.length}
@@ -91,6 +94,7 @@ export default connect(
     list: state.market.get('data'),
     hasMore: state.marketUI.get('hasMore'),
     marketCount: state.market.get('marketCount'),
+    isSelectedByDate: state.marketUI.get('isSelectedByDate')
     //loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
