@@ -40,7 +40,7 @@ export const viewCount = (id) => axios.put('/markets/view-count',{id});
 // class
 // export const getClassList = (category) => axios.get(`/classes?category=${category}`);
 export const getClassList = (category, limit) => axios.get(`/classes?category=${category}&limit=${limit}`);
-export const getClassDetail = (id) => axios.get(`/classes/${id}`);
+// export const getClassDetail = (class_id) => axios.get(`/classes/${class_id}`);
 export const getClassCategory = () => axios.get('/classes/category-list');
 export const postNewClass = (newClass) => axios.post('/classes', newClass);
 export const getEnrolledList = (class_id) => axios.get(`/classes/enroll/${class_id}`);

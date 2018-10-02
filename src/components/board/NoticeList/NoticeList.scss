@@ -1,26 +1,135 @@
 @import 'common';
 
 .notice-wrap {
-  padding: 5rem;
-  a {
-    color: black;
+  width: 100%;
+  .notice-title-wrap {
+    background-image: url('/images/gradient.png');
+    min-height: 350px;
+    position: relative;
+    .notice-title {
+      @include position-center();
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-shadow: 2px 2px gray;
+    }
+    @include media("<medium") {
+      .notice-title {
+        font-size: 1.8rem;
+      }
+    }
+    .notice-alert {
+      width: 330px;
+      padding: 10px;
+      background-color: white;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      .alert-title {
+        color: #ff7e00;
+        font-size: 1.7rem;
+      }
+      @include media("<medium") {
+        .alert-title {
+          font-size: 1.2rem;
+        }
+      }
+      .alert-info {
+        font-size: 1rem;
+        margin-top: 10px;
+        color: #666;
+        font-weight: bold;
+      }
+      @include media("<medium") {
+        font-size: 0.8rem;
+      }
+    }
   }
-  .notice {
+  .notice-list-wrap {
+    margin: 3rem auto;
     width: 80%;
-    border: 1px solid blue;
-    padding: 3rem;
-    margin: 2rem auto;
-  }
-  .button-space {
-    margin: 2rem auto;
-    width: 80%;
-    text-align: right;
-   .write-button {
-     cursor: pointer;
-     border: 1px solid $oc-blue-6;
-     display: inline-block;
-     padding: 15px;
-     font-size: 15px;
-   } 
+    .new-notice-wrap {
+      text-align: right;
+      padding: 15px;
+      .new-notice-btn {
+        font-size: 1rem;
+        padding: 10px;
+        color: #ff7e00;
+        background-color: #fefbfa;
+        border: 1px solid #ff7e00;
+        font-weight: bold;
+        &:hover {
+          border: none;
+          background-color: #ff7e00;
+          color: #fefbfa;
+        }
+      }
+      @include media("<medium") {
+        .new-notice-btn {
+          font-size: 0.8rem;
+          padding: 7px;
+        }
+      }
+    }
+    .notice-item {
+      position: relative;
+      border: 1px solid #ccc;
+      display: inline-block;
+      vertical-align: top;
+      width: 22%;
+      margin: 1.5%;
+      padding: 15px;
+      min-height: 240px;
+      &:hover .item-title {
+        color: #ff7e00;
+      }
+      &:hover .item-circle {
+        border-color: #ff7e00;
+        color: #ff7e00;
+      }
+      &:hover {
+        border-color: #ff7e00;
+        background-color: #fefbfa;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      }
+      .item-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: rgb(110, 108, 108);
+      }
+      .item-circle {
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        padding: 3px;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        border: 1.5px solid #ccc;
+        position: absolute;
+        left: 25px;
+        bottom: 25px;
+      }
+    }
+    @include media("<large") {
+      .notice-item {
+        width: 30%;
+        .item-title {
+          font-size: 1rem;
+        }
+      }
+    }
+    @include media("<medium") {
+      .notice-item {
+        width: 47%;
+        margin-top: 20px;
+      }
+    }
+    @include media("<smedium") {
+      .notice-item {
+        width: 97%;
+      }
+    }
   }
 }

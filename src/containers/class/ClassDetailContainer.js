@@ -13,11 +13,11 @@ import * as classUIActions from 'store/modules/classUI';
 const bodyData = new FormData();
 
 class ClassDetailContainer extends Component {
-  hideModal = (id) => {
-    const { ClassUIActions, BaseActions, classList } = this.props;
+  hideModal = async (id) => {
+    const { ClassUIActions, BaseActions } = this.props;
     BaseActions.hideModal('class');
-    const idx = classList.findIndex(item => item.class_id === id);
-    ClassUIActions.setClassInfo(classList[idx]);
+    const classDetail = await axios.get(`/classes/${id}`);
+    ClassUIActions.setClassInfo(classDetail);
     ClassUIActions.initializeEditState();
   }
 
@@ -80,20 +80,17 @@ class ClassDetailContainer extends Component {
   enrollOnedayClass = async (id) => {
     const { logged, name, tel } = this.props;
     if(logged) {
-      const { ClassActions, ClassUIActions, BaseActions } = this.props;
+      const { ClassUIActions, BaseActions } = this.props;
       if(name && tel) {
         const enrolled = await axios.post('/classes/recruitment', { id });
         const { isEnrolled, message } = enrolled.data;
         if(!isEnrolled) return alert('잘못된 접근입니다. 다시 시도해주세요!');
-        await ClassActions.getClassList();
-        const { classList } = this.props;
-        const idx = classList.findIndex(classItem => classItem.class_id === id);
-        ClassUIActions.setClassInfo(classList[idx]);
+        const classDetail = await axios.get(`/classes/${id}`);
+        ClassUIActions.setClassInfo(classDetail);
         BaseActions.hideModal('class');
         BaseActions.showModal('class');
         return alert(message);
       }
-      const { enrolledUserInfo } = this.props;
       return BaseActions.showModal('enrolledUserInfo');
     }
     return alert('로그인 이후에 사용할 수 있는 서비스입니다.');
@@ -104,12 +101,10 @@ class ClassDetailContainer extends Component {
     if(logged) {
       const cancelResult = await axios.delete(`/classes/recruitment/${id}`);
       const { isCancel, message } = cancelResult.data;
-      const { ClassActions, ClassUIActions, BaseActions } = this.props;
+      const { ClassUIActions, BaseActions } = this.props;
       if(!isCancel) return alert('잘못된 접근입니다. 다시 시도해주세요!');
-      await ClassActions.getClassList();
-      const { classList } = this.props;
-      const idx = classList.findIndex(classItem => classItem.class_id === id);
-      ClassUIActions.setClassInfo(classList[idx]);
+      const classDetail = await axios.get(`/classes/${id}`);
+      ClassUIActions.setClassInfo(classDetail);
       BaseActions.hideModal('class');
       BaseActions.showModal('class');
       return alert(message);
@@ -123,10 +118,12 @@ class ClassDetailContainer extends Component {
     BaseActions.showModal('enrolledClassList');
   }
 
-  // TODO: editing state change --> rerender ?
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return (nextProps.editing !== this.props.editing) || (nextProps.visible !== this.props.visible);
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    const { editing, visible, classInfo } = this.props;
+    return (nextProps.editing !== editing) 
+           || (nextProps.visible !== visible)
+           || (nextProps.classInfo !== classInfo);
+  }
 
   render() {
     const { visible, classInfo, nickName, editing, categories, enrollListVisible, enrolledList } = this.props;
@@ -134,6 +131,7 @@ class ClassDetailContainer extends Component {
       hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, getEnrollList,
       cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass, closeEnrollList
     } = this;
+
     if(!categories.length) return null;
     return (
       <Fragment>

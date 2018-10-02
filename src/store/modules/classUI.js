@@ -65,7 +65,7 @@ export default handleActions({
       class_category_id, class_desc, class_id, class_limit_cnt, view_cnt,
       class_name, class_place, class_reg_cnt, event_date, onedayCategory,
       onedayImages, recruit_start_date, recruit_end_date, reg_date, seller, onedayRegs
-    } = action.payload;
+    } = action.payload.data;
     return state.setIn(['classInfo', 'class_category_id'], class_category_id)
                 .setIn(['classInfo', 'class_desc'], class_desc)
                 .setIn(['classInfo', 'class_id'], class_id)

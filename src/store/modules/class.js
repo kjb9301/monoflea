@@ -4,6 +4,7 @@ import { pender} from 'redux-pender';
 import * as api from 'lib/api';
 
 const GET_CLASS_LIST = 'class/GET_CLASS_LIST';
+// const GET_CLASS_DETAIL = 'class/GET_CLASS_DETAIL';
 const SET_CATEGORY = 'class/SET_CATEGORY';
 const SET_DETAIL_CLASS = 'class/SET_DETAIL_CLASS';
 const GET_CLASS_CATEGORY = 'class/GET_CLASS_CATEGORY';
@@ -15,6 +16,7 @@ const CANCEL_CLASS = 'class/CANCEL_CLASS';
 const TOGGLE_MORE_STATE = 'class/TOGGLE_MORE_STATE';
 
 export const getClassList = createAction(GET_CLASS_LIST, api.getClassList);
+// export const getClassDetail = createAction(GET_CLASS_DETAIL, api.getClassDetail);
 export const setDetailClass = createAction(SET_DETAIL_CLASS);
 export const setCategory = createAction(SET_CATEGORY);
 export const toggleMoreState = createAction(TOGGLE_MORE_STATE);
@@ -28,7 +30,7 @@ export const cancelOnedayClass = createAction(CANCEL_CLASS, api.cancelOnedayClas
 const initialState = Map({
   classList : List(),
   categories : List(),
-  classDetail: Map({}),
+  // classDetail: Map({}),
   enrolledList: List(),
   hasMore: true,
   totalCnt: 0,
@@ -39,7 +41,7 @@ const initialState = Map({
 export default handleActions({
   ...pender({
     type: GET_CLASS_LIST,
-    onSuccess : (state,action) => {
+    onSuccess : (state, action) => {
       const { classList, categories, totalCnt } = action.payload.data;
       return state.set('classList', classList)
                   .set('categories', categories)
@@ -72,10 +74,10 @@ export default handleActions({
   ...pender({
     type: CANCEL_CLASS,
   }),
-  [SET_DETAIL_CLASS]: (state, action) => {
-    const detailInfo = action.payload;
-    return state.set('classDetail', detailInfo);
-  },
+  // [SET_DETAIL_CLASS]: (state, action) => {
+  //   const detailInfo = action.payload;
+  //   return state.set('classDetail', detailInfo);
+  // },
   [TOGGLE_MORE_STATE]: (state, action) => {
     return state.set('hasMore', action.payload);
   },

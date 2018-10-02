@@ -11,7 +11,7 @@ const NoticeDetail = ({noticeDetail}) => {
       <div>{board_no}</div>
       <div>{user_id}</div>
       <div>{title}</div>
-      <div>{content}</div>
+      <div dangerouslySetInnerHTML={{ __html:content }} />
       <div>{img_file}</div>
       <div>{view_cnt}</div>
       <div>{reg_date}</div>

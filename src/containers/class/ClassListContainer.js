@@ -13,38 +13,57 @@ class ClassListContainer extends Component {
 
   getClassList = async () => {
     const { ClassActions } = this.props;
-    await ClassActions.getClassList();
+    try {
+      return await ClassActions.getClassList();
+    } catch(e) {
+      const { message } = e.response.data;
+      return alert(message);
+    }
   }
 
   showClassModal = async (id) => {
-    const { ClassUIActions, BaseActions, classList } = this.props;
-    const idx = classList.findIndex(item => item.class_id === id);
-    const updateResult = await axios.put('/classes/view-count', { id });
-    const { countUp, view_cnt } = updateResult.data;
-    if(countUp) classList[idx].view_cnt = view_cnt;
-    ClassUIActions.setClassInfo(classList[idx]);
-    BaseActions.showModal('class');
+    const { ClassUIActions, BaseActions } = this.props;
+    try {
+      const updateResult = await axios.put('/classes/view-count', { id });
+      const { countUp, view_cnt } = updateResult.data;
+      if(!countUp) return alert('일시적인 오류입니다. 다시 시도하세요!');
+      const classDetail = await axios.get(`/classes/${id}`);
+      classDetail.view_cnt = view_cnt;
+      ClassUIActions.setClassInfo(classDetail);
+      return BaseActions.showModal('class');
+    } catch(e) {
+      const { message } = e.response.data;
+      return alert(message);
+    }
   }
 
   takeOnedayClass = async (id) => {
-    const { ClassActions,  logged } = this.props;
+    const { ClassActions, logged, category, classList } = this.props;
     if(!logged) return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
-    const takenResult = await ClassActions.takeOnedayClass(id);
-    const { isTaken } = takenResult.data;
-    if(isTaken) {
+    try {
+      const takenResult = await ClassActions.takeOnedayClass(id);
+      const { isTaken } = takenResult.data;
+      if(!isTaken) return ('일시적인 오류입니다. 잠시후 다시 시도하세요!');
       alert('해당 클래스를 찜목록에 추가했습니다!');
-      await ClassActions.getClassList();
+      return await ClassActions.getClassList(category, classList.length);
+    } catch(e) {
+      const { message } = e.response.data;
+      return alert(message);
     }
   }
   
   cancelOnedayClass = async (id) => {
-    const { ClassActions, logged } = this.props;
+    const { ClassActions, logged, category, classList } = this.props;
     if(!logged) return alert('로그인 이후에 사용할 수 있는 서비스입니다!');
-    const cancelResult = await ClassActions.cancelOnedayClass(id);
-    const { isCancel } = cancelResult.data;
-    if(isCancel) {
+    try {
+      const cancelResult = await ClassActions.cancelOnedayClass(id);
+      const { isCancel } = cancelResult.data;
+      if(!isCancel) return alert('일시적인 오류입니다. 잠시후 다시 시도하세요!');
       alert('해당 클래스를 찜목록에서 삭제했습니다!');
-      await ClassActions.getClassList();
+      return await ClassActions.getClassList(category, classList.length);
+    } catch(e) {
+      const { message } = e.response.data;
+      return alert(message);
     }
   }
 
@@ -52,19 +71,24 @@ class ClassListContainer extends Component {
     this.getClassList();
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return JSON.stringify(nextProps.classList) !== JSON.stringify(this.props.classList);
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    const { classList, hasMore } = this.props;
+    return (JSON.stringify(nextProps.classList) !== JSON.stringify(classList)) || (nextProps.hasMore !== hasMore);
+  }
 
   getMoreData = () => {
     const { ClassActions, classList, category } = this.props;
     let len = parseInt(classList.length/10)*10;
     if(len>classList.length-10) {
       setTimeout(async () => {
-        await ClassActions.getClassList(category, len+10);
-        // await ClassActions.getClassCount();
-        const { totalCnt } = this.props;
-        if(classList.length>=totalCnt) return ClassActions.toggleMoreState(false);
+        try {
+          await ClassActions.getClassList(category, len+10);
+          const { totalCnt } = this.props;
+          if(classList.length>=totalCnt) return ClassActions.toggleMoreState(false);
+        } catch(e) {
+          const { message } = e.response.data;
+          return alert(message);
+        }
       }, 350);
     }
   }
@@ -85,7 +109,7 @@ class ClassListContainer extends Component {
           dataLength={classList.length}
           next={this.getMoreData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={loader}
         >
         </InfiniteScroll>
       </Fragment>
