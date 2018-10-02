@@ -24,7 +24,7 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
   return (
     <ModalWrapper  visible = {visible} > 
      
-        <div className={cx('modalForm')}>
+      <div className={cx('modalForm')}>
         <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
           <div className={cx('wrapper')}>
             <div className={cx('profile')}> <img src = {profile_img}/> </div>
@@ -33,7 +33,7 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
                   <div>이름 : {nickName} </div>
                   <div>분야 : {category_ko}</div>
                   <div>경력 : {career}년  <br/> SNS : {sns} </div>
-                  ab자기소개 : {seller_desc}
+                  ab자기소개 : 200자 ddd<br/> {seller_desc}
                   <div>조회수  : {view_cnt}</div>
                   <div className = {cx('like')}> <GoHeart className= {cx('heart')} onClick = {likeUp}/> 좋아요  </div> 
                 

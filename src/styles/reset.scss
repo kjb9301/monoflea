@@ -18,3 +18,9 @@ body, h1, h2, h3, h4, h5, h6, p, div, form, input, img, table, th, td, tr, main,
     text-decoration: none;
   }
 }
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
