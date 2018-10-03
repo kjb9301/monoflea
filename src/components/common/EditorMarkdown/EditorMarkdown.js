@@ -21,48 +21,9 @@ class EditorMarkdown extends Component {
     });
     const { NewNoticeAction } = this.props;
     NewNoticeAction.changeInputContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-    // console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())))
   };
 
-
-  // onContentStateChange = (contentState) => {
-  //   const { handleInputContent } = this.props;
-  //   this.setState({
-  //     contentState
-  //   });
-  //   console.log(this.state.contentState);
-  //   handleInputContent(contentState);
-  // }
-
-  // onEditorStateChange = (editorState) => {
-  //   this.setState({
-  //     editorState,
-  //   });
-  // };
-
-  // uploadImage = (file) => {
-  //   return new Promise(
-  //     (resolve, reject) => {
-  //       const xhr = new XMLHttpRequest();
-  //       xhr.open('POST', 'https://api.imgur.com/3/image');
-  //       xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
-  //       const data = new FormData();
-  //       data.append('image', file);
-  //       xhr.send(data);
-  //       xhr.addEventListener('load', () => {
-  //         const response = JSON.parse(xhr.responseText);
-  //         resolve(response);
-  //       });
-  //       xhr.addEventListener('error', () => {
-  //         const error = JSON.parse(xhr.responseText);
-  //         reject(error);
-  //       });
-  //     }
-  //   );
-  // }
-
   render() {
-    const { editorState } = this.state;
     const { uploadImage } = this;
     return (
       <div>
@@ -83,8 +44,6 @@ class EditorMarkdown extends Component {
           }}
           localization={{ locale: 'ko' }}
           onEditorStateChange={this.onEditorStateChange}
-          // onContentStateChange={this.onContentStateChange}
-          // onEditorStateChange={this.onEditorStateChange}
         />
       </div>
     );

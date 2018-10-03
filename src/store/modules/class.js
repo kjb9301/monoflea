@@ -30,7 +30,6 @@ export const cancelOnedayClass = createAction(CANCEL_CLASS, api.cancelOnedayClas
 const initialState = Map({
   classList : List(),
   categories : List(),
-  // classDetail: Map({}),
   enrolledList: List(),
   hasMore: true,
   totalCnt: 0,
@@ -74,10 +73,6 @@ export default handleActions({
   ...pender({
     type: CANCEL_CLASS,
   }),
-  // [SET_DETAIL_CLASS]: (state, action) => {
-  //   const detailInfo = action.payload;
-  //   return state.set('classDetail', detailInfo);
-  // },
   [TOGGLE_MORE_STATE]: (state, action) => {
     return state.set('hasMore', action.payload);
   },

@@ -1,0 +1,45 @@
+@import 'common';
+
+.notice-title-wrap {
+  background-image: url('/images/gradient.png');
+  min-height: 350px;
+  position: relative;
+  .notice-title {
+    @include position-center();
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-shadow: 2px 2px gray;
+  }
+  @include media("<medium") {
+    .notice-title {
+      font-size: 1.8rem;
+    }
+  }
+  .notice-alert {
+    width: 330px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    .alert-title {
+      color: #ff7e00;
+      font-size: 1.7rem;
+    }
+    @include media("<medium") {
+      .alert-title {
+        font-size: 1.2rem;
+      }
+    }
+    .alert-info {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #666;
+      font-weight: bold;
+    }
+    @include media("<medium") {
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import 'common';
+
+.loading-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10000;
+  background-color: rgba(1, 1, 1, 0.5);
+  .loading-spinner {
+    @include position-center();
+  }
+}

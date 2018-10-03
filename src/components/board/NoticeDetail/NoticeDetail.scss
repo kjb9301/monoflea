@@ -1,9 +1,46 @@
 @import 'common';
 
 .notice-detail {
-  position: absolute;
-  @include position-center();
-  div {
-    font-size: 20px;
+  width: 100%;
+  .detail-wrap {
+    width: 50%;
+    padding: 30px;
+    margin: 5rem auto;
+    border: 1px solid #f8c699;
+    background-color: #fefbfa;
+    .detail-top {
+      width: 80%;
+      margin: auto;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ff7e00;
+      .detail-title {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      .detail-date, .detail-view-count {
+        text-align: right;
+      }
+    }
+    .detail-content {
+      margin: 3rem auto;
+    }
+  }
+  .detail-prev-wrap {
+    width: 50%;
+    margin: 1rem auto;
+    text-align: center;
+    .detail-prev-btn {
+      outline: 0;
+      border: 1px solid #ff7e00;
+      color: #ff7e00;
+      background-color: #fefbfa;
+      padding: 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: #ff7e00;
+        color: white;
+        border: none;
+      }
+    }
   }
 }

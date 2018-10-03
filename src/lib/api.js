@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // notice
-export const getNoticeList = () => axios.get('/notices');
+export const getNoticeList = (limit) => axios.get(`/notices?limit=${limit}`);
 export const getNoticeDetail = (id) => axios.get(`/notices/${id}`);
-export const postNewNotice = (title, content) => axios.post('/notices', { title, content });
+// export const postNewNotice = (title, content) => axios.post('/notices', { title, content });
 
 // login
 export const login = (email, password) => axios.post('/users/login', { email, password });
@@ -38,9 +38,7 @@ export const applyDelete = (id) => axios.delete('/markets/recruitment/host',{par
 export const viewCount = (id) => axios.put('/markets/view-count',{id});
 
 // class
-// export const getClassList = (category) => axios.get(`/classes?category=${category}`);
 export const getClassList = (category, limit) => axios.get(`/classes?category=${category}&limit=${limit}`);
-// export const getClassDetail = (class_id) => axios.get(`/classes/${class_id}`);
 export const getClassCategory = () => axios.get('/classes/category-list');
 export const postNewClass = (newClass) => axios.post('/classes', newClass);
 export const getEnrolledList = (class_id) => axios.get(`/classes/enroll/${class_id}`);

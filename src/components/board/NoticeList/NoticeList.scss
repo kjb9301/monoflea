@@ -2,50 +2,6 @@
 
 .notice-wrap {
   width: 100%;
-  .notice-title-wrap {
-    background-image: url('/images/gradient.png');
-    min-height: 350px;
-    position: relative;
-    .notice-title {
-      @include position-center();
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-shadow: 2px 2px gray;
-    }
-    @include media("<medium") {
-      .notice-title {
-        font-size: 1.8rem;
-      }
-    }
-    .notice-alert {
-      width: 330px;
-      padding: 10px;
-      background-color: white;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      .alert-title {
-        color: #ff7e00;
-        font-size: 1.7rem;
-      }
-      @include media("<medium") {
-        .alert-title {
-          font-size: 1.2rem;
-        }
-      }
-      .alert-info {
-        font-size: 1rem;
-        margin-top: 10px;
-        color: #666;
-        font-weight: bold;
-      }
-      @include media("<medium") {
-        font-size: 0.8rem;
-      }
-    }
-  }
   .notice-list-wrap {
     margin: 3rem auto;
     width: 80%;
@@ -79,7 +35,7 @@
       vertical-align: top;
       width: 22%;
       margin: 1.5%;
-      padding: 15px;
+      padding: 25px;
       min-height: 240px;
       &:hover .item-title {
         color: #ff7e00;
@@ -95,8 +51,22 @@
       }
       .item-title {
         font-size: 1.2rem;
+        height: 55px;
         font-weight: bold;
         color: rgb(110, 108, 108);
+      }
+      .item-content {
+        height: 65px;
+        font-size: 12px;
+      }
+      .item-bottom {
+        .item-view-count, .item-date {
+          display: inline-block;
+          width: 50%;
+        }
+        .item-date {
+          text-align: right;
+        }
       }
       .item-circle {
         display: inline-block;
@@ -117,6 +87,15 @@
         width: 30%;
         .item-title {
           font-size: 1rem;
+          height: 45px;
+        }
+        .item-content {
+          font-size: 10px;
+        }
+        .item-bottom {
+          .item-view-count, .item-date {
+            font-size: 10px;
+          }
         }
       }
     }
