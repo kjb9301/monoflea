@@ -12,10 +12,11 @@ import {
   BoardPostPage,
   BoardListPage,
   MarketRegListPage,
-  MarketRegPage
+  MarketRegPage,
+  MyPage
 } from 'pages';
 import Base from 'containers/common/Base';
-
+// import MyPageAppliedMarket from 'components/mypage/MyPageAppliedMarket';
 const App = () => {
   return (
     <div>
@@ -32,6 +33,8 @@ const App = () => {
         <Route exact path="/classes" component={ClassPage}/>
         <Route path="/classes/post" component={ClassPostPage}/>
         <Route exact path="/sellers" component={SellerPage}/>
+        <Route exact path = "/mypage" component = {MyPage}/>
+        {/* <Route exact path = "/mypage/applied-market" component = {MyPageAppliedMarket}/> */}
       </Switch>
       <Base/>
     </div>

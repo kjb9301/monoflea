@@ -59,10 +59,10 @@ const MainWrapper = () => {
             <p>커뮤니티</p>
           </div>
         </Link>
-        <Link to="/questions" className={cx('main-nav')}>
+        <Link to="/mypage" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             <img src={questionImg}/>
-            <p>QnA</p>
+            <p>마이페이지</p>
           </div>
         </Link>
       </div>

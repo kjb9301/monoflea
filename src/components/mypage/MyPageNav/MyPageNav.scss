@@ -1,0 +1,19 @@
+@import 'common';
+
+.nav-bar{
+  display: flex;
+  justify-content: space-around;
+  width: 1300px;
+  margin: auto;
+  margin-top : 1rem;
+  border-bottom: 3px solid black;
+  .nav {
+    font-size: 2rem;
+    padding : 0.8rem;
+    font-weight: bolder;    
+    &:hover {
+      background-color : aquamarine;
+    }
+  }
+  
+}

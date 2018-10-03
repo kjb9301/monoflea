@@ -11,3 +11,4 @@ export { default as BoardListPage } from './BoardListPage';
 //export { default as MarketPostPage } from './MarketPostPage';
 export { default as MarketRegListPage } from './MarketRegListPage';
 export { default as MarketRegPage } from './MarketRegPage';
+export { default as MyPage } from './MyPage';
