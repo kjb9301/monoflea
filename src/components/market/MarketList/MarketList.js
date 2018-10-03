@@ -52,8 +52,8 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
       <div className={cx('sub-header')}>
         {listType === 'CL' ? 'Coming Soon' : 'Market'}
       </div>
-      <div>
-        <div>{children}</div>
+      <div className={cx('children-space')}> 
+        {children}
       </div>
       <div>
         {marketList}
