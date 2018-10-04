@@ -8,19 +8,24 @@ import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
 
 class CalendarContainer extends Component {
-  handleSelect = (category) => {
+  handleSelect = (dateParam) => {
     const {MarketActions} = this.props;
-    //console.log(category)
-    //MarketActions.getMarketList('Y',category);
+
+    const curMonth = dateFns.format(dateParam,'M');
+    const curYear = dateFns.format(dateParam,'YYYY');
+    const curDay = dateFns.format(dateParam,'D');
+
+    let selectMonth = curMonth.length < 2? '0' + curMonth.toString() : curMonth;
+    let selectDay = curDay.length < 2? '0' + curDay.toString() : curDay;
+
+    const selectDate = `${curYear}-${selectMonth}-${selectDay}`;
+    MarketActions.getMarketList('Y',selectDate);
   }
 
   handleSelectDate = (selectedDateParam) => {
     const {MarketUIActions} = this.props;
-    console.log(selectedDateParam)
     MarketUIActions.getSelectedDate(selectedDateParam)
-
-    const {selectedDate} = this.props;
-    console.log(selectedDate)
+    this.handleSelect(selectedDateParam);
   }
 
   HandleNextMonth = () => {
@@ -52,11 +57,8 @@ class CalendarContainer extends Component {
   }
 
   render() {
-    const {loading,today,currentDate,onSelect,selectedDate} = this.props;
-    const {handleSelect,handleSelectDate,HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay} = this;
-    // const startDayOfMonth = dateFns.startOfMonth(currentDate);
-    // const endDayOfMonth = dateFns.endOfMonth(currentDate);
-    // const day_length = dateFns.differenceInDays(endDate,startDate) + 1;
+    const {loading,today,currentDate,selectedDate} = this.props;
+    const {handleSelectDate,HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay} = this;
     
     const dateFormat_Y = "YYYY";
     const dateFormat_M = "M";
@@ -67,29 +69,7 @@ class CalendarContainer extends Component {
     const curYear = dateFns.format(selectedDate,dateFormat_Y);
     const curDay = dateFns.format(selectedDate,dateFormat_D);
 
-    //const firstOfWeek = dateFns.startOfWeek(currentDate)
-    //const lastOfWeek = dateFns.endOfWeek(currentDate)
-
-    //const weeksInMonth = dateFns.differenceInCalendarWeeks(endDayOfMonth,startDayOfMonth)
-
     let daysInWeekList = [];
-    // let startDayOfFirstWeek = '';
-    // let startDayOfWeek = '';
-
-    // for(let i = 0; i < weeksInMonth+1; i++){
-    //   startDayOfFirstWeek = dateFns.startOfWeek(currentDate)
-    //   startDayOfWeek = dateFns.addWeeks(startDayOfFirstWeek,i)
-    //   let daysInWeek = [];
-
-    //   for(let j = 0; j < 7; j++) {
-    //     const days = dateFns.addDays(startDayOfWeek,j);
-    //     const isToday = dateFns.isSameDay(currentDate,days);
-    //     const weekday = dateFns.format(days,dateFormat_d);
-    //     const day = dateFns.format(days,dateFormat_D);
-    //     daysInWeek.push({day,weekday,isToday})   
-    //   }
-    //   daysInWeekList.push(daysInWeek)
-    // }
  
     const startDayOfWeek = dateFns.startOfWeek(currentDate);
     const endDayOfWeek = dateFns.endOfWeek(currentDate);
@@ -116,7 +96,6 @@ class CalendarContainer extends Component {
           onNextMonth={HandleNextMonth} 
           onPrevDay={HandlePrevDay} 
           onNextDay={HandleNextDay}
-          onSelect={handleSelect}
           onSelectDate={handleSelectDate}  
         />
       </div>

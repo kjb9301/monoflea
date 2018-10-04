@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -69,13 +69,8 @@ class MarketListContainer extends Component {
     return (
       <div>
         <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
-        <MarketList listType='L' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
-          <button onClick={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</button>
-          {isSelectedByDate?
-            <CalendarContainer/>
-          :
-            <div/>
-          }
+        <MarketList listType='L' markets={marketList} isSelectedByDate={isSelectedByDate} onDetail={handleDetail} curGetTime={curGetTime} onSelectByDate={selectByDate}>
+          <CalendarContainer/>
         </MarketList>
         <InfiniteScroll
           dataLength={marketList.length}
