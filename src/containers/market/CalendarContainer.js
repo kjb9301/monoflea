@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import dateFns from "date-fns";
 import Calendar from 'components/market/Calendar';
+import Button from 'components/common/Button';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
@@ -56,9 +57,14 @@ class CalendarContainer extends Component {
     MarketUIActions.nextWeek(nextWeek);
   }
 
+  selectByDate = () => {
+    const { MarketUIActions, isSelectedByDate } = this.props;
+    MarketUIActions.selectByDate(isSelectedByDate);
+  }
+
   render() {
-    const {loading,today,currentDate,selectedDate} = this.props;
-    const {handleSelectDate,HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay} = this;
+    const {loading,today,currentDate,selectedDate,isSelectedByDate} = this.props;
+    const {handleSelectDate,HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay,selectByDate} = this;
     
     const dateFormat_Y = "YYYY";
     const dateFormat_M = "M";
@@ -87,17 +93,22 @@ class CalendarContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        <Calendar 
-          curYear={curYear} 
-          curMonth={curMonth} 
-          curDay={curDay} 
-          daysInWeekList={daysInWeekList} 
-          onPrevMonth={HandlePrevMonth} 
-          onNextMonth={HandleNextMonth} 
-          onPrevDay={HandlePrevDay} 
-          onNextDay={HandleNextDay}
-          onSelectDate={handleSelectDate}  
-        />
+        <Button toGetData={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</Button>
+        {isSelectedByDate?
+          <Calendar 
+            curYear={curYear} 
+            curMonth={curMonth} 
+            curDay={curDay} 
+            daysInWeekList={daysInWeekList} 
+            onPrevMonth={HandlePrevMonth} 
+            onNextMonth={HandleNextMonth} 
+            onPrevDay={HandlePrevDay} 
+            onNextDay={HandleNextDay}
+            onSelectDate={handleSelectDate}  
+          />
+          :
+          <Fragment/>
+        }
       </div>
     );
   }
@@ -108,6 +119,7 @@ export default connect(
     selectedDate: state.marketUI.getIn(['calendar','selectedDate']),
     currentDate: state.marketUI.getIn(['calendar','currentDate']),
     today: state.marketUI.getIn(['calendar','today']),
+    isSelectedByDate: state.marketUI.get('isSelectedByDate'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({

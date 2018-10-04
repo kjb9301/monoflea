@@ -30,8 +30,7 @@ const initialState = Map({
   data: List(),
   applyList: List(),
   message: '',
-  marketCount: 0,
-  marketRegCount: 0 
+  marketCount: 0
 });
 
 export default handleActions({
@@ -40,10 +39,8 @@ export default handleActions({
     onSuccess: (state,action) => {
       const list = action.payload.data;
       const marketCount = list.marketCount;
-      //const marketRegCount = list.marketRegCount;
       return state.set('data', list)
-                  .set('marketCount', marketCount)
-                  //.set('marketRegCount', marketRegCount)     
+                  .set('marketCount', marketCount) 
     }
   }),
   ...pender({

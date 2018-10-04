@@ -29,7 +29,6 @@
   align-items: center;
   margin: 10px;
   padding: 5px;
-  //background-color: rgb(216, 212, 212);
 
   .left-wrapper {
     display: flex;
@@ -76,7 +75,6 @@
       font-size: 20px;
       font-weight: bold;
       
-
       &.isSunday {
         color: red;
       }
@@ -87,10 +85,8 @@
 
       &.selected {    
         display: flex;
-        align-items: flex-start;
         flex-flow : column wrap;
         padding: 5px;
-        //background-color: brown;
 
         .weekday {
           display : flex;
@@ -113,34 +109,11 @@
           align-items: center;
           justify-content: space-around;
         }
-
-        &:not(div) {
-          display: none;
-        }
       }
 
       &:hover {
-        border: none;
         border: 3px solid rgb(105, 155, 248);
-      }
-
-      .weekday {
-        border: none;
-
-        // &.isToday {
-        //   background-color: rgb(196, 203, 245);
-        // }
-      }
-
-      .day {
-        border: none;
-
-        // &.isToday {  
-        //   padding: 5px;
-        //   background-color: rgb(196, 203, 245);
-        //   color: white !important
-        // }
-      }
+      }  
     }
   }
 }

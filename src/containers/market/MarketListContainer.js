@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MarketList from 'components/market/MarketList';
-import CalendarContainer from './CalendarContainer';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
@@ -47,36 +46,42 @@ class MarketListContainer extends Component {
     }
   }
 
-  selectByDate = () => {
-    const { MarketUIActions, isSelectedByDate } = this.props;
-    MarketUIActions.selectByDate(isSelectedByDate);
-  }
-
   componentDidMount() {
     this.getMarketList();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const {list,hasMore} = this.props;
+    return (JSON.stringify(list.marketComingList) !== JSON.stringify(nextProps.list.marketComingList)) 
+            || (JSON.stringify(list.marketList) !== JSON.stringify(nextProps.list.marketList)) 
+            || (nextProps.hasMore !== hasMore)
+  }
+
   render() {
-    const {list,hasMore,isSelectedByDate} = this.props;
+    //console.log("MarketListContainer")
+    const {list,listType,hasMore} = this.props;
     const {marketList,marketComingList} = list;
     if(!marketList) return null;
-    const {handleDetail,getMoreData,selectByDate} = this;
+    const {handleDetail,getMoreData} = this;
     const date = new Date();
     const curGetTime = date.getTime();
 
     return (
       <div>
-        <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
-        <MarketList listType='L' markets={marketList} isSelectedByDate={isSelectedByDate} onDetail={handleDetail} curGetTime={curGetTime} onSelectByDate={selectByDate}>
-          <CalendarContainer/>
-        </MarketList>
-        <InfiniteScroll
-          dataLength={marketList.length}
-          next={getMoreData}
-          hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
-        >
-        </InfiniteScroll>
+        {listType === 'CL'?
+          <MarketList markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
+        :
+          <Fragment>
+            <MarketList markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}/>
+            <InfiniteScroll
+              dataLength={marketList.length}
+              next={getMoreData}
+              hasMore={hasMore}
+              loader={<h4>Loading...</h4>}
+            >
+            </InfiniteScroll>
+          </Fragment>
+        }
       </div>
     );
   }
@@ -86,8 +91,7 @@ export default connect(
   (state) => ({
     list: state.market.get('data'),
     hasMore: state.marketUI.get('hasMore'),
-    marketCount: state.market.get('marketCount'),
-    isSelectedByDate: state.marketUI.get('isSelectedByDate')
+    marketCount: state.market.get('marketCount')
   }),
   (dispatch) => ({
     MarketActions: bindActionCreators(marketActions,dispatch),

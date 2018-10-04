@@ -16,16 +16,17 @@
   width: 100%;
   text-align: center;
 
-  // & > div  {
-  //   color: white;
-  //   border-radius: 50%;
-  //   width: 65px;
-  //   height: 65px;
-  //   margin: 0;
-  //   margin-left: 10px;
-  //   padding: 0;
-  //   background-color: rgba(0,0,0,0.5);
-  // }
+  & > span  {
+    color: white;
+    font-size: 15px;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    margin: 0;
+    line-height: 40px;
+    cursor: pointer;
+    background-color: rgba(6, 64, 253, 0.767);
+  }
 }
 
 .item-boxframe {
