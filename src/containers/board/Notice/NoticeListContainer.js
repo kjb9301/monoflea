@@ -9,6 +9,7 @@ class NoticeListContainer extends Component {
   getNoticeList = async () => {
     const { NoticeListActions } = this.props;
     await NoticeListActions.getNoticeList(8);
+    return NoticeListActions.setDefaultState();
   }
 
   getMoreData = () => {

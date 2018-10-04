@@ -3,7 +3,7 @@ import styles from './LoginedSellerDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 import { GoHeart } from "react-icons/go";
-import ImageGallery from 'react-image-gallery';
+// import ImageGallery from 'react-image-gallery';
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +12,6 @@ const LoginedSellerDetailModal = ({visible, loginedSellerData, onChange,loggedNi
   const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory,seller_id ,show_TF} = loginedSellerData;
   const { nickName } = user.nickName;
   let  { imgUrl }  = seller_images; 
-  console.log(imgUrl);
   const { category_ko } = sellerCategory.category_ko;
   // if( !user || !imgUrl ) return null;
   //  const imgList = imgUrl.map(
@@ -29,9 +28,11 @@ const LoginedSellerDetailModal = ({visible, loginedSellerData, onChange,loggedNi
    const imgList = imgUrl.map(
      (imgItem, idx) => {
        const { imgUrl } = imgItem;
-       return <img src = {imgUrl}
-               key = {idx}
-               />
+       return <img 
+                src = {imgUrl}
+                key = {idx}
+                alt={category_ko}
+              />
      }
    )
  return (
@@ -41,7 +42,7 @@ const LoginedSellerDetailModal = ({visible, loginedSellerData, onChange,loggedNi
        <div className={cx('modalForm')}>
            <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
              <div className={cx('wrapper')}>
-               <div className={cx('profile')}> <img src = {profile_img}/> </div>
+               <div className={cx('profile')}> <img src = {profile_img} alt={nickName}/> </div>
                  <div className={cx('desc')}>
                    <div className={cx('info')}>
                      <div>이름 : {nickName} </div>
@@ -77,7 +78,7 @@ const LoginedSellerDetailModal = ({visible, loginedSellerData, onChange,loggedNi
        <div className={cx('modalForm')}>
          <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
            <div className={cx('wrapper')}>
-             <div className={cx('profile')}> <img src = {profile_img}/> </div>
+             <div className={cx('profile')}> <img src = {profile_img} alt={nickName}/> </div>
              <div className={cx('desc')}>
                  <div className={cx('info')}>
                    <div>이름 : {nickName} </div>

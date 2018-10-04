@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import SellerDetailModal from 'components/modal/SellerDetailModal';
-import { Map, List } from  'immutable';
 
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI'
@@ -17,7 +16,7 @@ class SellerDetailContainer extends Component {
 
 
   render() {
-    const {visible, sellerData , loading, nickName} = this.props;
+    const {visible, sellerData, nickName} = this.props;
     const { handleClose} = this
     const detailInfo = sellerData.toJS()
     return (
@@ -39,7 +38,6 @@ export default connect((state ) =>({
   sellerData : state.sellerUI.get('seller'),
   visible : state.sellerUI.getIn(['modal','seller']),
   editTF : state.sellerUI.get('editTF'),
-  loading :state.pender.pending['/seller/GET_SELLER_LIST'],
   isLogin : state.base.get('logged'),
   nickName : state.base.get('nickName'),
   oneSeller : state.seller.get('oneSeller')

@@ -49,14 +49,11 @@ class SellersListContainer extends Component {
 
   getMoreData = () => {
     const { SellerActions, sellerList, category } = this.props;
-    let len = parseInt(sellerList.length/10)*10;
+    let len = parseInt(sellerList.length/10, 10)*10;
     if(len>sellerList.length-10) {
       setTimeout(async () => {
         await SellerActions.getSellersList(category,'undefined', len+10);
-        // await ClassActions.getClassCount();
         const { totalCnt } = this.props;
-        console.log(totalCnt);
-        console.log(sellerList.length)
         if(sellerList.length>=totalCnt) return SellerActions.toggleMoreState(false);
       }, 350);
     }
@@ -83,7 +80,7 @@ class SellersListContainer extends Component {
           dataLength={sellerList.length}
           next={this.getMoreData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={loader}
         />
       </div>
     );

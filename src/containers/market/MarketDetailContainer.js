@@ -96,7 +96,7 @@ class MarketDetailContainer extends Component {
 
   render() {
     const {loading,visible,marketDetail,editTF,userType,user_host_id} = this.props;
-    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel,handleRegUpdate,handleApplyClose} = this;
+    const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel,handleApplyClose} = this;
     const detailInfo = marketDetail.toJS();
 
     if(loading) return null;

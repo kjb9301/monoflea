@@ -78,7 +78,7 @@ class ClassListContainer extends Component {
 
   getMoreData = () => {
     const { ClassActions, classList, category } = this.props;
-    let len = parseInt(classList.length/10)*10;
+    let len = parseInt(classList.length/10, 10)*10;
     if(len>classList.length-10) {
       setTimeout(async () => {
         try {

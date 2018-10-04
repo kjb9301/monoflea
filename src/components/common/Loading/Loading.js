@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const Loading = () => {
   return (
     <div className={cx('loading-background')}>
-      <img className={cx('loading-spinner')} src={Spinner} />
+      <img className={cx('loading-spinner')} src={Spinner} alt='loading'/>
     </div>
   )
 }

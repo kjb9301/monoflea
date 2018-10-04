@@ -25,6 +25,30 @@
       margin: 3rem auto;
     }
   }
+  @include media("<large") {
+    .detail-wrap {
+      width: 80%;
+      .detail-top {
+        .detail-title {
+          font-size: 1.3rem;
+        }
+        .detail-date, .detail-view-count {
+          font-size: 10px;
+        }
+        @include media("<smedium") {
+          .detail-title, .detail-date, .detail-view-count {
+            text-align: center;
+          }
+          .detail-title {
+            font-size: 1rem;
+          }
+          .detail-date {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
   .detail-prev-wrap {
     width: 50%;
     margin: 1rem auto;
@@ -40,6 +64,11 @@
         background-color: #ff7e00;
         color: white;
         border: none;
+      }
+    }
+    @include media("<medium") {
+      .detail-prev-btn {
+        font-size: 10px;
       }
     }
   }

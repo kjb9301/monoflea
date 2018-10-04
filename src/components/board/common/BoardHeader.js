@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const BoardHeader = ({}) => {
+const BoardHeader = () => {
   return (
     <div className={cx('notice-title-wrap')}>
       <h3 className={cx('notice-title')}>Notification</h3>

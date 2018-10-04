@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MarketList from 'components/market/MarketList';
 import CalendarContainer from './CalendarContainer';
-import Button from 'components/common/Button';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';

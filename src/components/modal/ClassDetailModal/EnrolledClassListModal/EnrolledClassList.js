@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './EnrolledClassList.scss';
 import classNames from 'classnames/bind';
-// import ModalWrapper from '../ModalWrapper';
 import ClassModalWrapper from '../ClassModalWrapper/ClassModalWrapper';
 
 const cx = classNames.bind(styles);

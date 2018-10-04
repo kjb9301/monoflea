@@ -2,14 +2,13 @@ import React from 'react';
 import styles from './SellerDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
-import Like from '../../common/Like'
 import { GoHeart } from "react-icons/go";
 const cx = classNames.bind(styles);
 
 const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,  likeUp}) => {
    const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory ,view_cnt} = sellerDetailData;
    const { nickName } = user.nickName;
-   const On = loggedNickName !== nickName ? true : false
+  //  const On = loggedNickName !== nickName ? true : false
    let  { imgUrl }  = seller_images; 
    const { category_ko } = sellerCategory.category_ko
   if( !user || !imgUrl ) return null;
@@ -18,7 +17,8 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
         const { imgUrl } = imgItem;
         return <img src = {imgUrl}
                 key = {idx}
-                />
+                alt={nickName}
+              />
       }
     )
   return (
@@ -27,7 +27,7 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
       <div className={cx('modalForm')}>
         <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
           <div className={cx('wrapper')}>
-            <div className={cx('profile')}> <img src = {profile_img}/> </div>
+            <div className={cx('profile')}> <img src = {profile_img} alt={nickName}/> </div>
             <div className={cx('desc')}>
                 <div className={cx('info')}>
                   <div>이름 : {nickName} </div>

@@ -32,12 +32,11 @@ class SellerOneData extends Component {
 
   render() {
     const { userType} = this.props;
-    const {  handleModal, getSellerDetail} = this
+    const {  handleModal} = this
     return (
       <div>
         <Edit
           onModalLogged = {handleModal}
-          // detailData = {getSellerDetail}
           userType = {userType}
           />
       </div>

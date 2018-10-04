@@ -28,7 +28,7 @@ class MarketListRegContainer extends Component {
     const { MarketActions, MarketUIActions, list } = this.props;
     const marketRegList = list.marketList;
     console.log(marketRegList)
-    let len = parseInt(marketRegList.length/10)*10;
+    let len = parseInt(marketRegList.length/10, 10)*10;
 
     if(len > marketRegList.length-10) {
       setTimeout(async () => {
