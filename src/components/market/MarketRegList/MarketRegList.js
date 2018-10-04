@@ -13,7 +13,7 @@ const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,reg
     <div className={cx('item-boxframe')} onClick={() => onDetail(id)}>
       <div className={cx('item-box')}>
         <div className={cx('item-posterframe')}>
-          <div className={cx('item-poster')}><img src={poster} /></div>
+          <div className={cx('item-poster')}><img src={poster} alt={name}/></div>
         </div>
         
         <div className={cx('item-contents')}>

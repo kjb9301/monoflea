@@ -33,13 +33,13 @@ const ClassDetailModal =
                 <span>이미지변경 <input type="file" onChange={changeValue} name={img.class_img_id}/></span>
                 <span>&times;</span>
               </div>
-              <img src={img.class_imgurl}/>
+              <img src={img.class_imgurl} alt={class_name}/>
             </Fragment>
           )
           :
           (
             <Fragment>
-              <img src={img.class_imgurl}/>
+              <img src={img.class_imgurl} alt={class_name}/>
             </Fragment>
           )
         }
@@ -63,7 +63,7 @@ const ClassDetailModal =
             </div>
             <div className={cx('modalInfo')}>
               <div className={cx('classProfileImg')}>
-                <img src={seller.profile_img} />
+                <img src={seller.profile_img} alt={class_name}/>
               </div>
               <div className={cx('classInfo')}>
                 <div>
@@ -160,7 +160,7 @@ const ClassDetailModal =
             </div>
             <div className={cx('modalInfo')}>
               <div className={cx('classProfileImg')}>
-                <img src={seller.profile_img} />
+                <img src={seller.profile_img} alt={class_name}/>
               </div>
               <div className={cx('classInfo')}>
                 <div>
