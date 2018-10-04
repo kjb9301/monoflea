@@ -6,7 +6,7 @@ import BoardHeader from 'components/board/common/BoardHeader';
 const cx = classNames.bind(styles);
 
 const NoticeDetail = ({noticeDetail, redirectNoticeList}) => {
-  const { board_no, user_id, title, content, view_cnt, reg_date } = noticeDetail;
+  const { title, content, view_cnt, reg_date } = noticeDetail;
   return (
     <div className={cx('notice-detail')}>
       <BoardHeader />

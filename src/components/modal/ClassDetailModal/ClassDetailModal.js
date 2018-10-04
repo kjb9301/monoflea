@@ -2,17 +2,15 @@ import React, { Fragment } from 'react';
 import styles from './ClassDetailModal.scss';
 import classNames from 'classnames/bind';
 import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
-// 공용 modal wrapper - scss 통일
-// import ModalWrapper from '../ModalWrapper';
 
 const cx = classNames.bind(styles);
 
 const ClassDetailModal = 
   ({ visible, getEnrollList, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
   const { 
-    class_category_id, class_desc, class_id, class_limit_cnt, class_name, class_place,
-    class_reg_cnt, onedayCategory, onedayImages, reg_date, recruit_start_date, 
-    recruit_end_date, view_cnt, event_date, seller, seller_id, onedayRegs
+    class_desc, class_id, class_limit_cnt, class_name, class_place,
+    class_reg_cnt, onedayCategory, onedayImages, recruit_start_date, 
+    recruit_end_date, view_cnt, event_date, seller, onedayRegs
    } = classDetail;
 
    const categoryList = categories.map(category => (
