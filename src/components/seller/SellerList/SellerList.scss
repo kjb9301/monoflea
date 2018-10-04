@@ -6,7 +6,6 @@
   padding: 20px;
 
   display: grid;
-  // grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   grid-auto-flow: dense;
   
@@ -42,16 +41,13 @@
     }
 
     .seller-cnt {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
       color : $oc-gray-5;
       font-size: 13px;
+      text-align: center;
+      vertical-align: bottom;
 
       & > span > svg {
         fill: $oc-gray-5;
-        margin-left: 10px;
-        margin-right: 5px;
       }
     }
 
@@ -89,6 +85,8 @@
 
       .seller-desc {
         margin-top: 10px;
+        min-height: 50px;
+        word-break: break-all;
       }
 
       &:hover {
@@ -97,11 +95,11 @@
     }
     
     &:nth-child(even) {
-      grid-row: span 16;
+      grid-row: span 21;
     }
 
     &:nth-child(odd) {
-      grid-row: span 15;
+      grid-row: span 20;
     }
   }
 }

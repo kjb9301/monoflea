@@ -84,57 +84,62 @@ const ClassDetailModal =
                   <span>모집기간</span>
                   {recruit_start_date} ~ {recruit_end_date}
                 </div>
-                <div>
+                <div className={cx('classRegCnt')}>
                   <span>모집인원</span>
-                  <span ref={ref => this.regCnt = ref}>{class_reg_cnt}</span> 
-                  / 
-                  <span>{class_limit_cnt}</span>
+                  <strong ref={ref => this.regCnt = ref}>{class_reg_cnt}</strong> 
+                  <em>/</em> 
+                  <strong>{class_limit_cnt}</strong>
                 </div>
                 <div>
                   <span>조회수</span>
                   {view_cnt}
                 </div>
+                <div className={cx('classBtnWrap')}>
+                  {
+                    nickName === seller.user.nickName 
+                    ?
+                    (
+                      <div>
+                        <div className={cx('classBtn')} onClick={() => toggleEditOnedayClass(class_id)}>수정</div>
+                        <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</div>
+                        <div className={cx('classBtn')} onClick={() => getEnrollList(class_id)}>신청자 목록</div>
+                      </div>
+                    )
+                    :
+                    (
+                      
+                      onedayRegs[0] 
+                      ?                     
+                      <div 
+                        className={cx('classBtn')} 
+                        ref={ref => this.cancelBtn = ref}
+                        onClick={() => {
+                          cancelOnedayClass(class_id);
+                          // this.regCnt.innerText = Number(this.regCnt.innerText) - 1;
+                        }
+                      }>취소하기
+                      </div>
+                      :
+                      <div 
+                        className={cx('classBtn')}
+                        ref={ref => this.enrollBtn = ref}
+                        onClick={() => {
+                          enrollOnedayClass(class_id);
+                          // this.regCnt.innerText = Number(this.regCnt.innerText) + 1;
+                        }
+                      }>강좌등록하기
+                      </div>
+                    )
+                  }
+                </div>
               </div>
-              {
-                nickName === seller.user.nickName 
-                ?
-                (
-                  <div>
-                    <div className={cx('classBtn')} onClick={() => toggleEditOnedayClass(class_id)}>수정</div>
-                    <div className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</div>
-                    <div className={cx('classBtn')} onClick={() => getEnrollList(class_id)}>신청자 목록</div>
-                  </div>
-                )
-                :
-                (
-                  
-                  onedayRegs[0] 
-                  ?                     
-                  <div 
-                    className={cx('classBtn')} 
-                    ref={ref => this.cancelBtn = ref}
-                    onClick={() => {
-                      cancelOnedayClass(class_id);
-                      // this.regCnt.innerText = Number(this.regCnt.innerText) - 1;
-                    }
-                  }>취소하기
-                  </div>
-                  :
-                  <div 
-                    className={cx('classBtn')}
-                    ref={ref => this.enrollBtn = ref}
-                    onClick={() => {
-                      enrollOnedayClass(class_id);
-                      // this.regCnt.innerText = Number(this.regCnt.innerText) + 1;
-                    }
-                  }>강좌등록하기
-                  </div>
-                )
-              }
             </div>
-            <div className={cx('modalDesc')}>상세설명 : {class_desc}</div>
-            <div className={cx('modalImage')}>
-              {images}
+            <div className={cx('modalDesc')}>
+              <div className={cx('modalTitle')}>강좌소개</div>
+              <div className={cx('modalContent')}>{class_desc}</div>
+              <div className={cx('modalImage')}>
+                {images}
+              </div>
             </div>
           </div> 
         )

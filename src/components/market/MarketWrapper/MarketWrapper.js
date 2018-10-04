@@ -8,9 +8,8 @@ const cx = classNames.bind(styles);
 const MarketWrapper = ({ userType }) => {
   return (
     <div className={cx('wrapper')}>
-
       <div className={cx('market-header')}>
-
+        
       </div>
       <MarketListContainer />
     </div>
