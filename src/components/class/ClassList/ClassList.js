@@ -24,7 +24,7 @@ const ClassItem =
       }
     }>
 
-      <div className={cx('item-poster')}><img src={images} /></div>
+      <div className={cx('item-poster')}><img src={images} alt={name}/></div>
       
       <div className={cx('item-name')}>{name}</div>
       <div className={cx('item-contents')}>
@@ -37,7 +37,7 @@ const ClassItem =
       </div>
 
       <div className={cx('item-profile')}>
-        <div className={cx('item-profile-img')}><img src={profileImg}/></div>
+        <div className={cx('item-profile-img')}><img src={profileImg} alt={nickName}/></div>
         <div className={cx('item-profile-info')}>
           <div className={cx('item-nickname')}>{nickName}</div>
           <div className={cx('item-category')}>카테고리 : <span>{categoryName}</span></div>

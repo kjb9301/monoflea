@@ -23,7 +23,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
             </div>
             <div className={cx('modalInfo')}>
               <div className={cx('marketPoster')}>
-                <img src={market_poster} />
+                <img src={market_poster} alt={market_name}/>
               </div>
               <div className={cx('marketInfo')}>
                 <div>
@@ -61,7 +61,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
             </div>
             <div className={cx('modalInfo')}>
               <div className={cx('marketPoster')}>
-                <img src={market_poster} />
+                <img src={market_poster} alt="market_name"/>
               </div>
               <div className={cx('marketInfo')}>
                 <div><span className={cx('marketPlace')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span></div>
@@ -92,7 +92,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               </div>
               <div className={cx('modalInfo')}>
                 <div className={cx('marketPoster')}>
-                  <img src={market_poster} />
+                  <img src={market_poster} alt={market_name}/>
                 </div>
                 <div className={cx('marketInfo')}>
                   <div>
@@ -126,7 +126,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               </div>
               <div className={cx('modalInfo')}>
                 <div className={cx('marketPoster')}>
-                  <img src={market_poster} />
+                  <img src={market_poster} alt={market_name}/>
                 </div>
                 <div className={cx('marketInfo')}>     
                   <div>
@@ -171,7 +171,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
             </div>
             <div className={cx('modalInfo')}>
               <div className={cx('marketPoster')}>
-                <img src={market_poster} />
+                <img src={market_poster} alt={market_name}/>
               </div>
               <div className={cx('marketInfo')}>
                 <div>
