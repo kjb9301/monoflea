@@ -20,7 +20,7 @@ const ClassItem =
     <div className={cx('item-box')} 
       onClick={() => {
         showClassModal(id);
-        viewCnt[id].innerText = parseInt(viewCnt[id].innerText) + 1;
+        viewCnt[id].innerText = parseInt(viewCnt[id].innerText, 10) + 1;
       }
     }>
 

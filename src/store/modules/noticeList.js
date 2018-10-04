@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { Map, List, fromJS } from 'immutable';
+import { Map, List } from 'immutable';
 import { pender } from 'redux-pender';
 
 import * as api from 'lib/api';

@@ -111,31 +111,31 @@ const About = () => {
             <div className={cx('section-team')}>
 
               <div className={cx('team')}>
-                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png"/>
+                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png" alt="team"/>
                 <div className={cx('team-info')}>
                   Normal Paragraph - Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit.<br/> Fusce pellentesque risus in enim porta aliquam.<br/> In vitae risus purus.
                 </div>
               </div>
               <div className={cx('team')}>
-                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png"/>
+                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png" alt="team"/>
                 <div className={cx('team-info')}>
                   Normal Paragraph - Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit.<br/> Fusce pellentesque risus in enim porta aliquam.<br/> In vitae risus purus.
                 </div>
               </div>
               <div className={cx('team')}>
-                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png"/>
+                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png" alt="team"/>
                 <div className={cx('team-info')}>
                   Normal Paragraph - Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit.<br/> Fusce pellentesque risus in enim porta aliquam.<br/> In vitae risus purus.
                 </div>
               </div>
               <div className={cx('team')}>
-                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png"/>
+                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png" alt="team"/>
                 <div className={cx('team-info')}>
                   Normal Paragraph - Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit.<br/> Fusce pellentesque risus in enim porta aliquam.<br/> In vitae risus purus.
                 </div>
               </div>
               <div className={cx('team')}>
-                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png"/>
+                <img src="http://www.worldhotel.co.kr/main/img/avatar/avatar1.png" alt="team"/>
                 <div className={cx('team-info')}>
                   Normal Paragraph - Lorem ipsum dolor sit amet,<br/> consectetur adipiscing elit.<br/> Fusce pellentesque risus in enim porta aliquam.<br/> In vitae risus purus.
                 </div>

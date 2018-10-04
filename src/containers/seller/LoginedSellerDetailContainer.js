@@ -24,13 +24,10 @@ class LoginedSellerDetailContainer extends Component {
     SellerUIActions.hideLoggedModal('loggedSeller');
   }
   handleChange = (e) => {
-    const { SellerUIActions,loginedSeller } = this.props;
+    const { SellerUIActions } = this.props;
     let { name, value } = e.target;
-    console.log(loginedSeller.toJS());
-    console.log(name);
      name === 'show_TF' ? SellerUIActions.showTF({name,value}) 
                        : SellerUIActions.changedData({name,value})
-    // SellerUIActions.changedData({name,value});
   }
   handleUpdate = (id) => {
     const { SellerActions,SellerUIActions,loginedSeller,  editTF } = this.props;
@@ -44,7 +41,7 @@ class LoginedSellerDetailContainer extends Component {
     SellerUIActions.editTF(editTF);
   }
   render() {
-    const { loginedSeller, loading,editTF,visible, loggedNickName} = this.props;
+    const { loginedSeller,editTF,visible, loggedNickName} = this.props;
     const { handleEdit, handleUpdate, handleChange,handleCancel,handleClose} = this
     const loginedSellerData = loginedSeller.toJS();
     
@@ -71,7 +68,6 @@ export default connect((state ) =>({
   loginedSeller : state.seller.get('oneSeller'),
   visible : state.sellerUI.getIn(['modal','loggedSeller']),
   editTF : state.sellerUI.get('editTF'),
-  loading :state.pender.pending['/seller/GET_SELLER_LIST'],
   loggedNickName : state.base.get('nickName')
 }),
   (dispatch) =>({

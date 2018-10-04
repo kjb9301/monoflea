@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -22,10 +22,10 @@ class MarketListContainer extends Component {
     let idx = ''
     
     if(listType === 'L'){
-      idx = list.marketList.findIndex(market => market.market_id == id);
+      idx = list.marketList.findIndex(market => market.market_id === id);
       marketDetail = list.marketList[idx];
     }else{
-      idx = list.marketComingList.findIndex(market => market.market_id == id);
+      idx = list.marketComingList.findIndex(market => market.market_id === id);
       marketDetail = list.marketComingList[idx];
     }
     MarketUIActions.showModal('market');
@@ -36,7 +36,7 @@ class MarketListContainer extends Component {
   getMoreData = () => {
     const { MarketActions, MarketUIActions, list } = this.props;
     const marketList = list.marketList;
-    let len = parseInt(marketList.length/10)*10;
+    let len = parseInt(marketList.length/10, 10)*10;
 
     if(len > marketList.length-10) {
       setTimeout(async () => {
@@ -57,14 +57,13 @@ class MarketListContainer extends Component {
   }
 
   render() {
-    const {list,hasMore,isSelectedByDate,loading} = this.props;
+    const {list,hasMore,isSelectedByDate} = this.props;
     const {marketList,marketComingList} = list;
     if(!marketList) return null;
     const {handleDetail,getMoreData,selectByDate} = this;
     const date = new Date();
     const curGetTime = date.getTime();
- 
-    //if(loading) return null;
+
     return (
       <div>
         <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
@@ -89,7 +88,6 @@ export default connect(
     hasMore: state.marketUI.get('hasMore'),
     marketCount: state.market.get('marketCount'),
     isSelectedByDate: state.marketUI.get('isSelectedByDate')
-    //loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({
     MarketActions: bindActionCreators(marketActions,dispatch),

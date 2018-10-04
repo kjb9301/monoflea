@@ -14,7 +14,7 @@ class NoticeListContainer extends Component {
 
   getMoreData = () => {
     const { NoticeListActions, notices } = this.props;
-    let len = parseInt(notices.length/8)*10;
+    let len = parseInt(notices.length/8, 10)*10;
     if(len>notices.length-8) {
       setTimeout(async () => {
         try {

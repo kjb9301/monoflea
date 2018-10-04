@@ -1,7 +1,6 @@
-import {createAction,handleActions} from 'redux-actions';
+import { createAction,handleActions } from 'redux-actions';
 
-import {Map, fromJS} from 'immutable';
-import {pender} from 'redux-pender';
+import { fromJS } from 'immutable';
 
 const SHOW_MODAL = 'modalVisible/SHOW_MODAL';
 const HIDE_MODAL = 'modalVisible/HIDE_MODAL';

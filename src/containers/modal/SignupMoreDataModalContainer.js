@@ -19,9 +19,7 @@ class SignupMoreDataModalContainer extends Component {
   onSignup = async () => {
     const { 
       BaseActions,
-      modalEmail,
       modalNickname,
-      modalPassword,
       userType
     } = this.props;    
     
@@ -33,9 +31,8 @@ class SignupMoreDataModalContainer extends Component {
       bodyData.set('nickName', nickName);
       bodyData.set('userType', userType);
       await axios.post('/users/social-signup', bodyData);
-      // await axios.post('/users/social-signup', { userType, nickName, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
     } else {
-      // await BaseActions.signup({ modalEmail, modalNickname, modalPassword, userType, name, tel, category, career, sns, profile_img, biz, desc, classTF, showTF });
+
     }
     alert('가입이 완료되었습니다!');
     BaseActions.hideModal('signupMore');
@@ -61,7 +58,7 @@ class SignupMoreDataModalContainer extends Component {
 
   checkAuthNum = () => {
     const { checkNum, authInfo, BaseActions } = this.props;
-    if(authInfo.get('authNum') == checkNum) {
+    if(String(authInfo.get('authNum')) === checkNum) {
       BaseActions.changeMoreAuth(true);
       return alert('정상적으로 인증되었습니다!');
     }

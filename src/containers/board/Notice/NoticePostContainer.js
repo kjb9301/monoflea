@@ -10,7 +10,7 @@ import * as newNoticeAction from 'store/modules/noticePost';
 class NoticePostContainer extends Component {
   
   createNewPost = async () => {
-    const { NewNoticeAction, title, content, history } = this.props;
+    const { title, content, history } = this.props;
     try {
       const createdResult = await axios.post('/notices', { title, content });
       const { isCreated, message, no } = createdResult.data;
