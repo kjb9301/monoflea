@@ -61,13 +61,8 @@ const MainWrapper = () => {
         </Link>
         <Link to="/mypage" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-<<<<<<< Updated upstream
-            <img src={questionImg}/>
+            <img src={questionImg} alt='마이페이지'/>
             <p>마이페이지</p>
-=======
-            <img src={questionImg} alt='QnA'/>
-            <p>QnA</p>
->>>>>>> Stashed changes
           </div>
         </Link>
       </div>
