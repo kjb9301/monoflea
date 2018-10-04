@@ -5,6 +5,7 @@
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 6rem; /* Location of the box */
+  padding-bottom: 6rem;
   left: 0;
   top: 0;
   width: 100%; 
@@ -14,14 +15,17 @@
 
   @include media("<large") {
     padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   @include media("<medium") {
     padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   @include media("<small") {
     padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   /* Modal Content */

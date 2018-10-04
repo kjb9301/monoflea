@@ -8,7 +8,7 @@
     font-size: 5rem;
     font-weight: bold;
     margin-left: 0;
-    right: 0;
+    right: 5px;
     top: -1rem;
     line-height: 1;
     color: #aaa;
@@ -46,6 +46,7 @@
       font-size: 1.2rem;
       font-weight: bold;
       text-align: center;
+      color: rgba(0,0,0,0.6);
 
       @include media ("<medium") {
         margin-right: 1rem;
@@ -120,6 +121,14 @@
         margin-top: .3rem;
       }
 
+      .classRegCnt {
+        color: #2196f3;
+      }
+
+      em {
+        padding: 0 10px;
+      }
+
       div {
         padding: .2rem;
         font-size: .8rem;
@@ -147,64 +156,86 @@
       @include media ("<small") {
 
       }
-    }
 
-    .classBtn {
-      width: 70%;
-      margin: 1rem auto;
-      padding: .5rem 1rem;
-      text-align: right;
-      background-color: #4CAF50; /* Green */
-      border: none;
-      color: white;
-      outline: none;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-      
-      &:hover {
-        border: 1px solid #4CAF50;
-        color: #4CAF50;
-        background-color: white;
-      }
-
-      @include media("<medium") {
+      .classBtnWrap {
         text-align: center;
+
+        .classBtn {
+          display: inline-block;
+          margin: 1rem auto;
+          padding: .5rem 1rem;
+          text-align: center;
+          background-color: #4CAF50; /* Green */
+          color: white;
+          outline: none;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border: 1px solid white;
+          cursor: pointer;
+          border-radius: 10px;
+          
+          &:hover {
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            background-color: white;
+          }
+    
+          @include media("<medium") {
+            text-align: center;
+          }
+        }
       }
     }
   }
 
   .modalDesc {
     margin: 1rem 0 2rem 0;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem;
     font-size: .8rem;
     line-height: 2;
     border-radius: .5rem;
-    border: 1px solid #f2f2f2;
+    // border: 1px solid #f2f2f2;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
     @include media("<medium") {
-      padding: 2rem 1rem;
+      padding: 1rem;
     }
-  }
 
-  .modalImage {
-    .img-box {
+    .modalTitle {
       display: inline-block;
-      .img-btn {
-        span {
-          cursor: pointer;
-          font-size: 2rem;
+      padding-left: 20px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-left: 10px solid orange;
+    }
+
+    .modalContent {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    
+    .modalImage {
+      text-align: center;
+      padding-top: 2rem;
+      
+      .img-box {
+        display: inline-block;
+        .img-btn {
+          span {
+            cursor: pointer;
+            font-size: 2rem;
+          }
+          @include text-right();
         }
-        @include text-right();
-      }
-      img {
-        max-width: 100%;
-        height: auto;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
       }
     }
   }
-
 }

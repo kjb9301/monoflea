@@ -25,22 +25,28 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
     <ModalWrapper  visible = {visible} > 
      
       <div className={cx('modalForm')}>
-        <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
-          <div className={cx('wrapper')}>
-            <div className={cx('profile')}> <img src = {profile_img}/> </div>
-            <div className={cx('desc')}>
-                <div className={cx('info')}>
-                  <div>이름 : {nickName} </div>
-                  <div>분야 : {category_ko}</div>
-                  <div>경력 : {career}년  <br/> SNS : {sns} </div>
-                  ab자기소개 : 200자 ddd<br/> {seller_desc}
-                  <div>조회수  : {view_cnt}</div>
-                  <div className = {cx('like')}> <GoHeart className= {cx('heart')} onClick = {likeUp}/> 좋아요  </div> 
-                
-                </div>
-              </div>
+        <div className={cx('wrapper')}>
+          <div className={cx('profile')}>
+            <img src = {profile_img}/>
+            <div className = {cx('like')}>
+              <span><GoHeart className= {cx('heart')} onClick = {likeUp}/> 좋아요</span>
+              <span>조회수  : {view_cnt}</span>
             </div>
+          </div>
+
+          <div className={cx('desc')}>
+            <div className={cx('info')}>
+              <div><span>이름 :</span>{nickName}</div>
+              <div><span>분야 :</span>{category_ko}</div>
+              <div><span>경력 :</span>{career}년</div>
+              <div><span>SNS :</span>{sns}</div>
+            </div>
+            <div className={cx('desc-text')}>{seller_desc}</div>
+          </div>
+        </div>
+
         <div className = {cx('seller_img')}> {imgList} </div>
+        <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
       </div> 
     
     

@@ -1,67 +1,126 @@
 @import 'common';
 
 .modalForm {
-  background: white;
-  padding: 2rem;
-  padding-top: 1.5rem;
-  padding-bottom : 1.5rem;
-  width: 50rem;
-  height: auto;
-  .close {
-    line-height: 2rem;
-    font-size: 2rem;
-    span{
-      cursor: pointer;
-      &:hover {
-        color: $oc-gray-6;
-      }
-    }
-    text-align: right;
+  border-top: 10px dotted rgba(0,0,0,0.1);
+  margin-top: 10px;
+  padding: 30px;
+  min-height: 70vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  @include media("<medium") {
+    padding: 10px;
   }
-  .seller_img {
-    width: 20rem;
-    height: 26rem;
-    margin: 2rem;
-    display: inline-block;
-    img{
-      width :20rem;
-      height: 7rem;
-    }
-  }
+  
   .wrapper {
-    display: inline-block;
-    vertical-align: top;
-    height: auto;
-    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 220px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-gap: 10px;
+
     .profile {
-      width: 20rem;
-      height: auto;
-      padding: 1rem;
       text-align: center;
-      font-size: 1.25rem;
-      font-weight: 500;
-      display: inline-block;
-    }
-    .desc{
-      text-align: left;
-      width : 20rem;
-      height: auto;
-      padding : 1rem;
-      border : 1px solid black;
-      margin: 1rem;
-      .info{
-        .like{
-          font-size : 1rem;
-          .heart{
-              &:hover {
-                  color: $oc-gray-5;
-              }
-              &:active {
-                  color: $oc-pink-6};
-          }
+
+      img {
+        border-radius: 50%;
+        max-width: 150px;
+        min-width: 100px;
+        height: auto;
+
+        @include media("<medium") {
+          max-width: 120px;
+        }
+      }
+
+      .like {
+        padding: 5px;
+        font-size : 12px;
+        color: rgba(0,0,0,0.6);
+        text-align: center;
+        
+        .heart {
+            font-size: 14px;
+            vertical-align: bottom;
+
+            &:hover {
+                color: $oc-gray-5;
+            }
+            &:active {
+                color: $oc-pink-6};
+        }
+
+        span {
+          margin: 0 10px;
         }
       }
     }
-  } 
+
+    .desc {
+
+      .info {
+        font-size: 14px;
+        line-height: 2;
+
+        div {
+          padding-top: 5px;
+          border-bottom: 1px solid skyblue;
+        }
+
+        span {
+          padding: 0 10px;
+          width: 60px;
+          margin-right: 20px;
+        }
+      }
+
+      .desc-text {
+        min-height: 50px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        line-height: 1.5;
+        font-size: 12px;
+        color: rgba(0,0,0,0.8);
+      }
+    }
+  }
   
+  .seller_img {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    
+    flex: 1 0 65%;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  }
+  
+  .close {
+    position: absolute;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-left: 0;
+    right: 5px;
+    top: -0.4rem;
+    line-height: 1;
+    color: #aaa;
+
+    &:hover,
+    &:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
 }

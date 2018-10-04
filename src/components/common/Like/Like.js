@@ -10,7 +10,7 @@ const Like = ({like_cnt, onLike, offLike, view_cnt,likeOn,id})  =>{
       <span onClick = { async (e) =>{
         e.stopPropagation();
         likeOn === true ? offLike(id) : onLike(id)  
-      }} ><GoHeart  className= {cx('heart', {likeOn})}/>좋아요 {like_cnt}개</span>
+      }} ><GoHeart  className= {cx('heart', {likeOn})}/> &nbsp;좋아요 {like_cnt}개</span>
     </div>
     );
 }
