@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import styles from './MarketList.scss';
 import classNames from 'classnames/bind';
 
@@ -26,7 +26,7 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
   );
 };
 
- const MarketList = ({listType,markets,onDetail,curGetTime,children}) => {
+ const MarketList = ({listType,markets,isSelectedByDate,onDetail,curGetTime,children,onSelectByDate}) => {
   if(!markets) return null; 
   const marketList = markets.map(
     (market,index) => {
@@ -52,9 +52,14 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
       <div className={cx('sub-header')}>
         {listType === 'CL' ? 'Coming Soon' : 'Market'}
       </div>
-      <div className={cx('children-space')}> 
-        {children}
-      </div>
+        <div className={cx('btn-space')}>
+          <div onClick={onSelectByDate}>{isSelectedByDate?'전체':'날짜별'}</div>
+        </div>
+          {isSelectedByDate?
+            <div>{children}</div>
+            :
+            <Fragment/>
+          }
       <div>
         {marketList}
       </div>

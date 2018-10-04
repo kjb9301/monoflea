@@ -128,7 +128,6 @@ export default handleActions({
   },
   [GET_SELECTED_DATE]: (state,action) => {
     const selectedDate = action.payload;
-    console.log(action.payload)
     return state.setIn(['calendar','selectedDate'],selectedDate);
   },
   [TOGGLE_MORE_STATE]: (state, action) => {

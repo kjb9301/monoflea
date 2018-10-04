@@ -69,13 +69,8 @@ class MarketListContainer extends Component {
     return (
       <div>
         <MarketList listType='CL' markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
-        <MarketList listType='L' markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
-          <div onClick={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</div>
-          {isSelectedByDate?
-            <CalendarContainer/>
-          :
-            <Fragment/>
-          }
+        <MarketList listType='L' markets={marketList} isSelectedByDate={isSelectedByDate} onDetail={handleDetail} curGetTime={curGetTime} onSelectByDate={selectByDate}>
+          <CalendarContainer/>
         </MarketList>
         <InfiniteScroll
           dataLength={marketList.length}
