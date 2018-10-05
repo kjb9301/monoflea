@@ -19,3 +19,6 @@ export { default as classUI } from './classUI';
 export { default as seller } from './seller';
 export { default as sellerUI } from './sellerUI';
 // export { default as sellerDetail } from './sellerDetail';
+
+// Mypage
+export { defalut as myPage } from './mypage';
