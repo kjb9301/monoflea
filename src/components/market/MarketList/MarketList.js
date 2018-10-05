@@ -38,7 +38,6 @@ class MarketList extends Component {
   // }
 
   render() {
-    console.log("MarketList")
     const {listType,markets,onDetail,curGetTime} = this.props;
     if(!markets) return null; 
     const marketList = markets.map(
