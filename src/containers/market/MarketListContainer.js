@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MarketList from 'components/market/MarketList';
+import CalendarContainer from 'containers/market/CalendarContainer';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
@@ -59,7 +60,7 @@ class MarketListContainer extends Component {
 
   render() {
     //console.log("MarketListContainer")
-    const {list,listType,hasMore} = this.props;
+    const {list,hasMore} = this.props;
     const {marketList,marketComingList} = list;
     if(!marketList) return null;
     const {handleDetail,getMoreData} = this;
@@ -68,20 +69,19 @@ class MarketListContainer extends Component {
 
     return (
       <div>
-        {listType === 'CL'?
-          <MarketList markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
-        :
-          <Fragment>
-            <MarketList markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}/>
-            <InfiniteScroll
-              dataLength={marketList.length}
-              next={getMoreData}
-              hasMore={hasMore}
-              loader={<h4>Loading...</h4>}
-            >
-            </InfiniteScroll>
-          </Fragment>
-        }
+        <MarketList listType="CL" markets={marketComingList} onDetail={handleDetail} curGetTime={curGetTime}/>
+        <MarketList listType="L" markets={marketList} onDetail={handleDetail} curGetTime={curGetTime}>
+          <CalendarContainer/>
+        </MarketList>
+        <InfiniteScroll
+          dataLength={marketList.length}
+          next={getMoreData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+        >
+        </InfiniteScroll>
+          
+        
       </div>
     );
   }

@@ -10,18 +10,16 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
   const dDay = Math.ceil(gap/(1000*60*60*24));
 
   return (
-    <div className={cx('item-boxframe')} onClick={() => onDetail(market_id,listType)}>
-      <div className={cx('item-box')}>
-        <div className={cx('item-posterframe')}>
-          <div className={cx('item-dDay')}>
-            {dDay >= 0 ? `D-${dDay}` : '종료'}
-          </div>
-          <div className={cx('item-poster')}><img src={market_poster} alt={market_name}/></div>
-        </div>
-        <div className={cx('item-contents')}>
-          <div className={cx('item-name')}>{market_name}</div>
-        </div>
+    <div className={cx('item-box')} onClick={() => onDetail(market_id,listType)}>
+      <div className={cx('item-poster')}><img src={market_poster} alt={market_name}/></div>
+      
+      <div className={cx('item-contents')}>
+        <div className={cx('item-name')}><span>모집기간</span> {market_name}</div>
       </div>
+        
+      {/* <div className={cx('item-dDay')}>
+        {dDay >= 0 ? `D-${dDay}` : '종료'}
+      </div> */}
     </div>
   );
 };
@@ -38,7 +36,7 @@ class MarketList extends Component {
   // }
 
   render() {
-    const {listType,markets,onDetail,curGetTime} = this.props;
+    const {listType,markets,onDetail,curGetTime,children} = this.props;
     if(!markets) return null; 
     const marketList = markets.map(
       (market,index) => {
@@ -60,8 +58,17 @@ class MarketList extends Component {
       }
     );
     return (
-      <div>
-        {marketList}
+      <div className={cx('wrapper')}>
+        <div>{children}</div>
+        {listType === 'C'?
+          <div className={cx('marketList')}>
+            {marketList}
+          </div>
+        :
+          <div className={cx('marketComingList')}>
+            {marketList}
+          </div>
+        }
       </div>
     )
   }

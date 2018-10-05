@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './MarketWrapper.scss';
 import classNames from 'classnames/bind';
 import MarketListContainer from 'containers/market/MarketListContainer';
-import CalendarContainer from 'containers/market/CalendarContainer';
 
 const cx = classNames.bind(styles);
 
