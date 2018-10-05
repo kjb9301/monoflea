@@ -15,10 +15,6 @@ class HeaderContainer extends Component {
   handleSignupClick = () => {
     const { BaseActions } = this.props;
     BaseActions.showModal('signupType');
-
-    // 실제 가입 폼
-    // BaseActions.showModal('signup');
-    // BaseActions.initializeSignupModal();
   }
 
   handleLogout = async () => {
@@ -27,6 +23,11 @@ class HeaderContainer extends Component {
     delete localStorage.nickName;
     alert('로그아웃 되었습니다!');
     return history.push('/');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { logged } = this.props;
+    return nextProps.logged !== logged;
   }
 
   render() {
@@ -50,7 +51,6 @@ export default connect(
   (state) => ({
     logged: state.base.get('logged'),
     nickName: state.base.get('nickName'),
-    visible: state.base.getIn(['modal', 'login'])
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)

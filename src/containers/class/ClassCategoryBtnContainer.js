@@ -9,9 +9,12 @@ class ClassCategoryBtnContainer extends Component {
 
   getSpecificClassList = async (category) => {
     const { ClassActions } = this.props;
-    await ClassActions.getClassList(category);
-    ClassActions.toggleMoreState(true);
-    ClassActions.setCategory(category);
+    if(this.props.category !== category) {
+      ClassActions.toggleMoreState(true);
+      ClassActions.setCategory(category);
+      return await ClassActions.getClassList(category);
+    }
+    return ClassActions.toggleMoreState(false);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,7 +49,8 @@ class ClassCategoryBtnContainer extends Component {
 
 export default connect(
   (state) => ({
-    categories: state.class.get('categories')
+    categories: state.class.get('categories'),
+    category: state.class.get('category'),
   }),
   (dispatch) => ({
     ClassActions: bindActionCreators(classActions, dispatch)

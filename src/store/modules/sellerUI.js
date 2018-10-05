@@ -71,7 +71,6 @@ export default handleActions({
    return state.setIn(['seller', name], value);
  },
  [DETAIL_DATA] : (state, action) => {
-    console.log(action.payload)
     const { seller_id, career, sns, seller_desc, like_cnt, profile_img, view_cnt,
             show_TF, seller_images : imgUrl, user : nickName,
             sellerCategory : category_ko} = action.payload
@@ -93,7 +92,6 @@ export default handleActions({
  },
  [CHANGED_DATA] : (state,action) => {
    const { name, value } = action.payload
-   console.log(name);
   return state.setIn(['seller', name], value)
  },
  [CHANGED_LIKE_CNT] : (state, action) =>{

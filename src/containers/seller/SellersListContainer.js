@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import SellerList from '../../components/seller/SellerList'
+import SellerList from 'components/seller/SellerList'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import axios from 'axios';
 
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI';
 import * as baseActions from 'store/modules/base';
 class SellersListContainer extends Component {
 
-  handleLike = async (id) =>{
-    const { SellerActions,loggedUser} = this.props;
+  handleLike = async (id) => {
+    const { SellerActions, loggedUser } = this.props;
     if(!loggedUser) return alert('로그인이 필요합니다.')
     const increLike = await SellerActions.incrementLike(id)
-    const {increLiked} = increLike.data
+    const { increLiked } = increLike.data
     if(increLiked){
       await SellerActions.getSellersList()
     }
   }
 
   handleDislike = async(id) => {
-    const {SellerActions } = this.props;
+    const { SellerActions } = this.props;
     const decreLike = await SellerActions.decrementLike(id)
     const { decreLiked } = decreLike.data;
     if(decreLiked){
@@ -29,12 +30,14 @@ class SellersListContainer extends Component {
   }
 
   getSellerDetail  = async (id) =>{
-    const {SellerUIActions,sellerList,SellerActions} = this.props;
-    const idx = sellerList.findIndex(seller => seller.seller_id ===id);
+    const { SellerUIActions, SellerActions } = this.props;
+    const sellerDetail = await axios.get(`/sellers/${id}`);
+    const { data: detailInfo } = sellerDetail;
     const viewData = await SellerActions.incViewCnt(id)
-    const {inc_view_cnt, view_cnt} = viewData.data;
-    if(inc_view_cnt) sellerList[idx].view_cnt = view_cnt;
-    SellerUIActions.detailData(sellerList[idx]);
+    const { inc_view_cnt, view_cnt } = viewData.data;
+    if(inc_view_cnt) detailInfo.view_cnt = view_cnt;
+    SellerUIActions.detailData(detailInfo);
+    return SellerUIActions.showModal('seller');
   }
 
   getSellersList = async (category) => {
@@ -42,17 +45,12 @@ class SellersListContainer extends Component {
     await SellerActions.getSellersList(category);
   }
 
-  handleModal =  ()=>  {
-    const {SellerUIActions} = this.props;
-    SellerUIActions.showModal('seller');
-  }
-
   getMoreData = () => {
     const { SellerActions, sellerList, category } = this.props;
-    let len = parseInt(sellerList.length/10, 10)*10;
-    if(len>sellerList.length-10) {
+    let len = parseInt(sellerList.length/8, 10)*10;
+    if(len>sellerList.length-8) {
       setTimeout(async () => {
-        await SellerActions.getSellersList(category,'undefined', len+10);
+        await SellerActions.getSellersList(category,'undefined', len+8);
         const { totalCnt } = this.props;
         if(sellerList.length>=totalCnt) return SellerActions.toggleMoreState(false);
       }, 350);
@@ -63,18 +61,16 @@ class SellersListContainer extends Component {
   }
    
   render() {
-    const { sellerList,hasMore} = this.props;
-    const { getSellerDetail, handleModal , handleDislike, handleLike} = this;
+    const { sellerList, hasMore } = this.props;
+    const { getSellerDetail , handleDislike, handleLike } = this;
     const loader = <div className="loader" key={0}>Loading ...</div>;
-    console.log(sellerList, 2);
     return (  
       <div>
         <SellerList 
-          onLike = {handleLike}
-          sellerList = { sellerList } 
-          onModal = { handleModal }
-          detailData = {getSellerDetail}
-          offLike = {handleDislike}
+          onLike={handleLike}
+          sellerList={sellerList} 
+          detailData={getSellerDetail}
+          offLike={handleDislike}
         />
         <InfiniteScroll
           dataLength={sellerList.length}

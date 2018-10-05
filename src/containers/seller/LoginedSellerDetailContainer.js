@@ -41,6 +41,7 @@ class LoginedSellerDetailContainer extends Component {
     SellerUIActions.editTF(editTF);
   }
   render() {
+    console.log('LoginedSellerDetailContainer');
     const { loginedSeller,editTF,visible, loggedNickName} = this.props;
     const { handleEdit, handleUpdate, handleChange,handleCancel,handleClose} = this
     const loginedSellerData = loginedSeller.toJS();

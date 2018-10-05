@@ -8,7 +8,6 @@ const cx = classNames.bind(styles);
 const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,  likeUp}) => {
    const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory ,view_cnt} = sellerDetailData;
    const { nickName } = user.nickName;
-  //  const On = loggedNickName !== nickName ? true : false
    let  { imgUrl }  = seller_images; 
    const { category_ko } = sellerCategory.category_ko
   if( !user || !imgUrl ) return null;
@@ -33,7 +32,6 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
               <span>조회수  : {view_cnt}</span>
             </div>
           </div>
-
           <div className={cx('desc')}>
             <div className={cx('info')}>
               <div><span>이름 :</span>{nickName}</div>
@@ -44,12 +42,9 @@ const SellerDetailModal = ({visible, sellerDetailData,  onClose, loggedNickName,
             <div className={cx('desc-text')}>{seller_desc}</div>
           </div>
         </div>
-
         <div className = {cx('seller_img')}> {imgList} </div>
         <div className={cx('close')} onClick={onClose}><span>&times;</span></div>
       </div> 
-    
-    
     </ModalWrapper>
 
   )
