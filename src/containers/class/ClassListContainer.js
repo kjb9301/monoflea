@@ -10,7 +10,6 @@ import * as classUIActions from 'store/modules/classUI';
 import * as baseActions from 'store/modules/base';
 
 class ClassListContainer extends Component {
-
   getClassList = async () => {
     const { ClassActions } = this.props;
     try {
@@ -23,18 +22,19 @@ class ClassListContainer extends Component {
 
   showClassModal = async (id) => {
     const { ClassUIActions, BaseActions } = this.props;
-    try {
-      const updateResult = await axios.put('/classes/view-count', { id });
-      const { countUp, view_cnt } = updateResult.data;
-      if(!countUp) return alert('일시적인 오류입니다. 다시 시도하세요!');
-      const classDetail = await axios.get(`/classes/${id}`);
-      classDetail.view_cnt = view_cnt;
-      ClassUIActions.setClassInfo(classDetail);
-      return BaseActions.showModal('class');
-    } catch(e) {
-      const { message } = e.response.data;
-      return alert(message);
+    const increViewCnt = () => {
+      return axios.put('/classes/view-count', { id });
     }
+    const getDetailinfo = () => {
+      return axios.get(`/classes/${id}`);
+    }
+
+    const [ updateResult, classDetail ] = await Promise.all([ increViewCnt(), getDetailinfo() ]);
+    const { countUp, view_cnt } = updateResult.data;
+    if(!countUp) return alert('일시적인 오류입니다. 다시 시도하세요!');
+    classDetail.view_cnt = view_cnt;
+    ClassUIActions.setClassInfo(classDetail);
+    return BaseActions.showModal('class');
   }
 
   takeOnedayClass = async (id) => {
@@ -73,24 +73,24 @@ class ClassListContainer extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const { classList, hasMore } = this.props;
-    return (JSON.stringify(nextProps.classList) !== JSON.stringify(classList)) || (nextProps.hasMore !== hasMore);
+    return (JSON.stringify(nextProps.classList) !== JSON.stringify(classList)) 
+            || (nextProps.hasMore !== hasMore);
   }
 
   getMoreData = () => {
     const { ClassActions, classList, category } = this.props;
-    let len = parseInt(classList.length/10, 10)*10;
-    if(len>classList.length-10) {
+    const { totalCnt } = this.props;
+    if(classList.length<totalCnt) {
       setTimeout(async () => {
         try {
-          await ClassActions.getClassList(category, len+10);
-          const { totalCnt } = this.props;
-          if(classList.length>=totalCnt) return ClassActions.toggleMoreState(false);
+          return await ClassActions.getClassList(category, classList.length+9);
         } catch(e) {
           const { message } = e.response.data;
           return alert(message);
         }
       }, 350);
     }
+    if(classList.length>=totalCnt) return ClassActions.toggleMoreState(false);
   }
 
   render() {

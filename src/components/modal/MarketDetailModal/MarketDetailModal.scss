@@ -1,176 +1,326 @@
 @import 'common';
 
 .modalForm {
+  padding: 20px;
 
-  /* The Close Button */
+  @include media("<medium") {
+    padding: 0;
+  }
+
   .close {
     position: absolute;
-    font-size: 3rem;
-    font-weight: bold;
-    margin-left: 0;
+    top: -1.5rem;
     right: 0;
-    line-height: 2rem;
+    font-size: 4rem;
+    color: #aaa;
+    cursor: pointer;
 
-    &:hover,
-    &:focus {
-      color: red;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    @include media ("<medium") {
-      font-size: 4rem;
+    &:hover {
+      color: #000;
     }
   }
 
   .modalTitle {
-    margin-top: 2rem;
-
+    text-align: center;
+    padding-bottom: 20px;
+    
+    @include media("<medium") {
+      padding-top: 10px;
+    }
+    
     .marketName {
-      margin-right: 2rem;
       display: inline-block;
-      font-size: 1.2rem;
+      min-width: 200px;
+      padding: 0 20px 5px;
+      font-size: 18px;
       font-weight: bold;
-      text-align: center;
+      color: rgba(3, 169, 244,1.0);
+      border-bottom: 2px solid rgba(3, 169, 244,0.8);
 
-      @include media ("<medium") {
-        margin-right: 1rem;
-      }
-
-      @include media ("<small") {
-        width: 100%;
-        margin: 0;
-        padding: .3rem;
-        border-radius: 1rem;
-        background: #f2f2f2;
-      }
+      input {}
     }
   }
 
   .modalInfo {
-    padding-top: 1.2rem;
-    margin-bottom: 1.2rem;
-    font-size: 2rem;
-    // border: 1px solid black;
     
     .marketPoster {
-      display: inline-block;
-      margin: 2rem;
-      // padding-left: 1rem;
-      // padding-right: 1rem;
-      width: 40%;
       text-align: center;
-      // border: 1px solid orange;
-
+      margin-bottom: 20px;
+      
       img {
         max-width: 100%;
-      }
-
-      @include media ("<large") {
-        width: 30%;
-      }
-
-      @include media ("<medium") {
-        width: 100%;
-        margin-bottom: 1rem;
-      }
-
-      @include media ("<small") {
-
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
       }
     }
-
     .marketInfo {
-      display: inline-block;
-      width: 60%;
-      vertical-align: top;
-      // line-height: 1.6;
-      // border: 1px solid orangered;
+      // border: 1px solid rgba(0,0,0,0.1);
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 20px;
 
-      .classNickname {
-        margin-bottom: .5rem;
+      & > div {
+        padding-top: 15px;
+        padding-bottom: 5px;
+        font-weight: bold;
+        border-bottom: 1px solid skyblue;
+        color: rgba(0,0,0,0.8);
+        font-size: 14px;
       }
-
+      
+      .marketInfoTitle {
+        padding: 0 20px 0 10px;
+        color: rgba(0,0,0,0.5);
+        border-left: 5px solid skyblue;
+      }
+      
       .marketPlace {
-        margin-right: 0;
+        
+        .marketPlaceContent {
+          input {}
+        }
       }
 
-      .marketPlaceContent {
-        display: inline-block;
-        width: auto;
-        min-width: 8rem;
-        margin-left: 1rem;
-        border: initial;
-        color: inherit;
-        margin-top: .3rem;
-      }
-
-      div {
-        padding: .5rem;
-        font-size: 1rem;
-      }
-
-      span {
-        display: inline-block;
-        width: 7rem;
-        margin-right: 1rem;
-        text-align: center;
-        color: navy;
-        border: 1px solid navy;
-        border-radius: .3rem;
-      }
-
-      @include media ("<large") {
-        width: 70%;
-        padding-left: 1rem;
-      }
-
-      @include media ("<medium") {
-        width: 100%;
-      }
-
-      @include media ("<small") {
+      .marketPeriod {
 
       }
+
+      .marketRegDate {}
+
+      .marketLimitCnt {}
+
     }
 
     .classBtn {
-      width: 90%;
-      margin: 1rem auto;
-      padding: .5rem 1rem;
-      text-align: right;
-
+      margin-bottom: 20px;
+      text-align: center;
+      
       button {
-        background-color: #4CAF50; /* Green */
-        border: none;
+        display: inline-block;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+        background-color: #8bc34a;
         color: white;
-        padding: 15px 32px;
+        outline: none;
+        padding: 10px 30px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
+        font-weight: bold;
+        border: 1px solid white;
+        cursor: pointer;
+        border-radius: 10px;
+        
+        &:hover {
+          border: 1px solid #8bc34a;
+          color: #69a326;
+          background-color: white;
+        }
+      }
+    }
+
+    .modalDesc {
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 20px 15px;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+      h3 {
+        padding: 0 20px 0 10px;
+        color: rgba(0,0,0,0.5);
+        border-left: 5px solid skyblue;
+        font-size: 14px;
+        margin-bottom: 20px;
       }
 
-      @include media("<medium") {
-        text-align: center;
+      p {
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.5;
+        word-break: break-all;
       }
     }
   }
-
-  .modalDesc {
-    margin: 1rem 0 2rem 0;
-    padding: 2rem;
-    font-size: .8rem;
-    line-height: 2;
-    border-radius: .5rem;
-    border: 1px solid #f2f2f2;
-
-    @include media("<medium") {
-      padding: 2rem 1rem;
-    }
-  }
-
 }
+
+
+
+
+// .modalForm {
+
+//   /* The Close Button */
+//   .close {
+//     position: absolute;
+//     font-size: 3rem;
+//     font-weight: bold;
+//     margin-left: 0;
+//     right: 0;
+//     line-height: 2rem;
+
+//     &:hover,
+//     &:focus {
+//       color: red;
+//       text-decoration: none;
+//       cursor: pointer;
+//     }
+
+//     @include media ("<medium") {
+//       font-size: 4rem;
+//     }
+//   }
+
+//   .modalTitle {
+//     margin-top: 2rem;
+
+//     .marketName {
+//       margin-right: 2rem;
+//       display: inline-block;
+//       font-size: 1.2rem;
+//       font-weight: bold;
+//       text-align: center;
+
+//       @include media ("<medium") {
+//         margin-right: 1rem;
+//       }
+
+//       @include media ("<small") {
+//         width: 100%;
+//         margin: 0;
+//         padding: .3rem;
+//         border-radius: 1rem;
+//         background: #f2f2f2;
+//       }
+//     }
+//   }
+
+//   .modalInfo {
+//     padding-top: 1.2rem;
+//     margin-bottom: 1.2rem;
+//     font-size: 2rem;
+//     // border: 1px solid black;
+    
+//     .marketPoster {
+//       display: inline-block;
+//       margin: 2rem;
+//       // padding-left: 1rem;
+//       // padding-right: 1rem;
+//       width: 40%;
+//       text-align: center;
+//       // border: 1px solid orange;
+
+//       img {
+//         max-width: 100%;
+//       }
+
+//       @include media ("<large") {
+//         width: 30%;
+//       }
+
+//       @include media ("<medium") {
+//         width: 100%;
+//         margin-bottom: 1rem;
+//       }
+
+//       @include media ("<small") {
+
+//       }
+//     }
+
+//     .marketInfo {
+//       display: inline-block;
+//       width: 60%;
+//       vertical-align: top;
+//       // line-height: 1.6;
+//       // border: 1px solid orangered;
+
+//       .classNickname {
+//         margin-bottom: .5rem;
+//       }
+
+//       .marketPlace {
+//         margin-right: 0;
+//       }
+
+//       .marketPlaceContent {
+//         display: inline-block;
+//         width: auto;
+//         min-width: 8rem;
+//         margin-left: 1rem;
+//         border: initial;
+//         color: inherit;
+//         margin-top: .3rem;
+//       }
+
+//       div {
+//         padding: .5rem;
+//         font-size: 1rem;
+//       }
+
+//       span {
+//         display: inline-block;
+//         width: 7rem;
+//         margin-right: 1rem;
+//         text-align: center;
+//         color: navy;
+//         border: 1px solid navy;
+//         border-radius: .3rem;
+//       }
+
+//       @include media ("<large") {
+//         width: 70%;
+//         padding-left: 1rem;
+//       }
+
+//       @include media ("<medium") {
+//         width: 100%;
+//       }
+
+//       @include media ("<small") {
+
+//       }
+//     }
+
+//     .classBtn {
+//       width: 90%;
+//       margin: 1rem auto;
+//       padding: .5rem 1rem;
+//       text-align: right;
+
+//       button {
+//         background-color: #4CAF50; /* Green */
+//         border: none;
+//         color: white;
+//         padding: 15px 32px;
+//         text-align: center;
+//         text-decoration: none;
+//         display: inline-block;
+//         font-size: 16px;
+//       }
+
+//       @include media("<medium") {
+//         text-align: center;
+//       }
+//     }
+//   }
+
+//   .modalDesc {
+//     margin: 1rem 0 2rem 0;
+//     padding: 2rem;
+//     font-size: .8rem;
+//     line-height: 2;
+//     border-radius: .5rem;
+//     border: 1px solid #f2f2f2;
+
+//     @include media("<medium") {
+//       padding: 2rem 1rem;
+//     }
+//   }
+
+// }
 
 /* .modalForm {
   background: white;

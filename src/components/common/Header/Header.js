@@ -6,7 +6,6 @@ import { Link, withRouter } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 const Header = ({ onLoginClick, onLogout, isLogin, userName, match, onSignupClick }) => {
-  
   const { path } = match;
   return (
     <header className={cx('header')}>
@@ -23,10 +22,9 @@ const Header = ({ onLoginClick, onLogout, isLogin, userName, match, onSignupClic
             <Link className={cx('nav-item')} to='/sellers'>셀러</Link>
             <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
             <Link className={cx('nav-item')}to='/markets/recruitment'>마켓등록/셀러모집</Link>
-            <Link className={cx('nav-item')} to='/boards'>게시판</Link>         
+            <Link className={cx('nav-item')} to='/boards'>커뮤니티</Link>         
           </div>
         }
-        {/* <div className={cx('space')}> */}
           {
             isLogin && userName ? 
             <div  className={cx('header-login')}>
@@ -42,7 +40,6 @@ const Header = ({ onLoginClick, onLogout, isLogin, userName, match, onSignupClic
               <div className={cx('header-button')} onClick={onSignupClick}>회원가입</div>            
             </div>
           }
-        {/*</div> */}
       </div>
     </header>
   );

@@ -25,31 +25,35 @@
     .board-intro-head {
       flex: 1;
       color: white;
-      font-size: 5rem;
+      font-size: 4rem;
+      letter-spacing: -0.3rem;
       text-align: right;
       padding-right: 2rem;
-      // margin-bottom: 1rem;
+      padding-left: 1rem;
       line-height: .5;
-      border-top: 1px solid white;
-      border-bottom: 1px solid white;
+      border-top: 1px solid rgba(255, 235, 59, 0.5);
+      border-bottom: 1px solid rgba(255, 235, 59, 0.5);
+      margin-top: 7rem;
+      font-weight: bold;
 
       .board-intro-subtitle {
-        font-size: 1.5rem;
-        line-height: .9;
-        color:#dfdddd;
+        display: inline-block;
+        font-size: 2rem;
+        letter-spacing: -0.1rem;
+        font-weight: bold;
+        margin-top: 40px;
+        // color:#dfdddd;
       }
       
       @include media("<large") {
-        font-size: 4rem;
+        font-size: 3rem;
       }
 
       @include media("<medium") {
         flex: initial;
         width: 100%;
-        font-size: 4rem;
-        padding-right: 10%;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        font-size: 3rem;
+        padding-right: 5%;
 
         .about-intro-subtitle {
           font-size: 1.5rem;
@@ -64,7 +68,8 @@
       flex: 2;
       padding: 2rem;
       padding-left: 5%;
-      border-left: 10px solid orange;
+      margin-top: 7rem;
+      border-left: 10px solid rgb(255, 235, 59);
       color: white;
       font-size: 1.2rem;
       font-family: 'Sunflower', sans-serif;
@@ -134,12 +139,17 @@
 
         @include media("<large") {
           height: 4rem;
+
+        }
+        
+        &:hover {
+          color: rgb(255, 235, 59);
         }
 
         strong {
           padding: 0.5rem 1rem;
           border-radius: 0.5rem;
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: 400;
           background: rgba(0,0,0,.35);
 

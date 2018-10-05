@@ -1,114 +1,168 @@
 @import 'common';
 
-.sub-header {
-  max-width: 100%;
-  border-radius: 10px;
-  line-height: 3rem;
-  padding: 1rem;
-  text-align: center;
-  margin: 1rem;
-  background: lemonchiffon;
-  font-weight: 600;
-  font-size: 2.5rem;
-  color: brown;
-}
-.btn-space {
-  width: 100%;
-  text-align: center;
+.wrapper {
+  // border: 10px solid white;
+  max-width: 1320px;
+  margin: 0 auto;
 
-  & > span  {
-    color: white;
-    font-size: 15px;
-    display: inline-block;
-    width: 100px;
-    height: 40px;
-    margin: 0;
-    line-height: 40px;
-    cursor: pointer;
-    background-color: rgba(6, 64, 253, 0.767);
+  .sub-header {
+    // border: 10px solid black;
+    background-color: skyblue;
   }
-}
 
-.item-boxframe {
-  width: 25%;
-  padding: 1rem;
-  display: inline-block;
-  vertical-align: top;
+  .btn-space {
+    // border: 10px solid yellow;
+    background-color: yellow;
 
-  .item-box {
-    border: 1px solid white;
-    padding: .7rem;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    &:hover {
-      border: 1px solid rgb(5, 42, 250);
-      cursor: pointer;
+    & > div {
+      border: 10px solid red;
     }
+  }
 
-    .item-posterframe {
-      padding: 0.2rem;
-      position: relative;
+  .market-list-wrap {
+    // border: 10px solid gray;
+    background-color: gray;
+    padding: 30px;
 
-      .item-dDay {
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        right: 0;
-        background: black;
-        color: red;
-        font-size: 1.5rem;
-        font-weight: 400;
-        text-align: center;
-      }
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+
+    .item-boxframe {
 
       .item-poster {
-        height: 25rem;
-        background: #f2f2f2;
 
         img {
-          width: 100%;
-          height: 100%;
+          max-width: 100%;
+          height: auto;
         }
       }
-    }
 
-    .item-contents {
-      margin-bottom: 1rem;
+      .item-contents {
 
-      .item-name {
-        font-size: 1.2rem;
-        padding-bottom: .3rem;
-        padding-top: .3rem;
-        text-align: center;
-        font-weight: bold;
-        width:100%;
-        line-height: 1; 
-        overflow:hidden;
-        white-space:nowrap; 
-        text-overflow:ellipsis;
       }
       
-      .button {
-        width: 5rem;
-        height: 2rem;
-        margin-left: 1rem;
-        border: 1px solid $oc-blue-7;
-        color: $oc-blue-7;
-        font-weight: 600;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        &:hover {
-          background: $oc-blue-7;
-          color: white;
-        }
-        &:active {
-          background: $oc-blue-8;
-        }
-      }
     }
   }
+
 }
+
+
+
+
+
+
+
+
+
+// .sub-header {
+//   max-width: 100%;
+//   border-radius: 10px;
+//   line-height: 3rem;
+//   padding: 1rem;
+//   text-align: center;
+//   margin: 1rem;
+//   background: lemonchiffon;
+//   font-weight: 600;
+//   font-size: 2.5rem;
+//   color: brown;
+// }
+// .btn-space {
+//   width: 100%;
+//   text-align: center;
+
+//   // & > div  {
+//   //   color: white;
+//   //   border-radius: 50%;
+//   //   width: 65px;
+//   //   height: 65px;
+//   //   margin: 0;
+//   //   margin-left: 10px;
+//   //   padding: 0;
+//   //   background-color: rgba(0,0,0,0.5);
+//   // }
+// }
+
+// .item-boxframe {
+//   width: 25%;
+//   padding: 1rem;
+//   display: inline-block;
+//   vertical-align: top;
+
+//   .item-box {
+//     border: 1px solid white;
+//     padding: .7rem;
+//     border-radius: 10px;
+//     background: white;
+//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+//     &:hover {
+//       border: 1px solid rgb(5, 42, 250);
+//       cursor: pointer;
+//     }
+
+//     .item-posterframe {
+//       padding: 0.2rem;
+//       position: relative;
+
+//       .item-dDay {
+//         width: 50px;
+//         height: 50px;
+//         position: absolute;
+//         right: 0;
+//         background: black;
+//         color: red;
+//         font-size: 1.5rem;
+//         font-weight: 400;
+//         text-align: center;
+//       }
+
+//       .item-poster {
+//         height: 25rem;
+//         background: #f2f2f2;
+
+//         img {
+//           width: 100%;
+//           height: 100%;
+//         }
+//       }
+//     }
+
+//     .item-contents {
+//       margin-bottom: 1rem;
+
+//       .item-name {
+//         font-size: 1.2rem;
+//         padding-bottom: .3rem;
+//         padding-top: .3rem;
+//         text-align: center;
+//         font-weight: bold;
+//         width:100%;
+//         line-height: 1; 
+//         overflow:hidden;
+//         white-space:nowrap; 
+//         text-overflow:ellipsis;
+//       }
+      
+//       .button {
+//         width: 5rem;
+//         height: 2rem;
+//         margin-left: 1rem;
+//         border: 1px solid $oc-blue-7;
+//         color: $oc-blue-7;
+//         font-weight: 600;
+//         font-size: 1rem;
+//         display: flex;
+//         align-items: center;
+//         cursor: pointer;
+//         &:hover {
+//           background: $oc-blue-7;
+//           color: white;
+//         }
+//         &:active {
+//           background: $oc-blue-8;
+//         }
+//       }
+//     }
+//   }
+// }

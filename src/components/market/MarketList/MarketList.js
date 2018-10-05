@@ -114,7 +114,7 @@ export default MarketList;
             :
             <Fragment/>
           }
-      <div>
+      <div className={cx('market-list-wrap')}>
         {marketList}
       </div>
     </div>
