@@ -9,7 +9,7 @@ const About = () => {
     <div className={cx('About')}>
 
       <div className={cx('about-intro')}>
-        <div className={cx('about-intro-head')}><span>About</span><br/><span className={cx('about-intro-subtitle')}>Monoflea</span></div>
+        <div className={cx('about-intro-head')}><span>About</span><br/><span className={cx('about-intro-subtitle')}>모노플리 소개</span></div>
         <div className={cx('about-intro-body')}>
           일상이라는 도화지에 문화라는 색을 칠해 보려고 합니다.<br/>
           일상에 소풍 날 같은 설레임을 선물 한다는 것<br/>

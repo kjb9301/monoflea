@@ -1,14 +1,20 @@
 @import 'common';
 
 .header {
-  background-color: #EEEEEE;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255,255,255,0.4);
   font-weight: bold;
 
   .header-content {
     display: flex;
     align-items: center;
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding-right: 10px;
+    padding-left: 10px;
 
     .menu-icon {
       display: none;
@@ -30,7 +36,7 @@
 
 
     .logo {
-      padding-left: 1rem;
+      letter-spacing: -0.1rem;
 
       .logo-text {
         color: rgba(0, 0, 0, 0.7);
@@ -55,6 +61,9 @@
 
     .nav-items {
       display: flex;
+      justify-content: center;
+      
+      
       margin-left: auto;
 
       @include media("<medium") {
@@ -62,14 +71,18 @@
       }
 
       .nav-item {
-        margin-left: .5rem;
-        padding: .5rem .7rem;
+        font-size: 13px;
+        padding: 5px 10px;
         border: 1px solid transparent;
         border-radius: 3px;
 
         &:hover {
           border: 1px solid white;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        }
+
+        @include media("<large") {
+          padding: 5px 7px;
         }
       }
     }
@@ -80,7 +93,7 @@
 
       .header-button {
         padding: .5rem;
-        margin-right: .7rem;
+        // margin-right: .3rem;
         border: 1px solid transparent;
 
         &:hover {

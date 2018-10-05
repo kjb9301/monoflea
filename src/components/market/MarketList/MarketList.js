@@ -60,7 +60,7 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
             :
             <Fragment/>
           }
-      <div>
+      <div className={cx('market-list-wrap')}>
         {marketList}
       </div>
     </div>

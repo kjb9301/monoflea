@@ -40,11 +40,11 @@
     border-radius: 12px;
 
     @include media("<large") {
-      width: 90%;
+      // width: 90%;
     }
 
     @include media("<small") {
-      width: 100%;
+      // width: 100%;
     }
   }
 }

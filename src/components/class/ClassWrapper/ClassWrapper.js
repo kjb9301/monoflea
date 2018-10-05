@@ -11,7 +11,7 @@ const ClassWrapper = ({ userType }) => {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('class-header')}>
-        <h1 className={cx('class-title')}><span>ONEDAY<br/> Class</span><br/><span className={cx('class-title-name')}>MonoFlea</span></h1>
+        <h1 className={cx('class-title')}><span>ONEDAY<br/> Class</span><br/><span className={cx('class-title-name')}>원데이클래스</span></h1>
         <p className={cx('class-description')}>" 일상의 작은 <strong>소 / 확 / 행</strong><br/>관심 있던 수업을 체험 해보고 나의 취미를 찾아보세요! "</p>
         <div className={cx('class-category')}><ClassCategoryBtnContainer /></div>
       </div>
