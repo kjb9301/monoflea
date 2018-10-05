@@ -44,4 +44,7 @@ export const postNewClass = (newClass) => axios.post('/classes', newClass);
 export const getEnrolledList = (class_id) => axios.get(`/classes/enroll/${class_id}`);
 export const saveEnrolledUser = (userInfo) => axios.post(`/users/enroll-info`, { userInfo });
 export const takeOnedayClass = (id) => axios.post(`/classes/taken`, { id });
-export const cancelOnedayClass = (id) => axios.delete(`/classes/taken`, { params: { id } })
+export const cancelOnedayClass = (id) => axios.delete(`/classes/taken`, { params: { id } });
+
+// MyPage
+export const getMypageData = (url) => axios.get(url);
