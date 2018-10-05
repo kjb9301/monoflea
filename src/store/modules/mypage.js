@@ -15,8 +15,8 @@ export default handleActions({
   ...pender({
     type: GET_MYPAGE_DATA,
     onSuccess: (state, action) => {
-      console.log(action.payload);
-      return state.set('data', action.payload);
+      console.log(action.payload.data);
+      return state.set('data', action.payload.data);
     }
   })
 }, initialState);

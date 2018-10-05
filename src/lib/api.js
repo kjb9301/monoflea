@@ -47,4 +47,4 @@ export const takeOnedayClass = (id) => axios.post(`/classes/taken`, { id });
 export const cancelOnedayClass = (id) => axios.delete(`/classes/taken`, { params: { id } });
 
 // MyPage
-export const getMypageData = (url) => axios.get(url);
+export const getMypageData = (url,id) => axios.get(`${url}?id=${id}`);

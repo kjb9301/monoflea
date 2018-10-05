@@ -57,6 +57,7 @@ export default handleActions({
     type : GET_SELLRS_LIST,
     onSuccess : (state, action) =>{
       const sellers = action.payload.data;
+      console.log(sellers);
       return state.set('sellers',  sellers.sellerList)
                   .set('categories', sellers.category)
                   .set('totalCnt', sellers.totalCnt);
