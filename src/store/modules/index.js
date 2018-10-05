@@ -21,4 +21,4 @@ export { default as sellerUI } from './sellerUI';
 // export { default as sellerDetail } from './sellerDetail';
 
 // Mypage
-export { defalut as myPage } from './mypage';
+export { default as myPage } from './mypage';

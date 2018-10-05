@@ -6,7 +6,10 @@ import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
 const cx = classNames.bind(styles);
 
 const ClassDetailModal = 
-  ({ visible, getEnrollList, classDetail, hideModal, nickName, deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
+  ({ visible, getEnrollList, classDetail, hideModal, nickName, 
+     deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, 
+     updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
+
   const { 
     class_desc, class_id, class_limit_cnt, class_name, class_place,
     class_reg_cnt, onedayCategory, onedayImages, recruit_start_date, 

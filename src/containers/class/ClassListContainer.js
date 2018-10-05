@@ -4,12 +4,18 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ClassList from 'components/class/ClassList';
+import asyncComponent from 'lib/asyncComponent';
 
 import * as classActions from 'store/modules/class';
 import * as classUIActions from 'store/modules/classUI';
 import * as baseActions from 'store/modules/base';
 
 class ClassListContainer extends Component {
+
+  state = {
+    temp: false
+  }
+
   getClassList = async () => {
     const { ClassActions } = this.props;
     try {
@@ -32,6 +38,9 @@ class ClassListContainer extends Component {
     const [ updateResult, classDetail ] = await Promise.all([ increViewCnt(), getDetailinfo() ]);
     const { countUp, view_cnt } = updateResult.data;
     if(!countUp) return alert('일시적인 오류입니다. 다시 시도하세요!');
+    this.setState({
+      temp: true
+    });
     classDetail.view_cnt = view_cnt;
     ClassUIActions.setClassInfo(classDetail);
     return BaseActions.showModal('class');
@@ -71,11 +80,11 @@ class ClassListContainer extends Component {
     this.getClassList();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const { classList, hasMore } = this.props;
-    return (JSON.stringify(nextProps.classList) !== JSON.stringify(classList)) 
-            || (nextProps.hasMore !== hasMore);
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   const { classList, hasMore } = this.props;
+  //   return (JSON.stringify(nextProps.classList) !== JSON.stringify(classList)) 
+  //           || (nextProps.hasMore !== hasMore);
+  // }
 
   getMoreData = () => {
     const { ClassActions, classList, category } = this.props;
@@ -93,9 +102,16 @@ class ClassListContainer extends Component {
     if(classList.length>=totalCnt) return ClassActions.toggleMoreState(false);
   }
 
+  test = () => {
+    const { temp } = this.state;
+    if(temp) {
+      return asyncComponent(() => import('containers/class/ClassDetailContainer'));
+    }
+  }
+
   render() {
     const { classList, hasMore } = this.props;
-    const { showClassModal, takeOnedayClass, cancelOnedayClass } = this;
+    const { showClassModal, takeOnedayClass, cancelOnedayClass, test } = this;
     const loader = <div className="loader" key={0}>Loading ...</div>;
     return (
       <Fragment>
@@ -112,6 +128,7 @@ class ClassListContainer extends Component {
           loader={loader}
         >
         </InfiniteScroll>
+        {test()}
       </Fragment>
     );
   }

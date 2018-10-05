@@ -1,5 +1,21 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+// import { 
+//   MainPage, 
+//   AboutPage, 
+//   BoardPage, 
+//   SellerPage, 
+//   MarketPage, 
+//   ClassPage,
+//   ClassPostPage,
+//   BoardDetailPage, 
+//   BoardPostPage,
+//   BoardListPage,
+//   MarketRegListPage,
+//   MarketRegPage,
+//   MyPage
+// } from 'pages';
+
 import { 
   MainPage, 
   AboutPage, 
@@ -14,7 +30,8 @@ import {
   MarketRegListPage,
   MarketRegPage,
   MyPage
-} from 'pages';
+} from 'pages/index.async.js';
+
 import Base from 'containers/common/Base';
 // import MyPageAppliedMarket from 'components/mypage/MyPageAppliedMarket';
 const App = () => {
