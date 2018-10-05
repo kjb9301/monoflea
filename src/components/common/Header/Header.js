@@ -22,7 +22,7 @@ const Header = ({ onLoginClick, onLogout, isLogin, userName, match, onSignupClic
             <Link className={cx('nav-item')} to='/sellers'>셀러</Link>
             <Link className={cx('nav-item')} to='/classes'>원데이클래스</Link>
             <Link className={cx('nav-item')}to='/markets/recruitment'>마켓등록/셀러모집</Link>
-            <Link className={cx('nav-item')} to='/boards'>게시판</Link>         
+            <Link className={cx('nav-item')} to='/boards'>커뮤니티</Link>         
           </div>
         }
           {

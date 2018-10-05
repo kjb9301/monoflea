@@ -10,10 +10,8 @@ const Board = () => {
     <div className={cx('board')}>
 
       <div className={cx('board-intro')}>
-        <div className={cx('board-intro-head')}><span>Board</span><br/><span className={cx('board-intro-subtitle')}>MonoFlea</span></div>
-        <div className={cx('board-intro-body')}>
-          "플리마켓과 원데이 클래스에 대해서 자유롭게 이야기를 나눠요"
-        </div>
+        <div className={cx('board-intro-head')}><span>Community</span><br/><span className={cx('board-intro-subtitle')}>커뮤니티</span></div>
+        <div className={cx('board-intro-body')}><br/>"플리마켓과 원데이 클래스에 대해서 자유롭게 이야기를 나눠요"<br/><br/></div>
 
         <div className={cx('board-menu-wrap')}>
           <div className={cx('board-menu')}>

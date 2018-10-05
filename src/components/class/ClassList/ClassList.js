@@ -28,11 +28,11 @@ const ClassItem =
       
       <div className={cx('item-name')}>{name}</div>
       <div className={cx('item-contents')}>
-        <div className={cx('item-limit')}>모집인원 : {reg} / {limit}</div>
-        <div className={cx('item-period')}>모집기간 : {recruit_start_date} ~ {recruit_end_date}</div>
-        <div className={cx('item-period')}>주최일 : {event_date}</div>
-        <div className={cx('item-period')}>조회수 : <span ref={(ref) => viewCnt[id] = ref}>{view_cnt}</span></div>
-        <div className={cx('item-period')}>찜한사람 : <span>{taken_cnt}</span></div>
+        <div className={cx('item-limit')}><span>모집인원</span><span>{reg} / {limit}</span></div>
+        <div className={cx('item-period')}><span>모집기간</span><span>{recruit_start_date} ~ {recruit_end_date}</span></div>
+        <div className={cx('item-period')}><span>주최일</span><span>{event_date}</span></div>
+        <div className={cx('item-period')}><span>조회수</span><span ref={(ref) => viewCnt[id] = ref}>{view_cnt}</span></div>
+        <div className={cx('item-period')}><span>찜한사람</span><span>{taken_cnt}</span></div>
         <div className={cx('item-desc')}>{desc}</div>
       </div>
 
