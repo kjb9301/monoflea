@@ -1,14 +1,15 @@
 @import 'common';
 
-
-.wrapper {
-  width : 1340px;
-  height: auto;
-  padding : 1rem;
-  margin: auto;
-  display : flex;
-  justify-content: center;
-  flex-wrap :wrap;
-  flex : 1, 100%;
-  align-content: space-around;
+.detail-info-wrapper{
+  display: flex;
+/*        border: 1px solid black;*/
+  flex-direction: row;
+  justify-content: space-between;
+  .detail-info{
+    font-size : 17px;
+  }
+  .detail-info > *{
+    padding : 2px;
+  }
 }
+
