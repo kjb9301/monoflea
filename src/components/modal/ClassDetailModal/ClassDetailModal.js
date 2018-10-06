@@ -21,7 +21,7 @@ const ClassDetailModal =
       {category.category_ko_name}
     </option>
    ));
-
+   
   if(!seller) return null;
 
   const images = onedayImages.map((img, idx) => (

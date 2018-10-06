@@ -126,7 +126,6 @@ class ClassDetailContainer extends Component {
   }
 
   render() {
-    console.log('ClassDetailContainer');
     const { visible, classInfo, nickName, editing, categories, enrollListVisible, enrolledList } = this.props;
     const {
       hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, getEnrollList,
