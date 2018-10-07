@@ -11,13 +11,18 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
 
   return (
     <div className={cx('item-box')} onClick={() => onDetail(market_id,listType)}>
-      <div className={cx('item-poster')}><img src={market_poster} alt={market_name}/></div>
-      
-      <div className={cx('item-contents')}>
-        <div className={cx('item-name')}><span>모집기간</span> {market_name}</div>
+      <div className={cx('item-poster')}>
+        <img src={market_poster} alt={market_name}/>
+        <div className={cx('cover')}></div>
+        <div className={cx('item-content')}>
+          {market_name}
+        </div>
+      </div>
+      {/* <div className={cx('item-contents')}>
+        <div className={cx('item-name')}>{market_name}</div>
       </div>
         
-      {/* <div className={cx('item-dDay')}>
+      <div className={cx('item-dDay')}>
         {dDay >= 0 ? `D-${dDay}` : '종료'}
       </div> */}
     </div>
@@ -36,7 +41,8 @@ class MarketList extends Component {
   // }
 
   render() {
-    const {listType,markets,onDetail,curGetTime,children} = this.props;
+    const {listType,markets,onDetail,curGetTime,children,selectByDate,isSelectedByDate} = this.props;
+    const class_name = (listType === 'L'? 'marketList' : 'marketComingList');
     if(!markets) return null; 
     const marketList = markets.map(
       (market,index) => {
@@ -59,72 +65,18 @@ class MarketList extends Component {
     );
     return (
       <div className={cx('wrapper')}>
-        <div>{children}</div>
-        {listType === 'C'?
-          <div className={cx('marketList')}>
-            {marketList}
+        <div className={cx('market-subheader')}>
+          <div className={cx('subheader-title')}>{listType === 'L'? 'marketList' : 'Coming Soon'}</div>
+          <div className={cx('children-wrapper')}>
+            {children}
           </div>
-        :
-          <div className={cx('marketComingList')}>
-            {marketList}
-          </div>
-        }
+        </div>
+        <div className={cx(class_name)}>
+          {marketList}
+        </div>
       </div>
     )
   }
 }
 
 export default MarketList;
-
-
-
-
-
- /* const MarketList = ({listType,markets,isSelectedByDate,onDetail,curGetTime,children,onSelectByDate}) => {
-  console.log("MarketList")
-  if(!markets) return null; 
-  const marketList = markets.map(
-    (market,index) => {
-      const {market_id, market_name, market_place, market_poster,start_date,end_date} = market;
-        return (
-          <MarketItem
-            key={index}
-            market_id={market_id}
-            market_name={market_name}
-            market_place={market_place}
-            market_poster={market_poster}
-            start_date={start_date}
-            end_date={end_date}
-            onDetail={onDetail}
-            curGetTime={curGetTime}
-            listType={listType}
-          />
-        )
-    }
-  );
-  return (
-    <div className={cx('wrapper')}>
-      <div className={cx('sub-header')}>
-        {listType === 'CL' ? 'Coming Soon' : 'Market'}
-      </div>
-      {listType === 'CL'?
-        <Fragment/>
-      :
-        <div className={cx('btn-space')}>
-          <span onClick={onSelectByDate}>{isSelectedByDate?'전체':'날짜별'}</span>
-        </div>
-      }
-      
-          {isSelectedByDate?
-            <div>{children}</div>
-            :
-            <Fragment/>
-          }
-      <div className={cx('market-list-wrap')}>
-        {marketList}
-      </div>
-    </div>
-  )
-} 
-
-export default MarketList;*/

@@ -27,22 +27,7 @@
     @include media("<medium") {
       padding-top: 10px;
     }
-    
-    .marketName {
-      display: inline-block;
-      min-width: 200px;
-      padding: 0 20px 5px;
-      font-size: 18px;
-      font-weight: bold;
-      color: rgba(3, 169, 244,1.0);
-      border-bottom: 2px solid rgba(3, 169, 244,0.8);
 
-      input {}
-    }
-  }
-
-  .modalInfo {
-    
     .marketPoster {
       text-align: center;
       margin-bottom: 20px;
@@ -54,19 +39,24 @@
         border-radius: 10px;
       }
     }
+  }
+
+  .modalInfo {
+    width: 650px;
+    max-width: 100%;
+
     .marketInfo {
-      // border: 1px solid rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.1);
       padding: 10px;
       border-radius: 10px;
       margin-bottom: 20px;
 
       & > div {
-        padding-top: 15px;
-        padding-bottom: 5px;
         font-weight: bold;
         border-bottom: 1px solid skyblue;
         color: rgba(0,0,0,0.8);
         font-size: 14px;
+        display: flex;
       }
       
       .marketInfoTitle {
@@ -75,21 +65,165 @@
         border-left: 5px solid skyblue;
       }
       
-      .marketPlace {
+      .marketName, .marketPlace, .marketPeriod, .marketRegDate, .marketLimitCnt {    
+        min-width: 200px;
+        font-size: 18px;
+        font-weight: bold;
+        color: rgba(3, 169, 244,1.0);
+        border-bottom: 1px solid rgba(163, 218, 243, 0.8);
+
+        position: relative;
+        margin: 5px;
+        max-width: 100%;
+        padding-top: 10px;
         
-        .marketPlaceContent {
-          input {}
+        .label {
+          position: absolute;
+          top: 50px;
+          left: 0;
+          font-size: 16px;
+          color: #9098A9;
+          font-weight: 500;
+          transform-origin: 0 0;
+          transition: all .2s ease;
+
+          padding: 0 20px 0 10px;
+          color: rgba(0,0,0,0.5);
+          border-left: 5px solid skyblue;
+        }
+  
+        .border {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+          width: 100%;
+          background: #0077FF;
+          transform: scaleX(0);
+          transform-origin: 0 0;
+          transition: all .15s ease;
+        }
+  
+        input {
+          -webkit-appearance: none;
+          width: 100%;
+          border: 0;
+          font-family: inherit;
+          padding: 12px 0;
+          height: 60px;
+          font-size: 16px;
+          font-weight: 500;
+          border-bottom: 2px solid #C8CCD4;
+          background: none;
+          border-radius: 0;
+          color: #223254;
+          transition: all .15s ease;
+          text-align: center;
+  
+          &:hover {
+            background: rgba(#072055,.03);
+          }
+            
+          &:not(:placeholder-shown) {
+            + span {
+              color: #5A667F;
+              transform: translateY(-30px) scale(.70);
+            }  
+          }
+              
+          &:focus {
+            background: none;
+            outline: none;
+  
+            + span {
+            color: #0077FF;
+            transform: translateY(-50px) scale(.70);
+              +.border {
+                transform: scaleX(1);
+              }
+            }
+          }
         }
       }
 
-      .marketPeriod {
+      .modalDesc {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-size: 18px;
+        font-weight: bold;
+        color: rgba(3, 169, 244,1.0);
+        border-bottom: 1px solid rgba(163, 218, 243, 0.8);
+        padding-top: 10px;
 
+        position: relative;
+        margin: 5px;
+        max-width: 100%;
+
+        h3 {
+          padding: 0 20px 0 10px;
+          color: rgba(0,0,0,0.5);
+          border-left: 5px solid skyblue;
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+  
+        p {
+          max-width: 100%;
+          font-size: 13px;
+          line-height: 1.5;
+          word-break: break-all;
+        }
+
+        .label {
+          //position: absolute;
+          //top: 50px;
+          //left: 0;
+          //margin: auto;
+          color: #9098A9;
+          font-weight: 500;
+          transform-origin: 0 0;
+          transition: all .2s ease;
+
+          padding: 0 20px 0 10px;
+          color: rgba(0,0,0,0.5);
+          border-left: 5px solid skyblue;
+        }
+
+        textarea {
+          width: 100%;
+          border: 0;
+          border: 2px solid #C8CCD4;
+          background: none;
+          border-radius: 0;
+          color: #223254;
+          transition: all .15s ease;
+
+          &:hover {
+            background: rgba(#072055,.03);
+          }
+            
+          &:not(:placeholder-shown) {
+            + span {
+              color: #5A667F;
+              transform: translateY(-30px) scale(.70);
+            }  
+          }
+
+          &:focus {
+            background: none;
+            outline: none;
+
+            + .label {
+              color: #0077FF;
+            //transform: translateY(-50px) scale(.70);
+              +.border {
+                transform: scaleX(1);
+              } 
+            }
+          }
+        }
       }
-
-      .marketRegDate {}
-
-      .marketLimitCnt {}
-
     }
 
     .classBtn {
@@ -124,8 +258,8 @@
     }
 
     .modalDesc {
-      border: 1px solid rgba(0,0,0,0.1);
-      padding: 20px 15px;
+      //border: 1px solid rgba(0,0,0,0.1);
+      //padding: 20px 15px;
       border-radius: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
@@ -146,6 +280,7 @@
     }
   }
 }
+
 
 
 

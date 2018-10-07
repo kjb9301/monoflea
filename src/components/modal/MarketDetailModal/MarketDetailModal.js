@@ -17,13 +17,35 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
           <div className={cx('modalForm')}>
             <span className={cx('close')} onClick={onClose}>&times;</span>
             <div className={cx('modalTitle')}>
-              <span className={cx('marketName')}>
-                <input type="text" name="market_name" value={market_name} onChange={onChange}/>
-              </span>
-            </div>
-            <div className={cx('modalInfo')}>
               <div className={cx('marketPoster')}><img src={market_poster} alt={market_name}/></div>
+            </div>
+            <div className={cx('modalInfo')}>  
               <div className={cx('marketInfo')}>
+                <div className={cx('marketName')}>
+                  <input type="text" name="market_name" placeholder="&nbsp;" value={market_name} onChange={onChange}/>
+                  <span className={cx('label')}>마켓이름</span>
+                  <span className={cx('border')}></span>
+                </div>
+                <div className={cx('marketPlace')}>
+                  <input type="text" name="market_place" placeholder="&nbsp;" value={market_place} onChange={onChange}/>
+                  <span className={cx('label')}>개설장소</span>
+                  <span className={cx('border')}></span>                  
+                </div>
+                <div className={cx('marketPeriod')}>
+                  
+                  <input type="date" name="start_date" placeholder="&nbsp;" value={start_date} onChange={onChange}/> ~ 
+ 
+                  <input type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange}/>  
+                  <span className={cx('label')}>마켓일정</span>
+                  <span className={cx('border')}></span> 
+                </div>
+                <div className={cx('modalDesc')}>
+                  <div className={cx('label')}>상세설명</div>
+                  <textarea cols="40" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
+                  <span className={cx('border')}></span> 
+                </div>
+              </div>
+              {/*<div className={cx('marketInfo')}>
                 <div className={cx('marketPlace')}>
                   <span className={cx('marketInfoTitle')}>개설장소</span>
                   <span className={cx('marketPlaceContent')}>
@@ -35,7 +57,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                   <input type="date" name="start_date" value={start_date} onChange={onChange}/> ~ 
                   <input type="date" name="end_date" value={end_date} onChange={onChange}/>  
                 </div>
-              </div>
+              </div>*/}
               {user_host_id === host_id?
                 <div className={cx('classBtn')}>
                   <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
@@ -44,21 +66,32 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               :
                 <div></div>
               }
-              <div className={cx('modalDesc')}>
-                <h3>상세설명</h3>
-                <p><textarea cols="40" rows="5" name="market_desc" value={market_desc} onChange={onChange}/></p>
-              </div>
             </div>
           </div>
         :
           <div className={cx('modalForm')}>
             <span className={cx('close')} onClick={onClose}>&times;</span>
-            <div className={cx('modalTitle')}><span className={cx('marketName')}>{market_name}</span></div>
-            <div className={cx('modalInfo')}>
+            <div className={cx('modalTitle')}>
               <div className={cx('marketPoster')}><img src={market_poster} alt="market_name"/></div>
+            </div>
+            <div className={cx('modalInfo')}>
               <div className={cx('marketInfo')}>
-                <div className={cx('marketPlace')}><span className={cx('marketInfoTitle')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span></div>
-                <div className={cx('marketPeriod')}><span className={cx('marketInfoTitle')}>마켓일정</span>{start_date}~{end_date}</div>
+                <div className={cx('marketName')}>
+                  <span className={cx('marketInfoTitle')}>{market_name}</span>
+                </div>
+                <div className={cx('marketPlace')}>
+                  <span className={cx('marketInfoTitle')}>개설장소</span>
+                  <span className={cx('marketPlaceContent')}>{market_place}</span>
+                </div>
+                <div className={cx('marketPeriod')}>
+                  <span className={cx('marketInfoTitle')}>마켓일정</span>
+                  {start_date}~{end_date}
+                </div>
+                <div className={cx('modalDesc')}>
+                  <h3>상세설명</h3>
+                  
+                  <p>{market_desc}</p>
+                </div>
               </div>
               {user_host_id === host_id?
                 <div className={cx('classBtn')}>
@@ -68,10 +101,6 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                 :
                 <div></div>
               }
-              <div className={cx('modalDesc')}>
-                <h3>상세설명</h3>
-                <p>{market_desc}</p>
-              </div>
             </div>
           </div>
         }
@@ -166,13 +195,14 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
           <div className={cx('modalForm')}>
             <span className={cx('close')} onClick={onClose}>&times;</span>
             <div className={cx('modalTitle')}>
-              <span className={cx('marketName')}>{market_name}</span>
-            </div>
-            <div className={cx('modalInfo')}>
               <div className={cx('marketPoster')}>
                 <img src={market_poster} alt={market_name}/>
               </div>
+            </div>
+            <div className={cx('modalInfo')}>
+              
               <div className={cx('marketInfo')}>
+                <div className={cx('marketName')}><span className={cx('marketInfoTitle')}>마켓이름</span>{market_name}</div>
                 <div className={cx('marketPlace')}>
                   <span className={cx('marketInfoTitle')}>개설장소</span>
                   <strong className={cx('marketPlaceContent')}>{market_place}</strong>
@@ -180,6 +210,10 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                 <div className={cx('marketPeriod')}><span className={cx('marketInfoTitle')}>마켓일정</span>{start_date} ~ {end_date}</div>
                 <div className={cx('marketRegDate')}><span className={cx('marketInfoTitle')}>모집기간</span>{reg_start_date} ~ {reg_end_date}</div>
                 <div className={cx('marketLimitCnt')}><span className={cx('marketInfoTitle')}>모집인원</span>{seller_cnt} / {seller_limit_cnt}</div>
+                <div className={cx('modalDesc')}>
+                  <div className={cx('label')}>상세설명</div>
+                  <textarea cols="40" rows="5" name="market_desc" value={market_desc} readOnly/>
+                </div>
               </div>
               <div className={cx('classBtn')}>
                 <div>
@@ -190,10 +224,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                 }
                 </div>
               </div>
-              <div className={cx('modalDesc')}>
-                <h3>상세설명</h3>
-                <p>{market_desc}</p>
-              </div>
+              
             </div>
           </div>
         }

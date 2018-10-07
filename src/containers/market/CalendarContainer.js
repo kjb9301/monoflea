@@ -92,8 +92,8 @@ class CalendarContainer extends Component {
 
     if(loading) return null;
     return (
-      <div>
-        <Button toGetData={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</Button>
+      <Fragment>
+        <Button theme="gray" toGetData={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</Button>
         {isSelectedByDate?
           <Calendar 
             curYear={curYear} 
@@ -109,7 +109,7 @@ class CalendarContainer extends Component {
           :
           <Fragment/>
         }
-      </div>
+      </Fragment>
     );
   }
 }
