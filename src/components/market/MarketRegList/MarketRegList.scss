@@ -1,14 +1,24 @@
 @import 'common';
 
 .wrapper {
-  max-width: 1320px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 30px;
 
   .marketRegList {
     display: grid;
     grid-gap: 40px;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+
+    @media only screen and (max-width: 890px) {
+      grid-gap: 50px;
+    }
+
+    @media only screen and (max-width: 610px) {
+      grid-template-columns: repeat(auto-fill, 350px);
+      grid-gap: 30px;
+    } 
 
     .item-box {
       margin-top: 10px;
@@ -24,6 +34,12 @@
 
       width: 250px;
       height: 350px;
+
+      
+      @media only screen and (max-width: 610px) {
+        width: 100%;
+        height: auto;
+      } 
 
       .item-poster {
         text-align: center;
