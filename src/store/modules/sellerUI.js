@@ -35,6 +35,7 @@ const initialState = fromJS({
     like_cnt : 0,
     view_cnt : '',
     profile_img : '',
+    seller_likes : '',
     user : {
               nickName : '',
     },
@@ -71,7 +72,7 @@ export default handleActions({
    return state.setIn(['seller', name], value);
  },
  [DETAIL_DATA] : (state, action) => {
-    const { seller_id, career, sns, seller_desc, like_cnt, profile_img, view_cnt,
+    const { seller_id, career, sns, seller_desc, like_cnt,seller_likes, profile_img, view_cnt,
             show_TF, seller_images : imgUrl, user : nickName,
             sellerCategory : category_ko} = action.payload
     return state.setIn(['seller','seller_id'], seller_id)
@@ -85,6 +86,7 @@ export default handleActions({
                 .setIn(['seller', 'show_TF'], show_TF)
                 .setIn(['seller', 'like_cnt'],like_cnt)
                 .setIn(['seller', 'view_cnt'], view_cnt)
+                .setIn(['seller', 'seller_likes'], seller_likes)
  },
  [EDIT_TF] : (state, action) =>{
    const edit = action.payload;

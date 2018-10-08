@@ -4,12 +4,12 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const ModalWrapper = ({ children, visible }) => {
+const ModalWrapper = ({ children, visible,onClose }) => {
   if(!visible) return null;
   return (
 
-    <div className={cx('modal-wrapper')}>
-      <div className={cx('modal')}>
+    <div className={cx('modal-wrapper')} >
+      <div className={cx('modal')} onClick = {onClose}>
         {children}
       </div>
     </div>

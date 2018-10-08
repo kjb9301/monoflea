@@ -85,6 +85,7 @@ class SellersListContainer extends Component {
 
 export default connect((state) => ({
   sellerList : state.seller.get('sellers'),
+  loggedUser : state.base.get('logged'),
   category : state.seller.get('category'),
   hasMore : state.seller.get('hasMore'),
   totalCnt : state.seller.get('totalCnt')

@@ -31,20 +31,21 @@
   .modal {
     position: relative;
     background-color: #fefefe;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    display: inline-block;
+    max-width: 935px;
+    padding: 0px;
+    margin : 0px;
+    // margin: auto;
+    // border: 1px solid #888;
+    display: flex;
     min-height: 40vh;
-    border-radius: 12px;
+    // border-radius: 12px;
 
     @include media("<large") {
-      // width: 90%;
+      width: 90%;
     }
 
     @include media("<small") {
-      // width: 100%;
+      width: 100%;
     }
   }
 }

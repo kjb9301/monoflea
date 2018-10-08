@@ -1,31 +1,49 @@
 @import 'common';
 
 .modalForm {
-  border-top: 10px dotted rgba(0,0,0,0.1);
-  margin-top: 10px;
-  padding: 30px;
-  min-height: 70vh;
+  // border-top: 10px dotted rgba(0,0,0,0.1);
+  -webkit-box-align: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  width : 935px;
+  max-height: 600px;
+  height: 600px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-
+  align-items: stretch;
+  flex-shrink: 0;
+  margin : 0;
   @include media("<medium") {
     padding: 10px;
   }
   
   .wrapper {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    border-radius: 10px;
     padding: 20px;
-    margin: 10px;
-    flex: 1 1 220px;
+    width: 355px;
+    height: 522px;
+    font-family: 'Noto Sans KR', sans-serif;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     grid-gap: 10px;
-
+    align-self: flex-end;
+    @include media("<medium"){
+      width: 250px;
+      max-height: 400px;
+    }
     .profile {
       text-align: center;
+      flex: 1 1 200px;
+      height: 200px;
+      .nickName{
+        font-size : 15px;
+        font-weight: bolder;
 
+        padding : 10px;
+      }
+      @include media("<small") {
+        max-width: 250px;
+        max-height: 200px;
+      }
       img {
         border-radius: 50%;
         max-width: 150px;
@@ -33,18 +51,19 @@
         height: auto;
 
         @include media("<medium") {
-          max-width: 120px;
+          max-width: 300px;
         }
+       
       }
 
       .like {
         padding: 5px;
-        font-size : 12px;
+        font-size : 15px;
         color: rgba(0,0,0,0.6);
         text-align: center;
-        
+      
         .heart {
-            font-size: 14px;
+            font-size: 16px;
             vertical-align: bottom;
 
             &:hover {
@@ -61,14 +80,13 @@
     }
 
     .desc {
-
+        font-family: 'Noto Sans KR', sans-serif;
       .info {
-        font-size: 14px;
+        font-size: 17px;
         line-height: 2;
 
         div {
           padding-top: 5px;
-          border-bottom: 1px solid skyblue;
         }
 
         span {
@@ -83,7 +101,7 @@
         padding-top: 15px;
         padding-bottom: 15px;
         line-height: 1.5;
-        font-size: 12px;
+        font-size: 15px;
         color: rgba(0,0,0,0.8);
         word-break: break-all;
       }
@@ -91,19 +109,19 @@
   }
   
   .seller_img {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    
-    flex: 1 0 65%;
-
-    img {
+    width : 600px;
+    height: 600px;
+    flex: 1 1 300px;
+    .images {
       max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+      img {
+        max-width: 600px;
+        max-height: 600px;
+        width : 600px;
+        height: 600px;
+      }
     }
+    
   }
   
   .close {
