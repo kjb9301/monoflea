@@ -3,10 +3,18 @@ import classNames from 'classnames/bind';
 import styles from'./MyPageNav.scss';
 const cx = classNames.bind(styles);
 
-const MyPageNav = ({getData, urls, navs }) => {
+const MyPageNav = ({getData, urls, navs,seller_id, host_id, user_id }) => {
   const list = urls.map(
     (url,idx) => {
-      return <div className= {cx("nav")} key = {idx} onClick = {() => getData(url)}> {navs[idx]}</div>
+      return <div 
+                className={cx("nav")} 
+                key={idx} 
+                onClick={() => {
+                  let id = seller_id ? seller_id : (host_id ? host_id : null);
+                  getData(url, id, user_id)
+                }}
+              >{navs[idx]}
+              </div>
     }
   )
   return (

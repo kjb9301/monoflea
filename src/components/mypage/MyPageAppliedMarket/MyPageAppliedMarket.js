@@ -4,17 +4,40 @@ import styles from './MyPageAppliedMarket.scss';
 
 const cx = classNames.bind(styles);
 
-const MyPageAppliedMarket = () => {
+const MyPageAppliedMarket = ({data}) => {
+  console.log(data);
+  if (!data) return null;
+  const { start_date, end_date, host, 
+                market_place, reg_end_date, reg_start_date} = data;
+
+  // const dataDetail = data.map(
+  //   (data,idx) => {
+  //    
+  //     return  <div className = {cx('detail-info-wrapper')} key = {idx}>
+  //               <div className = {cx('detail-info')}>
+  //                 <div className = {cx('item-date')}>개설날짜 : {start_date} ~ {end_date}</div>
+  //                 <div className = {cx("item-reg")}> 모집기간 : {reg_start_date} ~ {reg_end_date}</div>
+  //                 <div className = {cx("item-host")}>주최자 :  {host} </div>
+  //                 <div className = {cx("item-market_place")}>장소 : {market_place}</div>
+  //               </div>
+  //             </div>
+      
+  //   }
+  // )
   return (
-    <div className = {cx('detail-info-wrapper')}>
+    <div className = {cx('detail-info-wrapper')} >
       <div className = {cx('detail-info')}>
-      <div className = {cx("item-reg")}>2018-10-01 ~ 2018.10.07</div>
-        <div className = {cx("item-host")}> </div>
-        <div className = {cx("item-like_cnt")}> 좋아요 : 10개</div>
-        <div className = {cx("item-category")}>카테고리 : 생활</div>
-        <div className = {cx("item-price")}> 가격 : 1,000,000원 </div>
+        <div className = {cx('info item-date')}>개설날짜 : {start_date} ~ {end_date}</div>
+        <div className = {cx("info item-reg")}> 모집기간 : {reg_start_date} ~ {reg_end_date}</div>
+        <div className = {cx("info item-host")}>주최자 :  {host.user.nickName} </div>
+        <div className = {cx("info item-market_place")}>장소 : {market_place}</div>
       </div>
-    </div>
+      <div className = {cx("status-wrapper")}>
+          <div className = {cx("apply-stauts")}> 신청상태 : { } </div>
+          <div className = {cx("detailBtn")} >지도</div>
+      </div> 
+  </div>
+  
   )
 }
 
