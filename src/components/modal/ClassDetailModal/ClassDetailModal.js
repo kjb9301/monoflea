@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import styles from './ClassDetailModal.scss';
+import styles from './ClassDetailModal.1.scss';
 import classNames from 'classnames/bind';
 import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
 
@@ -139,9 +139,12 @@ const ClassDetailModal =
             </div>
             <div className={cx('modalDesc')}>
               <div className={cx('modalTitle')}>강좌소개</div>
-              <div className={cx('modalContent')}>{class_desc}</div>
-              <div className={cx('modalImage')}>
-                {images}
+              <div className = {cx('descWrapper')}>
+                <div className={cx('modalContent')}>{class_desc}</div>
+                <div className={cx('modalImage')}>
+                  {/* <div className = {cx('images')}>{images}</div> */}
+                  {images}
+                </div>
               </div>
             </div>
           </div> 

@@ -5,9 +5,9 @@
   font-size : 1rem;
   padding: 0.5rem ;
   margin-right: 10px;
-  border-top : 1px solid $oc-gray-1;
+  // border-top : 1px solid $oc-gray-1;
   color : $oc-gray-5;
-
+  
   svg {
     padding-left: 10px;
     padding-right: 12px;
@@ -19,7 +19,7 @@
       font-size: 0.8rem;
       padding-bottom : 0.25rem;
       color : $oc-gray-5;
-      
+      font-family: 'Noto Sans KR', sans-serif;
     .heart{
       &:hover {
         color: $oc-gray-7;
