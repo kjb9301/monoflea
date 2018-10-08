@@ -1,0 +1,111 @@
+@import 'common';
+
+.footer {
+  width: 100%;
+  margin: auto;
+  margin-top: 1rem;
+  min-height: 120px;
+  .footer-title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  @include media("<large") {
+    .footer-title {
+      font-size: 1rem;      
+    }
+  }
+  .footer-wrap {
+    width: 100%;
+    margin: auto;
+    margin-top: 1rem;
+    text-align: center;
+    .footer-item {
+      display: inline-block;
+      padding: 15px;
+      width: 20%;
+      height: 200px;
+      color: white;
+      vertical-align: top;
+      &:nth-child(1) {
+        background-color: #ffab9d;
+      }
+      &:nth-child(2) {
+        background-color: #ff6382;
+      }
+      &:nth-child(3) {
+        background-color: #d46bc8;
+      }
+      &:nth-child(4) {
+        background-color: #9085da;
+      }
+      &:nth-child(5) {
+        background-color: #4fadff;
+      }
+      .item-wrap {
+        height: 70%;
+        .footer-name {
+          font-size: 1rem;
+          font-weight: 600;
+          text-align: left;
+          width: 50%;
+          display: inline-block;
+        }
+        @include media("<large") {
+          .footer-name {
+            font-size: 0.8rem;
+          }
+        }
+        .footer-info-box {
+          width: 50%;
+          display: inline-block;
+          text-align: right;
+          margin: 0.8rem auto;
+          .footer-icon {
+            display: inline-block;
+            width: 30%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            &:hover {
+              color: black;
+            }
+          }
+          @include media("<large") {
+            .footer-icon {
+              font-size: 0.8rem;
+            }
+          }
+        }
+        @include media("<medium") {
+          .footer-name, .footer-info-box {
+            width: 100%;
+            text-align: center;
+          }
+          .footer-info-box {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    @include media("<medium") {
+      .footer-item {
+        width: 100%;
+      }
+    }
+    .item-desc {
+      font-size: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    @include media("<large") {
+      .item-desc {
+        font-size: 0.8rem;
+      }
+    }
+    @include media('<medium') {
+      .item-desc {
+        text-align: center;
+      }
+    }
+  }
+}
