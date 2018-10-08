@@ -11,10 +11,9 @@ class SellerDetailContainer extends Component {
     const { SellerUIActions } = this.props;
     SellerUIActions.hideModal('seller');
   }
-//보완필요
+
   handleLike = async (id) => {
     const { SellerActions, loggedUser } = this.props;
-    console.log(loggedUser);
     if(!loggedUser) return alert('로그인이 필요합니다.')
     const increLike = await SellerActions.incrementLike(id)
     const { increLiked } = increLike.data

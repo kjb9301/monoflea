@@ -59,13 +59,13 @@ class MarketListContainer extends Component {
   }
 
   render() {
-    //console.log("MarketListContainer")
     const {list,hasMore} = this.props;
     const {marketList,marketComingList} = list;
     if(!marketList) return null;
     const {handleDetail,getMoreData} = this;
     const date = new Date();
     const curGetTime = date.getTime();
+    const loader = <div className="loader" key={0} style={{ 'width': '50%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto' }}>Loading ...</div>;
 
     return (
       <div>
@@ -77,7 +77,7 @@ class MarketListContainer extends Component {
           dataLength={marketList.length}
           next={getMoreData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={loader}
         >
         </InfiniteScroll>
           

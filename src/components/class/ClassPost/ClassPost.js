@@ -5,6 +5,15 @@ import { FaUpload } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
+let uploadImgFile = (input, target) => {
+  let reader = new FileReader();
+  reader.onload = (e) => {
+    target.src = e.target.result;
+  }
+  reader.readAsDataURL(input.files[0]);
+}
+
+
 const ClassPost = ({ categories, changeValue, postNewClass }) => {
   const classCategories = categories.map(category => {
     const { class_category_id, category_ko_name } = category;
@@ -31,46 +40,96 @@ const ClassPost = ({ categories, changeValue, postNewClass }) => {
             <div className={cx('img-wrap')}>
               <div className={cx('img-list')}>
                 <FaUpload className={cx('upload-img')} />
+                <img 
+                  src={''}
+                  alt=''
+                  className={cx('uploaded-img')}
+                  ref={ref => this.imgOne = ref}
+                />
                 <input 
                   type="file"
                   name="class_img1"
-                  onChange={changeValue}
+                  ref={ref => this.imgFileOne = ref}
+                  onChange={(e) => {
+                    changeValue(e);
+                    uploadImgFile(this.imgFileOne, this.imgOne);
+                  }}
                   className={cx('oneday-img')}
                 />
               </div>
               <div className={cx('img-list')}>
-                <FaUpload className={cx('upload-img')} /> 
+                <FaUpload className={cx('upload-img')} />
+                <img 
+                  src={''}
+                  alt=''
+                  className={cx('uploaded-img')}
+                  ref={ref => this.imgTwo = ref}
+                />
                 <input 
                   type="file"
                   name="class_img2"
-                  onChange={changeValue}
+                  ref={ref => this.imgFileTwo = ref}
+                  onChange={(e) => {
+                    changeValue(e);
+                    uploadImgFile(this.imgFileTwo, this.imgTwo);
+                  }}
                   className={cx('oneday-img')}
                 />
               </div>
               <div className={cx('img-list')}>
-                <FaUpload className={cx('upload-img')} /> 
+                <FaUpload className={cx('upload-img')} />
+                <img 
+                  src={''}
+                  alt=''
+                  className={cx('uploaded-img')}
+                  ref={ref => this.imgThr = ref}
+                />
                 <input 
                   type="file"
                   name="class_img3"
-                  onChange={changeValue}
+                  ref={ref => this.imgFileThr = ref}
+                  onChange={(e) => {
+                    changeValue(e);
+                    uploadImgFile(this.imgFileThr, this.imgThr);
+                  }}
                   className={cx('oneday-img')}
                 />
               </div>
               <div className={cx('img-list')}>
                 <FaUpload className={cx('upload-img')} /> 
+                <img 
+                  src={''}
+                  alt=''
+                  className={cx('uploaded-img')}
+                  ref={ref => this.imgFour = ref}
+                />
                 <input 
                   type="file"
                   name="class_img4"
-                  onChange={changeValue}
+                  ref={ref => this.imgFileFour = ref}
+                  onChange={(e) => {
+                    changeValue(e);
+                    uploadImgFile(this.imgFileFour, this.imgFour);
+                  }}
                   className={cx('oneday-img')}
                 />
               </div>
               <div className={cx('img-list')}>
-                <FaUpload className={cx('upload-img')} /> 
+                <FaUpload className={cx('upload-img')} />
+                <img 
+                  src={''}
+                  alt=''
+                  className={cx('uploaded-img')}
+                  ref={ref => this.imgFive = ref}
+                />
                 <input 
                   type="file"
                   name="class_img5"
-                  onChange={changeValue}
+                  ref={ref => this.imgFileFive = ref}
+                  onChange={(e) => {
+                    changeValue(e);
+                    uploadImgFile(this.imgFileFive, this.imgFive);
+                  }}
                   className={cx('oneday-img')}
                 />
               </div>

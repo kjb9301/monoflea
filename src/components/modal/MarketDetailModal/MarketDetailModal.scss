@@ -30,11 +30,11 @@
 
     .marketPoster {
       text-align: center;
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
       
       img {
         max-width: 100%;
-        height: auto;
+        height: 390px;
         object-fit: cover;
         border-radius: 10px;
       }
@@ -56,7 +56,7 @@
         border-bottom: 1px solid skyblue;
         color: rgba(0,0,0,0.8);
         font-size: 14px;
-        display: flex;
+        // display: flex;
       }
       
       .marketInfoTitle {
@@ -72,78 +72,88 @@
         color: rgba(3, 169, 244,1.0);
         border-bottom: 1px solid rgba(163, 218, 243, 0.8);
 
-        position: relative;
         margin: 5px;
         max-width: 100%;
         padding-top: 10px;
-        
-        .label {
-          position: absolute;
-          top: 50px;
-          left: 0;
-          font-size: 16px;
-          color: #9098A9;
-          font-weight: 500;
-          transform-origin: 0 0;
-          transition: all .2s ease;
 
-          padding: 0 20px 0 10px;
-          color: rgba(0,0,0,0.5);
-          border-left: 5px solid skyblue;
-        }
-  
-        .border {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          height: 2px;
+        .animation {
+          position: relative;
           width: 100%;
-          background: #0077FF;
-          transform: scaleX(0);
-          transform-origin: 0 0;
-          transition: all .15s ease;
+          height: 35px;
+          .label {
+            width: 100%;
+            position: absolute;
+            top: 5px;
+            left: 0;
+            font-size: 16px;
+            color: #9098A9;
+            font-weight: 500;
+            transform-origin: 0 0;
+            transition: all .2s ease;
+  
+            padding: 0 20px 0 10px;
+            color: rgba(0,0,0,0.5);
+            border-left: 5px solid skyblue;
+          }
         }
-  
-        input {
-          -webkit-appearance: none;
+
+        .content-box {
           width: 100%;
-          border: 0;
-          font-family: inherit;
-          padding: 12px 0;
-          height: 60px;
-          font-size: 16px;
-          font-weight: 500;
-          border-bottom: 2px solid #C8CCD4;
-          background: none;
-          border-radius: 0;
-          color: #223254;
-          transition: all .15s ease;
-          text-align: center;
-  
-          &:hover {
-            background: rgba(#072055,.03);
+          .border {
+            // position: absolute;
+            // bottom: 0;
+            // left: 0;
+            height: 2px;
+            width: 100%;
+            background: #0077FF;
+            transform: scaleX(0);
+            transform-origin: 0 0;
+            transition: all .15s ease;
           }
-            
-          &:not(:placeholder-shown) {
-            + span {
-              color: #5A667F;
-              transform: translateY(-30px) scale(.70);
-            }  
-          }
-              
-          &:focus {
+    
+          input {
+            // -webkit-appearance: none;
+            width: 100%;
+            border: 0;
+            font-family: inherit;
+            padding: 5px;
+            height: auto;
+            font-size: 16px;
+            font-weight: 500;
+            border-bottom: 2px solid #C8CCD4;
             background: none;
-            outline: none;
-  
-            + span {
-            color: #0077FF;
-            transform: translateY(-50px) scale(.70);
-              +.border {
-                transform: scaleX(1);
-              }
+            border-radius: 0;
+            color: #223254;
+            transition: all .15s ease;
+            // text-align: center;
+    
+            &:hover {
+              background: rgba(#072055,.03);
             }
-          }
+              
+            &:not(:placeholder-shown) {
+              + span {
+                color: #5A667F;
+                transform: translateY(-30px) scale(.70);
+              }  
+            }
+                
+            &:focus {
+              background: none;
+              outline: none;
+              border-bottom: 2px solid #0077FF;
+            }
         }
+
+        .date {
+          width: 45%;
+        }
+  
+
+        }
+        // ::-webkit-input-placeholder {
+        //   text-align: left;
+        // }
       }
 
       .modalDesc {
@@ -191,9 +201,11 @@
         }
 
         textarea {
+          margin-top: 10px;
           width: 100%;
-          border: 0;
-          border: 2px solid #C8CCD4;
+          outline: 0;
+          border: 1px solid #C8CCD4;
+          border-radius: 15px;
           background: none;
           border-radius: 0;
           color: #223254;
@@ -213,21 +225,22 @@
           &:focus {
             background: none;
             outline: none;
+            border: 1px solid #0077FF;
 
-            + .label {
-              color: #0077FF;
-            //transform: translateY(-50px) scale(.70);
-              +.border {
-                transform: scaleX(1);
-              } 
-            }
+            // + .label {
+            //   color: #0077FF;
+            // //transform: translateY(-50px) scale(.70);
+            //   +.border {
+            //     transform: scaleX(1);
+            //   } 
+            // }
           }
         }
       }
     }
 
     .classBtn {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
       text-align: center;
       
       button {

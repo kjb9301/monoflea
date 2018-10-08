@@ -38,10 +38,10 @@ class MarketPostContainer extends Component {
   }
 
   render() {
-    const {handleChange,handleCreate} = this;
+    const { handleChange, handleCreate, changeImage } = this;
     return (
       <div>
-        <MarketPost onChange={handleChange} onCreate={handleCreate}/>
+        <MarketPost onChange={handleChange} onCreate={handleCreate} changeImage={changeImage}/>
       </div>
     );
   }

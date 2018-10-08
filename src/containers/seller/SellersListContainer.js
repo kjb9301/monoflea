@@ -63,7 +63,7 @@ class SellersListContainer extends Component {
   render() {
     const { sellerList, hasMore } = this.props;
     const { getSellerDetail , handleDislike, handleLike } = this;
-    const loader = <div className="loader" key={0}>Loading ...</div>;
+    const loader = <div className="loader" key={0} style={{ 'width': '50%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto' }}>Loading ...</div>;
     return (  
       <div>
         <SellerList 

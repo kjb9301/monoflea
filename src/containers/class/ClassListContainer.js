@@ -83,7 +83,7 @@ class ClassListContainer extends Component {
     if(classList.length<totalCnt) {
       setTimeout(async () => {
         try {
-          return await ClassActions.getClassList(category, classList.length+9);
+          return await ClassActions.getClassList(category, classList.length+8);
         } catch(e) {
           const { message } = e.response.data;
           return alert(message);
@@ -96,7 +96,7 @@ class ClassListContainer extends Component {
   render() {
     const { classList, hasMore } = this.props;
     const { showClassModal, takeOnedayClass, cancelOnedayClass } = this;
-    const loader = <div className="loader" key={0}>Loading ...</div>;
+    const loader = <div className="loader" key={0} style={{ 'width': '10%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto', 'padding': '10px', 'backgroundColor': 'green', 'color': 'white' }}>Loading ...</div>;
     return (
       <Fragment>
         <ClassList 

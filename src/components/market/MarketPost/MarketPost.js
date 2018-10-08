@@ -6,7 +6,7 @@ import { FaUpload } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
-const MarketPost = ({onChange,onCreate}) => {
+const MarketPost = ({ onChange, onCreate, changeImage }) => {
   return (
     <div className={cx('form')}>
       <div className={cx('post-wrap')}>
@@ -21,10 +21,24 @@ const MarketPost = ({onChange,onCreate}) => {
             <div className={cx('img-wrap')}>
               <div className={cx('img-list')}>
                 <FaUpload className={cx('upload-img')} />
+                <img 
+                  src={''} 
+                  alt='' 
+                  ref={ref => this.poster = ref}
+                  className={cx('uploaded-poster')}
+                />
                 <input 
                   type="file" 
-                  name="poster" 
-                  onChange={onChange}
+                  name="poster"
+                  ref={ref => this.posterFile = ref}
+                  onChange={(e) => {
+                    onChange(e);
+                    let reader = new FileReader();
+                    reader.onload = (event) => {
+                      this.poster.src = event.target.result;
+                    };
+                    reader.readAsDataURL(this.posterFile.files[0]);
+                  }}
                   className={cx('market-img')}
                 />
               </div>

@@ -47,8 +47,8 @@ class MarketListRegContainer extends Component {
     const {handleDetail,getMoreData} = this;
     const {marketList} = list;
     if(!marketList) return null;
-    
     if(loading) return null;
+    const loader = <div className="loader" key={0} style={{ 'width': '50%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto' }}>Loading ...</div>;
     return (
       <div>
         <MarketRegList markets={marketList} onDetail={handleDetail}/>
@@ -56,7 +56,7 @@ class MarketListRegContainer extends Component {
           dataLength={marketList.length}
           next={getMoreData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={loader}
         >
         </InfiniteScroll>
       </div>
