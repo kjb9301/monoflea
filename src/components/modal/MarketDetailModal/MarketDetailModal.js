@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './MarketDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
@@ -10,12 +10,115 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
 
   return (
     <ModalWrapper visible={visible}>
-      <div>
+      <div className={cx('modalForm')}>
+        <div className={cx('close-box')}>
+          <span className={cx('close')} onClick={onClose}>&times;</span>
+        </div>
+        <div className={cx('wrapper')}>
+          <div className={cx('marketPosterWrap')}>
+            <img 
+              src={market_poster} 
+              alt={market_name}
+              className={cx('marketPoster')}
+            />
+          </div>
+        </div>
+        <div className={cx('wrapper')}>
+          <div className={cx('data-wrap')}>
+            <div className={cx('animation')}>
+              <span className={cx('label')}>마켓이름</span>
+            </div>
+            <div className={cx('content-box')}>
+              <p className={cx('content-title')}>{market_name}</p>
+            </div>
+          </div>
+          <div className={cx('data-wrap')}>
+            <div className={cx('animation')}>
+              <span className={cx('label')}>개설장소</span>
+            </div>
+            <div className={cx('content-box')}>
+              <p className={cx('content-title')}>{market_place}</p>
+            </div>
+          </div>
+          <div className={cx('data-wrap')}>
+            <div className={cx('animation')}>
+              <span className={cx('label')}>마켓일정</span>
+            </div>
+            <div className={cx('content-box')}>
+              <p className={cx('content-title')}>
+                <span>{start_date}</span>
+                <span className={cx('char')}> ~ </span>
+                <span>{end_date}</span>
+              </p>
+            </div>
+          </div>
+          {
+            confirmYN === 'Y' ? 
+            <Fragment></Fragment> :
+            <Fragment>
+              <div className={cx('data-wrap')}>
+                <div className={cx('animation')}>
+                  <span className={cx('label')}>모집기간</span>
+                </div>
+                <div className={cx('content-box')}>
+                  <p className={cx('content-title')}>
+                    <span>{reg_start_date}</span>
+                    <span className={cx('char')}> ~ </span>
+                    <span>{reg_end_date}</span>
+                  </p>
+                </div>
+              </div>
+              <div className={cx('data-wrap')}>
+                <div className={cx('animation')}>
+                  <span className={cx('label')}>모집인원</span>
+                </div>
+                <div className={cx('content-box')}>
+                  <p className={cx('content-title')}>
+                    <span>{seller_cnt}</span>
+                    <span className={cx('char')}> / </span>
+                    <span>{seller_limit_cnt}</span>
+                  </p>
+                </div>  
+              </div>
+           </Fragment>
+          }
+          <div className={cx('data-wrap')}>
+            <div className={cx('animation')}>
+              <span className={cx('label')}>상세정보</span>
+            </div>
+            <div className={cx('content-box')}>
+              <p className={cx('content-title')}>{market_desc}</p>
+            </div>
+          </div>
+        </div>
+        <div className={cx('button-wrap')}>
+          {
+            confirmYN === 'N' && userType !== 'H' ? 
+            (
+              market_regs[0] ? 
+              <button className={cx('market-button')} onClick={() => onApplyCancel(market_id)}>취소</button> :
+              <button className={cx('market-button')} onClick={() => onApply(market_id)}>신청</button>
+            ) :
+            <Fragment></Fragment>
+          }
+          {
+            user_host_id === host_id ? 
+            <Fragment>
+              <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
+              <button className={cx('market-button')} onClick={onEdit}>수정</button>
+            </Fragment> :
+            <Fragment></Fragment>
+          }
+        </div>
+      </div>
+      {/* <div>
       {confirmYN === 'Y'?
         <div>
         {editTF === true?
           <div className={cx('modalForm')}>
-            <span className={cx('close')} onClick={onClose}>&times;</span>
+            <div className={cx('close-box')}>
+              <span className={cx('close')} onClick={onClose}>&times;</span>
+            </div>
             <div className={cx('modalTitle')}>
               <div className={cx('marketPoster')}><img src={market_poster} alt={market_name}/></div>
             </div>
@@ -27,7 +130,6 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                   </div>
                   <div className={cx('content-box')}>
                     <input type="text" name="market_name" placeholder="&nbsp;" value={market_name} onChange={onChange}/>
-                    {/* <span className={cx('border')}></span> */}
                   </div>
                 </div>
                 <div className={cx('marketPlace')}>
@@ -40,34 +142,18 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                   <div className={cx('animation')}>
                     <span className={cx('label')}>마켓일정</span>
                   </div>
-                  {/* <span className={cx('border')}></span>                   */}
                 </div>
                 <div className={cx('marketPeriod')}>
                   <div className={cx('content-box')}>
                     <input type="date" name="start_date" placeholder="&nbsp;" value={start_date} onChange={onChange} className={cx('date')}/> ~ 
                     <input type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange} className={cx('date')}/>
                   </div>
-                  {/* <span className={cx('border')}></span>  */}
                 </div>
                 <div className={cx('modalDesc')}>
                   <div className={cx('label')}>상세설명</div>
                   <textarea cols="40" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
-                  {/* <span className={cx('border')}></span>  */}
                 </div>
               </div>
-              {/*<div className={cx('marketInfo')}>
-                <div className={cx('marketPlace')}>
-                  <span className={cx('marketInfoTitle')}>개설장소</span>
-                  <span className={cx('marketPlaceContent')}>
-                    <input type="text" name="market_place" value={market_place} onChange={onChange}/>
-                  </span>
-                </div>
-                <div className={cx('marketPeriod')}>
-                  <span className={cx('marketInfoTitle')}>마켓일정</span>
-                  <input type="date" name="start_date" value={start_date} onChange={onChange}/> ~ 
-                  <input type="date" name="end_date" value={end_date} onChange={onChange}/>  
-                </div>
-              </div>*/}
               {user_host_id === host_id?
                 <div className={cx('classBtn')}>
                   <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
@@ -241,7 +327,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
         }
         </div>
       }
-      </div>
+      </div> */}
     </ModalWrapper>
   );
 };
