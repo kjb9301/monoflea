@@ -10,6 +10,7 @@
     background-attachment: scroll, fixed;
     background-size: auto, cover;
     background-position: bottom center, bottom center;
+    border-bottom: 1px solid rgba(255,255,255, 0.5);
 
     display: flex;
     justify-content: center;
@@ -155,7 +156,7 @@
     position: relative;
     max-width: 1320px;
     margin: 0 auto;
-    height: 10px;
+    height: 0;
 
     .btns-link {
       position: absolute;
@@ -175,5 +176,10 @@
         box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22)
       }
     }
+  }
+
+  .sellerlist-wrap {
+    background-image: url('/images/classes/bg.jpg');
+    background-size: cover;
   }
 }

@@ -21,7 +21,7 @@ const SellerWrapper = () =>{
           <SellerOneData/>
         </div>
       </div>
-      <SellersListContainer/>
+      <div className={cx('sellerlist-wrap')}><SellersListContainer/></div>
       {/* <LoginedSellerDetailContainer/> */}
     </div>
   )

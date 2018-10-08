@@ -107,7 +107,7 @@ const About = () => {
       <div className={cx('section', 'section-step7')}>
         <div className={cx('section-inner')}>
           <div className={cx('section-contents')}>
-            <h3>MONO FLEA TEAM</h3>
+            <h3>MONOFLEA TEAM</h3>
             <div className={cx('section-team')}>
 
               <div className={cx('team')}>

@@ -6,9 +6,9 @@
   padding: 30px 30px 30px;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
   justify-content: center;
-  grid-gap: 35px;
+  grid-gap: 40px;
 
   .item-box {
     position: relative;
@@ -24,10 +24,19 @@
     }
 
     .item-poster {
+      position: relative;
       border-radius: 10px;
       height: 200px;
       overflow: hidden;
       text-align: center;
+
+      &:hover {
+        overflow: initial;
+
+        img {
+          box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+      }
 
       img {
         border-radius: 10px;
@@ -64,12 +73,15 @@
       font-size: 13px;
 
       div {
-        margin-bottom: 10px;
+        padding-bottom: 5px;
+        margin-bottom: 7px;
+        border-bottom: 1px dotted rgba(0,0,0,0.22);
         
         & > span:first-child {
           display: inline-block;
           width: 85px;
-          color: #8bc34a;
+          color: rgba(0,0,0,0.5);
+          font-size: 12px;
 
           &::before {
             content: '';
@@ -93,6 +105,8 @@
         font-size: inherit;
         font-weight: bold;
         color: rgba(0,0,0,0.7);
+        white-space: nowrap;
+        letter-spacing: -1px;
       }
 
       .item-desc {
@@ -157,15 +171,18 @@
 
     .taken-btn-wrap {
       position: absolute;
-      top: 195px;
-      right: 15px;
-      background-color: rgba(0,0,0,0.3);
+      top: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.2);
+      border: 1px solid rgba(0,0,0,0.1);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
+      padding-top: 4px;
+      padding-left: 1px;
 
       @media (max-width: 690px) {
         top: 245px;
@@ -179,6 +196,7 @@
         font-size: 2rem;
         color: white;
         cursor: pointer;
+        opacity: 0.8;
 
         &:hover {
           color: #ff77c2;

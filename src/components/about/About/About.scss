@@ -90,17 +90,29 @@
   }
 
   .section-title {
-    padding: 5rem 3rem;
-    color: orange;
+    padding: 5rem 2rem;
+    color: #495057;
     text-align: center;
     font-family: 'Sunflower', sans-serif;
     // text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     
     h2 {
       display: inline-block;
-      padding: .5rem;
-      font-size: 3rem;
-      border-bottom: 2px solid orange;
+      padding: .5rem 0;
+      font-size: 5rem;
+      // border-bottom: 2px solid orange;
+
+      @include media("<wide") {
+        font-size: 4rem;
+      }
+
+      @include media("<large") {
+        font-size: 3rem;
+      }
+
+      @include media("<medium") {
+        font-size: 2rem;
+      }
     }
 
     @media screen and (max-width: 480px) {

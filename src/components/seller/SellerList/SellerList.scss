@@ -3,7 +3,7 @@
 .seller-wrapper {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px 20px;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -11,7 +11,7 @@
   
   .seller-list {
     border-radius: 10px;
-    margin: 15px;
+    margin: 20px;
     background: white;
     font-size: 12px;
     color: #555;
@@ -24,7 +24,6 @@
 
     &:hover {
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-      // cursor: pointer;
     }
 
     .seller-head {
@@ -34,7 +33,9 @@
       align-items: center;
 
       height: 250px;
-      border-bottom: 0.5px solid rgba(0,0,0,0.2);
+      margin-left: 20px;
+      margin-right: 20px;
+      border-bottom: 0.5px dotted rgba(0,0,0,0.1);
 
       img {
         border-radius: 50%;
@@ -85,9 +86,17 @@
       }
 
       .seller-desc {
+        display: block;
         margin-top: 10px;
         min-height: 50px;
         word-break: break-all;
+
+        .seller-title-icon {
+          padding: 0 0 0 5px;
+          line-height: 1;
+          border-left: 3px solid orange;
+          margin-bottom: 5px;
+        }
       }
 
       &:hover {
@@ -102,5 +111,12 @@
     &:nth-child(odd) {
       grid-row: span 20;
     }
+  }
+
+  .seller-title-icon {
+    padding: 0 0 0 5px;
+    line-height: 1;
+    border-left: 3px solid orange;
+    margin-bottom: 10px;
   }
 }
