@@ -2,14 +2,36 @@
 
 .detail-info-wrapper{
   display: flex;
-/*        border: 1px solid black;*/
   flex-direction: row;
   justify-content: space-between;
   .detail-info{
-    font-size : 17px;
+    font-size : 20px;
   }
   .detail-info > *{
     padding : 2px;
   }
+  .status-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    .apply-stauts{
+      height: 30px;
+    }
+    .detailBtn{
+      border-radius: 5px;
+      border: 3.2px solid cornflowerblue ;
+      font-size : 20px;
+      color : dimgrey;
+      font-weight: bolder;
+      font-family: sans-serif;
+      padding: 5px;
+      text-align: center;
+      width:150px;
+      height: 45px;
+      justify-content: center;
+    }
+}
+
 }
 

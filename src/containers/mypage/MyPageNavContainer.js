@@ -7,22 +7,32 @@ import * as mypageActions from 'store/modules/mypage';
 class MyPageNavContainer extends Component {
 
   state = {
-    urls : ['a', 'b', 'c' ,'/mypages/apply-markets','e'],
-    navs : ['1', '2', '3', '신청마켓' , '5'],
+    urls : ['a', 'b', '/mypages/host-markets' ,'/mypages/apply-markets','e'],
+    navs : ['프로필', '2', '주최마켓', '신청마켓' , '5'],
   }
-  getData = (url) => {
-    const { MypageActions, seller_id} = this.props;
-    MypageActions.getMypageData(url,seller_id);
+  getData = (url,id) => {
+    const { MypageActions, } = this.props;
+    MypageActions.getMypageData(url, id);
   }
   
+  // componentDidMount(){
+  //   const{ seller_id } = this.props;
+  //   console.log(seller_id)
+  //   this.getData('/users/login', seller_id);
+  // }
   render() {
-    const { urls ,navs } = this.state;
+    const { urls ,navs, } = this.state;
+    const { seller_id, host_id, user_id } = this.props;
     const { getData } = this;
+    console.log(host_id);
     return (
       <MyPageNav
         urls = {urls}
         getData = {getData}
         navs = {navs}
+        seller_id = {seller_id}
+        host_id = {host_id}
+        user_id = {user_id}
       />
     );
   }
@@ -31,7 +41,9 @@ class MyPageNavContainer extends Component {
 // export default withMyPageHOC('https://jsonplaceholder.typicode.com/posts/1')(MyPageNavContainer);
 export default connect(
   (state) => ({
-    seller_id : state.base.get('seller_id')
+    seller_id : state.base.get('seller_id'),
+    host_id : state.base.get('host_id'),
+    user_id : state.base.get('user_id')
   }),
   (dispatch) => ({
     MypageActions : bindActionCreators(mypageActions,dispatch)
