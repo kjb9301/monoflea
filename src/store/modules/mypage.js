@@ -16,7 +16,8 @@ export default handleActions({
     type: GET_MYPAGE_DATA,
     onSuccess: (state, action) => {
       console.log(action.payload.data);
-      return state.set('data', action.payload.data);
+      const { data } = action.payload
+      return state.set('data', data);
     }
   })
 }, initialState);

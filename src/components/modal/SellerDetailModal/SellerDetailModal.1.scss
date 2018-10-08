@@ -74,6 +74,8 @@
         }
 
         span {
+          color : $oc-gray-5;
+          font-size: 0.8rem;
           margin: 0 10px;
         }
       }
@@ -81,10 +83,12 @@
 
     .desc {
         font-family: 'Noto Sans KR', sans-serif;
+        display : flex;
+        justify-content: center;
+        flex-flow : column wrap;
       .info {
         font-size: 17px;
         line-height: 2;
-
         div {
           padding-top: 5px;
         }
@@ -97,7 +101,8 @@
       }
 
       .desc-text {
-        min-height: 50px;
+        height: 100px;
+        overflow: auto;
         padding-top: 15px;
         padding-bottom: 15px;
         line-height: 1.5;

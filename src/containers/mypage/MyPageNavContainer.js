@@ -8,7 +8,7 @@ class MyPageNavContainer extends Component {
 
   state = {
     urls : ['a', 'b', 'c' ,'/mypages/apply-markets','e'],
-    navs : ['1', '2', '3', '신청마켓' , '5']
+    navs : ['1', '2', '3', '신청마켓' , '5'],
   }
   getData = (url) => {
     const { MypageActions, seller_id} = this.props;
