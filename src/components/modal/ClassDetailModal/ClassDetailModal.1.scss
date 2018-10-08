@@ -213,7 +213,6 @@
       display : flex;
       justify-content: space-around;
       @include media ("<medium") {
-        background-color: #4CAF50;
         flex-flow : column wrap;
       }
       .modalContent {
@@ -227,13 +226,9 @@
         text-align: center;
         // padding-top: 2rem;
         display : flex;
-        // justify-content: center;
+        justify-content: center;
         flex-flow: row wrap;
-        max-width: 600px;
         width: 600px;
-        column-count: 3;
-        column-width: 200px;
-        max-height: 600px;
         // .images{
         //   display : flex;
         //   justify-content: flex-start;
@@ -258,10 +253,7 @@
               @include media ("<small") {
 
               }
-              max-width: 600px;
-              max-height: 600px;
-              min-width : 200px;
-              min-height: 200px;
+             
             }
           }
         // }

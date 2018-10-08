@@ -5,7 +5,6 @@ import {GoHeart} from 'react-icons/go';
 const cx = classNames.bind(styles);
 
 const Like = ({like_cnt, onLike, offLike, view_cnt,likeOn,id})  =>{
-  console.log(likeOn)
       return (
       <div className={cx('like')}> 
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Open+Sans" rel="stylesheet"/>
