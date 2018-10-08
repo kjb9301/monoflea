@@ -5,7 +5,7 @@
   font-family: 'Material Icons', serif;
 
   &:hover {
-    color: blue;
+    color: yellow;
     cursor: pointer;
   }
 }
@@ -19,10 +19,28 @@
   background-color: rgba(black, 0.4);
   flex-grow: 1;
 
+  .btn-wrapper {
+    display: flex;
+    background-color: rgba(black, 0.4);
+    border-radius: 10px;
+    margin: 10px;
+    margin-right: 20px;
+
+    .all-btn {
+      margin: 10px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 1.2rem;
+      font-weight: bolder;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
   .left-wrapper {
     display: flex;
     flex-grow: .5;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: rgba(black, 0.4);
     border-radius: 10px;
 
@@ -38,7 +56,7 @@
 
   .right-wrapper {
     display: flex;
-    flex-grow: 2;
+    flex-grow: 1;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -62,44 +80,49 @@
       font-size: 20px;
       font-weight: bold;
       color: white;
+      cursor: pointer;
       
       &.isSunday {
         color: red;
       }
 
       &.isSat {
-        color: blue;
+        color: rgb(75, 75, 247);
       }
 
-      &.selected {    
-        display: flex;
-        flex-flow : column wrap;
+      &.selected {
+        border: 3px solid rgb(247, 247, 97);
+        // .days {
+        //   border: 2px solid yellow;
+        // }
+        //display: flex;
+        //flex-flow : column wrap;
 
-        .weekday {
-          display : flex;
-          width: 100%;
-          flex-flow: row wrap;
-          border-radius: 20px 20px 0 0;
-          background-color: rgb(39, 93, 243);
-          justify-content: center;
-          align-content: space-around;
-          height: 50%;
-        }
+        // .weekday {
+        //   display : flex;
+        //   width: 100%;
+        //   flex-flow: row wrap;
+        //   border-radius: 20px 20px 0 0;
+        //   background-color: rgb(39, 93, 243);
+        //   justify-content: center;
+        //   align-content: space-around;
+        //   height: 50%;
+        // }
 
-        .day {
-          width: 100%;
-          background: rgb(207, 206, 206);
-          box-shadow: 0 0px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
-          display:  flex;
-          flex-flow: column wrap;
-          height: 50%;
-          align-items: center;
-          justify-content: space-around;
-        }
+        // .day {
+        //   width: 100%;
+        //   background: rgb(207, 206, 206);
+        //   box-shadow: 0 0px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+        //   display:  flex;
+        //   flex-flow: column wrap;
+        //   height: 50%;
+        //   align-items: center;
+        //   justify-content: space-around;
+        // }
       }
 
       &:hover {
-        border: 3px solid rgb(194, 245, 99);
+        border: 2px solid rgb(218, 218, 215);
       }  
     }
   }

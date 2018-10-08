@@ -20,12 +20,15 @@ class CalendarContainer extends Component {
     let selectDay = curDay.length < 2? '0' + curDay.toString() : curDay;
 
     const selectDate = `${curYear}-${selectMonth}-${selectDay}`;
+    
     MarketActions.getMarketList('Y',selectDate);
   }
 
   handleSelectDate = (selectedDateParam) => {
     const {MarketUIActions} = this.props;
-    MarketUIActions.getSelectedDate(selectedDateParam)
+    
+    MarketUIActions.getSelectedDate(selectedDateParam);
+    
     this.handleSelect(selectedDateParam);
   }
 
@@ -93,22 +96,17 @@ class CalendarContainer extends Component {
     if(loading) return null;
     return (
       <Fragment>
-        <Button theme="gray" toGetData={selectByDate}>{isSelectedByDate?'전체':'날짜별'}</Button>
-        {isSelectedByDate?
-          <Calendar 
-            curYear={curYear} 
-            curMonth={curMonth} 
-            curDay={curDay} 
-            daysInWeekList={daysInWeekList} 
-            onPrevMonth={HandlePrevMonth} 
-            onNextMonth={HandleNextMonth} 
-            onPrevDay={HandlePrevDay} 
-            onNextDay={HandleNextDay}
-            onSelectDate={handleSelectDate}  
-          />
-          :
-          <Fragment/>
-        }
+        <Calendar 
+          curYear={curYear} 
+          curMonth={curMonth} 
+          curDay={curDay} 
+          daysInWeekList={daysInWeekList} 
+          onPrevMonth={HandlePrevMonth} 
+          onNextMonth={HandleNextMonth} 
+          onPrevDay={HandlePrevDay} 
+          onNextDay={HandleNextDay}
+          onSelectDate={handleSelectDate}  
+        />
       </Fragment>
     );
   }

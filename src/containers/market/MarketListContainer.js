@@ -80,8 +80,6 @@ class MarketListContainer extends Component {
           loader={loader}
         >
         </InfiniteScroll>
-          
-        
       </div>
     );
   }
