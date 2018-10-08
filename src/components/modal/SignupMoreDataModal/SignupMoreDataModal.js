@@ -47,7 +47,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
 
           <div className={cx('input-container')}>
             <div><label for="phone">전화번호</label></div>
-            <div>
+            <div className={cx('certified')}>
               <input
                 id="phone" 
                 type="tel"
@@ -69,7 +69,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
 
           <div className={cx('input-container')}>
             <div><label for="certified">인증번호</label></div>
-            <div>
+            <div className={cx('certified')}>
               <input
                 id="certified"
                 type="text"
@@ -141,7 +141,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
                     id="business"
                     type="text"
                     className={cx('item-input')}
-                    placeholder="사업자 여부를 입력하세요(Y/N)" 
+                    placeholder="사업자 여부를 입력하세요. (Y/N)" 
                     name="biz_YN"
                     onChange={onChangeValue}
                   />
@@ -163,7 +163,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="onedayclass">클래스 주최여부</label></div>
+                <div><label for="onedayclass">주최여부</label></div>
                 <div>
                   <input
                     id="onedayclass"

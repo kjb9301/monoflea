@@ -1,13 +1,14 @@
 @import 'common';
 
 .SignupMoreDataModal {
-  // min-width: 600px;
+  width: 600px;
   background-color: white;
-  // padding: 2rem;
+  padding: 2rem;
   position: relative;
 
-  display: grid;
-
+  @include media("<medium") {
+    width: 100%;
+  }
 
   .title {
     padding: 0 0 0 10px;
@@ -16,61 +17,95 @@
     font-weight: bold;
     border-left: 10px solid #4d87ef;
     margin-bottom: 30px;
+    text-align: left;
   }
 
   .input-box {
-
     display: grid;
-
+    margin-bottom: 20px;
 
     .input-container {
-
-      background-color: #ddd7d7;
       margin-bottom: 5px;
-
-      // display: grid;
-      // grid-template-columns: 200px minmax(200, 1fr);
-      // grid-gap: 30px;
-
-      // & > :first-child {
-      //   background-color: orange;
-      //   flex-basis: 100px;
-      // }
-
-      // &:last-child {
-      //   background-color: lightblue;
-      //   flex-grow: 5;
-
-      // }
+      display: flex;
+  
+      & > div:first-child {
+        flex-basis: 120px;
+        text-align: right;
+  
+        @include media("<medium") {
+          flex-basis: 100px;
+        }
+  
+        @include media("<smedium") {
+          display: none;
+        }
+  
+        @include media("<smedium") {
+          display: none;
+        }
+      }
+  
+      & > div:last-child {
+        flex: 5;
+        width: 100%;
+      }
+  
+      label {
+        padding: 12px 20px 12px 0;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+      }
+  
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        font-size: 12px;
+        color: #757575;
+      }
+  
+      .certified {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        input {
+          flex: 5;
+        }
+  
+        .button-wrap {
+          padding-left: 10px;
+          flex-basis: 100px;
+        }
+      }
     }
   }
 
-
-
-
-
   .button-wrap {
-    // margin-top: 20px;
-    // margin-bottom: 20px;
     text-align: center;
     
     .button {
-      display: inline-block;
-      // margin-bottom: 20px;
-      margin-left: 10px;
       margin-right: 10px;
+      display: inline-block;
+      width: 80px;
       text-align: center;
       background-color: #4d87ef;
       color: white;
       outline: none;
-      // padding: 10px 50px;
+      padding-top: 8px;
+      padding-bottom: 8px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: 2px;
       
       &:hover {
         background-color: #447de2;
@@ -85,8 +120,8 @@
     line-height: 30px;
     font-size: 50px;
     font-weight: bold;
-    right: -5px;
-    top: -15px;
+    right: 10px;
+    top: 0;
     color: #aaa;
 
     &:hover,
@@ -98,63 +133,3 @@
   }
 
 }
-
-
-
-
-// .SignupMoreDataModal {
-//   width: 50rem;
-//   background-color: white;
-//   padding: 2rem;
-//   position: relative;
-//   .title {
-//     font-size: 1.25rem;
-//     font-weight: 500;
-//   }
-//   .close {
-//     position: absolute;
-//     line-height: 2rem;
-//     text-align: right;
-//     font-size: 2rem;
-//     right: 1rem;
-//     top: 0.5rem;
-//     cursor: pointer;
-//   }
-//   .input-box {
-//     width: 100%;
-//     margin: 1rem auto;
-//     .input-container {
-//       width: 100%;
-//       margin: 1rem auto;
-//       .item-title {
-//         font-size: 1.2rem;
-//       }
-//       .item-input {
-//         width: 80%;
-//         font-size: 1.2rem;
-//         border: none;
-//         outline: none;
-//         border-bottom: 1px solid $oc-gray-5;
-//         padding: 0.25rem;
-//         border-radius: 4px;
-//       }
-//     }
-//   }
-//   .button-wrap {
-//     width: 100%;
-//     margin: auto;
-//     text-align: center;
-//     .button {
-//       display: inline-block;
-//       border: 1px solid blue;
-//       color: blue;
-//       padding: 15px;
-//       margin: 10px;
-//       cursor: pointer;
-//       &:hover {
-//         background-color: blue;
-//         color: white;
-//       }
-//     }
-//   }
-// }
