@@ -11,17 +11,23 @@ const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,reg
   // const recruit_period = Math.ceil(gap/(1000*60*60*24));
   return (
     <div className={cx('item-box')} onClick={() => onDetail(id)}>
-      <div className={cx('item-poster')}><img src={poster} alt={name}/></div>
+      <div className={cx('item-poster')}>
+        <img src={poster} alt={name}/>
+        <div className={cx('item-content')}>
+          <div><span>모집기간 :</span><span>{regStart} ~ {regEnd}</span></div>
+          <div><span>모집인원 : {sellerCnt} &nbsp;/&nbsp; {sellerLimitCnt}</span></div>
+        </div>
+      </div>
       
-      <div className={cx('item-contents')}>
+      {/* <div className={cx('item-content')}>
         <div className={cx('item-period')}><span>모집기간</span> {regStart} ~ {regEnd}</div>
         <div className={cx('item-limit')}><span>모집인원</span> {sellerCnt} &nbsp;/&nbsp; {sellerLimitCnt}</div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
- const MarketRegList = ({markets,onDetail,curGetTime,children}) => {
+ const MarketRegList = ({markets,onDetail,curGetTime}) => {
   if(!markets) return null; 
   const marketRegList = markets.map(
     (market,index) => {
@@ -47,7 +53,6 @@ const MarketItem = ({id,name,place,poster,start,end,sellerCnt,sellerLimitCnt,reg
   );
   return (
     <div className={cx('wrapper')}>
-      <div>{children}</div>
       <div className={cx('marketRegList')}>{marketRegList}</div>
     </div>
   )

@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import MarketRegButton from 'components/market/MarketRegButton/MarketRegButton';
 import MarketRegList from 'components/market/MarketRegList/MarketRegList';
 
 import * as marketActions from 'store/modules/market';
@@ -27,7 +26,7 @@ class MarketListRegContainer extends Component {
   getMoreData = () => {
     const { MarketActions, MarketUIActions, list } = this.props;
     const marketRegList = list.marketList;
-    console.log(marketRegList)
+    
     let len = parseInt(marketRegList.length/10, 10)*10;
 
     if(len > marketRegList.length-10) {
@@ -44,7 +43,7 @@ class MarketListRegContainer extends Component {
   }
 
   render() {
-    const {list,hasMore,userType,loading} = this.props;
+    const {list,hasMore,loading} = this.props;
     const {handleDetail,getMoreData} = this;
     const {marketList} = list;
     if(!marketList) return null;
@@ -52,16 +51,7 @@ class MarketListRegContainer extends Component {
     if(loading) return null;
     return (
       <div>
-        {userType === 'H'?
-          <Fragment>
-            <MarketRegButton/>
-            <MarketRegList markets={marketList} onDetail={handleDetail}/>
-          </Fragment>
-        :
-          <Fragment>
-            <MarketRegList markets={marketList} onDetail={handleDetail}/>
-          </Fragment>
-        } 
+        <MarketRegList markets={marketList} onDetail={handleDetail}/>
         <InfiniteScroll
           dataLength={marketList.length}
           next={getMoreData}
@@ -76,7 +66,6 @@ class MarketListRegContainer extends Component {
 
 export default connect(
   (state) => ({
-    userType: state.base.get('userType'),
     list: state.market.get('data'),
     hasMore: state.marketUI.get('hasMore'),
     marketCount: state.market.get('marketCount'),
