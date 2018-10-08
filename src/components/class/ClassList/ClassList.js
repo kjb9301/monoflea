@@ -24,7 +24,18 @@ const ClassItem =
       }
     }>
 
-      <div className={cx('item-poster')}><img src={images} alt={name}/></div>
+      <div className={cx('item-poster')}>
+        <img src={images} alt={name}/>
+        <div className={cx('taken-btn-wrap')}>
+        <GoHeart 
+          className={cx('taken-btn', { taken: oneday_takens.length})}
+          onClick={async (e) => {
+            e.stopPropagation();
+            oneday_takens.length > 0 ? cancelOnedayClass(id) : takeOnedayClass(id);
+          }}
+        />
+        </div>
+      </div>
       
       <div className={cx('item-name')}>{name}</div>
       <div className={cx('item-contents')}>
@@ -33,7 +44,7 @@ const ClassItem =
         <div className={cx('item-period')}><span>주최일</span><span>{event_date}</span></div>
         <div className={cx('item-period')}><span>조회수</span><span ref={(ref) => viewCnt[id] = ref}>{view_cnt}</span></div>
         <div className={cx('item-period')}><span>찜한사람</span><span>{taken_cnt}</span></div>
-        <div className={cx('item-desc')}>{desc}</div>
+        <div className={cx('item-desc')}>클래스 소개<br/>{desc}</div>
       </div>
 
       <div className={cx('item-profile')}>
@@ -45,7 +56,7 @@ const ClassItem =
         </div>
       </div>
       
-      <div className={cx('taken-btn-wrap')}>
+      {/* <div className={cx('taken-btn-wrap')}>
         <GoHeart 
           className={cx('taken-btn', { taken: oneday_takens.length})}
           onClick={async (e) => {
@@ -53,7 +64,7 @@ const ClassItem =
             oneday_takens.length > 0 ? cancelOnedayClass(id) : takeOnedayClass(id);
           }}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

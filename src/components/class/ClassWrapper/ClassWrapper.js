@@ -20,7 +20,7 @@ const ClassWrapper = ({ userType }) => {
       <div className={cx('post-btn')}>
         {userType === 'S' && <Link className={cx('post-btn-link')} to="/classes/post">등록하기</Link>}
         </div>
-      <ClassListContainer />
+      <div className={cx('classlist-wrap')}><ClassListContainer /></div>
     </div>
   );
 };

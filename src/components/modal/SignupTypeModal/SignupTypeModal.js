@@ -14,32 +14,35 @@ const SignupTypeModal = ({ visible, onCancel, onChangeValue, onClickButton }) =>
     <ModalWrapper visible={visible}>
       <div className={cx('SignupTypeModal')}>
         <div onClick={onCancel} className={cx('close')}>&times;</div>
-        <div className={cx('list-wrap')}>
-          <div className={cx('list')}>
-            <img src={userImg} alt="userImg"/>
-            <p className={cx('user-type')}>일반</p>
-            <div>
-              <input type="radio" name="userType" value="U" onChange={onChangeValue}/>
+        <div className={cx('signup-title')}>다음 가입 방법 중 하나를 선택하세요.</div>
+        <div className={cx('singup-body')}>
+          <div className={cx('list-wrap')}>
+            <div className={cx('list')}>
+              <div><img src={userImg} alt="userImg"/></div>
+              <p className={cx('user-type')}><label for="gen-user">일반</label></p>
+              <div>
+                <input type="radio" id="gen-user" name="userType" value="U" onChange={onChangeValue} />
+              </div>
+            </div>
+            <div className={cx('list')}>
+              <div><img src={sellerImg} alt="sellerImg"/></div>
+              <p className={cx('user-type')}><label for="seller-user">셀러</label></p>
+              <div>
+                <input type="radio" id="seller-user" name="userType" value="S" onChange={onChangeValue}/>
+              </div>
+            </div>
+            <div className={cx('list')}>
+              <div><img src={hostImg} alt="hostImg"/></div>
+              <p className={cx('user-type')}><label for="market-user">주최자</label></p>
+              <div>
+                <input type="radio" id="market-user" name="userType" value="H" onChange={onChangeValue}/>
+              </div>
             </div>
           </div>
-          <div className={cx('list')}>
-            <img src={sellerImg} alt="sellerImg"/>
-            <p className={cx('user-type')}>셀러</p>
-            <div>
-              <input type="radio" name="userType" value="S" onChange={onChangeValue}/>
+          <div className={cx('button-wrap')}>
+            <div className={cx('button')} onClick={onClickButton}>
+              다음
             </div>
-          </div>
-          <div className={cx('list')}>
-            <img src={hostImg} alt="hostImg"/>
-            <p className={cx('user-type')}>주최자</p>
-            <div>
-              <input type="radio" name="userType" value="H" onChange={onChangeValue}/>
-            </div>
-          </div>
-        </div>
-        <div className={cx('button-wrap')}>
-          <div className={cx('button')} onClick={onClickButton}>
-            다음
           </div>
         </div>
       </div>
