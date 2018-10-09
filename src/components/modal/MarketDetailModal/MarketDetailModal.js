@@ -104,11 +104,30 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
           {
             user_host_id === host_id ? 
             <Fragment>
-              <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
-              <button className={cx('market-button')} onClick={onEdit}>수정</button>
+              {
+                confirmYN === 'N' ?
+                  <Fragment>
+                    <button className={cx('market-button')} onClick={() => onApplyClose(market_id)}>마감하기</button>
+                    <button className={cx('market-button')} onClick={() => onApplyModal(market_id)}>참여자확인</button>
+                  </Fragment>  
+                  :
+                  <Fragment></Fragment>
+              }            
+              {
+                editTF === 'false' ?
+                  <Fragment>
+                    <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
+                    <button className={cx('market-button')} onClick={onEdit}>수정</button>
+                  </Fragment>
+                  :
+                  <Fragment>
+                    <button className={cx('market-button')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                    <button className={cx('market-button')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                  </Fragment>
+              }
             </Fragment> :
-            <Fragment></Fragment>
-          }
+            <Fragment></Fragment>  
+          }             
         </div>
       </div>
       {/* <div>
