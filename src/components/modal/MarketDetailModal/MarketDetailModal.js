@@ -29,26 +29,26 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               <span className={cx('label')}>마켓이름</span>
             </div>
             <div className={cx('content-box')}>
-              <p className={cx('content-title')}>{market_name}</p>
+              {!editTF ? <p className={cx('content-title')}>{market_name}</p> : <input className={cx('content-title')} type="text" name="market_name" value={market_name} onChange={onChange}/>}
             </div>
           </div>
           <div className={cx('data-wrap')}>
             <div className={cx('animation')}>
-              <span className={cx('label')}>개설장소</span>
+              <span className={cx('label')}>주최장소</span>
             </div>
             <div className={cx('content-box')}>
-              <p className={cx('content-title')}>{market_place}</p>
+              {!editTF ? <p className={cx('content-title')}>{market_place}</p> : <input className={cx('content-title')} type="text" name="market_place" value={market_place} onChange={onChange}/>}
             </div>
           </div>
           <div className={cx('data-wrap')}>
             <div className={cx('animation')}>
-              <span className={cx('label')}>마켓일정</span>
+                <span className={cx('label')}>마켓일정</span>
             </div>
             <div className={cx('content-box')}>
               <p className={cx('content-title')}>
-                <span>{start_date}</span>
+                {!editTF ? <span>{start_date}</span> : <input className={cx('label')} type="date" name="start_date" value={start_date} onChange={onChange} className={cx('date')}/>}
                 <span className={cx('char')}> ~ </span>
-                <span>{end_date}</span>
+                {!editTF ? <span>{end_date}</span> : <input className={cx('label')} type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange} className={cx('date')}/>}
               </p>
             </div>
           </div>
@@ -61,10 +61,10 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                   <span className={cx('label')}>모집기간</span>
                 </div>
                 <div className={cx('content-box')}>
-                  <p className={cx('content-title')}>
-                    <span>{reg_start_date}</span>
+                  <p className={cx('content-title')}>                   
+                    {!editTF ? <span>{reg_start_date}</span> : <input className={cx('label')} type="date" name="reg_start_date" value={reg_start_date} onChange={onChange}/>}
                     <span className={cx('char')}> ~ </span>
-                    <span>{reg_end_date}</span>
+                    {!editTF ? <span>{reg_end_date}</span> : <input className={cx('label')} type="date" name="reg_end_date" value={reg_end_date} onChange={onChange}/>}
                   </p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                   <p className={cx('content-title')}>
                     <span>{seller_cnt}</span>
                     <span className={cx('char')}> / </span>
-                    <span>{seller_limit_cnt}</span>
+                    {!editTF ? <span>{seller_limit_cnt}</span> : <input className={cx('label')} type="number" name="seller_limit_cnt" value={seller_limit_cnt} onChange={onChange}/>}
                   </p>
                 </div>  
               </div>
@@ -87,49 +87,65 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               <span className={cx('label')}>상세정보</span>
             </div>
             <div className={cx('content-box')}>
-              <p className={cx('content-title')}>{market_desc}</p>
+              {!editTF ? <p className={cx('content-title')}>{market_desc}</p> : <textarea className={cx('label')} cols="40" rows="10" name="market_desc" value={market_desc} onChange={onChange}/>}
             </div>
           </div>
         </div>
-        <div className={cx('button-wrap')}>
-          {
-            confirmYN === 'N' && userType !== 'H' ? 
-            (
-              market_regs[0] ? 
-              <button className={cx('market-button')} onClick={() => onApplyCancel(market_id)}>취소</button> :
-              <button className={cx('market-button')} onClick={() => onApply(market_id)}>신청</button>
-            ) :
-            <Fragment></Fragment>
-          }
-          {
-            user_host_id === host_id ? 
-            <Fragment>
-              {
-                confirmYN === 'N' ?
-                  <Fragment>
-                    <button className={cx('market-button')} onClick={() => onApplyClose(market_id)}>마감하기</button>
-                    <button className={cx('market-button')} onClick={() => onApplyModal(market_id)}>참여자확인</button>
-                  </Fragment>  
-                  :
-                  <Fragment></Fragment>
-              }            
-              {
-                editTF === 'false' ?
-                  <Fragment>
-                    <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
-                    <button className={cx('market-button')} onClick={onEdit}>수정</button>
-                  </Fragment>
-                  :
-                  <Fragment>
-                    <button className={cx('market-button')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                    <button className={cx('market-button')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
-                  </Fragment>
-              }
-            </Fragment> :
-            <Fragment></Fragment>  
+          <div className={cx('button-wrap')}>
+            {
+              confirmYN === 'N' && userType !== 'H' ? 
+              (
+                market_regs[0] ? 
+                <button className={cx('market-button')} onClick={() => onApplyCancel(market_id)}>취소</button> :
+                <button className={cx('market-button')} onClick={() => onApply(market_id)}>신청</button>
+              ) :
+              <Fragment></Fragment>
+            }
+            {
+              user_host_id === host_id ? 
+              <Fragment>
+                {
+                  confirmYN === 'N' ?
+                    <Fragment>
+                      {
+                        editTF === false ?
+                          <Fragment>
+                            <button className={cx('market-button')} onClick={() => onApplyClose(market_id)}>마감하기</button>
+                            <button className={cx('market-button')} onClick={() => onApplyModal(market_id)}>참여자확인</button>
+                            <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
+                            <button className={cx('market-button')} onClick={onEdit}>수정</button>
+                          </Fragment>
+                        :
+                          <Fragment>
+                            <button className={cx('market-button')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                            <button className={cx('market-button')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                          </Fragment>
+                      }                   
+                    </Fragment>  
+                    :
+                    <Fragment>
+                      {
+                        editTF === true ?
+                          <Fragment>
+                            <button className={cx('market-button')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                            <button className={cx('market-button')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                          </Fragment>
+                        :
+                          <Fragment>
+                            <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
+                            <button className={cx('market-button')} onClick={onEdit}>수정</button>
+                          </Fragment>
+                      }                   
+                    </Fragment>
+                }            
+                </Fragment>
+            :<Fragment></Fragment>  
           }             
+          </div>
         </div>
-      </div>
+    </ModalWrapper>
+  );
+};
       {/* <div>
       {confirmYN === 'Y'?
         <div>
@@ -347,8 +363,5 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
         </div>
       }
       </div> */}
-    </ModalWrapper>
-  );
-};
 
 export default MarketDetailModal;

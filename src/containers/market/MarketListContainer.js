@@ -34,17 +34,29 @@ class MarketListContainer extends Component {
   }
 
   getMoreData = () => {
-    const { MarketActions, MarketUIActions, list } = this.props;
+    const { MarketActions, MarketUIActions, list, marketCount } = this.props;
     const marketList = list.marketList;
-    let len = parseInt(marketList.length/10, 10)*10;
 
-    if(len > marketList.length-10) {
-      setTimeout(async () => {
-        await MarketActions.getMarketList('Y','undefined',len+10);
-        const { marketCount } = this.props;
-        if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
-      }, 300);
+    if(marketList.length < marketCount){
+      setTimeout(async() => {
+        try {
+          return await MarketActions.getMarketList('Y','undefined',marketList.length+8);
+        } catch(e) {
+          const {message} = e.response.data;
+          return alert(message);
+        }
+      },300);
+      if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
     }
+    // let len = parseInt(marketList.length/10, 10)*10;
+
+    // if(len > marketList.length-10) {
+    //   setTimeout(async () => {
+    //     await MarketActions.getMarketList('Y','undefined',len+10);
+    //     const { marketCount } = this.props;
+    //     if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
+    //   }, 300);
+    // }
   }
 
   componentDidMount() {
@@ -65,7 +77,7 @@ class MarketListContainer extends Component {
     const {handleDetail,getMoreData} = this;
     const date = new Date();
     const curGetTime = date.getTime();
-    const loader = <div className="loader" key={0} style={{ 'width': '50%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto' }}>Loading ...</div>;
+    const loader = <div className="loader" key={0} style={{ 'width': '10%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto', 'padding': '10px', 'backgroundColor': 'green', 'color': 'white' }}>Loading ...</div>;
 
     return (
       <div>
