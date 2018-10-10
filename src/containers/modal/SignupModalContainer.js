@@ -4,15 +4,17 @@ import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/modules/base';
 import SignupModal from 'components/modal/SignupModal';
 
+const bodyData = new FormData();
+
 class SignupModalContainer extends Component {
 
   comparedPasswordValidation = false;
 
   handleSignup = async (validatedEmail, validatedPassword, comparedPassword) => {
-    const { BaseActions, modalEmail, modalNickname, modalPassword } = this.props;
-    if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
+    const { BaseActions } = this.props;
+    // if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
     try {
-      await BaseActions.signup({ modalEmail, modalNickname, modalPassword });
+      await BaseActions.signup(bodyData);
       const { logged, nickName } = this.props;
       if(logged) {
         localStorage.nickName = nickName;
@@ -51,8 +53,10 @@ class SignupModalContainer extends Component {
   }
 
   handleKeyPress = (e) => {
+    const { userType } = this.props;
     if(e.key === 'Enter') {
-      this.handleSignup();
+      if(userType === 'U') return this.handleSignup();
+      return this.callNextModal();
     }
   }
 
@@ -73,6 +77,7 @@ class SignupModalContainer extends Component {
   handleChange = (e) => {
     const { value, name } = e.target;
     const { BaseActions } = this.props;
+    bodyData.set(name, value);
     BaseActions.changeSignupInfo({ name, value });
   }
 

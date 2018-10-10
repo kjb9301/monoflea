@@ -22,9 +22,8 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
           {
             userType === 'H' ? null :
             <div className={cx('input-container')}>
-              <div><label for="categories">활동분야</label></div>
+              <div><label htmlFor="categories">활동분야</label></div>
               <div><select id="categories" name="category_id" onChange={onChangeValue}>
-                {/* TODO: select db & map */}
                 <option value="0">카테고리</option>
                 {categories}
               </select></div>
@@ -32,7 +31,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
           }
 
           <div className={cx('input-container')}>
-            <div><label for="name">이름</label></div>
+            <div><label htmlFor="name">이름</label></div>
             <div>
               <input
                 id="name"
@@ -46,7 +45,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
           </div>
 
           <div className={cx('input-container')}>
-            <div><label for="phone">전화번호</label></div>
+            <div><label htmlFor="phone">전화번호</label></div>
             <div className={cx('certified')}>
               <input
                 id="phone" 
@@ -68,7 +67,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
           </div>
 
           <div className={cx('input-container')}>
-            <div><label for="certified">인증번호</label></div>
+            <div><label htmlFor="certified">인증번호</label></div>
             <div className={cx('certified')}>
               <input
                 id="certified"
@@ -92,7 +91,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
             userType === 'H' ? null :
             <Fragment>
               <div className={cx('input-container')}>
-                <div><label for="career">경력</label></div>
+                <div><label htmlFor="career">경력</label></div>
                 <div>
                   <input
                     id="career" 
@@ -107,7 +106,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="sns">SNS 계정</label></div>
+                <div><label htmlFor="sns">SNS 계정</label></div>
                 <div>
                   <input
                     id="sns"
@@ -121,7 +120,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="profile">프로필</label></div>
+                <div><label htmlFor="profile">프로필</label></div>
                 <div>
                   <input
                     id="profile"
@@ -135,7 +134,41 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="business">사업자 여부</label></div>
+                <div><label htmlFor="profile">셀러소개 이미지</label></div>
+                <div>
+                  <input
+                    type="file"
+                    className={cx('item-input-images')}
+                    placeholder="셀러소개를 위한 이미지를 등록하세요!" 
+                    name="sellerImg1"
+                    onChange={onChangeValue}
+                  />
+                  <input
+                    type="file"
+                    className={cx('item-input-images')}
+                    placeholder="셀러소개를 위한 이미지를 등록하세요!" 
+                    name="sellerImg2"
+                    onChange={onChangeValue}
+                  />
+                  <input
+                    type="file"
+                    className={cx('item-input-images')}
+                    placeholder="셀러소개를 위한 이미지를 등록하세요!" 
+                    name="sellerImg3"
+                    onChange={onChangeValue}
+                  />
+                  <input
+                    type="file"
+                    className={cx('item-input-images')}
+                    placeholder="셀러소개를 위한 이미지를 등록하세요!" 
+                    name="sellerImg4"
+                    onChange={onChangeValue}
+                  />
+                </div>
+              </div>
+
+              <div className={cx('input-container')}>
+                <div><label htmlFor="business">사업자 여부</label></div>
                 <div>
                   <input
                     id="business"
@@ -149,7 +182,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="intro">자기소개</label></div>
+                <div><label htmlFor="intro">자기소개</label></div>
                 <div>
                   <textarea 
                     id="intro"
@@ -163,7 +196,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="onedayclass">주최여부</label></div>
+                <div><label htmlFor="onedayclass">주최여부</label></div>
                 <div>
                   <input
                     id="onedayclass"
@@ -177,7 +210,7 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
               </div>
 
               <div className={cx('input-container')}>
-                <div><label for="sellerinfo">셀러정보</label></div>
+                <div><label htmlFor="sellerinfo">셀러정보</label></div>
                 <div>
                   <input
                     id="sellerinfo"

@@ -20,19 +20,23 @@ class SignupMoreDataModalContainer extends Component {
     const { 
       BaseActions,
       modalNickname,
+      modalEmail,
+      modalPassword,
       userType
-    } = this.props;    
+    } = this.props;
     
-    if(!this.checkValidations()) return;
-
+    // if(!this.checkValidations()) return;
+    bodyData.set('userType', userType);
     if(!modalNickname) {
       await BaseActions.loginUserCheck();
       const { nickName } = this.props;
       bodyData.set('nickName', nickName);
-      bodyData.set('userType', userType);
       await axios.post('/users/social-signup', bodyData);
     } else {
-
+      bodyData.set('nickName', modalNickname);
+      bodyData.set('mail', modalEmail);
+      bodyData.set('password', modalPassword);
+      await BaseActions.signup(bodyData);
     }
     alert('가입이 완료되었습니다!');
     BaseActions.hideModal('signupMore');
