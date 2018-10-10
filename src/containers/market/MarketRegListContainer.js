@@ -24,17 +24,29 @@ class MarketListRegContainer extends Component {
   }
 
   getMoreData = () => {
-    const { MarketActions, MarketUIActions, list } = this.props;
+    const { MarketActions, MarketUIActions, list, marketCount } = this.props;
     const marketRegList = list.marketList;
     
-    let len = parseInt(marketRegList.length/10, 10)*10;
+    // let len = parseInt(marketRegList.length/10, 10)*10;
 
-    if(len > marketRegList.length-10) {
-      setTimeout(async () => {
-        await MarketActions.getMarketList('N','undefined',len+10);
-        const { marketRegCount } = this.props;
-        if(marketRegList.length >= marketRegCount) return MarketUIActions.toggleMoreState(false);
-      }, 300);
+    // if(len > marketRegList.length-10) {
+    //   setTimeout(async () => {
+    //     await MarketActions.getMarketList('N','undefined',len+10);
+    //     const { marketRegCount } = this.props;
+    //     if(marketRegList.length >= marketRegCount) return MarketUIActions.toggleMoreState(false);
+    //   }, 300);
+    // }
+
+    if(marketRegList.length < marketCount){
+      setTimeout(async() => {
+        try {
+          return await MarketActions.getMarketList('N','undefined',marketRegList.length+8);
+        } catch(e) {
+          const {message} = e.response.data;
+          return alert(message);
+        }
+      },300);
+      if(marketRegList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
     }
   }
 
@@ -48,7 +60,7 @@ class MarketListRegContainer extends Component {
     const {marketList} = list;
     if(!marketList) return null;
     if(loading) return null;
-    const loader = <div className="loader" key={0} style={{ 'width': '50%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto' }}>Loading ...</div>;
+    const loader = <div style={{ 'width': '10%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto', 'padding': '10px', 'backgroundColor': 'green', 'color': 'white' }}>Loading ...</div>;
     return (
       <div>
         <MarketRegList markets={marketList} onDetail={handleDetail}/>
