@@ -7,11 +7,11 @@ const cx = classNames.bind(styles);
 const Apply = ({key,seller_id,market_id,name,tel,category,onDeleteApply}) => {
 
   return (
-    <div className={cx('apply-item')}>
+    <div className={cx('apply-wrapper')}>
       <div className={cx('content')}>
-        <div className={cx('text')}>이름:{name}</div>
-        <div className={cx('text')}>전화번호:{tel}</div>
-        <div className={cx('text')}>분야:{category}</div>
+        <div className={cx('text')}><span>이름</span>{name}</div>
+        <div className={cx('text')}><span>전화번호</span>{tel}</div>
+        <div className={cx('text')}><span>분야</span>{category}</div>
       </div>
       <div className={cx('delete')} onClick={() => onDeleteApply(seller_id,market_id)}>&times;</div>
     </div>
