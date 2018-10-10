@@ -28,18 +28,14 @@
     padding: 2rem 0.5rem;
   }
 
-  /* Modal Content */
   .modal {
     position: relative;
     background-color: #fefefe;
     max-width: 935px;
     padding: 0px;
     margin : 0px;
-    // margin: auto;
-    // border: 1px solid #888;
     display: flex;
-    min-height: 40vh;
-    // border-radius: 12px;
+    // min-height: 40vh;
 
     @include media("<large") {
       width: 90%;
@@ -50,24 +46,3 @@
     }
   }
 }
-
-// 10월 2일 수정  
-// .gray-background {
-//   background: rgba(100, 100, 100, 0.5);
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   z-index: 5;
-// }
-
-// .modal-wrapper {
-//   z-index: 10;
-//   position: fixed;
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-//   @include position-center();
-//   .modal {
-//     background: white;
-//   }
-// }

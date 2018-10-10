@@ -13,16 +13,6 @@ const ModalWrapper = ({ children, visible,onClose }) => {
         {children}
       </div>
     </div>
-
-    // 10월 2일 수정
-    // <div>
-    //   <div className={cx('gray-background')}/>
-    //   <div className={cx('modal-wrapper')}>
-    //     <div className={cx('modal')}>
-    //       {children}
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
