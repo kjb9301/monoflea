@@ -15,7 +15,7 @@ const SellerItem =
   return (
     <div className={cx('seller-list')}>
       <div className={cx('seller-head')}>
-        <img alt = "img" src = {profile_img} />
+        <img alt = "img" src = {profile_img} className={cx('seller-profile-img')}/>
       </div>
       <div className={cx('seller-cnt')}>
         <Like onLike = {onLike} offLike = {offLike} 

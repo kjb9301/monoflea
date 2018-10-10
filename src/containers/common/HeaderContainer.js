@@ -32,7 +32,7 @@ class HeaderContainer extends Component {
 
   render() {
     const { handleLoginClick, handleLogout, handleSignupClick } = this;
-    const { logged, nickName, isLogin, userName } = this.props;
+    const { logged, nickName, isLogin, userName, userType } = this.props;
     return (
       <Header 
         onLoginClick={handleLoginClick}
@@ -42,6 +42,7 @@ class HeaderContainer extends Component {
         nickName={nickName}
         isLogin={isLogin}
         userName={userName}
+        userType={userType}
       />
     );
   }
@@ -51,6 +52,7 @@ export default connect(
   (state) => ({
     logged: state.base.get('logged'),
     nickName: state.base.get('nickName'),
+    userType: state.base.get('userType'),
   }),
   (dispatch) => ({
     BaseActions: bindActionCreators(baseActions, dispatch)

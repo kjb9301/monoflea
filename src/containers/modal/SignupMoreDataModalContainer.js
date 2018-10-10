@@ -34,7 +34,7 @@ class SignupMoreDataModalContainer extends Component {
       await axios.post('/users/social-signup', bodyData);
     } else {
       bodyData.set('nickName', modalNickname);
-      bodyData.set('mail', modalEmail);
+      bodyData.set('email', modalEmail);
       bodyData.set('password', modalPassword);
       await BaseActions.signup(bodyData);
     }

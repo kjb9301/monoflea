@@ -7,10 +7,12 @@ const cx = classNames.bind(styles);
 
 let uploadImgFile = (input, target) => {
   let reader = new FileReader();
-  reader.onload = (e) => {
-    target.src = e.target.result;
+  if(input.file || input.files[0]) {
+    reader.onload = (e) => {
+      target.src = e.target.result;
+    }
+    reader.readAsDataURL(input.files[0]);
   }
-  reader.readAsDataURL(input.files[0]);
 }
 
 

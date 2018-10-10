@@ -11,7 +11,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.6);
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,6 +33,7 @@
     background-color: #fefefe;
     max-width: 935px;
     padding: 0px;
+    top: 0px;
     margin : 0px;
     display: flex;
     // min-height: 40vh;
