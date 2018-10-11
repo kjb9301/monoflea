@@ -36,18 +36,22 @@ class MarketListContainer extends Component {
   getMoreData = () => {
     const { MarketActions, MarketUIActions, list, marketCount } = this.props;
     const marketList = list.marketList;
-
+    
     if(marketList.length < marketCount){
       setTimeout(async() => {
         try {
+          console.log(marketList.length + '///////////' + marketCount)     
           return await MarketActions.getMarketList('Y','undefined',marketList.length+8);
         } catch(e) {
           const {message} = e.response.data;
           return alert(message);
         }
       },300);
-      if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
     }
+    console.log(marketList.length + '/////////' + marketCount)
+
+    if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
+    
     // let len = parseInt(marketList.length/10, 10)*10;
 
     // if(len > marketList.length-10) {

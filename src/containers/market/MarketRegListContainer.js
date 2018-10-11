@@ -24,7 +24,8 @@ class MarketListRegContainer extends Component {
   }
 
   getMoreData = () => {
-    const { MarketActions, MarketUIActions, list, marketCount } = this.props;
+    const { MarketActions, MarketUIActions, list } = this.props;
+    const { marketCount } = this.props;
     const marketRegList = list.marketList;
     
     // let len = parseInt(marketRegList.length/10, 10)*10;
@@ -36,17 +37,18 @@ class MarketListRegContainer extends Component {
     //     if(marketRegList.length >= marketRegCount) return MarketUIActions.toggleMoreState(false);
     //   }, 300);
     // }
-
-    if(marketRegList.length < marketCount){
+    let len = parseInt(marketRegList.length)
+    if(len < marketCount){
       setTimeout(async() => {
         try {
-          return await MarketActions.getMarketList('N','undefined',marketRegList.length+8);
+          return await MarketActions.getMarketList('N','undefined',len+8);
         } catch(e) {
           const {message} = e.response.data;
           return alert(message);
         }
       },300);
-      if(marketRegList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
+      console.log(marketRegList.length + '@@@@@@@' + marketCount)
+      if(len >= marketCount) return MarketUIActions.toggleMoreState(false);
     }
   }
 

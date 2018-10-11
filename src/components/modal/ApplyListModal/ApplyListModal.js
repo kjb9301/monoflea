@@ -12,7 +12,7 @@ const ApplyListModal = ({visible,children,applyListData,onClose,onDeleteApply}) 
       <div className={cx('applyForm')}>
         <div className={cx('close')} onClick={onClose}>&times;</div>
         <div>
-          <h2>신청자 관리</h2>
+          <h3>신청자 관리</h3>
         </div>
         <div className={cx('content')}>
           <ApplyList applyListData={applyListData} onDeleteApply={onDeleteApply}/>
