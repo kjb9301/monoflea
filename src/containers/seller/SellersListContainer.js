@@ -8,6 +8,7 @@ import axios from 'axios';
 import * as sellerActions from 'store/modules/seller';
 import * as sellerUIActions from 'store/modules/sellerUI';
 import * as baseActions from 'store/modules/base';
+
 class SellersListContainer extends Component {
 
   handleLike = async (id) => {

@@ -5,10 +5,13 @@ import { bindActionCreators } from  'redux';
 import * as sellerActions from 'store/modules/seller';
 
 class CategoryButton extends Component {
-  getSellersList = (category,like) => {
+  getSellersList = async (category,like) => {
     const { SellerActions } = this.props;
     SellerActions.setCategory(category);
-    SellerActions.getSellersList(category,like);
+    await SellerActions.getSellersList(category,like);
+    const { sellerList } = this.props;
+    if(sellerList.length<=8) return SellerActions.toggleMoreState(false);
+    return SellerActions.toggleMoreState(true);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,6 +49,7 @@ class CategoryButton extends Component {
 
 export default connect((state) => ({
   categories : state.seller.get('categories'),
+  sellerList : state.seller.get('sellers'),
  }),
 (dispatch) => ({
   SellerActions : bindActionCreators(sellerActions,dispatch),

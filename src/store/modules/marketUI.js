@@ -131,7 +131,6 @@ export default handleActions({
     return state.setIn(['calendar','selectedDate'],selectedDate);
   },
   [TOGGLE_MORE_STATE]: (state, action) => {
-    console.log(action.payload)
     return state.set('hasMore', action.payload);
   },
   [SELECT_BY_DATE]: (state,action) => {

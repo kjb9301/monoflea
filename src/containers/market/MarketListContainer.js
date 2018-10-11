@@ -10,10 +10,11 @@ import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
 
 class MarketListContainer extends Component {
-  getMarketList = () => {
-    const {MarketActions,location} = this.props;
+  getMarketList = async () => {
+    const { MarketActions, MarketUIActions, location } = this.props;
     const confirm = (location.pathname === '/markets'? 'Y' : 'N');
-    MarketActions.getMarketList(confirm);
+    await MarketActions.getMarketList(confirm);
+    MarketUIActions.toggleMoreState(true);
   }
 
   handleDetail = (id,listType) => {
@@ -36,11 +37,9 @@ class MarketListContainer extends Component {
   getMoreData = () => {
     const { MarketActions, MarketUIActions, list, marketCount } = this.props;
     const marketList = list.marketList;
-    
     if(marketList.length < marketCount){
       setTimeout(async() => {
         try {
-          console.log(marketList.length + '///////////' + marketCount)     
           return await MarketActions.getMarketList('Y','undefined',marketList.length+8);
         } catch(e) {
           const {message} = e.response.data;
@@ -48,19 +47,9 @@ class MarketListContainer extends Component {
         }
       },300);
     }
-    console.log(marketList.length + '/////////' + marketCount)
 
     if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
     
-    // let len = parseInt(marketList.length/10, 10)*10;
-
-    // if(len > marketList.length-10) {
-    //   setTimeout(async () => {
-    //     await MarketActions.getMarketList('Y','undefined',len+10);
-    //     const { marketCount } = this.props;
-    //     if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
-    //   }, 300);
-    // }
   }
 
   componentDidMount() {
@@ -71,7 +60,7 @@ class MarketListContainer extends Component {
     const {list,hasMore} = this.props;
     return (JSON.stringify(list.marketComingList) !== JSON.stringify(nextProps.list.marketComingList)) 
             || (JSON.stringify(list.marketList) !== JSON.stringify(nextProps.list.marketList)) 
-            || (nextProps.hasMore !== hasMore)
+            || (nextProps.hasMore !== hasMore);
   }
 
   render() {

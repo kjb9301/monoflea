@@ -9,10 +9,11 @@ import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
 
 class MarketListRegContainer extends Component {
-  getMarketList = () => {
-    const {MarketActions,location} = this.props;
+  getMarketList = async () => {
+    const { MarketActions, MarketUIActions, location } = this.props;
     const confirm = (location.pathname === '/markets'? 'Y' : 'N');
-    MarketActions.getMarketList(confirm);
+    await MarketActions.getMarketList(confirm);
+    MarketUIActions.toggleMoreState(true);
   }
 
   handleDetail = (id) => {
@@ -27,17 +28,8 @@ class MarketListRegContainer extends Component {
     const { MarketActions, MarketUIActions, list } = this.props;
     const { marketCount } = this.props;
     const marketRegList = list.marketList;
-    
-    // let len = parseInt(marketRegList.length/10, 10)*10;
-
-    // if(len > marketRegList.length-10) {
-    //   setTimeout(async () => {
-    //     await MarketActions.getMarketList('N','undefined',len+10);
-    //     const { marketRegCount } = this.props;
-    //     if(marketRegList.length >= marketRegCount) return MarketUIActions.toggleMoreState(false);
-    //   }, 300);
-    // }
-    let len = parseInt(marketRegList.length)
+    let len = parseInt(marketRegList.length, 10);
+    console.log(marketCount);
     if(len < marketCount){
       setTimeout(async() => {
         try {
@@ -47,9 +39,8 @@ class MarketListRegContainer extends Component {
           return alert(message);
         }
       },300);
-      console.log(marketRegList.length + '@@@@@@@' + marketCount)
-      if(len >= marketCount) return MarketUIActions.toggleMoreState(false);
     }
+    if(len >= marketCount) return MarketUIActions.toggleMoreState(false);
   }
 
   componentDidMount() {

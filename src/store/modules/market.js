@@ -40,7 +40,7 @@ export default handleActions({
       const list = action.payload.data;
       const marketCount = list.marketCount;
       return state.set('data', list)
-                  .set('marketCount', marketCount) 
+                  .set('marketCount', marketCount);
     }
   }),
   ...pender({
@@ -101,5 +101,5 @@ export default handleActions({
   }),
   ...pender({
     type: VIEW_COUNT
-  })
+  }),
 },initialState);
