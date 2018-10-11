@@ -1,69 +1,236 @@
 @import 'common';
-@import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";
-
 
 .modalForm {
-  background: white;
-  padding: 2rem;
-  padding-top: 1.5rem;
-  padding-bottom : 1.5rem;
-  width: 50rem;
-  height: auto;
-  .close {
-    line-height: 2rem;
-    font-size: 2rem;
-    span{
-      cursor: pointer;
-      &:hover {
-        color: $oc-gray-6;
-      }
-    }
+  width: 100%;
+  min-width: 800px;
+  padding: 25px;
+  text-align: center;
+  .close-wrap {
+    width: 100%;
     text-align: right;
-  }
-  .seller_img {
-    width: 20rem;
-    height: 26rem;
-    margin: 2rem;
-    display: inline-block;
-    img{
-      width :20rem;
-      height: 7rem;
+    padding-right: 15px;
+    .close {
+      font-size: 25px;
+      font-weight: 600;
+      cursor: pointer;
     }
   }
   .wrapper {
     display: inline-block;
+    width: 50%;
+    padding: 15px;
     vertical-align: top;
-    height: auto;
-    text-align: center;
     .profile {
-      width: 20rem;
-      height: auto;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 500;
-      display: inline-block;
-    }
-    .desc{
-      text-align: left;
-      width : 20rem;
-      height: auto;
-      padding : 1rem;
-      border : 1px solid black;
-      margin: 1rem;
-      .info{
-        .like{
-          font-size : 1rem;
-          .heart{
-              &:hover {
-                  color: $oc-gray-5;
-              }
-              &:active {
-                  color: $oc-pink-6};
-          }
+      width: 100%;
+      .profile-img-wrap {
+        width: 100%;
+        text-align: center;
+        .profile-img {
+          border-radius: 100%;
+          min-width: 180px;
+          min-height: 180px;
+          max-width: 200px;
+          max-height: 200px;
+          width: 100%;
+        }
+      }
+      .nickName {
+        width: 100%;
+        font-size: 15px;
+        margin: auto;
+        margin-top: 15px;
+        text-align: center;
+      }
+      .like {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        & > div {
+          display: inline-block;
+          width: 50%;
         }
       }
     }
-  } 
-  
+    .desc {
+      width: 65%;
+      margin: auto;
+      .title-weight {
+        font-weight: bold !important;
+      }
+      .info {
+        width: 100%;
+        & > div {
+          width: 100%;
+          text-align: left;
+          margin-top: 5px;
+          padding-left: 5px;
+          border-left: 3px solid orange;
+          & > span {
+            font-weight: bold;
+          }
+        }
+      }
+      .desc-title, .desc-text {
+        width: 100%;
+        text-align: left;
+        font-weight: 500;
+        margin-top: 5px;
+      }
+      .desc-title {
+        border-left: 3px solid orange;
+        padding-left: 3px;
+      }
+    }
+  }
 }
+
+// .modalForm {
+//   // border-top: 10px dotted rgba(0,0,0,0.1);
+//   -webkit-box-align: stretch;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   width : 935px;
+//   max-height: 600px;
+//   height: 600px;
+//   display: flex;
+//   align-items: stretch;
+//   flex-shrink: 0;
+//   margin : 0;
+//   @include media("<medium") {
+//     padding: 10px;
+//   }
+  
+//   .wrapper {
+//     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+//     padding: 20px;
+//     width: 355px;
+//     height: 522px;
+//     font-family: 'Noto Sans KR', sans-serif;
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+//     grid-gap: 10px;
+//     align-self: flex-end;
+//     @include media("<medium"){
+//       width: 250px;
+//       max-height: 400px;
+//     }
+//     .profile {
+//       text-align: center;
+//       flex: 1 1 200px;
+//       height: 200px;
+//       .nickName{
+//         font-size : 15px;
+//         font-weight: bolder;
+
+//         padding : 10px;
+//       }
+//       @include media("<small") {
+//         max-width: 250px;
+//         max-height: 200px;
+//       }
+//       img {
+//         border-radius: 50%;
+//         max-width: 150px;
+//         min-width: 100px;
+//         height: auto;
+
+//         @include media("<medium") {
+//           max-width: 300px;
+//         }
+       
+//       }
+
+//       .like {
+//         padding: 5px;
+//         font-size : 15px;
+//         color: rgba(0,0,0,0.6);
+//         text-align: center;
+      
+//         .heart {
+//             font-size: 16px;
+//             vertical-align: bottom;
+
+//             &:hover {
+//                 color: $oc-gray-5;
+//             }
+//             &:active {
+//                 color: $oc-pink-6};
+//         }
+
+//         span {
+//           margin: 0 10px;
+//         }
+//       }
+//     }
+
+//     .desc {
+//         font-family: 'Noto Sans KR', sans-serif;
+//       .info {
+//         font-size: 17px;
+//         line-height: 2;
+
+//         div {
+//           padding-top: 5px;
+//         }
+
+//         span {
+//           padding: 0 10px;
+//           width: 60px;
+//           margin-right: 20px;
+//         }
+//       }
+
+//       .desc-text {
+//         min-height: 50px;
+//         padding-top: 15px;
+//         padding-bottom: 15px;
+//         line-height: 1.5;
+//         font-size: 15px;
+//         color: rgba(0,0,0,0.8);
+//         word-break: break-all;
+//       }
+//     }
+//   }
+  
+//   .seller_img {
+//     width: 100%;
+//     img {
+//       width: 100%;
+//       max-height: 600px;
+//     }
+//   }
+
+//   // .seller_img {
+//   //   width : 600px;
+//   //   height: 600px;
+//   //   flex: 1 1 300px;
+//   //   .images {
+//   //     max-width: 100%;
+//   //     img {
+//   //       max-width: 600px;
+//   //       max-height: 600px;
+//   //       width : 600px;
+//   //       height: 600px;
+//   //     }
+//   //   }
+    
+//   // }
+  
+//   .close {
+//     position: absolute;
+//     font-size: 4rem;
+//     font-weight: bold;
+//     margin-left: 0;
+//     right: 5px;
+//     top: -0.4rem;
+//     line-height: 1;
+//     color: #aaa;
+
+//     &:hover,
+//     &:focus {
+//       color: #000;
+//       text-decoration: none;
+//       cursor: pointer;
+//     }
+//   }
+// }

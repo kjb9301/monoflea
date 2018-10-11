@@ -36,27 +36,25 @@ class LoginedSellerDetailContainer extends Component {
     SellerActions.updateSeller(id,sellerDetail);
     SellerActions.getSellersList();
   }
-  handleEdit = () =>{
-    const { SellerUIActions ,editTF} = this.props;
-    SellerUIActions.editTF(editTF);
-  }
+  
   render() {
-    console.log('LoginedSellerDetailContainer');
-    const { loginedSeller,editTF,visible, loggedNickName} = this.props;
+    //console.log('LoginedSellerDetailContainer');
+    const { user_seller_id, oneSeller,editTF,visible, loggedNickName} = this.props;
     const { handleEdit, handleUpdate, handleChange,handleCancel,handleClose} = this
-    const loginedSellerData = loginedSeller.toJS();
+    const oneSellerData = oneSeller.toJS();
     
     return (
       <div>
         <LoginedSellerDetailModal
           visible = {visible}
+          user_seller_id={user_seller_id}
           onChange = {handleChange}
           onClose = {handleClose}
           onCancel = {handleCancel}
           onEdit = {handleEdit}
           editTF = {editTF}
           onUpdate = {handleUpdate}
-          loginedSellerData = {loginedSellerData}
+          oneSellerData = {oneSellerData}
           loggedNickName = {loggedNickName}
         />
       </div>
@@ -66,10 +64,11 @@ class LoginedSellerDetailContainer extends Component {
 
 
 export default connect((state ) =>({
-  loginedSeller : state.seller.get('oneSeller'),
+  oneSeller : state.seller.get('oneSeller'),
   visible : state.sellerUI.getIn(['modal','loggedSeller']),
   editTF : state.sellerUI.get('editTF'),
-  loggedNickName : state.base.get('nickName')
+  loggedNickName : state.base.get('nickName'),
+  user_seller_id : state.base.get('seller_id')
 }),
   (dispatch) =>({
     SellerActions : bindActionCreators(sellerActions, dispatch),

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './SellerDetailModal.1.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
@@ -22,7 +22,7 @@ const imgStlyes = {
   'maxHeight': '420px'
 }
 
-const SellerDetailModal = ({visible, sellerDetailData, onLike,offLike, onClose, loggedNickName,  likeUp}) => {
+const SellerDetailModal = ({visible, editTF, user_seller_id, sellerDetailData, onLike,offLike, onClose, loggedNickName,  likeUp}) => {
    const {career, sns, seller_desc, profile_img, user, seller_id, like_cnt,
            seller_images, seller_likes, sellerCategory ,view_cnt} = sellerDetailData;
    const { nickName } = user.nickName;

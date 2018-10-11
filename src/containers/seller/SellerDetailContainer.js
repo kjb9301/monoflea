@@ -35,8 +35,8 @@ class SellerDetailContainer extends Component {
   }
 
   render() {
-    const { visible, sellerData, nickName, loggedUser } = this.props;
-    const { handleClose, handleDislike , handleLike} = this;
+    const { visible, sellerData, nickName, loggedUser, user_seller_id } = this.props;
+    const { handleClose, handleDislike , handleLike } = this;
     const detailInfo = sellerData.toJS();
     return (
       <div>
@@ -47,6 +47,7 @@ class SellerDetailContainer extends Component {
           onLike={handleLike}
           offLike={handleDislike}
           loggedNickName={nickName}
+          user_seller_id={user_seller_id}
         />
       </div>
     );
@@ -58,6 +59,7 @@ export default connect((state) => ({
   visible : state.sellerUI.getIn(['modal','seller']),
   nickName : state.base.get('nickName'),
   loggedUser : state.base.get('logged'),
+  user_seller_id: state.base.get('seller_id')
 }),
   (dispatch) => ({
     SellerUIActions : bindActionCreators(sellerUIActions, dispatch),
