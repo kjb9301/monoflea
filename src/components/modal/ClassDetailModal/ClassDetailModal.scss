@@ -13,18 +13,94 @@
   }
   .detail-top {
     width: 100%;
+    height: auto;
     text-align: left;
     .classCategory {
-      display: inline-block;
-      width: 200px;
       padding: 10px;
       font-size: 15px;
-      // border-radius: 15px;
       font-weight: bold;
       background-color: #037367;
-      color: yellow;
-      // border: 2px solid #a947fa;
+      color: white;
+      display: inline-block;
     }
+    .className {
+      padding: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      margin-left: 10px;
+      border-left: 3px solid #FFEB3B;
+      display: inline-block;
+    }
+  }
+  .content-wrapper {
+    width: 100%;
+    margin: 10px auto;
+    .content-box {
+      width: 100%;
+      .inner-half-box {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        .img-box {
+          width: 100%;
+          text-align: center;
+          .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+          }
+        }
+        .info-box {
+          display: inline-block;
+          width: 50%;
+          text-align: left;
+          padding: 10px;
+          .info-title {
+            padding-left: 5px;
+            border-left: 3px solid #037367;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          .info-content {
+            margin-top: 5px;
+            font-size: 14px;
+          }
+          .line-height-1-6 {
+            line-height: 1.6;
+          }
+        }
+        .w-100 {
+          width: 100%;
+        }
+      }
+    }
+    .margin-top-50 {
+      margin-top: 50px;
+    }
+  }
+  .button-wrap {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    .classBtn {
+      width: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px;
+      margin: 8px;
+      border: 1px solid #037367;
+      color: #037367;
+      background-color: white;
+      cursor: pointer;
+      &:hover {
+        color: white;
+        background-color: #037367;
+      }
+    }
+  }
+  .margin-top-30 {
+    margin-top: 30px;
   }
 }
 

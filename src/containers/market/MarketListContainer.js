@@ -18,8 +18,8 @@ class MarketListContainer extends Component {
 
   handleDetail = (id,listType) => {
     const {MarketActions,MarketUIActions,list} = this.props;
-    let marketDetail = ''
-    let idx = ''
+    let marketDetail = '';
+    let idx = '';
     
     if(listType === 'L'){
       idx = list.marketList.findIndex(market => market.market_id === id);

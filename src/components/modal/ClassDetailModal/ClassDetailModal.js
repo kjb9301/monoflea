@@ -2,8 +2,23 @@ import React, { Fragment } from 'react';
 import styles from './ClassDetailModal.scss';
 import classNames from 'classnames/bind';
 import ClassModalWrapper from './ClassModalWrapper/ClassModalWrapper';
+import { Fade } from 'react-slideshow-image';
 
 const cx = classNames.bind(styles);
+
+const fadeProperties = {
+  duration: 1500,
+  transitionDuration: 500,
+  infinite: true,
+  indicators: true,
+  scale: 1,
+  arrows: false
+}
+
+const imgStlyes = {
+  'width': '250px',
+  'height': '250px'
+}
 
 const ClassDetailModal = 
   ({ visible, getEnrollList, classDetail, hideModal, nickName, 
@@ -40,7 +55,7 @@ const ClassDetailModal =
           :
           (
             <Fragment>
-              <img src={img.class_imgurl} alt={class_name}/>
+              <img src={img.class_imgurl} alt={class_name} style={imgStlyes}/>
             </Fragment>
           )
         }
@@ -61,6 +76,87 @@ const ClassDetailModal =
           <span className={cx('className')}>
             {class_name}
           </span>
+        </div>
+        <div className={cx('content-wrapper')}>
+          <div className={cx('content-box')}>
+            <div className={cx('inner-half-box')}>
+              <div className={cx('img-box')}>
+                <img src={seller.profile_img} alt={class_name} className={cx('profile-img')}/>
+              </div>
+            </div>
+            <div className={cx('inner-half-box')}>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>모집분야</h3>
+                <p className={cx('info-content')}>{onedayCategory.category_ko_name}</p>
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>셀러명</h3>
+                <p className={cx('info-content')}>{seller.user.nickName}</p>
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>개설장소</h3>
+                <p className={cx('info-content')}>{class_place}</p>
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>주최일</h3>
+                <p className={cx('info-content')}>{event_date}</p>
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>모집기간</h3>
+                <p className={cx('info-content')}>{recruit_start_date} ~ {recruit_end_date}</p>
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>모집인원</h3>
+                <p className={cx('info-content')}>
+                  <span ref={ref => this.regCnt = ref}>{class_reg_cnt}</span> / {class_limit_cnt}
+                </p>
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>조회수</h3>
+                <p className={cx('info-content')}>{view_cnt}</p>
+              </div>
+            </div>
+          </div>
+          <div className={cx('content-box', 'margin-top-50')}>
+            <div className={cx('inner-half-box')}>
+              <Fade {...fadeProperties} className={cx('images')}>
+                {images}
+              </Fade>
+            </div>
+            <div className={cx('inner-half-box')}>
+              <div className={cx('info-box', 'w-100')}>
+                <h3 className={cx('info-title')}>상세설명</h3>
+                <p className={cx('info-content', 'line-height-1-6')}>{class_desc}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={cx('button-wrap', 'margin-top-30')}>
+          {
+            nickName === seller.user.nickName ?
+            <Fragment>
+            <button className={cx('classBtn')} onClick={() => toggleEditOnedayClass(class_id)}>수정</button>
+            <button className={cx('classBtn')} onClick={() => deleteOnedayClass(class_id)}>삭제</button>
+            <button className={cx('classBtn')} onClick={() => getEnrollList(class_id)}>신청자 목록</button>
+            </Fragment> :
+            onedayRegs[0] ?
+            <button 
+              className={cx('classBtn')} 
+              ref={ref => this.cancelBtn = ref}
+              onClick={() => {
+                cancelOnedayClass(class_id);
+                this.regCnt.innerText = Number(this.regCnt.innerText) - 1;
+              }}>취소하기
+            </button> :
+            <button 
+              className={cx('classBtn')}
+              ref={ref => this.enrollBtn = ref}
+              onClick={() => {
+                enrollOnedayClass(class_id);
+                this.regCnt.innerText = Number(this.regCnt.innerText) + 1;
+              }}>강좌등록
+            </button>
+          }
         </div>
       </div>
     </ClassModalWrapper>
