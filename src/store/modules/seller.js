@@ -57,7 +57,6 @@ export default handleActions({
     type : GET_SELLRS_LIST,
     onSuccess : (state, action) =>{
       const sellers = action.payload.data;
-      console.log(sellers);
       return state.set('sellers',  sellers.sellerList)
                   .set('categories', sellers.category)
                   .set('totalCnt', sellers.totalCnt);
@@ -92,6 +91,7 @@ export default handleActions({
       const { seller_id, career, sns, seller_desc, like_cnt, profile_img, view_cnt,
             show_TF, seller_images : imgUrl, user : nickName,
             sellerCategory : category_ko} = oneSeller;
+
     return state.setIn(['oneSeller','seller_id'], seller_id)
                 .setIn(['oneSeller','user','nickName'], nickName )
                 .setIn(['oneSeller','career'], career)
@@ -102,7 +102,7 @@ export default handleActions({
                 .setIn(['oneSeller','sellerCategory','category_ko'], category_ko)
                 .setIn(['oneSeller', 'show_TF'], show_TF)
                 .setIn(['oneSeller', 'like_cnt'],like_cnt)
-                .setIn(['oneSeller','veiw_cnt'], view_cnt)
+                .setIn(['oneSeller','view_cnt'], view_cnt)
     }
   })
 }, initialState)
