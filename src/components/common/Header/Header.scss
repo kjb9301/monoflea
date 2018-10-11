@@ -1,14 +1,13 @@
 @import 'common';
 
 .header {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
   padding: 20px;
   background-color: rgb(255,255,255);
-  font-weight: bold;
+  // font-weight: bold;
 
   .header-content {
     display: flex;
@@ -42,7 +41,7 @@
 
       .logo-text {
         color: rgba(0, 0, 0, 0.7);
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
 
       @include media("<medium") {
@@ -73,7 +72,7 @@
       }
 
       .nav-item {
-        font-size: 13px;
+        font-size: 1rem;
         padding: 5px 10px;
         border: 1px solid transparent;
         border-radius: 3px;
@@ -98,7 +97,7 @@
         padding: .5rem;
         // margin-right: .3rem;
         border: 1px solid transparent;
-
+        font-size : 1rem;
         &:hover {
           border: 1px solid white;
           border-radius: 3px;

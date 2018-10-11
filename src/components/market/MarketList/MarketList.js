@@ -64,7 +64,7 @@ class MarketList extends Component {
     return (
       <div className={cx('wrapper')}>
         <div className={cx('market-subheader')}>
-          <div className={cx('subheader-title')}>{listType === 'L'? 'marketList' : 'Coming Soon'}</div>
+          <div className={cx('subheader-title')}>{listType === 'L'? 'MARKETLIST' : 'COMING SOON'}</div>
           <div className={cx('children-wrapper')}>
             {children}
           </div>
