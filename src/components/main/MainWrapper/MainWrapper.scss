@@ -1,7 +1,7 @@
 @import 'common';
 
 .main-wrapper {
-  background-image: url('./image/bg.svg'), url('./image/index-background.jpg');
+  background-image: url('./image/bg.svg'), url('./image/testBg2.jpg');
   background-attachment: scroll, fixed;
   background-size: auto,cover;
   background-position: bottom center, top center;
@@ -44,7 +44,7 @@
       margin: 0 auto;
       padding: 1.5rem;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-      background: rgba(white, .2);
+      background: rgba(black, .5);
       border: 1px solid lightblue;
       
 

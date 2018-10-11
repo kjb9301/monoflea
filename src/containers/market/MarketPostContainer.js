@@ -29,7 +29,8 @@ class MarketPostContainer extends Component {
 
   handleCreate = () => {
     this.createMarket();
-    const {history} = this.props;
+    const {history,message} = this.props;
+    alert(message);
     history.push('/markets/recruitment');
   }
 
@@ -54,7 +55,8 @@ export default connect(
     place: state.marketUI.getIn(['market','market_place']),
     desc: state.marketUI.getIn(['market','market_desc']),
     startDate: state.marketUI.getIn(['market','start_date']),
-    endDate: state.marketUI.getIn(['market','end_date'])
+    endDate: state.marketUI.getIn(['market','end_date']),
+    message: state.market.get('message')
   }),
   (dispatch) => ({
     MarketActions: bindActionCreators(marketActions,dispatch),

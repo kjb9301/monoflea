@@ -29,7 +29,6 @@ class MarketListRegContainer extends Component {
     const { marketCount } = this.props;
     const marketRegList = list.marketList;
     let len = parseInt(marketRegList.length, 10);
-    console.log(marketCount);
     if(len < marketCount){
       setTimeout(async() => {
         try {
@@ -52,7 +51,7 @@ class MarketListRegContainer extends Component {
     const {handleDetail,getMoreData} = this;
     const {marketList} = list;
     if(!marketList) return null;
-    if(loading) return null;
+    
     const loader = <div style={{ 'width': '10%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto', 'padding': '10px', 'backgroundColor': 'green', 'color': 'white' }}>Loading ...</div>;
     return (
       <div>
