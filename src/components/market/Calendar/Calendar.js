@@ -23,15 +23,17 @@ const Calendar = ({curMonth,curYear,daysInWeekList,onPrevMonth,onNextMonth,onPre
 
   return (
     <div className={cx('calendar')}>
-      <div className={cx('btn-wrapper')}>
-        <div className={cx('all-btn')}>전체일정</div>
-      </div>
-      <div className={cx('left-wrapper')}>
-        <div className={cx('icon')} onClick={onPrevMonth}>chevron_left</div>
-        <div className={cx('col col-center')}>
-          <span>{curYear} {curMonth}월</span>
+      <div className = {cx('first-wrapper')}>
+        <div className={cx('btn-wrapper')}>
+          <div className={cx('all-btn')}>전체일정</div>
         </div>
-        <div className={cx('icon')} onClick={onNextMonth}>chevron_right</div>
+        <div className={cx('left-wrapper')}>
+          <div className={cx('icon')} onClick={onPrevMonth}>chevron_left</div>
+          <div className={cx('col col-center')}>
+            <span>{curYear} {curMonth}월</span>
+          </div>
+          <div className={cx('icon')} onClick={onNextMonth}>chevron_right</div>
+        </div>
       </div>
       <div className={cx('right-wrapper')}>
         <div className={cx('icon')} onClick={onPrevDay}>chevron_left</div>

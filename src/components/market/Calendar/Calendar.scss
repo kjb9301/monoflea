@@ -5,71 +5,80 @@
   font-family: 'Material Icons', serif;
 
   &:hover {
-    color: yellow;
+    color: whitesmoke;
     cursor: pointer;
   }
 }
 
 .calendar {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
+  justify-content: space-around;
   height: 70px;
   padding: 10px;
   background-color: rgba(black, 0.4);
   flex-grow: 1;
-
-  .btn-wrapper {
+  .first-wrapper{
     display: flex;
-    background-color: rgba(black, 0.4);
-    border-radius: 10px;
-    margin: 10px;
-    margin-right: 20px;
-
-    .all-btn {
-      margin: 10px;
-      text-align: center;
-      line-height: 20px;
-      font-size: 1.2rem;
-      font-weight: bolder;
-      color: white;
-      cursor: pointer;
-    }
-  }
-
-  .left-wrapper {
-    display: flex;
-    flex-grow: .5;
+    flex-flow : row wrap;
     justify-content: space-around;
-    background-color: rgba(black, 0.4);
-    border-radius: 10px;
-
-    div {
+    align-content: center;
+    align-items: center;
+    flex-grow: 2;
+    .btn-wrapper {
+      display: flex;
+      background-color: rgba(black, 0.4);
+      border-radius: 10px;
       margin: 10px;
-      text-align: center;
-      line-height: 20px;
-      font-size: 25px;
-      font-weight: bolder;
-      color: white;
+      margin-right: 20px;
+  
+      .all-btn {
+        margin: 10px;
+        text-align: center;
+        font-size: 1.2rem;
+        align-items: center;
+        font-weight: bolder;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  
+    .left-wrapper {
+      display: flex;
+      flex-grow: .5;
+      justify-content: space-around;
+      background-color: rgba(black, 0.4);
+      border-radius: 10px;
+  
+      div {
+        margin: 10px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        color: white;
+      }
     }
   }
 
   .right-wrapper {
     display: flex;
-    flex-grow: 1;
+    // flex-grow: 1;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
+    justify-items: flex-end;
+    width: 600px;
     div {
       text-align: center;
       line-height: 30px;
-      font-size: 15px;
+      font-size: 1.2rem;
       margin: 1px;
       border-radius: 2px;
 
       &:not(.icon) {
-        background-color: rgba(black, 0.4);   
+        background-color: rgba(black, 0.2);   
       }
     }
 
@@ -83,15 +92,15 @@
       cursor: pointer;
       
       &.isSunday {
-        color: red;
+        color: rgb(231, 57, 92);
       }
 
       &.isSat {
-        color: rgb(75, 75, 247);
+        color: rgb(40, 40, 226);
       }
 
       &.selected {
-        border: 3px solid rgb(247, 247, 97);
+        border: 3px solid whitesmoke;
         // .days {
         //   border: 2px solid yellow;
         // }
