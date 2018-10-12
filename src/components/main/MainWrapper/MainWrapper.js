@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
 import { TiBusinessCard, TiMessages, TiWarningOutline } from 'react-icons/ti';
+import { GoCalendar, GoFileMedia } from 'react-icons/go';
 
 import aboutImg from './image/about.png';
 import questionImg from './image/question.png';
@@ -28,19 +29,21 @@ const MainWrapper = () => {
         <Link to="/about" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             {/* <img src={aboutImg} alt='About'/> */}
-            <TiWarningOutline style={{ 'fontSize': '80px', 'color': 'white' }}/>
+            <TiWarningOutline style={{ 'fontSize': '50px', 'color': 'lightgray' }}/>
             <p>About</p>
           </div>
         </Link>
         <Link to="/markets" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={marketImg} alt='플리마켓'/>
+            {/* <img src={marketImg} alt='플리마켓'/> */}
+            <GoCalendar style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>플리마켓</p>
           </div>
         </Link>
         <Link to="/sellers" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={sellerImg} alt='셀러'/>
+            {/* <img src={sellerImg} alt='셀러'/> */}
+            <GoFileMedia style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>셀러</p>
           </div>
         </Link>
@@ -59,14 +62,14 @@ const MainWrapper = () => {
         <Link to="/boards" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             {/* <img src={communityImg} alt='커뮤니티'/> */}
-            <TiMessages style={{ 'fontSize': '80px', 'color': 'white' }}/>
+            <TiMessages style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>커뮤니티</p>
           </div>
         </Link>
         <Link to="/mypage" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             {/* <img src={questionImg} alt='마이페이지'/> */}
-            <TiBusinessCard style={{ 'fontSize': '80px', 'color': 'white' }}/>
+            <TiBusinessCard style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>마이페이지</p>
           </div>
         </Link>

@@ -71,25 +71,25 @@
     flex: 1;
     height: 7rem;
     &:nth-child(1) {
-      background-color: rgba($lightgray, 1);
+      background-color: rgba(black, 0.6);
     }
     &:nth-child(2) {
-      background-color: rgba($darkgray, 1);
+      background-color: rgba(black, 0.6);
     }
     &:nth-child(3) {
-      background-color: rgba($lightorange, 1);
+      background-color: rgba(black, 0.6);
     }
     &:nth-child(4) {
-      background-color: rgba(#D6C1C1, 1);
+      background-color: rgba(black, 0.6);
     }
     &:nth-child(5) {
-      background-color: rgba($lightyellow, 1);
+      background-color: rgba(black, 0.6);
     }
     &:nth-child(6) {
-      background-color: rgba(#93B7B7, 1);
+      background-color: rgba(black, 0.6);
     }
     &:nth-child(7) {
-      background-color: rgba($navy, 1);
+      background-color: rgba(black, 0.6);
     }
     .nav-wrap {
       padding: 0.7rem;
