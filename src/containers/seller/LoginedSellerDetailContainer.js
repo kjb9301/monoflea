@@ -23,38 +23,49 @@ class LoginedSellerDetailContainer extends Component {
     const { SellerUIActions } = this.props;
     SellerUIActions.hideLoggedModal('loggedSeller');
   }
+
   handleChange = (e) => {
     const { SellerUIActions } = this.props;
     let { name, value } = e.target;
-     name === 'show_TF' ? SellerUIActions.showTF({name,value}) 
-                       : SellerUIActions.changedData({name,value})
+    SellerUIActions.changeData({ name, value });
+    // name === 'show_TF' ? SellerUIActions.showTF({name,value}) 
+    //                    : SellerUIActions.changedData({name,value})
   }
+
   handleUpdate = (id) => {
-    const { SellerActions, SellerUIActions, oneSeller, editTF } = this.props;
-    console.log(oneSeller.toJS());
+    const { SellerActions, SellerUIActions, editTF } = this.props;
     // const sellerDetail = loginedSeller.toJS();
     // SellerUIActions.editTF(editTF);
     // SellerActions.updateSeller(id,sellerDetail);
     // SellerActions.getSellersList();
   }
+
+  toggleState = () => {
+    const { editTF, SellerUIActions, oneSeller } = this.props;
+    const sellerInfo = oneSeller.toJS();
+    SellerUIActions.detailData({ sellerInfo });
+    SellerUIActions.editTF(editTF);
+  }
   
   render() {
-    const { user_seller_id, oneSeller,editTF,visible, loggedNickName} = this.props;
-    const { handleEdit, handleUpdate, handleChange,handleCancel,handleClose} = this
+    const { user_seller_id, editTF, visible, oneSeller, loggedNickName, seller } = this.props;
+    const { handleEdit, handleUpdate, handleChange, handleCancel, handleClose, toggleState} = this
     const oneSellerData = oneSeller.toJS();
+    if(!visible) return null;
     return (
       <div>
         <LoginedSellerDetailModal
-          visible = {visible}
+          visible={visible}
           user_seller_id={user_seller_id}
-          onChange = {handleChange}
-          onClose = {handleClose}
-          onCancel = {handleCancel}
-          onEdit = {handleEdit}
-          editTF = {editTF}
-          onUpdate = {handleUpdate}
-          oneSellerData = {oneSellerData}
-          loggedNickName = {loggedNickName}
+          onChange={handleChange}
+          onClose={handleClose}
+          onCancel={handleCancel}
+          onEdit={handleEdit}
+          editTF={editTF}
+          onUpdate={handleUpdate}
+          oneSellerData={oneSellerData}
+          loggedNickName={loggedNickName}
+          toggleState={toggleState}
         />
       </div>
     );
@@ -62,8 +73,9 @@ class LoginedSellerDetailContainer extends Component {
 }
 
 
-export default connect((state ) =>({
+export default connect((state ) => ({
   oneSeller : state.seller.get('oneSeller'),
+  seller: state.sellerUI.get('seller'),
   visible : state.sellerUI.getIn(['modal','loggedSeller']),
   editTF : state.sellerUI.get('editTF'),
   loggedNickName : state.base.get('nickName'),

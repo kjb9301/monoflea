@@ -33,7 +33,7 @@ const Header = ({ onLoginClick, onLogout, isLogin, userName, userType, match, on
             isLogin && userName ? 
             <div  className={cx('header-login')}>
               <div className={cx('header-button')}>
-                {userName}
+                [ {userName} ]
               </div>
               <div className={cx('header-button')} onClick={onLogout}>
                 로그아웃

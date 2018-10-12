@@ -8,9 +8,10 @@
     padding-top: 1rem;
     width: 100%;
     min-height: 100vh;
-    background-image: url('/images/bg.svg'), url('/images/intro.jpg');
+    // background-image: url('/images/bg.svg'), url('/images/intro.jpg');
+    background-image: url('/images/testBg1.jpg');
     background-attachment: scroll, fixed;
-    background-size: auto, cover;
+    background-size: cover;
     background-position: bottom center, top center;
 
     display: flex;

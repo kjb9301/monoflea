@@ -32,12 +32,13 @@ class SellerOneData extends Component {
   }
 }
 export default connect((state) =>({
-    userType : state.base.get('userType'),
-    seller_id: state.base.get('seller_id')
-  }),
-  (dispatch) =>({
-    SellerActions : bindActionCreators(sellerActions, dispatch),
-    SellerUIActions : bindActionCreators(sellerUIActions, dispatch),
-    BaseActions : bindActionCreators(baseActions,dispatch)
-  })
-)(SellerOneData)
+  oneSeller : state.seller.get('oneSeller'),
+  userType : state.base.get('userType'),
+  seller_id: state.base.get('seller_id')
+}),
+(dispatch) => ({
+  SellerActions : bindActionCreators(sellerActions, dispatch),
+  SellerUIActions : bindActionCreators(sellerUIActions, dispatch),
+  BaseActions : bindActionCreators(baseActions,dispatch)
+})
+)(SellerOneData);

@@ -10,16 +10,18 @@ const SHOW_TF = 'sellerUI/SHOW_TF';
 const CHANGED_LIKE_CNT = 'sellerUI/CHANGED_LIKE_CNT';
 const SHOW_LOGGED_MODAL = 'selelrUI/SHOW_LOGGED_MODAL';
 const HIDE_LOGGED_MODAL = 'sellerUI/HIDE_LOGGED_MODAL'
+const SET_DETAIL_INFO = 'sellerUI/SET_DETAIL_INFO';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
 export const editTF = createAction(EDIT_TF);
 export const detailData = createAction(DETAIL_DATA);
-export const changedData =  createAction(CHANGED_DATA);
+export const changeData =  createAction(CHANGED_DATA);
 export const showTF = createAction(SHOW_TF);
 export const changedLikeCnt = createAction(CHANGED_LIKE_CNT);
 export const showLoggedModal = createAction(SHOW_LOGGED_MODAL);
 export const hideLoggedModal = createAction(HIDE_LOGGED_MODAL);
+export const setDetailInfo = createAction(SET_DETAIL_INFO);
 
 const initialState = fromJS({
   modal : {
@@ -50,15 +52,14 @@ const initialState = fromJS({
 })
 
 export default handleActions({
- [SHOW_MODAL] : (state, action) => {
-   const  modalName = action.payload;
-    return state.setIn(['modal',modalName], true)
- },
- [SHOW_LOGGED_MODAL] : (state, action) => {
-  const  modalName = action.payload;
-   return state.setIn(['modal',modalName], true)
- }
- ,
+  [SHOW_MODAL] : (state, action) => {
+    const  modalName = action.payload;
+    return state.setIn(['modal',modalName], true);
+  },
+  [SHOW_LOGGED_MODAL] : (state, action) => {
+    const  modalName = action.payload;
+    return state.setIn(['modal',modalName], true);
+  },
  [HIDE_MODAL] : (state, action) =>{
    const modalName = action.payload;
    return state.setIn(['modal', modalName], false);
@@ -93,8 +94,8 @@ export default handleActions({
    return state.set('editTF',!edit)
  },
  [CHANGED_DATA] : (state,action) => {
-   const { name, value } = action.payload
-  return state.setIn(['seller', name], value)
+   const { name, value } = action.payload;
+   return state.setIn(['seller', name], value);
  },
  [CHANGED_LIKE_CNT] : (state, action) =>{
    let { payload: like_cnt } = action;

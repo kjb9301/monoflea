@@ -8,9 +8,11 @@
   .about-intro {
     width: 100%;
     min-height: calc(100vh);
-    background-image: url(''), url('./image/intro.jpg');
+    // background-image: url(''), url('./image/intro.jpg');
+    background-image: url('/images/testBg1.jpg');
     background-attachment: scroll, fixed;
-    background-size: auto, cover;
+    // background-size: auto, cover;
+    background-size: cover;
     background-position: bottom center, top center;
 
     display: flex;
