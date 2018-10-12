@@ -53,7 +53,7 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                 <input 
                   type='text'
                   name='name' 
-                  placeholder='마켓 이름을 입력해주세요!' 
+                  placeholder='마켓 이름' 
                   className={cx('market-title')}
                   onChange={onChange}
                 />
@@ -62,7 +62,7 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                 <input 
                   type='text' 
                   name='place' 
-                  placeholder='마켓 주최 장소를 입력해주세요!' 
+                  placeholder='마켓 주최 장소' 
                   onChange={onChange}
                   className={cx('market-place')}
                 />
@@ -73,14 +73,14 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                   name="sellerLimitCnt"
                   onChange={onChange}
                   min="1"
-                  placeholder="마켓 모집 인원을 설정하세요!"
+                  placeholder="마켓 모집 인원"
                   className={cx('market-cnt')}
                 />
               </div>
               <div className={cx('detail-wrap')}>
                 <div className={cx('wrap-50')}>
                   <h3 className={cx('detail-sub-title')}>
-                    마켓 주최 기간을 설정하세요!
+                    마켓 주최 기간
                   </h3>
                   <input 
                     className={cx('period')}
@@ -89,7 +89,7 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                     onChange={onChange}
                   />
                 </div>
-                <span className={cx('char')}>~</span>
+                <span className={cx('char')}>~ </span>
                 <div className={cx('wrap-50')}>
                   <input 
                     className={cx('period')}
@@ -100,9 +100,10 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                 </div>
               </div>
               <div className={cx('detail-wrap')}>
+                {/* 셀러 모집 기간 */}
                 <div className={cx('wrap-50')}>
                   <h3 className={cx('detail-sub-title')}>
-                    셀러 모집 기간을 설정하세요!
+                    셀러 모집 기간
                   </h3>
                   <input 
                     className={cx('period')} 
@@ -111,7 +112,7 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                     onChange={onChange}
                   />
                 </div>
-                <span className={cx('char')}>~</span>
+                <span className={cx('char')}>~ </span>
                 <div className={cx('wrap-50')}>
                   <input 
                     className={cx('period')} 
@@ -129,7 +130,7 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
             name="desc" 
             rows="20" 
             cols="50" 
-            placeholder="마켓에 대한 상세한 설명을 적어주세요! 최소 350자 이상" 
+            placeholder="상세한 설명을 적어주세요! 최소 350자 이상" 
             onChange={onChange}
             className={cx('market-desc')}
           />
