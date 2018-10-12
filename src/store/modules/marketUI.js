@@ -142,7 +142,6 @@ export default handleActions({
   },
   [SAVE_DATE]: (state,action) => {
     const saveDate = action.payload;
-    console.log(saveDate)
     return state.set('saveDate',saveDate);
   }
 }, initialState);

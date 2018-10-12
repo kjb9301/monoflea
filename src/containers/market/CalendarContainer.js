@@ -10,7 +10,6 @@ import * as marketUIActions from 'store/modules/marketUI';
 class CalendarContainer extends Component {
   handleSelect = (dateParam) => {
     const {MarketActions,MarketUIActions} = this.props;
-
     const curMonth = dateFns.format(dateParam,'M');
     const curYear = dateFns.format(dateParam,'YYYY');
     const curDay = dateFns.format(dateParam,'D');
@@ -19,9 +18,10 @@ class CalendarContainer extends Component {
     let selectDay = curDay.length < 2? '0' + curDay.toString() : curDay;
 
     const selectDate = `${curYear}-${selectMonth}-${selectDay}`;
-
     MarketUIActions.saveDate(selectDate);
-    MarketActions.getMarketList('Y',selectDate);
+    const {list} = this.props;
+    const limit = (list.marketList.length < 8 ? 'undefined': list.marketList.length + 8)
+    MarketActions.getMarketList('Y',selectDate,limit);
   }
 
   handleSelectDate = (selectedDateParam) => {
@@ -33,6 +33,7 @@ class CalendarContainer extends Component {
   handleAllDate = () => {
     const {MarketActions,MarketUIActions} = this.props;
     MarketUIActions.saveDate('undefined');
+    const {list} = this.props;
     MarketActions.getMarketList('Y');
   }
 
@@ -119,10 +120,12 @@ class CalendarContainer extends Component {
 
 export default connect(
   (state) => ({
+    list: state.market.get('data'),
     selectedDate: state.marketUI.getIn(['calendar','selectedDate']),
     currentDate: state.marketUI.getIn(['calendar','currentDate']),
     today: state.marketUI.getIn(['calendar','today']),
     isSelectedByDate: state.marketUI.get('isSelectedByDate'),
+    saveDate: state.marketUI.get('saveDate'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
   (dispatch) => ({

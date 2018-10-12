@@ -40,6 +40,9 @@ class MarketListContainer extends Component {
     if(marketList.length < marketCount){
       setTimeout(async() => {
         try {
+          console.log(marketList.length)
+          console.log(marketCount)
+          console.log(saveDate)
           return await MarketActions.getMarketList('Y',saveDate,marketList.length+8);
         } catch(e) {
           const {message} = e.response.data;
@@ -48,7 +51,7 @@ class MarketListContainer extends Component {
       },300);
     }
 
-    if(marketList.length >= marketCount) return MarketUIActions.toggleMoreState(false);
+    if(marketList.length >= marketCount || marketList.length < 8) return MarketUIActions.toggleMoreState(false);
     
   }
 
