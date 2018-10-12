@@ -30,19 +30,18 @@ class LoginedSellerDetailContainer extends Component {
                        : SellerUIActions.changedData({name,value})
   }
   handleUpdate = (id) => {
-    const { SellerActions,SellerUIActions,loginedSeller,  editTF } = this.props;
-    const sellerDetail = loginedSeller.toJS();
-    SellerUIActions.editTF(editTF);
-    SellerActions.updateSeller(id,sellerDetail);
-    SellerActions.getSellersList();
+    const { SellerActions, SellerUIActions, oneSeller, editTF } = this.props;
+    console.log(oneSeller.toJS());
+    // const sellerDetail = loginedSeller.toJS();
+    // SellerUIActions.editTF(editTF);
+    // SellerActions.updateSeller(id,sellerDetail);
+    // SellerActions.getSellersList();
   }
   
   render() {
-    //console.log('LoginedSellerDetailContainer');
     const { user_seller_id, oneSeller,editTF,visible, loggedNickName} = this.props;
     const { handleEdit, handleUpdate, handleChange,handleCancel,handleClose} = this
     const oneSellerData = oneSeller.toJS();
-    
     return (
       <div>
         <LoginedSellerDetailModal

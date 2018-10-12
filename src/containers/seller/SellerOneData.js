@@ -12,14 +12,8 @@ import * as baseActions from 'store/modules/base';
 class SellerOneData extends Component {
   handleModal = async () => {
     const { SellerActions, SellerUIActions, seller_id: id } = this.props;
-    
-      // const sellerDetail = await axios.get(`/sellers/${id}`);
-      // const { data: detailInfo } = sellerDetail;
-      // SellerUIActions.detailData(detailInfo);
-      // SellerUIActions.showModal('seller');
-    SellerActions.getOneSeller(id);
+    await SellerActions.getOneSeller(id);
     SellerUIActions.showModal('loggedSeller');
-  
   }
 
   render() {

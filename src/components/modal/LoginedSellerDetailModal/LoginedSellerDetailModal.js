@@ -23,29 +23,15 @@ const imgStlyes = {
   'maxHeight': '420px'
 }
 
-const LoginedSellerDetailModal = ({visible, user_seller_id, oneSellerData, onChange,loggedNickName, onClose,editTF,onUpdate, onEdit,  onCancel,likeUp}) => {
+const LoginedSellerDetailModal 
+  = ({ visible, user_seller_id, oneSellerData, onChange, loggedNickName, onClose, editTF, onUpdate, onEdit, onCancel, likeUp }) => {
   const {career, sns, seller_desc, profile_img, user, seller_images, sellerCategory,seller_id ,show_TF, view_cnt} = oneSellerData;
   
   const { nickName } = user.nickName;
   let  { imgUrl }  = seller_images; 
   const { category_ko } = sellerCategory.category_ko;
-  // if( !user || !imgUrl ) return null;
-  //  const imgList = imgUrl.map(
-  //    (imgItem, idx) => {
-  //      const { imgUrl } = imgItem;
-  //      return  {
-  //       original : imgUrl,
-  //       thumbnail : imgUrl
-  //      }
-  //    }
-  //  )
-  //  console.log(imgList)
 
   if( !user || !imgUrl ) return null;
-    console.log(oneSellerData)
-    console.log(seller_desc)
-    console.log(career)
-    console.log(sns)
     const imgList = imgUrl.map(
       (imgItem, idx) => {
         const { imgUrl } = imgItem;
@@ -116,7 +102,7 @@ const LoginedSellerDetailModal = ({visible, user_seller_id, oneSellerData, onCha
               {
                 !editTF ?
                   <Fragment>
-                    <button className={cx('sellerBtn')}>수정</button>
+                    <button className={cx('sellerBtn')} onClick={onUpdate}>수정</button>
                     <button className={cx('sellerBtn')}>삭제</button>
                   </Fragment>
                 :
