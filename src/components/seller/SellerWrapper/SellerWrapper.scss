@@ -5,74 +5,30 @@
   .seller-header {
     padding-top: 1rem;
     min-height: 40vh;
-    background-image: url(''), url('/images/jb_color2.jpg');
+    background-image: url(''), url('/images/ch_color2.png');
     background-attachment: scroll, fixed;
     background-size: auto, cover;
     background-position: bottom center, bottom center;
     display: flex;
     justify-content: center;
-    align-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
     @include media ("<medium") {
       min-height: 50vh;
     }
-    .seller-sub-wrapper{
-      display : flex; 
-      flex-flow : row wrap;
-      .seller-sub-second{
-        color: white;
-        display: flex;
-        flex-direction: column;
-        text-align: right;
-        .seller-subtitle {
-          font-size: 1.5rem;
-          font-weight: normal;
-        }
-        .seller-title {
-          font-size: 4rem;
-          text-align: right;
-          font-weight: bolder;
-          @include media("<large") {
-            font-size: 3rem;
-            .seller-title {
-              font-size: 1.2rem;
-            }
-          }
-          @include media("<medium") {
-            flex: initial;
-            width: 100%;
-            margin-bottom: 0.5rem;
-            .seller-title {
-              display: none;
-              font-size: 1rem;
-            }
-          }
-        }
-      }
-  
-      .seller-description {
-        padding-left: 0.8rem;
-        align-self: flex-end;
-        color: lightgray;
-        font-size: 1rem;
-        
-        @include media("<large") {
-          font-size: 1rem;
-        }
-        @include media("<medium") {
-          font-size: 0.9rem;
-          padding: 1rem;
-          text-align: center;
-          margin-top: 0;
-  
-          strong {
-            font-size: 1rem;
-          }
-        }
-      }
-
+    .seller-title{
+      color: white;
+      font-size: 4rem;
+      font-weight: bolder;
+      text-align: center;
+     
     }
-
+    .seller-sub{
+      font-size : 14px;
+      font-weight: 100;
+      height:15px;
+      color: azure;
+    }
     .seller-category {
       width: 100%;
       text-align: center;

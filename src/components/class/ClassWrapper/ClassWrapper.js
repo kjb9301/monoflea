@@ -13,15 +13,12 @@ const ClassWrapper = ({ userType }) => {
     <div className={cx('wrapper')}>
       <div className={cx('class-header')}>
         <div className = {cx('class-sub-wrapper')}>
-          <div className = {cx('class-sub-second')}>
-            <div className = {cx('class-title')}>ONEDAYCLASS</div>
-            <div className = {cx("class-subtitle")}>원데이클래스</div>
-          </div>
-          <div className={cx('class-description')}>" 일상에서 힐링을<br/>관심 있던 수업을 체험 해보고 나의 취미를 찾아보세요! "</div>
+            <div className = {cx('class-title')}>원데이클래스</div>
+            <div className = {cx("class-subtitle")}><br/>" 일상에서 힐링을관심 있던 수업을 체험 해보고 나의 취미를 찾아보세요! "</div>
         </div>
-        <div className={cx('class-category')}>
+        {/* <div className={cx('class-category')}>
           <ClassCategoryBtnContainer />
-        </div>
+        </div> */}
       </div>
       <div className={cx('post-btn')}>
         {userType === 'S' && <Link className={cx('post-btn-link')} to="/classes/post">등록하기</Link>}

@@ -78,6 +78,42 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                 />
               </div>
               <div className={cx('detail-wrap')}>
+                <div className = {cx('host-period')}>마켓 주최 기간</div>
+                <div className={cx('wrap-50')}>
+                  <input 
+                    className={cx('period')}
+                    type='date' 
+                    name='startDate' 
+                    onChange={onChange}
+                  />
+                  <span className={cx('char')}> ~ </span>
+                  <input 
+                    className={cx('period')}
+                    type='date' 
+                    name='endDate' 
+                    onChange={onChange}
+                  />
+                </div>
+              </div>
+              <div className={cx('detail-wrap')}>
+                <div className = {cx('host-period')}>셀러 주최 기간</div>
+                <div className={cx('wrap-50')}>
+                  <input 
+                    className={cx('period')}
+                    type='date' 
+                    name='startDate' 
+                    onChange={onChange}
+                  />
+                  <span className={cx('char')}> ~ </span>
+                  <input 
+                    className={cx('period')}
+                    type='date' 
+                    name='endDate' 
+                    onChange={onChange}
+                  />
+                </div>
+              </div>
+              {/* <div className={cx('detail-wrap')}>
                 <div className={cx('wrap-50')}>
                   <h3 className={cx('detail-sub-title')}>
                     마켓 주최 기간
@@ -98,9 +134,9 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                     onChange={onChange}
                   />
                 </div>
-              </div>
+              </div> 
               <div className={cx('detail-wrap')}>
-                {/* 셀러 모집 기간 */}
+               셀러 모집 기간
                 <div className={cx('wrap-50')}>
                   <h3 className={cx('detail-sub-title')}>
                     셀러 모집 기간
@@ -121,7 +157,7 @@ const MarketPost = ({ onChange, onCreate, changeImage }) => {
                     onChange={onChange}
                   />
                 </div>
-              </div>
+                </div>*/}
             </div>
           </div>
         </div>

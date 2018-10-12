@@ -46,25 +46,6 @@ const ClassPost = ({ categories, changeValue, postNewClass }) => {
                   src={''}
                   alt=''
                   className={cx('uploaded-img')}
-                  ref={ref => this.imgOne = ref}
-                />
-                <input 
-                  type="file"
-                  name="class_img1"
-                  ref={ref => this.imgFileOne = ref}
-                  onChange={(e) => {
-                    changeValue(e);
-                    uploadImgFile(this.imgFileOne, this.imgOne);
-                  }}
-                  className={cx('oneday-img')}
-                />
-              </div>
-              <div className={cx('img-list')}>
-                <FaUpload className={cx('upload-img')} />
-                <img 
-                  src={''}
-                  alt=''
-                  className={cx('uploaded-img')}
                   ref={ref => this.imgTwo = ref}
                 />
                 <input 
