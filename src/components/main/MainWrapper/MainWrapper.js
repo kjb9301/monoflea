@@ -3,6 +3,8 @@ import styles from './MainWrapper.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
+import { TiBusinessCard, TiMessages, TiWarningOutline } from 'react-icons/ti';
+
 import aboutImg from './image/about.png';
 import questionImg from './image/question.png';
 import sellerImg from './image/seller.png';
@@ -25,7 +27,8 @@ const MainWrapper = () => {
       <div className={cx('main-navigation-wrap')}>
         <Link to="/about" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={aboutImg} alt='About'/>
+            {/* <img src={aboutImg} alt='About'/> */}
+            <TiWarningOutline style={{ 'fontSize': '80px', 'color': 'white' }}/>
             <p>About</p>
           </div>
         </Link>
@@ -55,13 +58,15 @@ const MainWrapper = () => {
         </Link>
         <Link to="/boards" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={communityImg} alt='커뮤니티'/>
+            {/* <img src={communityImg} alt='커뮤니티'/> */}
+            <TiMessages style={{ 'fontSize': '80px', 'color': 'white' }}/>
             <p>커뮤니티</p>
           </div>
         </Link>
         <Link to="/mypage" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={questionImg} alt='마이페이지'/>
+            {/* <img src={questionImg} alt='마이페이지'/> */}
+            <TiBusinessCard style={{ 'fontSize': '80px', 'color': 'white' }}/>
             <p>마이페이지</p>
           </div>
         </Link>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ClassList from 'components/class/ClassList';
+import { FaEllipsisH } from 'react-icons/fa';
 
 import * as classActions from 'store/modules/class';
 import * as classUIActions from 'store/modules/classUI';
@@ -96,7 +97,7 @@ class ClassListContainer extends Component {
   render() {
     const { classList, hasMore } = this.props;
     const { showClassModal, takeOnedayClass, cancelOnedayClass } = this;
-    const loader = <div className="loader" key={0} style={{ 'width': '10%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto', 'padding': '10px', 'backgroundColor': 'green', 'color': 'white' }}>Loading ...</div>;
+    const loader = <div className="loader" key={0} style={{ 'width': '10%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto', 'padding': '10px', }}>loading...</div>;
     return (
       <Fragment>
         <ClassList 
