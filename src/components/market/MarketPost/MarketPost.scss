@@ -2,38 +2,25 @@
 
 .form {
   width: 100%;
-  // margin: auto;
   padding: 1rem;
   border-top : 1px solid #333;
   border-bottom : 1px solid #333;
   display : flex;
   justify-content: center;
-  // align-content: center;
   align-items: center;
   flex-direction: column;
-  // background-image: url('/images/ch_color2.png');
-  // background-size: cover;
-  // background-repeat: no-repeat;
   .post-wrap {
     width: 47%;
-    // padding: 20px;
     margin-top: 2rem;
-    // background-image: url('/images/jb_color.png');
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    // opacity: 0.7;
-    // border: 2px solid  #3ca4c4;
-    border-radius: 15px 15px 0  0;
-    // box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border: 1.5px solid  #b06ab3;
     .title {
       width: 100%;
       margin: auto;
       padding: 20px 20px;
-      // border-radius: 15px 15px 0  0;
-      background-color: #3ca4c4;
+      background-color: #b06ab3;
       text-align: center;
       font-size: 2rem;
-      color: rgb(247, 247, 46);
+      color: white
     }
     @include media("<medium") {
       .title {
@@ -59,6 +46,7 @@
           color: balck;
           font-size: 1.2rem;
           text-align: center;
+          padding-bottom : 1rem;
         }
         @include media("<large") {
           .content-title {
@@ -73,9 +61,9 @@
         .img-wrap {
           width: 100%;
           // padding: 15px;
-          margin-top: 1rem;
+          // margin-top: 1rem;
           text-align: center;
-          border: 1.5px solid  #3ca4c4;
+          border: 1.5px solid  #b06ab3;
           height : 330px;
           .img-list {
             position: relative;
@@ -87,7 +75,7 @@
               @include position-center();
               font-size: 1.2rem;
               z-index: 400;
-              color:  #3ca4c4;
+              color:  #b06ab3;
             }
             .uploaded-poster {
               position: absolute;
@@ -139,17 +127,23 @@
           width: 100%;
           // padding: 15px;
           // margin-top: 1rem;
+          height : 330px;
+          display: flex;
+          flex-flow: column wrap;
+          align-content: space-between;
+          justify-content: space-between;
           text-align: center;
           .detail-wrap {
+            // flex-direction: row;
             width: 100%;
-            margin: 0.9rem auto;
+            // margin: 0.9rem auto;
             color: rgb(78, 78, 78);
             font-weight: 600;
             font-size : 1rem;
             .market-title, .market-place, .market-cnt {
               width: 100%;
               outline: 0;
-              border: 1.5px  solid  #3ca4c4;
+              border: 1.5px  solid  #b06ab3;
               color: rgb(78, 78, 78);
               font-weight: 600;
               font-size: 1rem;
@@ -163,9 +157,18 @@
                 font-size: 0.8rem;
               }
             }
+            .host-period{
+              text-align: left;
+              padding-bottom :10px;
+              font-size: 1rem;
+            }
             .wrap-50 {
-              display: inline-block;
-              width: 47%;
+              // display: inline-block;
+              display: flex;
+              align-items: center;
+
+              justify-content: space-between;
+              width: 100%;
               text-align: left;
               .detail-sub-title {
                 width: 95%;
@@ -185,10 +188,9 @@
                 }
               }
               .period {
-                width: 90%;
-                margin: 0.8rem auto;
+                width: 42%;
                 outline: 0;
-                border: 1.5px  solid  #3ca4c4;
+                border: 1.5px  solid  #b06ab3;
                 color: rgb(78, 78, 78);
                 font-weight: 600;
                 font-size: 0.6rem;
@@ -219,7 +221,9 @@
           }
           @include media("<large") {
             .detail-wrap {
-              margin: 2rem auto;
+              // margin: 2rem auto;
+              // margin-bottom: 1rem;
+              align-content: space-between;
             }
           }
           .char {
@@ -230,7 +234,9 @@
         }
         @include media("<large") {
           .content-detail {
-            padding: 5px;
+            // padding: 5px;
+            padding-left: 5px;
+            padding-right : 5px;
             margin: 0.8rem auto; 
           }
         }
@@ -252,12 +258,12 @@
     width: 90%;
     margin: auto;
     .market-desc {
-      border : 1.5px  solid  #3ca4c4;
+      border : 1.5px  solid  #b06ab3;
       width: 100%;
       padding: 20px;
       margin-bottom:  20px;
       height: 180px;
-          color: rgb(78, 78, 78);
+      color: rgb(78, 78, 78);
       outline: none;
       font-weight: 600;
       font-size: 1rem;
@@ -279,9 +285,9 @@
     margin: 2rem auto;
     text-align: center;
     .submit-btn, .cancel-btn {
-      border: 1px solid  #3ca4c4;
+      border: 1px solid  #b06ab3;
       margin: 10px;
-      background-color:  #3ca4c4;
+      background-color:  #b06ab3;
       padding: 10px;
       color: white;
       font-weight: bolder;

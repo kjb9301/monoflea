@@ -4,23 +4,19 @@
   width: 100%;
   margin: auto;
   padding: 1rem;
-  background-image: url('/images/gradient.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   .post-wrap {
-    width: 65%;
-    padding: 20px;
+    width: 55%;
+    // padding: 20px;
     margin: 3rem auto;
-    background-color: #FEF5EC;
-    border-radius: 15px;
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border: 1.5px solid  #b06ab3;
     .title {
       width: 100%;
       margin: auto;
-      padding: 20px;
+      background-color: #b06ab3;
+      padding: 20px 20px;
       text-align: center;
       font-size: 2rem;
-      color: orange;
+      color: white;
     }
     @include media("<medium") {
       .title {
@@ -35,15 +31,14 @@
     .content-wrap {
       width: 100%;
       margin: auto;
-      border: 1px solid black;
+      // border: 1px solid black;
       .content-box {
         display: inline-block;
         width: 50%;
         padding: 10px;
-        border: 1px solid red;
         vertical-align: top;
         .content-title {
-          color: orange;
+          color: rgb(78, 78, 78);
           font-size: 1.2rem;
           text-align: center;
         }
@@ -70,12 +65,12 @@
             z-index: 400;
             margin: 1.5%;
             height: 170px;
-            border: 1px solid #ff7e00;
+            border: 1px solid  #b06ab3;
             .upload-img {
               @include position-center();
               font-size: 1.2rem;
               z-index: 400;
-              color: #ff7e00;
+              color: #b06ab3
             }
             .uploaded-img {
               position: absolute;
@@ -122,8 +117,8 @@
             .content-category, .class-title, .class-place {
               width: 90%;
               outline: 0;
-              border: 1px solid #ff7e00;
-              color: orange;
+              border: 1px solid  #b06ab3;
+              color: rgb(78, 78, 78);
               font-weight: 600;
               font-size: 1rem;
               padding: 10px;
@@ -147,7 +142,7 @@
                 margin: auto;
                 font-size: 0.6rem;
                 text-align: center;
-                color: orange;
+                color: rgb(78, 78, 78);
               }
               @include media("<large") {
                 .detail-sub-title {
@@ -163,8 +158,8 @@
                 width: 90%;
                 margin: 0.8rem auto;
                 outline: 0;
-                border: 1px solid #ff7e00;
-                color: orange;
+                border: 1px solid  #b06ab3;
+                color: rgb(78, 78, 78);
                 font-weight: 600;
                 font-size: 0.8rem;
                 padding: 10px;
@@ -194,7 +189,7 @@
             }
           }
           .char {
-            color: #ff7e00;
+            color: rgb(78, 78, 78);
             font-weight: bold;
             font-size: 1rem;
           }
@@ -204,7 +199,7 @@
             }
           }
           ::-webkit-input-placeholder {
-            color: orange;
+            color: rgb(78, 78, 78);
             font-size: 0.8rem;
           }
         }
@@ -230,7 +225,7 @@
   }
   .class-desc-wrap {
     width: 100%;
-    border: 1px solid red;
+    border: 1px solid  #b06ab3;
     margin: auto;
     .class-desc {
       width: 100%;
@@ -257,14 +252,14 @@
     margin: 2rem auto;
     text-align: center;
     .submit-btn {
-      border: 1px solid #ff7e00;
+      border: 1px solid  #b06ab3;
       background-color: white;
       padding: 10px;
-      color: #ff7e00;
+      color: #b06ab3;
       font-size: 1rem;
       cursor: pointer;
       &:hover {
-        background-color: #ff7e00;
+        background-color: #b06ab3;
         color: white;
       }
     }

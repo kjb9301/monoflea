@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './SellerList.scss';
 import Like from 'components/common/Like'
-
+import CategoryBtn from 'containers/seller/CategoryButton'
 const cx = classNames.bind(styles)
 const viewCnt = {};
 
@@ -70,8 +70,11 @@ const SellerList = ({ sellerList ,detailData, onLike, offLike }) =>{
     }
   );
   return (
-    <div className = {cx('seller-wrapper')}>
-      {sellerlist}
+    <div className = {cx('seller-total-wrapper')}>
+      <div className = {cx('category-btn')}><CategoryBtn/></div>
+      <div className = {cx('seller-wrapper')}>
+        {sellerlist}
+      </div>
     </div>
   )
 }

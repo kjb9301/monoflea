@@ -1,14 +1,13 @@
 @import 'common';
 
 .wrapper {
-  background-color: #e2e1e0;
   
   .market-header {
     padding-top: 1rem;
     min-height: 40vh;
-    background-image: url('/images/bg.svg'), url('/images/testBg1.jpg');
+    background-image:  url('/images/ch_color2.png');
     background-attachment: scroll, fixed;
-    background-size: auto, cover;
+    background-size: cover;
     background-position: bottom center, bottom center;
 
     display: flex;
@@ -19,77 +18,50 @@
     @include media ("<medium") {
       min-height: 50vh;
     }
-
-    .market-title {
-      flex: 1;
-      color: white;
-      font-size: 4rem;
-      letter-spacing: -0.3rem;
-      text-align: right;
-      padding-right: 2rem;
-      padding-left: 10%;
-      line-height: .5;
-      border-top: 1px solid rgba(255, 235, 59, 0.5);
-      border-bottom: 1px solid rgba(255, 235, 59, 0.5);
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25), -1px -1px 5px rgba(0, 0, 0, 0.5);
-
-      .market-subtitle {
-        font-size: 2.5rem;
-        letter-spacing: -.1rem;
-      }
-      
-      .market-title-name {
-        font-size: 1.5rem;
-        line-height: .9;
-        letter-spacing: initial;
+    .market-sub-wrapper{
+      display : flex;
+      flex-flow : column wrap;
+      .market-title {
         color: white;
-      }
-
-      @include media("<large") {
-        font-size: 3rem;
-        .market-title-name {
-          font-size: 1.2rem;
-        }
-      }
-      @include media("<medium") {
-        flex: initial;
-        width: 100%;
-        margin-bottom: 0.5rem;
-        .market-title-name {
-          display: none;
-          font-size: 1rem;
-        }
-      }
-    }
-
-    .market-description {
-      flex: 2;
-      padding: 2rem 0 2rem 3%;
-      border-left: 10px solid #FFEB3B;
-      color: white;
-      font-size: 1.2rem;
-      font-family: 'Sunflower', sans-serif;
-      line-height: 1.8;
-      background-color: rgba(black, 0.4);
-
-      strong {
-        color: #FFEB3B;
-        padding-left: 1rem;
-        font-size: 1.5rem;
-      }
-
-      @include media("<large") {
-        font-size: 1rem;
-      }
-      @include media("<medium") {
-        font-size: 0.9rem;
-        padding: 1rem;
+        font-size: 4rem;
         text-align: center;
-        strong {
+        font-weight: bolder;
+        @include media("<large") {
+          font-size: 3rem;
+          .market-title {
+            font-size: 1.2rem;
+          }
+        }
+        @include media("<medium") {
+          flex: initial;
+          width: 100%;
+          margin-bottom: 0.5rem;
+          .market-title {
+            display: none;
+            font-size: 1rem;
+          }
+        }
+      }
+      .market-description {
+        font-size: 14px;
+        color: white;
+        text-align: center;
+        @include media("<large") {
           font-size: 1rem;
+        }
+        @include media("<medium") {
+          font-size: 0.9rem;
+          padding: 1rem;
+          text-align: center;
+          strong {
+            font-size: 1rem;
+          }
         }
       }
     }
+    
+
+    
 
     .market-category {
       width: 100%;
