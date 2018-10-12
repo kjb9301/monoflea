@@ -9,7 +9,7 @@ import * as marketUIActions from 'store/modules/marketUI';
 
 class CalendarContainer extends Component {
   handleSelect = (dateParam) => {
-    const {MarketActions} = this.props;
+    const {MarketActions,MarketUIActions} = this.props;
 
     const curMonth = dateFns.format(dateParam,'M');
     const curYear = dateFns.format(dateParam,'YYYY');
@@ -19,16 +19,21 @@ class CalendarContainer extends Component {
     let selectDay = curDay.length < 2? '0' + curDay.toString() : curDay;
 
     const selectDate = `${curYear}-${selectMonth}-${selectDay}`;
-    
+
+    MarketUIActions.saveDate(selectDate);
     MarketActions.getMarketList('Y',selectDate);
   }
 
   handleSelectDate = (selectedDateParam) => {
-    const {MarketUIActions} = this.props;
-    
-    MarketUIActions.getSelectedDate(selectedDateParam);
-    
+    const {MarketUIActions} = this.props; 
+    MarketUIActions.getSelectedDate(selectedDateParam);  
     this.handleSelect(selectedDateParam);
+  }
+
+  handleAllDate = () => {
+    const {MarketActions,MarketUIActions} = this.props;
+    MarketUIActions.saveDate('undefined');
+    MarketActions.getMarketList('Y');
   }
 
   HandleNextMonth = () => {
@@ -66,7 +71,7 @@ class CalendarContainer extends Component {
 
   render() {
     const {loading,today,currentDate,selectedDate,isSelectedByDate} = this.props;
-    const {handleSelectDate,HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay,selectByDate} = this;
+    const {handleSelectDate,HandlePrevMonth,HandleNextMonth,HandlePrevDay,HandleNextDay,handleAllDate} = this;
     
     const dateFormat_Y = "YYYY";
     const dateFormat_M = "M";
@@ -104,7 +109,8 @@ class CalendarContainer extends Component {
           onNextMonth={HandleNextMonth} 
           onPrevDay={HandlePrevDay} 
           onNextDay={HandleNextDay}
-          onSelectDate={handleSelectDate}  
+          onSelectDate={handleSelectDate}
+          onAllDate={handleAllDate}  
         />
       </Fragment>
     );

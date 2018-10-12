@@ -64,7 +64,7 @@ class MarketDetailContainer extends Component {
   handleApply = async (id) => {
     const {MarketActions,MarketUIActions} = this.props;
     await MarketActions.applyMarket(id);
-    await MarketActions.getMarketList('N');
+    await MarketActions.getMarketList('N','undefined',this.props.list.marketList.length+8);
     const {list,message} = this.props;
     const idx = list.marketList.findIndex(market => market.market_id === id);
     const marketDetail = list.marketList[idx];
@@ -77,7 +77,7 @@ class MarketDetailContainer extends Component {
   handleApplyCancel = async (id) => {
     const {MarketActions,MarketUIActions} = this.props;
     MarketActions.applyCancel({id});
-    await MarketActions.getMarketList('N');
+    await MarketActions.getMarketList('N','undefined',this.props.list.marketList.length+8);
     const {list,message} = this.props; 
     const idx = list.marketList.findIndex(market => market.market_id === id);
     const marketDetail = list.marketList[idx];

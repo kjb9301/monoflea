@@ -13,6 +13,7 @@ const NEXT_WEEK = 'marketUI/NEXT_WEEK';
 const GET_SELECTED_DATE = 'marketUI/GET_SELECTED_DATE';
 const TOGGLE_MORE_STATE = 'marketUI/TOGGLE_MORE_STATE';
 const SELECT_BY_DATE = 'marketUI/SELECT_BY_DATE';
+const SAVE_DATE = 'marketUI/SAVE_DATE';
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -26,6 +27,7 @@ export const nextWeek = createAction(NEXT_WEEK);
 export const getSelectedDate = createAction(GET_SELECTED_DATE);
 export const toggleMoreState = createAction(TOGGLE_MORE_STATE);
 export const selectByDate = createAction(SELECT_BY_DATE);
+export const saveDate = createAction(SAVE_DATE);
 
 const initialState = fromJS({
   modal: {
@@ -56,7 +58,8 @@ const initialState = fromJS({
   },
   editTF: false,
   hasMore: true,
-  isSelectedByDate: false
+  isSelectedByDate: false,
+  savedDate: 'undefined'
 });
 
 export default handleActions({
@@ -136,5 +139,10 @@ export default handleActions({
   [SELECT_BY_DATE]: (state,action) => {
     const selectByDate = action.payload;
     return (selectByDate === true? state.set('isSelectedByDate',false) : state.set('isSelectedByDate',true));
+  },
+  [SAVE_DATE]: (state,action) => {
+    const saveDate = action.payload;
+    console.log(saveDate)
+    return state.set('saveDate',saveDate);
   }
 }, initialState);

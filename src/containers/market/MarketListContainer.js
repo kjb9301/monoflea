@@ -35,12 +35,12 @@ class MarketListContainer extends Component {
   }
 
   getMoreData = () => {
-    const { MarketActions, MarketUIActions, list, marketCount } = this.props;
+    const { MarketActions, MarketUIActions, list, marketCount, saveDate } = this.props;
     const marketList = list.marketList;
     if(marketList.length < marketCount){
       setTimeout(async() => {
         try {
-          return await MarketActions.getMarketList('Y','undefined',marketList.length+8);
+          return await MarketActions.getMarketList('Y',saveDate,marketList.length+8);
         } catch(e) {
           const {message} = e.response.data;
           return alert(message);
@@ -94,7 +94,8 @@ export default connect(
   (state) => ({
     list: state.market.get('data'),
     hasMore: state.marketUI.get('hasMore'),
-    marketCount: state.market.get('marketCount')
+    marketCount: state.market.get('marketCount'),
+    saveDate: state.marketUI.get('saveDate')
   }),
   (dispatch) => ({
     MarketActions: bindActionCreators(marketActions,dispatch),
