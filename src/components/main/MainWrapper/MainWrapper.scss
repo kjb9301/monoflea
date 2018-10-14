@@ -1,10 +1,10 @@
 @import 'common';
 
 .main-wrapper {
-  // background-image: url('./image/bg.svg'), url('./image/testBg2.jpg');
-  // background-attachment: scroll, fixed;
-  // background-size: auto,cover;
-  // background-position: bottom center, top center;
+  background-image: url('./image/bg.svg'), url('./image/testBg2.jpg');
+  background-attachment: scroll, fixed;
+  background-size: auto,cover;
+  background-position: bottom center, top center;
 
   .main-visual {
     width: 100%;
@@ -23,9 +23,8 @@
     .main-title > h1 {
       padding-bottom: 3rem;
       text-align: center;
-      color: #54823e;
+      color: white;
       font-size: 4.5rem;
-      // text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 
       @include media ("<medium") {
         font-size: 3rem;
@@ -44,8 +43,8 @@
       margin: 0 auto;
       padding: 1.5rem;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-      background: rgba(black, .5);
-      border: 1px solid lightblue;
+      background: rgba(black, .7);
+      border: 2px solid white;
       
 
       @include media ("<medium") {
@@ -64,14 +63,14 @@
   .main-navigation-wrap {
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    background: rgba(black, .7);
   }
   .main-nav {
     flex: 1;
-    height: 7rem;
+    height: 6rem;
     &:hover {
-      opacity: 0.7;
+      opacity: 1;
+      border: 3px solid rgb(2, 77, 2);
     }
     .nav-wrap {
       padding: 0.7rem;

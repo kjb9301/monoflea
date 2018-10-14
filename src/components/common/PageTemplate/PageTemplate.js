@@ -26,6 +26,7 @@ class PageTemplate extends Component {
 
   render() {
     const { children, match, logged, nickName } = this.props;
+    
     return (
       <div className={cx('page-template')}>
         <HeaderContainer isLogin={logged} userName={nickName} />

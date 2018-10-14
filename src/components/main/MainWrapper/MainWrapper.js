@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
 import { TiBusinessCard, TiMessages, TiWarningOutline } from 'react-icons/ti';
-import { GoCalendar, GoFileMedia } from 'react-icons/go';
+import { MdEventNote, MdAccountBox, MdAddBox, MdContentPaste } from 'react-icons/md';
 
 import aboutImg from './image/about.png';
 import questionImg from './image/question.png';
@@ -29,33 +29,35 @@ const MainWrapper = () => {
         <Link to="/about" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             {/* <img src={aboutImg} alt='About'/> */}
-            <TiWarningOutline style={{ 'fontSize': '50px', 'color': 'lightgray' }}/>
+            <TiWarningOutline style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>About</p>
           </div>
         </Link>
         <Link to="/markets" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             {/* <img src={marketImg} alt='플리마켓'/> */}
-            <GoCalendar style={{ 'fontSize': '50px', 'color': 'white' }}/>
+            <MdEventNote style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>플리마켓</p>
           </div>
         </Link>
         <Link to="/sellers" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
             {/* <img src={sellerImg} alt='셀러'/> */}
-            <GoFileMedia style={{ 'fontSize': '50px', 'color': 'white' }}/>
+            <MdAccountBox style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>셀러</p>
           </div>
         </Link>
         <Link to="/classes" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={classImg} alt='원데이클래스'/>
+            {/*<img src={classImg} alt='원데이클래스'/>*/}
+            <MdContentPaste style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>원데이클래스</p>
           </div>
         </Link>
         <Link to="/markets/recruitment" className={cx('main-nav')}>
           <div className={cx('nav-wrap')}>
-            <img src={hostImg} alt='등록/모집'/>
+            {/*<img src={hostImg} alt='등록/모집'/>*/}
+            <MdAddBox style={{ 'fontSize': '50px', 'color': 'white' }}/>
             <p>마켓등록/셀러모집</p>
           </div>
         </Link>

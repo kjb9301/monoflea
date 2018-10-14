@@ -75,7 +75,7 @@
       font-size: 1.2rem;
       font-family: 'Sunflower', sans-serif;
       line-height: 1.8;
-      background-color: rgba(black, 0.4);
+      background-color: rgba(black, 0.7);
 
       strong {
         color: rgb(252, 227, 181);
@@ -144,7 +144,7 @@
         }
         
         &:hover {
-          color: rgb(255, 235, 59);
+          color: rgb(76, 250, 206);
         }
 
         strong {
@@ -152,7 +152,7 @@
           border-radius: 0.5rem;
           font-size: 0.9rem;
           font-weight: 400;
-          background: rgba(0,0,0,.35);
+          background: rgba(0,0,0,.7);
 
           @include media ("<large") {
             font-size: .8rem;
@@ -172,7 +172,7 @@
         min-height: 6rem;
         border: 1px solid white;
         border-left-width: 0;
-        background-color: rgba(0,0,0,0.35);
+        background-color: rgba(0,0,0,0.7);
 
         @include media("<medium") {
           min-height: 5rem;
