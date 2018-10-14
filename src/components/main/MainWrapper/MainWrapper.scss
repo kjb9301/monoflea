@@ -1,10 +1,10 @@
 @import 'common';
 
 .main-wrapper {
-  background-image: url('./image/bg.svg'), url('./image/testBg2.jpg');
-  background-attachment: scroll, fixed;
-  background-size: auto,cover;
-  background-position: bottom center, top center;
+  // background-image: url('./image/bg.svg'), url('./image/testBg2.jpg');
+  // background-attachment: scroll, fixed;
+  // background-size: auto,cover;
+  // background-position: bottom center, top center;
 
   .main-visual {
     width: 100%;
@@ -23,9 +23,9 @@
     .main-title > h1 {
       padding-bottom: 3rem;
       text-align: center;
-      color: white;
+      color: #54823e;
       font-size: 4.5rem;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+      // text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 
       @include media ("<medium") {
         font-size: 3rem;
@@ -70,27 +70,32 @@
   .main-nav {
     flex: 1;
     height: 7rem;
-    &:nth-child(1) {
-      background-color: rgba($lightgray, 0.8);
-    }
-    &:nth-child(2) {
-      background-color: rgba($darkgray, 0.8);
-    }
-    &:nth-child(3) {
-      background-color: rgba($lightorange, 0.8);
-    }
-    &:nth-child(4) {
-      background-color: rgba(#D6C1C1, 0.8);
-    }
-    &:nth-child(5) {
-      background-color: rgba($lightyellow, 0.8);
-    }
-    &:nth-child(6) {
-      background-color: rgba(#93B7B7, 0.8);
-    }
-    &:nth-child(7) {
-      background-color: rgba($navy, 0.8);
-    }
+    // background-color: #54823e;
+    // background-image: url(''), url('/images/ch_color2.png');
+    // background-attachment: scroll, fixed;
+    // background-size: auto, cover;
+    // background-position: bottom center, bottom center;
+    // &:nth-child(1) {
+    //   background-color: rgba($lightgray, 0.8);
+    // }
+    // &:nth-child(2) {
+    //   background-color: rgba($darkgray, 0.8);
+    // }
+    // &:nth-child(3) {
+    //   background-color: rgba($lightorange, 0.8);
+    // }
+    // &:nth-child(4) {
+    //   background-color: rgba(#D6C1C1, 0.8);
+    // }
+    // &:nth-child(5) {
+    //   background-color: rgba($lightyellow, 0.8);
+    // }
+    // &:nth-child(6) {
+    //   background-color: rgba(#93B7B7, 0.8);
+    // }
+    // &:nth-child(7) {
+    //   background-color: rgba($navy, 0.8);
+    // }
     &:hover {
       opacity: 0.7;
     }
