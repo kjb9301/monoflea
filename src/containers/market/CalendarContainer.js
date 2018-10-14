@@ -8,7 +8,7 @@ import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
 
 class CalendarContainer extends Component {
-  handleSelect = (dateParam) => {
+  handleSelect = async (dateParam) => {
     const {MarketActions,MarketUIActions} = this.props;
     const curMonth = dateFns.format(dateParam,'M');
     const curYear = dateFns.format(dateParam,'YYYY');
@@ -19,9 +19,10 @@ class CalendarContainer extends Component {
 
     const selectDate = `${curYear}-${selectMonth}-${selectDay}`;
     MarketUIActions.saveDate(selectDate);
+    MarketUIActions.toggleMoreState(true);
+    await MarketActions.getMarketList('Y', selectDate, 8);
     const {list} = this.props;
-    const limit = (list.marketList.length < 8 ? 'undefined': list.marketList.length + 8)
-    MarketActions.getMarketList('Y',selectDate,limit);
+    if(list.marketList.length < 8) MarketUIActions.toggleMoreState(false);
   }
 
   handleSelectDate = (selectedDateParam) => {
@@ -30,11 +31,11 @@ class CalendarContainer extends Component {
     this.handleSelect(selectedDateParam);
   }
 
-  handleAllDate = () => {
+  handleAllDate = async () => {
     const {MarketActions,MarketUIActions} = this.props;
     MarketUIActions.saveDate('undefined');
-    const {list} = this.props;
-    MarketActions.getMarketList('Y');
+    MarketUIActions.toggleMoreState(true);
+    await MarketActions.getMarketList('Y');
   }
 
   HandleNextMonth = () => {

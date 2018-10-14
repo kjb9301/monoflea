@@ -37,12 +37,9 @@ class MarketListContainer extends Component {
   getMoreData = () => {
     const { MarketActions, MarketUIActions, list, marketCount, saveDate } = this.props;
     const marketList = list.marketList;
-    if(marketList.length < marketCount){
+    if(marketList.length < marketCount) {
       setTimeout(async() => {
         try {
-          console.log(marketList.length)
-          console.log(marketCount)
-          console.log(saveDate)
           return await MarketActions.getMarketList('Y',saveDate,marketList.length+8);
         } catch(e) {
           const {message} = e.response.data;
