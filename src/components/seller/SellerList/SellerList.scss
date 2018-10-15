@@ -10,7 +10,6 @@
   }
   .seller-wrapper {
     max-width: 1320px;
-    // margin: 0 auto;
     padding: 30px 20px 20px;
   
     display: grid;
@@ -22,15 +21,13 @@
       background: white;
       font-size: 12px;
       color: #555;
-  
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
-      border : 1px solid rgb(180, 176, 176);
-      // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
-      // transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+      // border : 1px solid rgb(180, 176, 176);
   
       &:hover {
-        box-shadow: 0 14px 13px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.14);
+        box-shadow: 0 5px 3px rgba(0,0,0,0.1), 0 5px 5px rgba(0,0,0,0.14);
       }
   
       .seller-head {
@@ -39,10 +36,7 @@
         align-items: flex-start;
         height: 250px;
         width: 100%;
-        // margin-left: 20px;
-        // margin-right: 20px;
         img {
-          // border-radius: 50%;
           width: 100%;
           height: 250px;
         }
@@ -110,15 +104,7 @@
       }
     }
       
-      
-      &:nth-child(even) {
-        grid-row: span 21;
-      }
-  
-      &:nth-child(odd) {
-        grid-row: span 20;
-      }
-    }
+  }
   
     .seller-title-icon {
       padding: 0 0 0 5px;

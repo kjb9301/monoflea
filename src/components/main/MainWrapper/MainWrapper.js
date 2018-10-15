@@ -6,14 +6,6 @@ import { Link } from 'react-router-dom';
 import { TiBusinessCard, TiMessages, TiWarningOutline } from 'react-icons/ti';
 import { MdEventNote, MdAccountBox, MdAddBox, MdContentPaste } from 'react-icons/md';
 
-import aboutImg from './image/about.png';
-import questionImg from './image/question.png';
-import sellerImg from './image/seller.png';
-import hostImg from './image/host.png';
-import classImg from './image/class.png';
-import communityImg from './image/community.png';
-import marketImg from './image/market.png';
-
 const cx = classNames.bind(styles);
 
 const MainWrapper = () => {

@@ -87,25 +87,27 @@
           height: 100%;
           opacity: 0;
 
-          .item-name {
-            position:absolute;
-            text-align: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            top: 150px;
-            left: 95px;
-          }
-  
-          .item-dDay {
-            position:absolute;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            left: 100px;
-            //right: 0;
-            top: 0;
-            color: yellow;
+          .item-desc {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            .item-name {
+              text-align: center;
+              color: white;
+              font-size: 1.4rem;
+              font-weight: bold;
+              width : 100%;
+            }
+    
+            .item-dDay {
+              text-align: center;
+              font-size: 1.2rem;
+              font-weight: bold;
+              margin-top: 10px;
+              color: skyblue;
+            }
           }
         }
        
@@ -172,24 +174,27 @@
           height: 100%;
           opacity: 0;
 
-          .item-name {
-            position:absolute;
-            text-align: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            top: 150px;
-            left: 95px;
-          }
-  
-          .item-dDay {
-            position:absolute;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            right: 0;
-            top: 0;
-            color: red;
+          .item-desc {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            .item-name {
+              text-align: center;
+              color: white;
+              font-size: 1.4rem;
+              font-weight: bold;
+              width : 100%;
+            }
+    
+            .item-dDay {
+              text-align: center;
+              font-size: 1.2rem;
+              font-weight: bold;
+              margin-top: 10px;
+              color: skyblue;
+            }
           }
         }
        

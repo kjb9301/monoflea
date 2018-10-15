@@ -1,10 +1,33 @@
 @import 'common';
 
-
 .detail-modal {
   width: 100%;
   margin: auto;
   text-align: center;
+  position: relative;
+  .close-box {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right:-50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+  @include media("<medium") {
+    .close-box {
+      width: 40px;
+      height: 40px;
+      right: 0;
+      line-height: 40px;
+      font-size: 1.2rem;
+    }
+  }
   .img-style {
     width: 700px;
     height: 700px;
@@ -99,7 +122,7 @@
   .content-wrapper {
     margin-top: 35px;
     .info-box {
-      width: 50%;
+      width: 45%;
       display: inline-block;
       margin-top: 15px;
       .info-title {
@@ -137,343 +160,3 @@
     }
   }
 }
-
-// .detail-modal {
-//   width: 100%;
-//   .close-box {
-//     width: 100%;
-//     text-align: right;
-//     .close {
-//       font-size: 20px;
-//       font-weight: bold;
-//       cursor: pointer;
-//     }
-//   }
-//   .detail-top {
-//     width: 100%;
-//     height: auto;
-//     text-align: left;
-//     .classCategory {
-//       padding: 10px;
-//       font-size: 15px;
-//       font-weight: bold;
-//       background-color: #037367;
-//       color: white;
-//       display: inline-block;
-//     }
-//     .className {
-//       padding: 10px;
-//       font-size: 15px;
-//       font-weight: bold;
-//       margin-left: 10px;
-//       border-left: 3px solid #FFEB3B;
-//       display: inline-block;
-//     }
-//   }
-//   .content-wrapper {
-//     width: 100%;
-//     margin: 10px auto;
-//     .content-box {
-//       width: 100%;
-//       .inner-half-box {
-//         display: inline-block;
-//         vertical-align: top;
-//         width: 50%;
-//         .img-box {
-//           width: 100%;
-//           text-align: center;
-//           .profile-img {
-//             width: 250px;
-//             height: 250px;
-//             border-radius: 50%;
-//           }
-//         }
-//         .info-box {
-//           display: inline-block;
-//           width: 50%;
-//           text-align: left;
-//           padding: 10px;
-//           .info-title {
-//             padding-left: 5px;
-//             border-left: 3px solid #037367;
-//             font-size: 14px;
-//             font-weight: bold;
-//           }
-//           .info-content {
-//             margin-top: 5px;
-//             font-size: 14px;
-//           }
-//           .line-height-1-6 {
-//             line-height: 1.6;
-//           }
-//         }
-//         .w-100 {
-//           width: 100%;
-//         }
-//       }
-//     }
-//     .margin-top-50 {
-//       margin-top: 50px;
-//     }
-//   }
-//   .button-wrap {
-//     width: 80%;
-//     margin: auto;
-//     text-align: center;
-//     padding: 15px;
-//     .classBtn {
-//       width: 100px;
-//       font-size: 15px;
-//       font-weight: 600;
-//       padding: 8px;
-//       margin: 8px;
-//       border: 1px solid #037367;
-//       color: #037367;
-//       background-color: white;
-//       cursor: pointer;
-//       &:hover {
-//         color: white;
-//         background-color: #037367;
-//       }
-//     }
-//   }
-//   .margin-top-30 {
-//     margin-top: 30px;
-//   }
-// }
-
-// .modalForm {
-
-//   /* The Close Button */
-//   .close {
-//     position: absolute;
-//     font-size: 4rem;
-//     font-weight: bold;
-//     margin-left: 0;
-//     right: 5px;
-//     top: -0.6rem;
-//     line-height: 1;
-//     color: #aaa;
-
-//     &:hover,
-//     &:focus {
-//       color: #000;
-//       text-decoration: none;
-//       cursor: pointer;
-//     }
-//   }
-
-//   .modalTitle {
-//     margin-top: 1rem;
-
-//     .classCategory {
-//       display: inline-block;
-//       padding: 0 2rem;
-//       margin-bottom: .5rem;
-//       margin-right: 1rem;
-//       line-height: 1.8;
-//       border: 1px solid #c4d4e0;
-//       font-size: 1rem;
-//       border-radius: .5rem;
-//       color: #aec9dd;
-//     }
-
-//     .className {
-//       margin-right: 2rem;
-//       display: inline-block;
-//       font-size: 1.2rem;
-//       font-weight: bold;
-//       text-align: center;
-//       color: rgba(0,0,0,0.6);
-
-//       @include media ("<medium") {
-//         margin-right: 1rem;
-//       }
-
-//       @include media ("<small") {
-//         width: 100%;
-//         margin: 0;
-//         padding: .3rem;
-//         border-radius: 1rem;
-//         background: #f2f2f2;
-//       }
-//     }
-//   }
-
-
-//   .modalInfo {
-//     padding-top: 1.2rem;
-//     margin-bottom: 1.2rem;
-//     // font-size: 2rem;
-//     // border: 1px solid black;
-    
-//     .classProfileImg {
-//       display: inline-block;
-//       // padding-left: 1rem;
-//       // padding-right: 1rem;
-//       width: 40%;
-//       text-align: center;
-//       // border: 1px solid orange;
-
-//       img {
-//         max-width: 100%;
-//         border-radius: 50%;
-//       }
-
-//       @include media ("<large") {
-//         width: 30%;
-//       }
-
-//       @include media ("<medium") {
-//         width: 100%;
-//         margin-bottom: 1rem;
-//       }
-
-//       @include media ("<small") {
-
-//       }
-//     }
-
-//     .classInfo {
-//       display: inline-block;
-//       width: 60%;
-//       vertical-align: top;
-//       // line-height: 1.6;
-//       // border: 1px solid orangered;
-
-//       .classNickname {
-//         margin-bottom: .5rem;
-//       }
-
-//       .classPlace {
-//         margin-right: 0;
-//       }
-
-//       .classPlaceContent {
-//         display: inline-block;
-//         width: auto;
-//         min-width: 8rem;
-//         margin-left: 1rem;
-//         border: initial;
-//         color: inherit;
-//         margin-top: .3rem;
-//       }
-
-//       .classRegCnt {
-//         color: #2196f3;
-//       }
-
-//       em {
-//         padding: 0 10px;
-//       }
-
-//       div {
-//         padding: .2rem;
-//         font-size: .8rem;
-//       }
-
-//       span {
-//         display: inline-block;
-//         width: 5rem;
-//         margin-right: 1rem;
-//         text-align: center;
-//         color: #aec9dd;
-//         border: 1px solid #c4d4e0;
-//         border-radius: .5rem;
-//       }
-
-//       @include media ("<large") {
-//         width: 70%;
-//         padding-left: 1rem;
-//       }
-
-//       @include media ("<medium") {
-//         width: 100%;
-//       }
-
-//       @include media ("<small") {
-
-//       }
-
-//       .classBtnWrap {
-//         text-align: center;
-
-//         .classBtn {
-//           display: inline-block;
-//           margin: 1rem auto;
-//           padding: .5rem 1rem;
-//           text-align: center;
-//           background-color: #4CAF50; /* Green */
-//           color: white;
-//           outline: none;
-//           padding: 15px 32px;
-//           text-align: center;
-//           text-decoration: none;
-//           display: inline-block;
-//           font-size: 16px;
-//           border: 1px solid white;
-//           cursor: pointer;
-//           border-radius: 10px;
-          
-//           &:hover {
-//             border: 1px solid #4CAF50;
-//             color: #4CAF50;
-//             background-color: white;
-//           }
-    
-//           @include media("<medium") {
-//             text-align: center;
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   .modalDesc {
-//     margin: 1rem 0 2rem 0;
-//     padding: 1rem 2rem 2rem;
-//     font-size: .8rem;
-//     line-height: 2;
-//     border-radius: .5rem;
-//     // border: 1px solid #f2f2f2;
-//     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-//     @include media("<medium") {
-//       padding: 1rem;
-//     }
-
-//     .modalTitle {
-//       display: inline-block;
-//       padding-left: 20px;
-//       margin-bottom: 20px;
-//       font-size: 18px;
-//       font-weight: bold;
-//       border-left: 10px solid orange;
-//     }
-
-//     .modalContent {
-//       padding-left: 10px;
-//       padding-right: 10px;
-//     }
-    
-//     .modalImage {
-//       text-align: center;
-//       padding-top: 2rem;
-      
-//       .img-box {
-//         display: inline-block;
-//         .img-btn {
-//           span {
-//             cursor: pointer;
-//             font-size: 2rem;
-//           }
-//           @include text-right();
-//         }
-//         img {
-//           max-width: 100%;
-//           height: auto;
-//         }
-//       }
-//     }
-//   }
-// }

@@ -9,95 +9,33 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
   const {host_id,market_id,market_name,market_place,market_poster,market_desc,start_date,end_date,seller_cnt,seller_limit_cnt,market_regs,reg_start_date,reg_end_date,confirmYN} = marketDetail;
 
   return (
-    <ModalWrapper visible={visible}>
-      <div className={cx('modalForm')}>
-        <div className={cx('close-box')}>
-          <span className={cx('close')} onClick={onClose}>&times;</span>
+    <ModalWrapper  visible={visible}>
+      <div className={cx('detail-modal')}>
+        <div className={cx('close-box')} onClick={onClose}>
+          &times;
         </div>
-        <div className={cx('wrapper')}>
-          <div className={cx('marketPosterWrap')}>
-            <img 
-              src={market_poster} 
-              alt={market_name}
-              className={cx('marketPoster')}
-            />
-          </div>
-        </div>
-        <div className={cx('wrapper')}>
-          <div className={cx('data-wrap')}>
-            <div className={cx('animation')}>
-              <span className={cx('label')}>마켓이름</span>
-            </div>
-            <div className={cx('content-box')}>
-              {!editTF ? <p className={cx('content-title')}>{market_name}</p> : <input className={cx('content-title')} type="text" name="market_name" value={market_name} onChange={onChange}/>}
-            </div>
-          </div>
-          <div className={cx('data-wrap')}>
-            <div className={cx('animation')}>
-              <span className={cx('label')}>주최장소</span>
-            </div>
-            <div className={cx('content-box')}>
-              {!editTF ? <p className={cx('content-title')}>{market_place}</p> : <input className={cx('content-title')} type="text" name="market_place" value={market_place} onChange={onChange}/>}
-            </div>
-          </div>
-          <div className={cx('data-wrap')}>
-            <div className={cx('animation')}>
-                <span className={cx('label')}>마켓일정</span>
-            </div>
-            <div className={cx('content-box')}>
-              <p className={cx('content-title')}>
-                {!editTF ? <span>{start_date}</span> : <input className={cx('label')} type="date" name="start_date" value={start_date} onChange={onChange} className={cx('date')}/>}
-                <span className={cx('char')}> ~ </span>
-                {!editTF ? <span>{end_date}</span> : <input className={cx('label')} type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange} className={cx('date')}/>}
-              </p>
-            </div>
-          </div>
-          {
-            confirmYN === 'Y' ? 
-            <Fragment></Fragment> :
-            <Fragment>
-              <div className={cx('data-wrap')}>
-                <div className={cx('animation')}>
-                  <span className={cx('label')}>모집기간</span>
-                </div>
-                <div className={cx('content-box')}>
-                  <p className={cx('content-title')}>                   
-                    {!editTF ? <span>{reg_start_date}</span> : <input className={cx('label')} type="date" name="reg_start_date" value={reg_start_date} onChange={onChange}/>}
-                    <span className={cx('char')}> ~ </span>
-                    {!editTF ? <span>{reg_end_date}</span> : <input className={cx('label')} type="date" name="reg_end_date" value={reg_end_date} onChange={onChange}/>}
-                  </p>
-                </div>
-              </div>
-              <div className={cx('data-wrap')}>
-                <div className={cx('animation')}>
-                  <span className={cx('label')}>모집인원</span>
-                </div>
-                <div className={cx('content-box')}>
-                  <p className={cx('content-title')}>
-                    <span>{seller_cnt}</span>
-                    <span className={cx('char')}> / </span>
-                    {!editTF ? <span>{seller_limit_cnt}</span> : <input className={cx('label')} type="number" name="seller_limit_cnt" value={seller_limit_cnt} onChange={onChange}/>}
-                  </p>
-                </div>  
-              </div>
-           </Fragment>
-          }
-          <div className={cx('data-wrap')}>
-            <div className={cx('animation')}>
-              <span className={cx('label')}>상세정보</span>
-            </div>
-            <div className={cx('content-box')}>
-              {!editTF ? <p className={cx('content-title')}>{market_desc}</p> : <textarea className={cx('label')} cols="40" rows="10" name="market_desc" value={market_desc} onChange={onChange}/>}
+        <div className={cx('w-50', 'd-inline-block')}>
+          <div className={cx('content-box')}>
+            <div className={cx('images')}>
+              <img  
+                src={market_poster} 
+                alt={market_name}
+                className={cx('poster-image')}
+              />
             </div>
           </div>
         </div>
-          <div className={cx('button-wrap')}>
-            {
+        <div className={cx('w-50', 'd-inline-block', 'p-20', 'text-left', 'right')}>
+          <div className={cx('detail-top')}>{
               confirmYN === 'N' && userType !== 'H' ? 
               (
                 market_regs[0] ? 
-                <button className={cx('market-button')} onClick={() => onApplyCancel(market_id)}>취소</button> :
-                <button className={cx('market-button')} onClick={() => onApply(market_id)}>신청</button>
+                <div className={cx('button-box')}>
+                  <button className={cx('classBtn')} onClick={() => onApplyCancel(market_id)}>취소</button> 
+                </div> :
+                <div className={cx('button-box')}>
+                  <button className={cx('classBtn')} onClick={() => onApply(market_id)}>신청</button>
+                </div>
               ) :
               <Fragment></Fragment>
             }
@@ -109,32 +47,32 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                     <Fragment>
                       {
                         editTF === false ?
-                          <Fragment>
-                            <button className={cx('market-button')} onClick={() => onApplyClose(market_id)}>마감하기</button>
-                            <button className={cx('market-button')} onClick={() => onApplyModal(market_id)}>참여자확인</button>
-                            <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
-                            <button className={cx('market-button')} onClick={onEdit}>수정</button>
-                          </Fragment>
+                          <div className={cx('button-box')}>
+                            <button className={cx('classBtn')} onClick={() => onApplyClose(market_id)}>마감하기</button>
+                            <button className={cx('classBtn')} onClick={() => onApplyModal(market_id)}>참여자확인</button>
+                            <button className={cx('classBtn')} onClick={onAskRemove}>삭제</button>
+                            <button className={cx('classBtn')} onClick={onEdit}>수정</button>
+                          </div>
                         :
-                          <Fragment>
-                            <button className={cx('market-button')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                            <button className={cx('market-button')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
-                          </Fragment>
+                          <div className={cx('button-box')}>
+                            <button className={cx('classBtn')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                            <button className={cx('classBtn')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                          </div>
                       }                   
                     </Fragment>  
                     :
                     <Fragment>
                       {
                         editTF === true ?
-                          <Fragment>
-                            <button className={cx('market-button')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                            <button className={cx('market-button')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
-                          </Fragment>
+                          <div className={cx('button-box')}>
+                            <button className={cx('classBtn')} onClick={() => onCancel(market_id,confirmYN)}>취소</button>
+                            <button className={cx('classBtn')} onClick={() => onUpdate(market_id,editTF)}>완료</button>
+                          </div>
                         :
-                          <Fragment>
-                            <button className={cx('market-button')} onClick={onAskRemove}>삭제</button>
-                            <button className={cx('market-button')} onClick={onEdit}>수정</button>
-                          </Fragment>
+                          <div className={cx('button-box')}>
+                            <button className={cx('classBtn')} onClick={onAskRemove}>삭제</button>
+                            <button className={cx('classBtn')} onClick={onEdit}>수정</button>
+                          </div>
                       }                   
                     </Fragment>
                 }            
@@ -142,226 +80,71 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
             :<Fragment></Fragment>  
           }             
           </div>
+          <div className={cx('content-wrapper')}>
+            <div className={cx('info-box')}>
+              <h3 className={cx('info-title')}>마켓이름</h3>
+              {
+                !editTF ?
+                <p className={cx('info-content')}>{market_name}</p> :
+                <input className={cx('info-content')} type="text" name="market_name" value={market_name} onChange={onChange}/>
+              }
+            </div>
+            <div className={cx('info-box')}>
+              <h3 className={cx('info-title')}>주최장소</h3>
+              {
+                !editTF ?
+                <p className={cx('info-content')}>{market_place}</p> :
+                <input className={cx('info-content')} type="text" name="market_place" value={market_place} onChange={onChange}/>
+              }
+            </div>
+
+            <div className={cx('info-box')}>
+              <h3 className={cx('info-title')}>마켓일정</h3>
+              {
+                !editTF ? 
+                <p className={cx('info-content')}>{start_date} ~ {end_date}</p> :
+                <p className={cx('info-content')}>
+                  <input className={cx('label')} type="date" name="start_date" value={start_date} onChange={onChange}/>
+                  <input className={cx('label')} type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange}/>
+                </p>
+              }
+            </div>
+            {
+              confirmYN === 'Y' ? 
+              <Fragment></Fragment> :
+              <Fragment>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>모집기간</h3>
+              {
+                !editTF ? 
+                <p className={cx('info-content')}>{reg_start_date} ~ {reg_end_date}</p> :
+                <p className={cx('info-content')}>
+                  <input className={cx('label')} type="date" name="reg_start_date" value={reg_start_date} onChange={onChange}/>
+                  <input className={cx('label')} type="date" name="reg_end_date" placeholder="&nbsp;" value={reg_end_date} onChange={onChange}/>
+                </p>
+              }
+              </div>
+              <div className={cx('info-box')}>
+                <h3 className={cx('info-title')}>모집인원</h3>
+                <p className={cx('info-content')}>
+                  {seller_cnt} / {!editTF ? {seller_limit_cnt} : <input className={cx('label')} type="number" name="seller_limit_cnt" placeholder="&nbsp;" value={seller_limit_cnt} onChange={onChange}/>}
+                </p>
+              </div>
+              </Fragment>
+            }
+            <div className={cx('detail-wrap')}>
+              <h3 className={cx('info-title')}>상세설명</h3>
+              {
+                !editTF ?
+                <p className={cx('info-content', 'line-height-1-6')}>{market_desc}</p> :
+                <textarea className={cx('info-content', 'line-height-1-6')} cols="20" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
+              }
+            </div>
+          </div>
         </div>
+      </div>
     </ModalWrapper>
   );
 };
-      {/* <div>
-      {confirmYN === 'Y'?
-        <div>
-        {editTF === true?
-          <div className={cx('modalForm')}>
-            <div className={cx('close-box')}>
-              <span className={cx('close')} onClick={onClose}>&times;</span>
-            </div>
-            <div className={cx('modalTitle')}>
-              <div className={cx('marketPoster')}><img src={market_poster} alt={market_name}/></div>
-            </div>
-            <div className={cx('modalInfo')}>  
-              <div className={cx('marketInfo')}>
-                <div className={cx('marketName')}>
-                  <div className={cx('animation')}>
-                    <span className={cx('label')}>마켓이름</span>
-                  </div>
-                  <div className={cx('content-box')}>
-                    <input type="text" name="market_name" placeholder="&nbsp;" value={market_name} onChange={onChange}/>
-                  </div>
-                </div>
-                <div className={cx('marketPlace')}>
-                  <div className={cx('animation')}>
-                    <span className={cx('label')}>개설장소</span>
-                  </div>
-                  <div className={cx('content-box')}>
-                    <input type="text" name="market_place" placeholder="&nbsp;" value={market_place} onChange={onChange}/>
-                  </div>
-                  <div className={cx('animation')}>
-                    <span className={cx('label')}>마켓일정</span>
-                  </div>
-                </div>
-                <div className={cx('marketPeriod')}>
-                  <div className={cx('content-box')}>
-                    <input type="date" name="start_date" placeholder="&nbsp;" value={start_date} onChange={onChange} className={cx('date')}/> ~ 
-                    <input type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange} className={cx('date')}/>
-                  </div>
-                </div>
-                <div className={cx('modalDesc')}>
-                  <div className={cx('label')}>상세설명</div>
-                  <textarea cols="40" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
-                </div>
-              </div>
-              {user_host_id === host_id?
-                <div className={cx('classBtn')}>
-                  <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                  <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
-                </div>
-              :
-                <div></div>
-              }
-            </div>
-          </div>
-        :
-          <div className={cx('modalForm')}>
-            <span className={cx('close')} onClick={onClose}>&times;</span>
-            <div className={cx('modalTitle')}>
-              <div className={cx('marketPoster')}><img src={market_poster} alt="market_name"/></div>
-            </div>
-            <div className={cx('modalInfo')}>
-              <div className={cx('marketInfo')}>
-                <div className={cx('marketName')}>
-                <span className={cx('marketInfoTitle')}>마켓이름</span>
-                  <span className={cx('marketPlaceContent')}>{market_name}</span>
-                </div>
-                <div className={cx('marketPlace')}>
-                  <span className={cx('marketInfoTitle')}>개설장소</span>
-                  <span className={cx('marketPlaceContent')}>{market_place}</span>
-                </div>
-                <div className={cx('marketPeriod')}>
-                  <span className={cx('marketInfoTitle')}>마켓일정</span>
-                  {start_date}~{end_date}
-                </div>
-                <div className={cx('modalDesc')}>
-                  <h3>상세설명</h3>
-                  
-                  <p>{market_desc}</p>
-                </div>
-              </div>
-              {user_host_id === host_id?
-                <div className={cx('classBtn')}>
-                  <button onClick={onAskRemove}>삭제</button>
-                  <button onClick={onEdit}>수정</button>
-                </div>
-                :
-                <div></div>
-              }
-            </div>
-          </div>
-        }
-        </div>        
-      :
-        <div>
-        {userType === 'H'?
-          <div>
-          {editTF === false?
-            <div className={cx('modalForm')}>
-              <span className={cx('close')} onClick={onClose}>&times;</span>
-              <div className={cx('modalTitle')}>
-                <span className={cx('marketName')}>{market_name}</span>
-              </div>
-              <div className={cx('modalInfo')}>
-                <div className={cx('marketPoster')}><img src={market_poster} alt={market_name}/></div>
-                <div className={cx('marketInfo')}>
-                  <div className={cx('marketPlace')}>
-                    <span className={cx('marketInfoTitle')}>개설장소</span><span className={cx('marketPlaceContent')}>{market_place}</span>
-                  </div>
-                  <div className={cx('marketPeriod')}><span className={cx('marketInfoTitle')}>마켓일정</span>{start_date}~{end_date}</div>
-                  <div className={cx('marketRegDate')}><span className={cx('marketInfoTitle')}>모집기간</span>{reg_start_date}~{reg_end_date}</div>
-                  <div className={cx('marketLimitCnt')}><span className={cx('marketInfoTitle')}>모집인원</span>{seller_cnt}/{seller_limit_cnt}</div>
-                </div>
-                {user_host_id === host_id?
-                  <div className={cx('classBtn')}>
-                    <button onClick={() => onApplyClose(market_id)}>마감하기</button>
-                    <button onClick={() => onApplyModal(market_id)}>참여자확인</button>
-                    <button onClick={onEdit}>수정하기</button>
-                    <button onClick={onAskRemove}>삭제하기</button>
-                  </div>
-                  :
-                  <div></div>
-                }
-                <div className={cx('modalDesc')}>
-                  <h3>상세설명</h3>
-                  <p>{market_desc}</p>
-                </div>
-              </div>
-            </div>
-            :
-            <div className={cx('modalForm')}>
-              <span className={cx('close')} onClick={onClose}>&times;</span>
-              <div className={cx('modalTitle')}>
-                <span className={cx('marketName')}>
-                  <input type="text" name="market_name" value={market_name} onChange={onChange}/>
-                </span>
-              </div>
-              <div className={cx('modalInfo')}>
-                <div className={cx('marketPoster')}>
-                  <img src={market_poster} alt={market_name}/>
-                </div>
-                <div className={cx('marketInfo')}>     
-                  <div className={cx('marketPlace')}>
-                    <span className={cx('marketInfoTitle')}>개설장소</span>
-                    <span className={cx('marketPlaceContent')}>
-                      <input type="text" name="market_place" value={market_place} onChange={onChange}/>
-                    </span>
-                  </div>
-                  <div className={cx('marketPeriod')}>
-                    <span className={cx('marketInfoTitle')}>마켓일정</span>
-                    <input type="date" name="start_date" value={start_date} onChange={onChange}/> ~ 
-                    <input type="date" name="end_date" value={end_date} onChange={onChange}/>  
-                  </div>
-                  <div className={cx('marketRegDate')}>
-                    <span className={cx('marketInfoTitle')}>모집기간</span>
-                    <input type="date" name="reg_start_date" value={reg_start_date} onChange={onChange}/> ~ 
-                    <input type="date" name="reg_end_date" value={reg_end_date} onChange={onChange}/>  
-                  </div>
-                  <div className={cx('marketLimitCnt')}>
-                    <span className={cx('marketInfoTitle')}>모집인원</span>
-                    {seller_cnt}/<input type="number" name="seller_limit_cnt" value={seller_limit_cnt} onChange={onChange}/> 
-                  </div>
-                  {user_host_id === host_id?
-                    <div className={cx('classBtn')}>
-                      <button onClick={() => onCancel(market_id,confirmYN)}>취소</button>
-                      <button onClick={() => onUpdate(market_id,editTF)}>완료</button>
-                    </div>
-                    :
-                    <div></div>
-                  }
-                  <div className={cx('modalDesc')}>
-                    <h3>상세설명</h3>
-                    <p>{market_desc}</p>
-                  </div>                  
-                </div>
-              </div>
-            </div>
-          }
-          </div>
-        :
-          <div className={cx('modalForm')}>
-            <span className={cx('close')} onClick={onClose}>&times;</span>
-            <div className={cx('modalTitle')}>
-              <div className={cx('marketPoster')}>
-                <img src={market_poster} alt={market_name}/>
-              </div>
-            </div>
-            <div className={cx('modalInfo')}>
-              
-              <div className={cx('marketInfo')}>
-                <div className={cx('marketName')}><span className={cx('marketInfoTitle')}>마켓이름</span>{market_name}</div>
-                <div className={cx('marketPlace')}>
-                  <span className={cx('marketInfoTitle')}>개설장소</span>
-                  <strong className={cx('marketPlaceContent')}>{market_place}</strong>
-                </div>
-                <div className={cx('marketPeriod')}><span className={cx('marketInfoTitle')}>마켓일정</span>{start_date} ~ {end_date}</div>
-                <div className={cx('marketRegDate')}><span className={cx('marketInfoTitle')}>모집기간</span>{reg_start_date} ~ {reg_end_date}</div>
-                <div className={cx('marketLimitCnt')}><span className={cx('marketInfoTitle')}>모집인원</span>{seller_cnt} / {seller_limit_cnt}</div>
-                <div className={cx('modalDesc')}>
-                  <div className={cx('label')}>상세설명</div>
-                  <textarea cols="40" rows="5" name="market_desc" value={market_desc} readOnly/>
-                </div>
-              </div>
-              <div className={cx('classBtn')}>
-                <div>
-                {market_regs[0]?
-                  <button onClick={() => onApplyCancel(market_id)}>취소</button> 
-                :
-                  <button onClick={() => onApply(market_id)}>신청</button>
-                }
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        }
-        </div>
-      }
-      </div> */}
 
 export default MarketDetailModal;

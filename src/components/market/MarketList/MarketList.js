@@ -15,11 +15,13 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
         <img src={market_poster} alt={market_name}/>
         <div className={cx('cover')}></div>
         <div className={cx('item-content')}>
-          <div className={cx('item-name')}>
-            {market_name}
-          </div>
-          <div className={cx('item-dDay')}>
-            {dDay >= 0 ? `D-${dDay}` : '종료'}
+          <div className={cx('item-desc')}>
+            <div className={cx('item-name')}>
+              {market_name}
+            </div>
+            <div className={cx('item-dDay')}>
+              {dDay >= 0 ? `D-${dDay}` : '종료'}
+            </div>
           </div>
         </div>
       </div>

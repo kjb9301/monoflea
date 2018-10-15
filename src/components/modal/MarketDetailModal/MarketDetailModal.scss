@@ -1,644 +1,169 @@
 @import 'common';
 
-.modalForm {
-  width: 750px;
-  padding: 25px;
+.detail-modal {
+  width: 100%;
+  margin: auto;
   text-align: center;
+  position: relative;
   .close-box {
-    width: 100%;
-    text-align: right;
-    .close {
-      font-size: 25px;
-      font-weight: 600;
-      cursor: pointer;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right:-50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+  @include media("<medium") {
+    .close-box {
+      width: 40px;
+      height: 40px;
+      right: 0;
+      line-height: 40px;
+      font-size: 1.2rem;
     }
   }
-  .wrapper {
-    display: inline-block;
+  .img-style {
+    width: 700px;
+    height: 700px;
+  }
+  @include media("<medium") {
+    .img-style {
+      max-width: 430px;
+      max-height: 430px;
+    }
+  }
+  @include media("<medium") {
+    .img-style {
+      max-width: 300px;
+      max-height: 300px;
+    }
+  }
+  .w-50 {
     width: 50%;
-    padding: 15px;
-    vertical-align: top;
-    .marketPosterWrap {
+  }
+  @include media("<medium") {
+    .w-50, .w-40 {
       width: 100%;
-      height: 500px;
-      .marketPoster {
+    }
+  }
+  .d-inline-block {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .content-box {
+    width: 100%;
+    .images {
+      width: 100%;
+      .poster-image {
         width: 100%;
-        height: 500px;
       }
     }
-    .data-wrap {
-      width: 100%;
-      margin-bottom: 15px;
-      .animation {
-        border-left: 3px solid #0077FF;
-        padding-left: 5px;
-        text-align: left;
+  }
+  .p-20 {
+    padding: 20px;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .detail-top {
+    width: 100%;
+    position: relative;
+    .img-box, .profile-content {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .profile-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+    }
+    .profile-content {
+      height: 50px;
+      margin-left: 8px;
+      padding: 5px;
+      .fs-15 {
         font-size: 15px;
+      }
+      .fs-13 {
+        font-size: 13px;
+      }
+      .fc-gray {
+        color: gray;
+      }
+      .fw-bold {
         font-weight: bold;
       }
-      .content-box {
-        text-align: left;
-        margin-top: 8px;
-        .content-title {
-          font-size: 15px;
-          color: rgb(129, 130, 131);
-        }
-
-        input { 
-          -webkit-appearance: none;
-          width: 100%;
-          border: 0;
-          font-family: inherit;
-          padding: 5px;
-          height: auto;
-          font-size: 16px;
-          font-weight: 500;
-          border-bottom: 2px solid #C8CCD4;
-          background: none;
-          border-radius: 0;
-          color: #223254;
-          transition: all .15s ease;
-  
-          &:hover {
-            background: rgba(#072055,.03);
-          }
-              
-          &:focus {
-            background: none;
-            outline: none;
-            border-bottom: 2px solid #0077FF;
-          }
-        }
-
-        textarea {
-          margin-top: 10px;
-          width: 100%;
-          height: 100%;
-          outline: 0;
-          border: 1px solid #C8CCD4;
-          border-radius: 15px;
-          background: none;
-          border-radius: 0;
-          color: #223254;
-          transition: all .15s ease;
-
-          &:hover {
-            background: rgba(#072055,.03);
-          }
-
-          &:focus {
-            background: none;
-            outline: none;
-            border: 1px solid #0077FF;
-          }
+    }
+    .button-box {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      .classBtn {
+        outline: 0;
+        border: 1px solid #2096ba;
+        padding: 5px;
+        margin-right: 5px;
+        background-color: #2096ba;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      &:hover {
+        color: #2096ba;
+        background-color: white;
+      }
+      @include media("<medium") {
+        .classBtn {
+          font-size: 0.5rem;
         }
       }
     }
   }
-  .button-wrap {
-    width: 100%;
-    padding: 15px;
-    text-align: center;
-    .market-button {
-      cursor: pointer;
-      width: 100px;
-      font-size: 15px;
-      margin: 10px;
-      border: 1px solid#0077FF;
-      border-radius: 10px;
-      color: #0077ff;
-      background-color: white;
-      padding: 10px;
-      &:hover {
-        border: none;
-        color: white;
-        background-color: #0077FF;
+  .content-wrapper {
+    margin-top: 35px;
+    .info-box {
+      width: 50%;
+      display: inline-block;
+      margin-top: 15px;
+      vertical-align: top;
+      .info-title {
+        padding-left: 8px;
+        border-left: 3px solid #2096ba;
+        font-size: 13px;
+        font-weight: bold;
+      }
+      .info-content {
+        margin-top: 5px;
+        font-size: 13px;
+      }
+    }
+    @include media("<smedium") {
+      .info-box {
+        width: 100%;
+      }
+    }
+    .detail-wrap {
+      width: 100%;
+      margin-top: 35px;
+      .info-title {
+        padding-left: 8px;
+        border-left: 3px solid #2096ba;
+        font-size: 13px;
+        font-weight: bold;
+      }
+      .info-content {
+        margin-top: 5px;
+        font-size: 13px;
+      }
+      .line-height-1-6 {
+        line-height: 1.6;
       }
     }
   }
 }
-
-// .modalForm {
-//   padding: 20px;
-
-//   @include media("<medium") {
-//     padding: 0;
-//   }
-
-//   .close {
-//     position: absolute;
-//     top: -1.5rem;
-//     right: 0;
-//     font-size: 4rem;
-//     color: #aaa;
-//     cursor: pointer;
-
-//     &:hover {
-//       color: #000;
-//     }
-//   }
-
-//   .modalTitle {
-//     text-align: center;
-//     padding-bottom: 20px;
-    
-//     @include media("<medium") {
-//       padding-top: 10px;
-//     }
-
-//     .marketPoster {
-//       text-align: center;
-//       // margin-bottom: 20px;
-      
-//       img {
-//         max-width: 100%;
-//         height: 390px;
-//         object-fit: cover;
-//         border-radius: 10px;
-//       }
-//     }
-//   }
-
-//   .modalInfo {
-//     width: 650px;
-//     max-width: 100%;
-
-//     .marketInfo {
-//       border: 1px solid rgba(0,0,0,0.1);
-//       padding: 10px;
-//       border-radius: 10px;
-//       margin-bottom: 20px;
-
-//       & > div {
-//         font-weight: bold;
-//         border-bottom: 1px solid skyblue;
-//         color: rgba(0,0,0,0.8);
-//         font-size: 14px;
-//         // display: flex;
-//       }
-      
-//       .marketInfoTitle {
-//         padding: 0 20px 0 10px;
-//         color: rgba(0,0,0,0.5);
-//         border-left: 5px solid skyblue;
-//       }
-      
-//       .marketName, .marketPlace, .marketPeriod, .marketRegDate, .marketLimitCnt {    
-//         min-width: 200px;
-//         font-size: 18px;
-//         font-weight: bold;
-//         color: rgba(3, 169, 244,1.0);
-//         border-bottom: 1px solid rgba(163, 218, 243, 0.8);
-
-//         margin: 5px;
-//         max-width: 100%;
-//         padding-top: 10px;
-
-//         .animation {
-//           position: relative;
-//           width: 100%;
-//           height: 35px;
-//           .label {
-//             width: 100%;
-//             position: absolute;
-//             top: 5px;
-//             left: 0;
-//             font-size: 16px;
-//             color: #9098A9;
-//             font-weight: 500;
-//             transform-origin: 0 0;
-//             transition: all .2s ease;
-  
-//             padding: 0 20px 0 10px;
-//             color: rgba(0,0,0,0.5);
-//             border-left: 5px solid skyblue;
-//           }
-//         }
-
-//         .content-box {
-//           width: 100%;
-//           .border {
-//             // position: absolute;
-//             // bottom: 0;
-//             // left: 0;
-//             height: 2px;
-//             width: 100%;
-//             background: #0077FF;
-//             transform: scaleX(0);
-//             transform-origin: 0 0;
-//             transition: all .15s ease;
-//           }
-    
-//           input {
-//             // -webkit-appearance: none;
-//             width: 100%;
-//             border: 0;
-//             font-family: inherit;
-//             padding: 5px;
-//             height: auto;
-//             font-size: 16px;
-//             font-weight: 500;
-//             border-bottom: 2px solid #C8CCD4;
-//             background: none;
-//             border-radius: 0;
-//             color: #223254;
-//             transition: all .15s ease;
-//             // text-align: center;
-    
-//             &:hover {
-//               background: rgba(#072055,.03);
-//             }
-              
-//             &:not(:placeholder-shown) {
-//               + span {
-//                 color: #5A667F;
-//                 transform: translateY(-30px) scale(.70);
-//               }  
-//             }
-                
-//             &:focus {
-//               background: none;
-//               outline: none;
-//               border-bottom: 2px solid #0077FF;
-//             }
-//         }
-
-//         .date {
-//           width: 45%;
-//         }
-  
-
-//         }
-//         // ::-webkit-input-placeholder {
-//         //   text-align: left;
-//         // }
-//       }
-
-//       .modalDesc {
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: space-around;
-//         font-size: 18px;
-//         font-weight: bold;
-//         color: rgba(3, 169, 244,1.0);
-//         border-bottom: 1px solid rgba(163, 218, 243, 0.8);
-//         padding-top: 10px;
-
-//         position: relative;
-//         margin: 5px;
-//         max-width: 100%;
-
-//         h3 {
-//           padding: 0 20px 0 10px;
-//           color: rgba(0,0,0,0.5);
-//           border-left: 5px solid skyblue;
-//           font-size: 14px;
-//           margin-bottom: 20px;
-//         }
-  
-//         p {
-//           max-width: 100%;
-//           font-size: 13px;
-//           line-height: 1.5;
-//           word-break: break-all;
-//         }
-
-//         .label {
-//           //position: absolute;
-//           //top: 50px;
-//           //left: 0;
-//           //margin: auto;
-//           color: #9098A9;
-//           font-weight: 500;
-//           transform-origin: 0 0;
-//           transition: all .2s ease;
-
-//           padding: 0 20px 0 10px;
-//           color: rgba(0,0,0,0.5);
-//           border-left: 5px solid skyblue;
-//         }
-
-//         textarea {
-//           margin-top: 10px;
-//           width: 100%;
-//           outline: 0;
-//           border: 1px solid #C8CCD4;
-//           border-radius: 15px;
-//           background: none;
-//           border-radius: 0;
-//           color: #223254;
-//           transition: all .15s ease;
-
-//           &:hover {
-//             background: rgba(#072055,.03);
-//           }
-            
-//           &:not(:placeholder-shown) {
-//             + span {
-//               color: #5A667F;
-//               transform: translateY(-30px) scale(.70);
-//             }  
-//           }
-
-//           &:focus {
-//             background: none;
-//             outline: none;
-//             border: 1px solid #0077FF;
-
-//             // + .label {
-//             //   color: #0077FF;
-//             // //transform: translateY(-50px) scale(.70);
-//             //   +.border {
-//             //     transform: scaleX(1);
-//             //   } 
-//             // }
-//           }
-//         }
-//       }
-//     }
-
-//     .classBtn {
-//       // margin-bottom: 20px;
-//       text-align: center;
-      
-//       button {
-//         display: inline-block;
-//         margin-bottom: 20px;
-//         margin-left: 10px;
-//         margin-right: 10px;
-//         text-align: center;
-//         background-color: #8bc34a;
-//         color: white;
-//         outline: none;
-//         padding: 10px 30px;
-//         text-align: center;
-//         text-decoration: none;
-//         display: inline-block;
-//         font-size: 16px;
-//         font-weight: bold;
-//         border: 1px solid white;
-//         cursor: pointer;
-//         border-radius: 10px;
-        
-//         &:hover {
-//           border: 1px solid #8bc34a;
-//           color: #69a326;
-//           background-color: white;
-//         }
-//       }
-//     }
-
-//     .modalDesc {
-//       //border: 1px solid rgba(0,0,0,0.1);
-//       //padding: 20px 15px;
-//       border-radius: 10px;
-//       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-//       h3 {
-//         padding: 0 20px 0 10px;
-//         color: rgba(0,0,0,0.5);
-//         border-left: 5px solid skyblue;
-//         font-size: 14px;
-//         margin-bottom: 20px;
-//       }
-
-//       p {
-//         max-width: 100%;
-//         font-size: 13px;
-//         line-height: 1.5;
-//         word-break: break-all;
-//       }
-//     }
-//   }
-// }
-
-
-
-
-
-// .modalForm {
-
-//   /* The Close Button */
-//   .close {
-//     position: absolute;
-//     font-size: 3rem;
-//     font-weight: bold;
-//     margin-left: 0;
-//     right: 0;
-//     line-height: 2rem;
-
-//     &:hover,
-//     &:focus {
-//       color: red;
-//       text-decoration: none;
-//       cursor: pointer;
-//     }
-
-//     @include media ("<medium") {
-//       font-size: 4rem;
-//     }
-//   }
-
-//   .modalTitle {
-//     margin-top: 2rem;
-
-//     .marketName {
-//       margin-right: 2rem;
-//       display: inline-block;
-//       font-size: 1.2rem;
-//       font-weight: bold;
-//       text-align: center;
-
-//       @include media ("<medium") {
-//         margin-right: 1rem;
-//       }
-
-//       @include media ("<small") {
-//         width: 100%;
-//         margin: 0;
-//         padding: .3rem;
-//         border-radius: 1rem;
-//         background: #f2f2f2;
-//       }
-//     }
-//   }
-
-//   .modalInfo {
-//     padding-top: 1.2rem;
-//     margin-bottom: 1.2rem;
-//     font-size: 2rem;
-//     // border: 1px solid black;
-    
-//     .marketPoster {
-//       display: inline-block;
-//       margin: 2rem;
-//       // padding-left: 1rem;
-//       // padding-right: 1rem;
-//       width: 40%;
-//       text-align: center;
-//       // border: 1px solid orange;
-
-//       img {
-//         max-width: 100%;
-//       }
-
-//       @include media ("<large") {
-//         width: 30%;
-//       }
-
-//       @include media ("<medium") {
-//         width: 100%;
-//         margin-bottom: 1rem;
-//       }
-
-//       @include media ("<small") {
-
-//       }
-//     }
-
-//     .marketInfo {
-//       display: inline-block;
-//       width: 60%;
-//       vertical-align: top;
-//       // line-height: 1.6;
-//       // border: 1px solid orangered;
-
-//       .classNickname {
-//         margin-bottom: .5rem;
-//       }
-
-//       .marketPlace {
-//         margin-right: 0;
-//       }
-
-//       .marketPlaceContent {
-//         display: inline-block;
-//         width: auto;
-//         min-width: 8rem;
-//         margin-left: 1rem;
-//         border: initial;
-//         color: inherit;
-//         margin-top: .3rem;
-//       }
-
-//       div {
-//         padding: .5rem;
-//         font-size: 1rem;
-//       }
-
-//       span {
-//         display: inline-block;
-//         width: 7rem;
-//         margin-right: 1rem;
-//         text-align: center;
-//         color: navy;
-//         border: 1px solid navy;
-//         border-radius: .3rem;
-//       }
-
-//       @include media ("<large") {
-//         width: 70%;
-//         padding-left: 1rem;
-//       }
-
-//       @include media ("<medium") {
-//         width: 100%;
-//       }
-
-//       @include media ("<small") {
-
-//       }
-//     }
-
-//     .classBtn {
-//       width: 90%;
-//       margin: 1rem auto;
-//       padding: .5rem 1rem;
-//       text-align: right;
-
-//       button {
-//         background-color: #4CAF50; /* Green */
-//         border: none;
-//         color: white;
-//         padding: 15px 32px;
-//         text-align: center;
-//         text-decoration: none;
-//         display: inline-block;
-//         font-size: 16px;
-//       }
-
-//       @include media("<medium") {
-//         text-align: center;
-//       }
-//     }
-//   }
-
-//   .modalDesc {
-//     margin: 1rem 0 2rem 0;
-//     padding: 2rem;
-//     font-size: .8rem;
-//     line-height: 2;
-//     border-radius: .5rem;
-//     border: 1px solid #f2f2f2;
-
-//     @include media("<medium") {
-//       padding: 2rem 1rem;
-//     }
-//   }
-
-// }
-
-/* .modalForm {
-  background: white;
-  padding: 2rem;
-  position: relative;
-  padding-top: 2.5rem;
-  width: 50rem;
-  height: 50rem;
-  max-height: 100%;
-  overflow-y: scroll;
-  .close {
-    line-height: 2rem;
-    font-size: 2rem;
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    cursor: pointer;
-    &:hover {
-      color: $oc-gray-6;
-    }
-  }
-  .wrapper {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    .poster {
-      width: 30rem;
-      height: 20rem;
-      padding: 2rem;
-      border: 1px solid black;
-      font-size: 1.25rem;
-      font-weight: 500;
-      img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-    }
-    .info {
-      width: 30rem;
-      height: 20rem;
-      padding: 2rem;
-      margin: 1rem;
-      border: 1px solid black;
-    }
-    .desc {
-      width: 30rem;
-      height: 20rem;
-      padding: 2rem;
-      margin: 1rem;
-      border: 1px solid black;
-    }
-  } 
-} */
