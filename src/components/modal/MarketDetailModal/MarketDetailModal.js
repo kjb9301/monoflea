@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,editTF,onEdit,onClose,onCancel,onUpdate,onAskRemove,onApplyModal,onApply,onApplyCancel,onApplyClose}) => {
   const {host_id,market_id,market_name,market_place,market_poster,market_desc,start_date,end_date,seller_cnt,seller_limit_cnt,market_regs,reg_start_date,reg_end_date,confirmYN} = marketDetail;
-
+  
   return (
     <ModalWrapper  visible={visible}>
       <div className={cx('detail-modal')}>
@@ -78,7 +78,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                 }            
                 </Fragment>
             :<Fragment></Fragment>  
-          }             
+          }              
           </div>
           <div className={cx('content-wrapper')}>
             <div className={cx('info-box')}>
@@ -105,7 +105,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                 <p className={cx('info-content')}>{start_date} ~ {end_date}</p> :
                 <p className={cx('info-content')}>
                   <input className={cx('label')} type="date" name="start_date" value={start_date} onChange={onChange}/>
-                  <input className={cx('label')} type="date" name="end_date" placeholder="&nbsp;" value={end_date} onChange={onChange}/>
+                  <input className={cx('label')} type="date" name="end_date" value={end_date} onChange={onChange}/>
                 </p>
               }
             </div>
@@ -120,15 +120,20 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
                 <p className={cx('info-content')}>{reg_start_date} ~ {reg_end_date}</p> :
                 <p className={cx('info-content')}>
                   <input className={cx('label')} type="date" name="reg_start_date" value={reg_start_date} onChange={onChange}/>
-                  <input className={cx('label')} type="date" name="reg_end_date" placeholder="&nbsp;" value={reg_end_date} onChange={onChange}/>
+                  <input className={cx('label')} type="date" name="reg_end_date" value={reg_end_date} onChange={onChange}/>
                 </p>
               }
               </div>
               <div className={cx('info-box')}>
                 <h3 className={cx('info-title')}>모집인원</h3>
-                <p className={cx('info-content')}>
-                  {seller_cnt} / {!editTF ? {seller_limit_cnt} : <input className={cx('label')} type="number" name="seller_limit_cnt" placeholder="&nbsp;" value={seller_limit_cnt} onChange={onChange}/>}
-                </p>
+                {
+                  !editTF ?
+                  <p className={cx('info-content')}>{seller_cnt} / {seller_limit_cnt}</p>
+                  :
+                  <p className={cx('info-content')}>
+                    {seller_cnt} / <input className={cx('label')} type="number" name="seller_limit_cnt" value={seller_limit_cnt} onChange={onChange}/>
+                  </p>
+                }
               </div>
               </Fragment>
             }

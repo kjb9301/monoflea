@@ -44,8 +44,9 @@ class MarketDetailContainer extends Component {
   }
 
   handleUpdate = async (id,editTF) => {
-    const {MarketActions,MarketUIActions,marketDetail} = this.props;
-    await MarketActions.updateMarket(id,marketDetail.toJS());
+    const {MarketActions,MarketUIActions,marketInfo} = this.props;
+    const marketDetail = marketInfo.toJS();
+    await MarketActions.updateMarket(id,marketDetail);
     const {message} = this.props;
     alert(message);
     MarketUIActions.editTF(editTF);
@@ -104,9 +105,9 @@ class MarketDetailContainer extends Component {
   }
 
   render() {
-    const {loading,visible,marketDetail,editTF,userType,user_host_id} = this.props;
+    const {loading,visible,marketInfo,editTF,userType,user_host_id} = this.props;
     const {handleChange,handleEdit,handleClose,handleUpdate,handleAskRemove,handleCancel,handleApplyModal,handleApply,handleApplyCancel,handleApplyClose} = this;
-    const detailInfo = marketDetail.toJS();
+    const detailInfo = marketInfo.toJS();
 
     if(loading) return null;
     return (
@@ -141,7 +142,7 @@ export default connect(
     user_host_id: state.base.get('host_id'),
     message: state.market.get('message'),
     visible: state.marketUI.getIn(['modal','market']),
-    marketDetail: state.marketUI.get('market'),
+    marketInfo: state.marketUI.get('market'),
     editTF: state.marketUI.get('editTF'),
     loading: state.pender.pending['market/GET_MARKET_LIST']
   }),
