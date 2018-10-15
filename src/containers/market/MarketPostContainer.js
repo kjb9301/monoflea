@@ -15,11 +15,6 @@ class MarketPostContainer extends Component {
     MarketActions.getMarketList();
   }
 
-  createMarket = async () => {
-    const {MarketActions} = this.props;
-    await MarketActions.createMarket(bodyData);
-  }
-
   handleChange = (e) => {
     const {MarketUIActions} = this.props;
     const {name,value,files} = e.target;    
@@ -28,10 +23,19 @@ class MarketPostContainer extends Component {
   }
 
   handleCreate = () => {
-    this.createMarket();
-    const {history,message} = this.props;
-    alert(message);
-    history.push('/markets/recruitment');
+    const { MarketActions} = this.props;
+    MarketActions.createMarket(bodyData)
+      .then(() => {
+        const { message } = this.props;
+        alert(message);
+        const {history} = this.props;
+        history.push('/markets/recruitment');      
+      })
+      .catch(err => {
+        const { message } = err.response;
+        alert(message);
+      });
+
   }
 
   componentDidMount() {

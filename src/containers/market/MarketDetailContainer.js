@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux'; 
+import {withRouter} from 'react-router';
 import MarketDetailModal from 'components/modal/MarketDetailModal';
 
 import * as marketActions from 'store/modules/market';
@@ -88,9 +89,18 @@ class MarketDetailContainer extends Component {
   }
 
   handleApplyClose = (id) => {
-    const {MarketActions,message} = this.props;
-    MarketActions.applyClose(id);
-    alert(message);
+    const {MarketActions,MarketUIActions} = this.props;
+    MarketActions.applyClose(id)
+      .then(() => {
+        const {history,message} = this.props;
+        alert(message);
+        MarketUIActions.hideModal('market');
+        history.push('/markets');
+      })
+      .catch(err => {
+        const { message } = err.response;
+        alert(message);
+      });
   }
 
   render() {
@@ -139,4 +149,4 @@ export default connect(
     MarketActions: bindActionCreators(marketActions,dispatch),
     MarketUIActions: bindActionCreators(marketUIActions,dispatch)
   })
-)(MarketDetailContainer);
+)(withRouter(MarketDetailContainer));
