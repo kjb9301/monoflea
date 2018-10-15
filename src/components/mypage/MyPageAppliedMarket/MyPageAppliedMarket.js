@@ -5,7 +5,7 @@ import styles from './MyPageAppliedMarket.scss';
 const cx = classNames.bind(styles);
 
 const MyPageAppliedMarket = ({data}) => {
-  console.log(data);
+  console.log('sorry');
   if (!data) return null;
   const { start_date, end_date, host, 
                 market_place, reg_end_date, reg_start_date} = data;
@@ -36,7 +36,7 @@ const MyPageAppliedMarket = ({data}) => {
           <div className = {cx("apply-stauts")}> 신청상태 : { } </div>
           <div className = {cx("detailBtn")} >지도</div>
       </div> 
-  </div>
+    </div>
   
   )
 }

@@ -8,11 +8,14 @@ const cx = classNames.bind(styles);
 
 const MyPageItemWrapper = ({data}) => {
   if (!data) return null;
-  console.log(data);
+  // console.log(data);
   const dataDetail = data.map(
     (data,idx) => {
       const { market_poster , market_name} = data;
-      let information = data.seller_cnt ? <MyPageAppliedMarket data = {data}/> : <MyPageHostMarket data = {data}/> 
+      // console.log(data.seller_cnt);
+      // let information = data.seller_cnt >=  0? console.log('ok') : console.log('sorry');
+      // console.log(information)
+      let information = data.seller_cnt >= 0? <MyPageHostMarket data = {data}/>  : <MyPageAppliedMarket data = {data}/>
       return  <div className = {cx('item-wrapper')} key = {idx}>
               <div className = {cx('item-image')}><img src = {market_poster}/></div>
               <div className = {cx('item-detail')}>

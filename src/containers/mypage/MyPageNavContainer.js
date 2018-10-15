@@ -7,8 +7,8 @@ import * as mypageActions from 'store/modules/mypage';
 class MyPageNavContainer extends Component {
 
   state = {
-    urls : ['a', 'b', '/mypages/host-markets' ,'/mypages/apply-markets','e'],
-    navs : ['프로필', '2', '주최마켓', '신청마켓' , '5'],
+    urls : ['a', '/mypages/host-markets', 'c' ,'/mypages/apply-markets','e'],
+    navs : ['프로필', '주최마켓', '주최클래스', '신청마켓' , '신청클래스'],
   }
   getData = (url,id) => {
     const { MypageActions, } = this.props;
