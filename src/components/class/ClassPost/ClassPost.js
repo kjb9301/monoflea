@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ClassPost.scss';
 import classNames from 'classnames/bind';
 import { FaUpload } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 let uploadImgFile = (input, target) => {
@@ -220,6 +220,11 @@ const ClassPost = ({ categories, changeValue, postNewClass }) => {
         onClick={postNewClass}
       >등록하기
       </button>
+      <Link to ="/classes"><button
+        className={cx('submit-btn')}
+      >취소
+      </button>
+      </Link>
     </div>
   </div>
     

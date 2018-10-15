@@ -22,24 +22,28 @@
         font-size: 4rem;
         text-align: center;
         font-weight: bolder;
+        @include media ("<medium"){
+          font-size: 3rem;
+        }
       }
       .class-subtitle {
         font-size: 14px;
         color: white;
         @include media("<large") {
-          font-size: 3rem;
+          font-size: 0.8rem;
           .class-subtitle {
-            font-size: 1.2rem;
+            font-size: 0.8rem;
           }
         }
         @include media("<medium") {
           flex: initial;
           width: 100%;
+          padding : 0 20px;
           margin-bottom: 0.5rem;
-          .class-subtitle {
-            display: none;
-            font-size: 1rem;
-          }
+          // .class-subtitle {
+          //   display: none;
+          //   font-size: 0.6rem;
+          // }
         }
       }
     }

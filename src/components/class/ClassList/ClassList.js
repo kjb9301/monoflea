@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ClassList.scss';
 import classNames from 'classnames/bind';
 import { GoHeart } from 'react-icons/go';
+import CategoryBtn from 'containers/class/ClassCategoryBtnContainer'
 
 const cx = classNames.bind(styles);
 
@@ -126,8 +127,11 @@ const ClassList = ({ classList, showClassModal, takeOnedayClass, cancelOnedayCla
     )
   })
   return (
-    <div className={cx('class-list')}>
-      {classes}
+    <div className = {cx('class-total-wrapper')}>
+      <div className = {cx('category-btn')}><CategoryBtn/></div>
+      <div className={cx('class-list')}>
+        {classes}
+      </div>
     </div>
   );
 };

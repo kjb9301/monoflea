@@ -8,11 +8,11 @@
     width: 55%;
     // padding: 20px;
     margin: 3rem auto;
-    border: 1.5px solid  #b06ab3;
+    border: 1.5px solid  #548E3E;
     .title {
       width: 100%;
       margin: auto;
-      background-color: #b06ab3;
+      background-color: #548E3E;
       padding: 20px 20px;
       text-align: center;
       font-size: 2rem;
@@ -65,12 +65,12 @@
             z-index: 400;
             margin: 1.5%;
             height: 170px;
-            border: 1px solid  #b06ab3;
+            border: 1px solid  #548E3E;
             .upload-img {
               @include position-center();
               font-size: 1.2rem;
               z-index: 400;
-              color: #b06ab3
+              color: #548E3E
             }
             .uploaded-img {
               position: absolute;
@@ -117,7 +117,7 @@
             .content-category, .class-title, .class-place {
               width: 90%;
               outline: 0;
-              border: 1px solid  #b06ab3;
+              border: 1px solid  #548E3E;
               color: rgb(78, 78, 78);
               font-weight: 600;
               font-size: 1rem;
@@ -158,7 +158,7 @@
                 width: 90%;
                 margin: 0.8rem auto;
                 outline: 0;
-                border: 1px solid  #b06ab3;
+                border: 1px solid  #548E3E;
                 color: rgb(78, 78, 78);
                 font-weight: 600;
                 font-size: 0.8rem;
@@ -224,12 +224,16 @@
     }
   }
   .class-desc-wrap {
-    width: 100%;
-    border: 1px solid  #b06ab3;
+    width: 90%;
+    height: 200px;
+    // border: 1px solid  #548E3E;
     margin: auto;
+    margin-bottom : 20px;
     .class-desc {
       width: 100%;
       padding: 30px;
+      margin-bottom : 10px;
+      height: 200px;
       color: black;
       outline: none;
       font-weight: 600;
@@ -252,14 +256,15 @@
     margin: 2rem auto;
     text-align: center;
     .submit-btn {
-      border: 1px solid  #b06ab3;
+      border: 1px solid  #548E3E;
       background-color: white;
       padding: 10px;
-      color: #b06ab3;
+      margin : 0.8rem;
+      color: #548E3E;
       font-size: 1rem;
       cursor: pointer;
       &:hover {
-        background-color: #b06ab3;
+        background-color: #548E3E;
         color: white;
       }
     }

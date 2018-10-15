@@ -12,21 +12,23 @@ import * as baseActions from 'store/modules/base';
 class SellersListContainer extends Component {
 
   handleLike = async (id) => {
-    const { SellerActions, loggedUser } = this.props;
+    const { SellerActions, loggedUser, category} = this.props;
     if(!loggedUser) return alert('로그인이 필요합니다.')
     const increLike = await SellerActions.incrementLike(id)
     const { increLiked } = increLike.data
+
     if(increLiked){
-      await SellerActions.getSellersList()
+      console.log(category);
+      await SellerActions.getSellersList(category)
     }
   }
 
   handleDislike = async(id) => {
-    const { SellerActions } = this.props;
+    const { SellerActions, category } = this.props;
     const decreLike = await SellerActions.decrementLike(id)
     const { decreLiked } = decreLike.data;
     if(decreLiked){
-      await SellerActions.getSellersList();
+      await SellerActions.getSellersList(category);
     }
   }
 
@@ -62,7 +64,7 @@ class SellersListContainer extends Component {
   }
    
   render() {
-    const { sellerList, hasMore } = this.props;
+    const { sellerList, hasMore} = this.props;
     const { getSellerDetail , handleDislike, handleLike } = this;
     const loader = <div className="loader" key={0} style={{ 'width': '50%', 'textAlign': 'center', 'fontSize': '15px', 'margin': '15px auto' }}>Loading ...</div>;
     return (  

@@ -6,7 +6,7 @@ import MyPageHostMarket from '../MyPageHostMarket';
 
 const cx = classNames.bind(styles);
 
-const MyPageItemWrapper = ({data}) => {
+const MyPageItemWrapper = ({data}) => { 
   if (!data) return null;
   // console.log(data);
   const dataDetail = data.map(
