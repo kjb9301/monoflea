@@ -30,6 +30,8 @@
       font-size: 5rem;
       text-align: right;
       padding-right: 2rem;
+      padding-left: 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
       // line-height: .5;
 
       .about-intro-subtitle {
@@ -47,7 +49,7 @@
         width: 100%;
         font-size: 4rem;
         padding-right: 10%;
-
+        text-align: center;
         .about-intro-subtitle {
           font-size: 1.5rem;
         }
@@ -98,7 +100,7 @@
     h2 {
       display: inline-block;
       padding: .5rem 0;
-      font-size: 5rem;
+      font-size: 3rem;
       // border-bottom: 2px solid orange;
 
       @include media("<wide") {

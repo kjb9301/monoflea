@@ -29,13 +29,13 @@
       font-size: 4rem;
       letter-spacing: -0.3rem;
       text-align: right;
-      padding-right: 2rem;
-      padding-left: 1rem;
+      padding: 2rem;
       line-height: .5;
       border-top: 1px solid rgba(255, 235, 59, 0.5);
       border-bottom: 1px solid rgba(255, 235, 59, 0.5);
       margin-top: 7rem;
       font-weight: bold;
+      background-color: rgba(black, 0.7);
 
       .board-intro-subtitle {
         display: inline-block;
@@ -54,6 +54,7 @@
         flex: initial;
         width: 100%;
         font-size: 3rem;
+        text-align: center;
         padding-right: 5%;
 
         .about-intro-subtitle {
@@ -67,7 +68,7 @@
     
     .board-intro-body {
       flex: 2;
-      padding: 2rem;
+      padding: 4rem;
       padding-left: 5%;
       margin-top: 7rem;
       border-left: 10px solid rgb(255, 235, 59);

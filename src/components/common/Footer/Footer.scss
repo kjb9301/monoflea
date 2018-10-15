@@ -32,22 +32,7 @@
       color: white;
       vertical-align: top;
       background-color: rgb(95, 91, 91);
-      opacity: 0.4;
-      // &:nth-child(1) {
-      //   background-color: #ffab9d;
-      // }
-      // &:nth-child(2) {
-      //   background-color: #ff6382;
-      // }
-      // &:nth-child(3) {
-      //   background-color: #d46bc8;
-      // }
-      // &:nth-child(4) {
-      //   background-color: #9085da;
-      // }
-      // &:nth-child(5) {
-      //   background-color: #4fadff;
-      // }
+      border: 1px solid white;
       .item-wrap {
         height: 70%;
         .footer-name {

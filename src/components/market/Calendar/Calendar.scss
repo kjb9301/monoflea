@@ -17,7 +17,7 @@
   justify-content: space-around;
   height: 70px;
   padding: 10px;
-  background-color: rgba(rgb(3, 141, 141), 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   flex-grow: 1;
   .first-wrapper{
     display: flex;
@@ -28,7 +28,7 @@
     flex-grow: 2;
     .btn-wrapper {
       display: flex;
-      background-color: rgba(rgb(2, 63, 53), 0.5);
+      background-color: #646464;
       border-radius: 10px;
       margin: 10px;
       margin-right: 20px;
@@ -48,7 +48,7 @@
       display: flex;
       flex-grow: .5;
       justify-content: space-around;
-      background-color: rgba(rgb(2, 63, 53), 0.5);
+      background-color: #646464;
       border-radius: 10px;
   
       div {
@@ -78,7 +78,7 @@
       border-radius: 2px;
 
       &:not(.icon) {
-        background-color: rgba(rgb(2, 63, 53), 0.5);   
+        background-color: #646464;
       }
     }
 
@@ -96,11 +96,11 @@
       }
 
       &.isSat {
-        color: rgb(40, 40, 226);
+        color: skyblue;
       }
 
       &.selected {
-        border: 3px solid rgb(3, 248, 215);
+        border: 2px solid yellowgreen;
         // .days {
         //   border: 2px solid yellow;
         // }
@@ -131,7 +131,7 @@
       }
 
       &:hover {
-        border: 3px solid white;
+        border: 2px solid yellowgreen;
       }  
     }
   }
