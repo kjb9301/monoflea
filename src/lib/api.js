@@ -11,7 +11,6 @@ export const loginUserCheck = () => axios.get('/users/user-check');
 export const logout = () => axios.delete('/users/logout');
 
 // signup
-// export const signup = (newUser) => axios.post('/users/signup', { newUser });
 export const signup = (newUser) => axios.post('/users/signup', newUser);
 export const checkEmail = (email) => axios.post('/users/check-email', { email });
 export const checkNickname = (nickName) => axios.post('/users/check-nickname', { nickName });
