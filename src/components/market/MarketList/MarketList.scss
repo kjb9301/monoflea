@@ -76,7 +76,7 @@
           background:#07060ea4;
           opacity: 0;
           transition:all .6s linear;
-
+          border-radius: 10px;
         }
         
         .item-content {
@@ -93,6 +93,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
+
             .item-name {
               text-align: center;
               color: white;
@@ -113,6 +114,7 @@
        
         &:hover .cover{
           opacity: 1; 
+          border-radius: 10px;
         }
 
         &:hover .item-content {
@@ -163,7 +165,7 @@
           background:#07060ea4;
           opacity: 0;
           transition:all .6s linear;
-
+          border-radius: 10px;
         }
         
         .item-content {

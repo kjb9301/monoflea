@@ -295,48 +295,52 @@ const SignupMoreDataModal = ({ visible, nickName, getAuthNumber, checkAuthNum, s
             </Fragment>
           }
         </div>
-        <div className={cx('option-wrapper')}>
-                <div className={cx('input-container')}>
-                  <div className={cx('label-wrapper')}><label htmlFor="onedayclass">필수선택사항</label></div>
-                  <div className={cx('required-box')}>
-                    <select className={cx('item-input')} name="class_TF" onChange={onChangeValue}>
-                      <option value="-1">원데이클래스 주최여부</option>
-                      <option value="0">No</option>
-                      <option value="1">Yes</option>
-                    </select>
-                    {/* <input
-                      id="onedayclass"
-                      type="text"
-                      className={cx('item-input')}
-                      placeholder="원데이클래스 주최여부를 입력하세요(Y/N)" 
-                      name="class_TF"
-                      onChange={onChangeValue}
-                    /> */}
-                  </div>
-                  <div className={cx('required-box')}>
-                    <select className={cx('item-input')} name="show_TF" onChange={onChangeValue}>
-                      <option value="-1">셀러정보 공개여부</option>
-                      <option value="0">No</option>
-                      <option value="1">Yes</option>
-                    </select>
-                    {/* <input
-                      id="sellerinfo"
-                      type="text"
-                      className={cx('item-input')}
-                      placeholder="입력한 셀러정보를 타인이 볼수있도록 합니다.(Y/N)" 
-                      name="show_TF"
-                      onChange={onChangeValue}
-                    /> */}
-                  </div>
-                  <div className={cx('required-box')}>
-                    <select className={cx('item-input')} name="biz_YN" onChange={onChangeValue}>
-                      <option value="-1">사업자 여부</option>
-                      <option value="0">No</option>
-                      <option value="1">Yes</option>
-                    </select>
+        {
+          userType === 'H' ? null :
+            <div className={cx('option-wrapper')}>
+                    <div className={cx('input-container')}>
+                      <div className={cx('label-wrapper')}><label htmlFor="onedayclass">필수선택사항</label></div>
+                      <div className={cx('required-box')}>
+                        <select className={cx('item-input')} name="class_TF" onChange={onChangeValue}>
+                          <option value="-1">원데이클래스 주최여부</option>
+                          <option value="0">No</option>
+                          <option value="1">Yes</option>
+                        </select>
+                        {/* <input
+                          id="onedayclass"
+                          type="text"
+                          className={cx('item-input')}
+                          placeholder="원데이클래스 주최여부를 입력하세요(Y/N)" 
+                          name="class_TF"
+                          onChange={onChangeValue}
+                        /> */}
+                      </div>
+                      <div className={cx('required-box')}>
+                        <select className={cx('item-input')} name="show_TF" onChange={onChangeValue}>
+                          <option value="-1">셀러정보 공개여부</option>
+                          <option value="0">No</option>
+                          <option value="1">Yes</option>
+                        </select>
+                        {/* <input
+                          id="sellerinfo"
+                          type="text"
+                          className={cx('item-input')}
+                          placeholder="입력한 셀러정보를 타인이 볼수있도록 합니다.(Y/N)" 
+                          name="show_TF"
+                          onChange={onChangeValue}
+                        /> */}
+                      </div>
+                      <div className={cx('required-box')}>
+                        <select className={cx('item-input')} name="biz_YN" onChange={onChangeValue}>
+                          <option value="-1">사업자 여부</option>
+                          <option value="0">No</option>
+                          <option value="1">Yes</option>
+                        </select>
                   </div>
                 </div>
               </div>
+
+        }
         <div className={cx('button-wrap')}>
           <div 
             className={cx('button')} 
