@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router';
 import AskRemoveModal from 'components/modal/AskRemoveModal';
 
 import * as marketActions from 'store/modules/market';
@@ -17,10 +18,12 @@ class MarketDetailContainer extends Component {
     const {MarketUIActions,MarketActions} = this.props;
     MarketUIActions.hideModal('remove');
     await MarketActions.deleteMarket(id);
-    const { message } = this.props;
-    MarketUIActions.hideModal('market');
-    MarketActions.getMarketList();
+    const { message, location } = this.props;
     alert(message);
+    MarketUIActions.hideModal('market');
+    const { list, savedDate } = this.props;
+    const confirm = (location.pathname === '/markets'? 'Y' : 'N');
+    MarketActions.getMarketList(confirm,savedDate,list.marketList.length);
   }
 
   render() {
@@ -44,6 +47,8 @@ class MarketDetailContainer extends Component {
 
 export default connect(
   (state) => ({
+    list: state.market.get('data'),
+    savedDate: state.marketUI.get('savedDate'),
     message: state.market.get('message'),
     visible: state.marketUI.getIn(['modal','remove']),
     marketDetail: state.marketUI.get('market'),
@@ -53,4 +58,4 @@ export default connect(
     MarketUIActions: bindActionCreators(marketUIActions,dispatch),
     MarketActions: bindActionCreators(marketActions,dispatch)
   })
-)(MarketDetailContainer);
+)(withRouter(MarketDetailContainer));

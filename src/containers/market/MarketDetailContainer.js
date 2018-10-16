@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux'; 
 import {withRouter} from 'react-router';
 import MarketDetailModal from 'components/modal/MarketDetailModal';
+import axios from 'axios';
 
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
@@ -24,26 +25,25 @@ class MarketDetailContainer extends Component {
   }
 
   handleClose = () => {
-    const {MarketUIActions} = this.props;
+    const {MarketUIActions,editTF} = this.props;
+    if(editTF) MarketUIActions.editTF(editTF);
     MarketUIActions.hideModal('market');
   }
 
   handleCancel = (id,confirmYN) => {
-    const {MarketUIActions,list,editTF} = this.props;
-    let idx = '';
-    let marketDetail = '';
+    const {MarketUIActions,list,editTF,savedDate} = this.props;
 
-    if(confirmYN === 'Y'){
-      idx = list.marketList.findIndex(market => market.market_id === id);
-      marketDetail = list.marketList[idx];
-    }else{
-      idx = list.marketList.findIndex(market => market.market_id === id);
-      marketDetail = list.marketList[idx];
-    }
-    MarketUIActions.editTF(editTF);
-    MarketUIActions.hideModal('market');
-    MarketUIActions.showModal('market');
-    MarketUIActions.getValue({marketDetail});
+    axios.get(`/markets?confirm=${confirmYN}&selectDate=${savedDate}&limit=${list.marketList.length}`)
+      .then(list => {
+        const { marketList } = list.data;  
+        const idx = marketList.findIndex(market => market.market_id === id);
+        const marketDetail = marketList[idx];
+
+        MarketUIActions.editTF(editTF);
+        MarketUIActions.hideModal('market');
+        MarketUIActions.showModal('market');
+        MarketUIActions.getValue({marketDetail});
+      });
   }
 
   handleUpdate = async (id,editTF) => {
@@ -145,6 +145,7 @@ export default connect(
   (state) => ({
     list: state.market.get('data'),
     userType: state.base.get('userType'),
+    savedDate: state.marketUI.get('savedDate'),
     logged: state.base.get('logged'),
     user_host_id: state.base.get('host_id'),
     message: state.market.get('message'),

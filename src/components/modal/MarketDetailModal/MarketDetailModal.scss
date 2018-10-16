@@ -148,6 +148,16 @@
         margin-top: 5px;
         font-size: 13px;
       }
+
+      input {
+        border: none;
+        border-bottom: 1px solid lightgray;
+        padding: .5rem;
+
+        &.focus {
+          border-bottom: 1px solid rgb(3, 126, 226);
+        }
+      }
     }
     @include media("<smedium") {
       .info-box {
