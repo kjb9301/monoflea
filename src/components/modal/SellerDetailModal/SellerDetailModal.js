@@ -13,7 +13,7 @@ const fadeProperties = {
   infinite: true,
   indicators: true,
   scale: 1,
-  arrows: true
+  arrows: false
 }
 
 const imgStlyes = {
@@ -87,7 +87,9 @@ const SellerDetailModal = ({visible, editTF, user_seller_id, sellerDetailData, o
               </div>
             </div>
             <h3 className={cx('desc-title', 'title-weight')}>셀러 소개</h3>
-            <p className={cx('desc-text')}>{seller_desc}</p>
+            <p className={cx('desc-text')}>
+              {seller_desc}
+            </p>
           </div>
         </div>
         <div className={cx('wrapper')}>

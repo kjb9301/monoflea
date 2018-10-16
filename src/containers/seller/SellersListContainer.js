@@ -36,7 +36,7 @@ class SellersListContainer extends Component {
     const { SellerUIActions, SellerActions } = this.props;
     const sellerDetail = await axios.get(`/sellers/${id}`);
     const { data: detailInfo } = sellerDetail;
-    const viewData = await SellerActions.incViewCnt(id)
+    const viewData = await SellerActions.incViewCnt(id);
     const { inc_view_cnt, view_cnt } = viewData.data;
     if(inc_view_cnt) detailInfo.view_cnt = view_cnt;
     SellerUIActions.detailData(detailInfo);
@@ -50,7 +50,7 @@ class SellersListContainer extends Component {
 
   getMoreData = () => {
     const { SellerActions, sellerList, category } = this.props;
-    let len = parseInt(sellerList.length/8, 10)*10;
+    let len = parseInt(sellerList.length/8, 10)*8;
     if(len>sellerList.length-8) {
       setTimeout(async () => {
         await SellerActions.getSellersList(category,'undefined', len+8);

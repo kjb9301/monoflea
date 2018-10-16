@@ -206,7 +206,7 @@ const ClassPost = ({ categories, changeValue, postNewClass }) => {
       <div className={cx('class-desc-wrap')}>
         <textarea 
           name="class_desc" 
-          rows="20" 
+          rows="10" 
           cols="50" 
           placeholder="클래스에 대한 상세한 설명을 적어주세요! 최소 350자 이상"
           onChange={changeValue}
@@ -218,7 +218,7 @@ const ClassPost = ({ categories, changeValue, postNewClass }) => {
       <button
         className={cx('submit-btn')}
         onClick={postNewClass}
-      >등록하기
+      >등록
       </button>
       <Link to ="/classes"><button
         className={cx('submit-btn')}
