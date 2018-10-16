@@ -54,7 +54,9 @@ const initialState = fromJS({
 export default handleActions({
   [CHANGE_CLASS_INFO]: (state, action) => {
     const { name, value } = action.payload;
-    return state.setIn(['classInfo', name], value);
+    return name === 'class_category_id' ? 
+           state.setIn(['classInfo', 'onedayCategory', name], value) :
+            state.setIn(['classInfo', name], value);
   },
   [CHANGE_ENROLL_INFO]: (state, action) => {
     const { name, value } = action.payload;

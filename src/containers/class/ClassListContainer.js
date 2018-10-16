@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ClassList from 'components/class/ClassList';
-import { FaEllipsisH } from 'react-icons/fa';
 
 import * as classActions from 'store/modules/class';
 import * as classUIActions from 'store/modules/classUI';

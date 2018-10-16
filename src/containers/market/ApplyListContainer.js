@@ -15,12 +15,16 @@ class ApplyListContainer extends Component {
   HandleDeleteApply = (seller_id,market_id) => {
     const {MarketActions,MarketUIActions} = this.props;
     if(window.confirm("해당 셀러를 목록에서 제거하시겠습니까?")){
-      MarketActions.applyDelete({seller_id,market_id});
-      const {message} = this.props;
-      MarketUIActions.hideModal('apply');
-      MarketUIActions.showModal('apply');
-      MarketActions.getApplyList(market_id);
-      alert(message);
+      MarketActions.applyDelete({seller_id,market_id})
+        .then(() => {
+          MarketUIActions.hideModal('apply');
+          MarketUIActions.showModal('apply');
+          MarketActions.getApplyList(market_id);
+          alert('해당 셀러를 목록에서 제거 하였습니다.');
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
     return;
   }

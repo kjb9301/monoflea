@@ -7,12 +7,15 @@ import MarketDetailModal from 'components/modal/MarketDetailModal';
 import * as marketActions from 'store/modules/market';
 import * as marketUIActions from 'store/modules/marketUI';
 
+const bodyData = new FormData();
+
 class MarketDetailContainer extends Component {
 
   handleChange = (e) => {
-    const {MarketUIActions} = this.props;
-    const {name,value} = e.target;
-    MarketUIActions.changeInput({name,value});
+    const { MarketUIActions } = this.props;
+    const { name, value } = e.target;
+    bodyData.set(name, value);
+    MarketUIActions.changeInput({ name, value });
   }
 
   handleEdit = () => {
@@ -45,8 +48,9 @@ class MarketDetailContainer extends Component {
 
   handleUpdate = async (id,editTF) => {
     const {MarketActions,MarketUIActions,marketInfo} = this.props;
-    const marketDetail = marketInfo.toJS();
-    await MarketActions.updateMarket(id,marketDetail);
+    // const marketDetail = marketInfo.toJS();
+    // await MarketActions.updateMarket(id, marketDetail);
+    await MarketActions.updateMarket(id, bodyData);
     const {message} = this.props;
     alert(message);
     MarketUIActions.editTF(editTF);
@@ -59,8 +63,11 @@ class MarketDetailContainer extends Component {
 
   handleApplyModal = (id) => {
     const {MarketActions,MarketUIActions} = this.props;
-    MarketUIActions.showModal('apply');
-    MarketActions.getApplyList(id);
+    MarketActions.getApplyList(id)
+      .then(() => {
+        MarketUIActions.showModal('apply');
+      })
+      .catch(err => console.log(err));
   }
 
   handleApply = async (id) => {
@@ -113,21 +120,21 @@ class MarketDetailContainer extends Component {
     return (
       <div>
         <MarketDetailModal 
-              userType={userType}
-              user_host_id={user_host_id}
-              visible={visible} 
-              marketDetail={detailInfo} 
-              onChange={handleChange} 
-              editTF={editTF}
-              onEdit={handleEdit}
-              onClose={handleClose}
-              onUpdate={handleUpdate}
-              onAskRemove={handleAskRemove}
-              onCancel={handleCancel}
-              onApplyModal={handleApplyModal}
-              onApply={handleApply}
-              onApplyCancel={handleApplyCancel}
-              onApplyClose={handleApplyClose}
+          userType={userType}
+          user_host_id={user_host_id}
+          visible={visible} 
+          marketDetail={detailInfo} 
+          onChange={handleChange} 
+          editTF={editTF}
+          onEdit={handleEdit}
+          onClose={handleClose}
+          onUpdate={handleUpdate}
+          onAskRemove={handleAskRemove}
+          onCancel={handleCancel}
+          onApplyModal={handleApplyModal}
+          onApply={handleApply}
+          onApplyCancel={handleApplyCancel}
+          onApplyClose={handleApplyClose}
         />
       </div>
     );

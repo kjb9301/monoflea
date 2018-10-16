@@ -1,37 +1,56 @@
-@import 'common';
-
-.applyForm {
-  margin-left: auto;
-  margin-right: auto;
-  width: 500px;
-  background: white;
-  box-shadow: 0 3px 6px;
-  padding-top: 2rem;
-
-  .close {
-    position: absolute;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-left: 0;
-    right: 0;
-    line-height: 1rem;
-
-    &:hover,
-    &:focus {
-      color: red;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-
-  h3 {
+.enroll-modal {
+  position: relative;
+  width: 100%;
+  min-width: 950px;
+  margin: auto;
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  .enroll-box {
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .content {
-    margin: 1rem;
+    .enroll-title {
+      font-size: 1.5rem;
+      padding: 1rem;
+      color: white;
+      background-color: #548E3E;
+      font-weight: bold;
+      position: relative;
+      .close {
+        position: absolute;
+        right: 15px;
+        text-align: right;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    .enroll-item, .enroll-list-box {
+      width: 100%;
+      .num, .item {
+        display: inline-block;
+        color: #548E3E;
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: white;
+      }
+      .num {
+        width: 10%;
+      }
+      .item {
+        width: 15%;
+      }
+    }
+    .enroll-btn {
+      margin: 2rem auto;
+      font-size: 1.2rem;
+      border: 1px solid #548E3E;
+      padding: 0.5rem;
+      color: #548E3E;
+      background-color: white;
+      cursor: pointer;
+      &:hover {
+        color: white;
+        background-color: #548E3E;
+      }
+    }
   }
 }

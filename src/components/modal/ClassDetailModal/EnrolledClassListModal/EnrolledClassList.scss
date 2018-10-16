@@ -1,0 +1,61 @@
+.enroll-modal {
+  width: 80%;
+  margin: auto;
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  .enroll-box {
+    text-align: center;
+    .enroll-title {
+      font-size: 1.5rem;
+      padding: 1rem;
+      color: white;
+      background-color: #548E3E;
+      font-weight: bold;
+      position: relative;
+      .close {
+        position: absolute;
+        right: 5px;
+        text-align: right;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    .enroll-item, .enroll-list-box {
+      width: 100%;
+      .item {
+        width: 20%;
+        display: inline-block;
+        color: #548E3E;
+        // border: 1px solid #548E3E;
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: white;
+      }
+    }
+
+    .enroll-list-box {
+      margin: 1rem auto;
+      border-bottom: 1px solid #ccc;
+      .enroll-content {
+        padding: 1rem;
+        display: inline-block;
+        width: 20%;
+        font-size: 0.8rem;
+      }
+    }
+    .enroll-btn {
+      margin: 2rem auto;
+      font-size: 1.2rem;
+      border: 1px solid #548E3E;
+      padding: 0.5rem;
+      color: #548E3E;
+      background-color: white;
+      cursor: pointer;
+      &:hover {
+        color: white;
+        background-color: #548E3E;
+      }
+    }
+  }
+}

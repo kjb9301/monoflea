@@ -67,12 +67,15 @@ class ClassDetailContainer extends Component {
   updateOnedayClass = async (id) => {
     const { ClassActions, BaseActions, ClassUIActions } = this.props;
     const updateResult = await axios.put(`/classes/${id}`, bodyData);
+    const detailInfo = await axios.get(`/classes/${id}`);
+    ClassUIActions.setClassInfo(detailInfo);
     const { isUpdated, message } = updateResult.data;
     if(isUpdated) {
       alert(message);
       ClassActions.getClassList();
       ClassUIActions.initializeEditState();
-      return BaseActions.hideModal('class');
+      BaseActions.hideModal('class');
+      return BaseActions.showModal('class');
     }
     return alert('일시적인 오류입니다. 다시 시도 해주세요!');
   }
@@ -119,11 +122,12 @@ class ClassDetailContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { editing, visible, classInfo } = this.props;
+    const { editing, visible, classInfo, enrollListVisible } = this.props;
     return (nextProps.editing !== editing) 
            || (nextProps.visible !== visible)
-           || (nextProps.classInfo !== classInfo);
-  }
+           || (nextProps.classInfo !== classInfo)
+           || (nextProps.enrollListVisible !== enrollListVisible);
+  }        
 
   render() {
     const { visible, classInfo, nickName, editing, categories, enrollListVisible, enrolledList } = this.props;
@@ -131,7 +135,7 @@ class ClassDetailContainer extends Component {
       hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, getEnrollList,
       cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass, closeEnrollList
     } = this;
-
+    
     if(!categories.length) return null;
     return (
       <Fragment>

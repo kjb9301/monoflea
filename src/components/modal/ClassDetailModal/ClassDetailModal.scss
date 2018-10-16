@@ -1,10 +1,15 @@
 @import 'common';
 
+.w-100 {
+  width: 100% !important;
+}
+
 .detail-modal {
   width: 100%;
   margin: auto;
   text-align: center;
   position: relative;
+  background-color: white;
   .close-box {
     position: absolute;
     z-index: 1000;
@@ -102,16 +107,20 @@
         font-weight: bold;
       }
     }
-    .classBtn {
+    .class-btn-box {
       position: absolute;
       top: 5px;
-      right: 10px;
+      right: -5px;
+    }
+    .classBtn {
       outline: 0;
       border: 1px solid #2096ba;
-      padding: 5px;
+      padding: 3px;
       background-color: #2096ba;
       color: white;
       border-radius: 5px;
+      font-size: 0.7rem;
+      margin-left: 5px;
       cursor: pointer;
       &:hover {
         color: #2096ba;
@@ -121,6 +130,9 @@
   }
   .content-wrapper {
     margin-top: 35px;
+    .w-100 {
+      width: 100% !important;
+    }
     .info-box {
       width: 45%;
       display: inline-block;
@@ -134,6 +146,9 @@
       .info-content {
         margin-top: 5px;
         font-size: 13px;
+      }
+      .inner-box {
+        width: 40%;
       }
     }
     @include media("<smedium") {

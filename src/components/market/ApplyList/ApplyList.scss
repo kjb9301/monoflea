@@ -1,43 +1,26 @@
-@import 'common';
-
-.apply-wrapper {
-  padding: .5rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  border-bottom: 2px solid rgb(121, 118, 118);
-  line-height: 1rem;
-
-  .content {
-    flex: 1;
-    word-break: break-all;
-
-    .text {
-      //display: inline-block;
-      justify-content: space-around;
-      margin: 1rem;
-
-      span {
-        
-      }
-    }
+.enroll-list-box {
+  margin: 1rem auto;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  .enroll-number {
+    width: 10%;
+  }
+  .enroll-content {
+    width: 15%;
+  }
+  .enroll-content, .enroll-number {
+    padding: 1rem;
+    display: inline-block;
+    font-size: 0.8rem;
   }
   .delete {
-    margin-left: 1rem;
-    color: $oc-red-7;
-    font-size: .8rem;
-    &.hover {
-      color: $oc-red-5;
-      text-decoration: underline;
-    }
-  }
-  &:nth-child(odd) {
-    background: $oc-gray-0;
-  }
-  &.hover {
-    background: $oc-gray-1;
-  }
-  .apply-item + .apply-item {
-    border-top: 1px solid $oc-gray-1;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
   }
 }

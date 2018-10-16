@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import EnrolledUserInfo from 'components/modal/ClassDetailModal/EnrolledUserInfoModal';
+import EnrolledUserInfoModal from 'components/modal/ClassDetailModal/EnrolledUserInfoModal';
 
 import * as classUIActions from 'store/modules/classUI';
 import * as classActions from 'store/modules/class';
@@ -20,8 +20,17 @@ class EnrolledUserInfoContainer extends Component {
     BaseActions.hideModal('enrolledUserInfo');
   }
 
+  checkValidation = () => {
+    const { username, tel } = this.props;
+    if(username.length === 0) return alert('이름을 입력해주세요!');
+    else if(tel.length === 0) return alert('전화번호를 입력해주세요!');
+    return true;
+  }
+
   saveInputData = async () => {
     const { ClassActions, BaseActions, username, tel } = this.props;
+    const { checkValidation } = this;
+    if(!checkValidation()) return;
     const enrolledResult = await ClassActions.saveEnrollUser({ username, tel });
     const { isSaveInfo } = enrolledResult.data;
     if(isSaveInfo) {
@@ -37,7 +46,7 @@ class EnrolledUserInfoContainer extends Component {
     const { handleInput, hideModal, saveInputData } = this;
     return (
       <div>
-        <EnrolledUserInfo
+        <EnrolledUserInfoModal
           username={username}
           tel={tel}
           handleInput={handleInput}
