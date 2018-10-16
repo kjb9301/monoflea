@@ -142,7 +142,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               {
                 !editTF ?
                 <p className={cx('info-content', 'line-height-1-6')}>{market_desc}</p> :
-                <textarea className={cx('info-content', 'line-height-1-6')} cols="20" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
+                <textarea className={cx('info-content', 'line-height-1-6')} cols="60" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
               }
             </div>
           </div>
