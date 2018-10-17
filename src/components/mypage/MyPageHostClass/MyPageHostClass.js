@@ -5,10 +5,8 @@ import styles from './MyPageHostClass.scss';
 const cx = classNames.bind(styles);
 
 const MyPageHostClass = ({data})=>{
-    const { class_limit_cnt, class_place, class_reg_cnt, event_date,
-          taken_cnt, recruit_start_date, recruit_end_date, seller } = data;
-    const { user } = seller;
-    console.log('good');
+    const { class_limit_cnt, class_reg_cnt, event_date,
+          taken_cnt  } = data;
     return (
       <div className = {cx('detail-info-wrapper')} >
         <div className = {cx('detail-info')}>

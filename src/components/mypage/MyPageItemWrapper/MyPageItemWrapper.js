@@ -6,33 +6,32 @@ import MyPageHostMarket from '../MyPageHostMarket';
 import MyPageAppliedClass from '../MyPageAppliedClass';
 import MyPageHostClass from '../MyPageHostClass/MyPageHostClass';
 const cx = classNames.bind(styles);
+let information = '';
 
-const MyPageItemWrapper = ({data}) => { 
+const MyPageItemWrapper = ({data, url}) => { 
   if (!data) return null;
-  console.log(data);
-  
   const dataDetail = data.map(
     (data,idx) => {
-      const { market_poster,seller,onedayRegs,market_name} = data;
-      const whoRu = data.class_name === undefined ? 'market' : 'seller';
-      let information = '';
-      // let information = whoRu === 'seller' 
-      //     ? onedayRegs !== undefined  ? <MyPageAppliedClass data = {data}/> : <MyPageHostClass data = {data}/>
-      //     : data.seller_cnt >= 0 ? <MyPageHostMarket data = {data}/>  : <MyPageAppliedMarket data = {data}/> 
-      
-      if(whoRu === 'seller') {
-        if(onedayRegs !==undefined) {
-          information = <MyPageAppliedClass data = {data}/>
-        }else {
-          information = <MyPageHostClass data = {data}/>
+      const { market_poster,profile_img, class_name, seller, market_name} = data;
+      const whoRu = class_name === undefined ? 'market' : 'seller';
+      if(!url) return null;
+      switch(url){
+        case '/mypages/apply-markets' :
+             information = <MyPageAppliedMarket data = {data}/>
+             url = '';
+            break;
+        case  '/mypages/host-classes' :
+             information = <MyPageHostClass data = {data}/>
+             url = '';
+            break;
+        case  '/mypages/apply-classes' :
+             information = <MyPageAppliedClass data = {data}/>
+            break;
+        case  '/mypages/host-markets' :
+             information = <MyPageHostMarket data = {data}/>
+            break;
+        default: break;
         }
-      }else {
-        if(data.seller_cnt >= 0) {
-          information = <MyPageHostMarket data = {data}/>
-        }else {
-          information = <MyPageAppliedMarket data = {data}/>
-        }
-      }
       return (
         <div key = {idx} >
         {
@@ -48,7 +47,7 @@ const MyPageItemWrapper = ({data}) => {
              <div className = {cx('item-wrapper')} key = {idx}>
              <div className = {cx('item-image')}><img src = {seller.profile_img} /></div>
               <div className = {cx('item-detail')}>
-              <div className = {cx('item-title')}><h1>{data.class_name}</h1></div>
+              <div className = {cx('item-title')}><h1>{class_name}</h1></div>
                   {information}
             </div>
           </div>

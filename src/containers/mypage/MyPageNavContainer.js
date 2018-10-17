@@ -8,14 +8,14 @@ class MyPageNavContainer extends Component {
 
   getData = (url,id) => {
     const { MypageActions, } = this.props;
-    MypageActions.getMypageData(url, id);
+    MypageActions.getMypageData(url, id)
+      .then(() => {
+        MypageActions.getUrl(url);
+      });
   }
 
   getNavList = () => {
-    const {MypageActions, seller_id, host_id,navList, user_id ,sellerNavs, defaultNavs, hostNavs} = this.props;
-     console.log(host_id);
-    console.log(seller_id)
-    console.log(user_id);
+    const {MypageActions, seller_id, host_id} = this.props;
     host_id !== null ?  MypageActions.getNavListHost() :
                 seller_id !== null ?  MypageActions.getNavListSeller() :
                 MypageActions.getNavListUser();
@@ -24,8 +24,8 @@ class MyPageNavContainer extends Component {
     this.getNavList();
   }
   render() {
-    const { MypageActions , seller_id, host_id, user_id ,navList,  sellerNavs, defaultNavs, hostNavs} = this.props;
-    const { getData, getNavList } = this;
+    const {  seller_id, host_id, user_id ,navList, } = this.props;
+    const { getData, } = this;
     if(!navList) return null;
     return (
       <MyPageNav

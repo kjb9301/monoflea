@@ -6,14 +6,17 @@ import MyPageItemWrapper from '../../components/mypage/MyPageItemWrapper/MyPageI
 
 class MyPageItemContainer extends Component {
   
+  shouldComponentUpdate(nextProps, nextState) {
+    const { url } = this.props;
+    return nextProps.url !== url;
+  }
   
   render() {
-    const  { data, navList} = this.props;
-    console.log(navList);
+    const  { data, url} = this.props;
     return (
        <MyPageItemWrapper
         data ={data}
-        navList = {navList}
+        url = {url}
        />
     );
   }
@@ -21,7 +24,7 @@ class MyPageItemContainer extends Component {
 
 export default connect(
   (state) => ({
-    navList : state.mypage.get('navList'),
+    url : state.mypage.get('url'),
     data : state.mypage.get('data')
   }),
   (dispatch) => ({

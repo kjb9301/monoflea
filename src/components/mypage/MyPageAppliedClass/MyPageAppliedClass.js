@@ -8,7 +8,6 @@ const MyPageAppliedClass = ({data}) => {
   const { class_limit_cnt, class_place, class_reg_cnt, event_date,
          taken_cnt, recruit_start_date, recruit_end_date, seller } = data;
   const { user } = seller;
-  console.log('bad');
   return (
     <div className = {cx('detail-info-wrapper')} >
       <div className = {cx('detail-info')}>

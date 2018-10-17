@@ -7,14 +7,17 @@ const GET_MYPAGE_DATA = 'mypage/GET_MYPAGE_DATA';
 const GET_NAVLIST_HOST = 'mypage/GET_NAVLIST_HOST';
 const GET_NAVLIST_SELLER = 'mypage/GET_NAVLIST_SELLER';
 const GET_NAVLIST_USER = 'mypage/GET_NAVLIST_USER';
+const GET_URL = 'mypage/GET_URL';
+
 export const getMypageData = createAction(GET_MYPAGE_DATA, api.getMypageData);
 export const getNavListHost = createAction(GET_NAVLIST_HOST);
 export const getNavListSeller = createAction(GET_NAVLIST_SELLER);
 export const getNavListUser = createAction(GET_NAVLIST_USER);
+export const getUrl =  createAction(GET_URL);
 
 const initialState = fromJS({
   data: '',
-  defaultNav : [{navs : '프로필', urls : 'a'},
+  defaultNav : [{navs : '프로필', urls : '/mypages/profile'},
                 {navs : '좋아하는셀러', urls : '/mypages/like-seller'},
                 {navs : '찜한클래스', urls : '/mypages/like-classes'}],
   sellerNavs : [
@@ -23,14 +26,14 @@ const initialState = fromJS({
           {navs : '신청클래스', urls : '/mypages/apply-classes'}],
          
   hostNav :  {navs : '주최마켓', urls : '/mypages/host-markets'},
-  navList : ''
+  navList : '',
+  url : ''
 });
 
 export default handleActions({
   ...pender({
     type: GET_MYPAGE_DATA,
     onSuccess: (state, action) => {
-      console.log(action.payload.data);
       const { data } = action.payload
       return state.set('data', data);
     }
@@ -39,23 +42,22 @@ export default handleActions({
     let defaultNav = initialState.get('defaultNav')
     let hostNav = initialState.get('hostNav')
     const Hnav = defaultNav.push(hostNav).toJS();
-    console.log(Hnav);
-
     return state.set('navList', Hnav);
   },
   [GET_NAVLIST_SELLER] : (state,action) =>{
     let defaultNav = initialState.get('defaultNav')
     let sellerNavs = initialState.get('sellerNavs')
     const Hnav = defaultNav.concat(sellerNavs).toJS();
-    console.log(Hnav);
-
     return state.set('navList', Hnav);
   },
   [GET_NAVLIST_USER] : (state,action) =>{
     let defaultNav = initialState.get('defaultNav')
     let sellerNavs = initialState.get('sellerNavs')
-    const Hnav = defaultNav.push(sellerNavs[2]).toJS();
-    console.log(Hnav);
+    let sellerNav = sellerNavs.toJS()[2];
+    const Hnav = defaultNav.concat(sellerNav).toJS();
     return state.set('navList', Hnav);
+  },
+  [GET_URL] : (state, action) => {
+    return state.set('url',action.payload);
   }
 }, initialState);

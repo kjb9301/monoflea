@@ -5,8 +5,7 @@ import {bindActionCreators} from 'redux';
 class MyPageWrapperContainer extends Component {
   render() {
     const { seller_id, host_id, user_id} = this.props;
-    console.log(seller_id);
-    if(!host_id)  return null;
+    if(!user_id)  return null;
     return (
       <div>
         <MyPageWrapper

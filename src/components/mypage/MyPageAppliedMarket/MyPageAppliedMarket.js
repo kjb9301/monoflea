@@ -5,11 +5,9 @@ import styles from './MyPageAppliedMarket.scss';
 const cx = classNames.bind(styles);
 
 const MyPageAppliedMarket = ({data}) => {
-  console.log('sorry');
   if (!data) return null;
   const { start_date, end_date, host, 
                 market_place, reg_end_date, reg_start_date} = data;
-
   // const dataDetail = data.map(
   //   (data,idx) => {
   //    
