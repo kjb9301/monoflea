@@ -14,19 +14,27 @@ const MyPageItemWrapper = ({data}) => {
   const dataDetail = data.map(
     (data,idx) => {
       const { market_poster,seller,onedayRegs,market_name} = data;
-      console.log(data.class_name);
       const whoRu = data.class_name === undefined ? 'market' : 'seller';
-      console.log(whoRu);
-      // console.log(seller.profile_img);
-      // console.log(data.seller_cnt);
-      // let information = data.seller_cnt >=  0? console.log('ok') : console.log('sorry');
-      // console.log(information)
-      let information = whoRu === 'seller' 
-          ? onedayRegs !== undefined  ? <MyPageAppliedClass data = {data}/> : <MyPageHostClass data = {data}/>
-          : data.seller_cnt >= 0 ? <MyPageHostMarket data = {data}/>  : <MyPageAppliedMarket data = {data}/> 
-                              
+      let information = '';
+      // let information = whoRu === 'seller' 
+      //     ? onedayRegs !== undefined  ? <MyPageAppliedClass data = {data}/> : <MyPageHostClass data = {data}/>
+      //     : data.seller_cnt >= 0 ? <MyPageHostMarket data = {data}/>  : <MyPageAppliedMarket data = {data}/> 
+      
+      if(whoRu === 'seller') {
+        if(onedayRegs !==undefined) {
+          information = <MyPageAppliedClass data = {data}/>
+        }else {
+          information = <MyPageHostClass data = {data}/>
+        }
+      }else {
+        if(data.seller_cnt >= 0) {
+          information = <MyPageHostMarket data = {data}/>
+        }else {
+          information = <MyPageAppliedMarket data = {data}/>
+        }
+      }
       return (
-        <div>
+        <div key = {idx} >
         {
           whoRu !== 'seller' ? 
           <div className = {cx('item-wrapper')} key = {idx}>
