@@ -65,6 +65,7 @@ const initialState = Map({
     class: false,
     enrolledClassList: false,
     enrolledUserInfo: false,
+    myPageMap: false,
   }),
   loginModal: Map({
     email: '',

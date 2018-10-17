@@ -1,0 +1,31 @@
+.map-modal {
+  width: 800px;
+  .modal-top {
+    width: 100%;
+    background-color: #548E3E;
+    position: relative;
+    .close {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+      background-color: transparent;
+      font-size: 1.5rem;
+      color: white;
+      font-weight: bold;
+      outline: 0;
+      border: 0;
+      cursor: pointer;
+    }
+    .modal-title {
+      padding: 1rem;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+    }
+  }
+  .modal-content {
+    width: 100%;
+  }
+}

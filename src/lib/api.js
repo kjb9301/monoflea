@@ -25,6 +25,7 @@ export const incrementLike = (id) => axios.post(`/sellers/like/${id}`);
 export const decrementLike = (id) => axios.delete(`/sellers/dislike/${id}`);
 export const getOneSeller = (id) => axios.get(`/sellers/${id}`);
 export const incViewCnt = (id) => axios.put(`sellers/view_cnt/${id}`);
+
 // market
 export const getMarketList = (confirm,selectDate,limit) => axios.get(`/markets?confirm=${confirm}&selectDate=${selectDate}&limit=${limit}`);
 export const createMarket = (info) => axios.post('/markets', info);
@@ -48,3 +49,4 @@ export const cancelOnedayClass = (id) => axios.delete(`/classes/taken`, { params
 
 // MyPage
 export const getMypageData = (url,id) => axios.get(`${url}?id=${id}`);
+export const getMarketPlace = (id) => axios.get(`/mypages/market-place?market_id=${id}`);

@@ -10,7 +10,7 @@ import MyPageLikeSeller from '../MyPageLikeSeller';
 const cx = classNames.bind(styles);
 let information = '';
 
-const MyPageItemWrapper = ({data, url}) => { 
+const MyPageItemWrapper = ({ data, openMap, url }) => { 
   if (!data) return null;
   console.log(data);
   console.log(url);
@@ -30,22 +30,21 @@ const MyPageItemWrapper = ({data, url}) => {
       if(!url) return null;
       switch(url){
         case '/mypages/apply-markets' :
-             information = <MyPageAppliedMarket data = {data}/>
-             url = '';
+            information = <MyPageAppliedMarket data = {data}/>
+            url = '';
             break;
-        case  '/mypages/host-classes' :
-             information = <MyPageHostClass data = {data}/>
-             url = '';
+        case '/mypages/host-classes' :
+            information = <MyPageHostClass data = {data}/>
+            url = '';
             break;
-        case  '/mypages/apply-classes' :
-             information = <MyPageAppliedClass data = {data}/>
+        case '/mypages/apply-classes' :
+            information = <MyPageAppliedClass data = {data}/>
             break;
-        case  '/mypages/host-markets' :
-             information = <MyPageHostMarket data = {data}/>
+        case '/mypages/host-markets' :
+            information = <MyPageHostMarket data = {data}/>
             break;
-        
         default: break;
-        }
+      }
       return (
         <div key = {idx} >
         {
