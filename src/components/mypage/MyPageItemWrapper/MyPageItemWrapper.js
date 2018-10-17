@@ -12,14 +12,10 @@ let information = '';
 
 const MyPageItemWrapper = ({ data, openMap, url }) => { 
   if (!data) return null;
-  console.log(data);
-  console.log(url);
   switch(url) {
     case '/mypages/profile' :
-            console.log('s')
             return <MyPageProfile data = {data}/>
-    case '/mypages/like-classes' :
-            console.log('s')
+    case '/mypages/like-seller' :
             return <MyPageLikeSeller data = {data}/>
     default : break;
   }

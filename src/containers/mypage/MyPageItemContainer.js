@@ -28,14 +28,13 @@ class MyPageItemContainer extends Component {
   }
   
   render() {
-    const  { data, navList, visible, marketMap } = this.props;
+    const  { data, navList,url, visible, marketMap } = this.props;
     const { openMap, closeMap } = this;
-    console.log(navList);
     return (
       <Fragment>
         <MyPageItemWrapper
           data ={data}
-          navList = {navList}
+          url = {url}
           openMap={openMap}
         />
         <MypageMapModal visible={visible} closeMap={closeMap} marketMap={marketMap}/>
@@ -47,7 +46,6 @@ class MyPageItemContainer extends Component {
 export default connect(
   (state) => ({
     url : state.mypage.get('url'),
-    navList : state.mypage.get('navList'),
     data : state.mypage.get('data'),
     visible: state.base.getIn(['modal', 'myPageMap']),
     marketMap: state.mypage.get('marketPlace')
