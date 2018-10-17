@@ -26,7 +26,7 @@ const MyPageItemWrapper = ({ data, openMap, url }) => {
       if(!url) return null;
       switch(url){
         case '/mypages/apply-markets' :
-            information = <MyPageAppliedMarket data = {data}/>
+            information = <MyPageAppliedMarket openMap={openMap} data = {data}/>
             url = '';
             break;
         case '/mypages/host-classes' :
@@ -37,7 +37,7 @@ const MyPageItemWrapper = ({ data, openMap, url }) => {
             information = <MyPageAppliedClass data = {data}/>
             break;
         case '/mypages/host-markets' :
-            information = <MyPageHostMarket data = {data}/>
+            information = <MyPageHostMarket openMap={openMap} data = {data}/>
             break;
         default: break;
       }

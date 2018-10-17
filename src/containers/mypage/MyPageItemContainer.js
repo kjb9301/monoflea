@@ -10,8 +10,10 @@ import axios from 'axios';
 class MyPageItemContainer extends Component {
   
   shouldComponentUpdate(nextProps, nextState) {
-    const { url } = this.props;
-    return nextProps.url !== url;
+    const { url, marketMap, visible } = this.props;
+    return nextProps.url !== url
+        || nextProps.marketMap !== marketMap
+        || nextProps.visible !== visible;
   }
   
   openMap = (id) => {

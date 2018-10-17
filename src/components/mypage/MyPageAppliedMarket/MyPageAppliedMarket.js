@@ -4,10 +4,10 @@ import styles from './MyPageAppliedMarket.scss';
 
 const cx = classNames.bind(styles);
 
-const MyPageAppliedMarket = ({data}) => {
+const MyPageAppliedMarket = ({ data, openMap }) => {
   if (!data) return null;
   const { start_date, end_date, host, 
-                market_place, reg_end_date, reg_start_date} = data;
+                market_place, reg_end_date, reg_start_date, market_id } = data;
   // const dataDetail = data.map(
   //   (data,idx) => {
   //    
@@ -32,7 +32,7 @@ const MyPageAppliedMarket = ({data}) => {
       </div>
       <div className = {cx("status-wrapper")}>
           <div className = {cx("apply-stauts")}> 신청상태 : { } </div>
-          <div className = {cx("detailBtn")} >지도</div>
+          <div className = {cx("detailBtn")} onClick={() => openMap(market_id)}>지도</div>
       </div> 
     </div>
   
