@@ -1,11 +1,11 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate'
-import MyPageWrapper from 'components/mypage/MyPageWrapper';
+import MyPageWrapperContainer from 'containers/mypage/MyPageWrapperContainer';
 
 const MyPage  = () => {
   return(
     <PageTemplate>
-      <MyPageWrapper/>
+      <MyPageWrapperContainer/>
     </PageTemplate>
   )
 }

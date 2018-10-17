@@ -8,11 +8,12 @@ class MyPageItemContainer extends Component {
   
   
   render() {
-    const  { data} = this.props;
-    
+    const  { data, navList} = this.props;
+    console.log(navList);
     return (
        <MyPageItemWrapper
         data ={data}
+        navList = {navList}
        />
     );
   }
@@ -20,8 +21,7 @@ class MyPageItemContainer extends Component {
 
 export default connect(
   (state) => ({
-    // seller_id : state.base.get('seller_id')
-    seller_id : state.base.get('seller_id'),
+    navList : state.mypage.get('navList'),
     data : state.mypage.get('data')
   }),
   (dispatch) => ({
