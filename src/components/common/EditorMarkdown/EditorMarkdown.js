@@ -30,7 +30,7 @@ class EditorMarkdown extends Component {
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           toolbarClassName="toolbar-class"
-          editorStyle={{ 'backgroundColor': '#CCC', 'width': '80%', 'height': '550px', 'margin': 'auto', 'padding': '1rem' }}
+          editorStyle={{ 'width': '80%', 'height': 'auto', 'minHeight': '500px', 'margin': 'auto', 'padding': '1rem', 'border': '1px solid #ccc', }}
           toolbarStyle={{ 'width': '80%', 'margin': 'auto' }}
           toolbar={{
             options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'textAlign', 'colorPicker', 'image',  'history'],

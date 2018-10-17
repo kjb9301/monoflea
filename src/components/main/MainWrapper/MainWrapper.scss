@@ -21,10 +21,15 @@
     }
 
     .main-title > h1 {
+      padding: 1.5rem;
       padding-bottom: 3rem;
       text-align: center;
       color: white;
       font-size: 4.5rem;
+      width: 80%;
+      margin: 0 auto;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+      background: rgba(black, .7);
 
       @include media ("<medium") {
         font-size: 3rem;

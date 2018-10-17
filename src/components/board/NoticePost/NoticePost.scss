@@ -1,34 +1,82 @@
-.post-wrap {
-  width: 80%;
-  margin: auto;
-  padding: 2rem;
-  border: 1px solid black;
-  .post-title {
-    width: 80%;
-    margin: auto;
-    input {
-      width: 100%;
-      height: 50px;
-      padding: 1rem;
-      font-size: 1.2rem;
-      outline: none;
-      margin: 0.5rem 0;
+@import 'common';
+
+.notice-detail {
+  width: 100%;
+  margin: 2rem auto;
+  .detail-wrap {
+    width: 50%;
+    padding: 30px;
+    margin: 2rem auto;
+    border: 1px solid #f8c699;
+    background-color: #fefbfa;
+    .detail-top {
+      width: 80%;
+      margin: auto;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ff7e00;
+      .detail-title {
+        .title-input {
+          width: 100%;
+          border: 0;
+          outline: 0;
+          font-size: 1.5rem;
+          font-weight: bold;
+          padding: 5px;
+        }
+      }
+      .detail-date, .detail-view-count {
+        text-align: right;
+      }
+    }
+    .detail-content {
+      margin: 1.5rem auto;
     }
   }
-  .post-btn-wrap {
-    width: 80%;
+  @include media("<large") {
+    .detail-wrap {
+      width: 80%;
+      .detail-top {
+        .detail-title {
+          font-size: 1.3rem;
+        }
+        .detail-date, .detail-view-count {
+          font-size: 10px;
+        }
+        @include media("<smedium") {
+          .detail-title, .detail-date, .detail-view-count {
+            text-align: center;
+          }
+          .detail-title {
+            font-size: 1rem;
+          }
+          .detail-date {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+  .detail-prev-wrap {
+    width: 50%;
     margin: 1rem auto;
     text-align: center;
-    .post-btn {
-      font-size: 1.2rem;
-      background-color: purple;
-      padding: 0.5rem;
-      color: white;
+    .save-post-btn, .prev-btn {
+      outline: 0;
+      border: 1px solid #ff7e00;
+      color: #ff7e00;
+      background-color: #fefbfa;
+      padding: 10px;
+      margin: 8px;
+      cursor: pointer;
       &:hover {
-        background-color: white;
-        border: 1px solid purple;
-        color: purple;
-        cursor: pointer;
+        background-color: #ff7e00;
+        color: white;
+        border: none;
+      }
+    }
+    @include media("<medium") {
+      .save-post-btn, .prev-btn {
+        font-size: 10px;
       }
     }
   }

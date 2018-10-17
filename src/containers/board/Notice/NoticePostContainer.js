@@ -10,9 +10,9 @@ import * as newNoticeAction from 'store/modules/noticePost';
 class NoticePostContainer extends Component {
   
   createNewPost = async () => {
-    const { title, content, history } = this.props;
+    const { title, content, history, user_id } = this.props;
     try {
-      const createdResult = await axios.post('/notices', { title, content });
+      const createdResult = await axios.post('/notices', { title, content, user_id });
       const { isCreated, message, no } = createdResult.data;
       alert(message);
       if(isCreated) return history.push(`/boards/notice/${no}`);
@@ -24,6 +24,11 @@ class NoticePostContainer extends Component {
     }
   }
 
+  redirectNoticeList = () => {
+    const { history } = this.props;
+    return history.push('/boards/notice');
+  }
+  
   handleInputTitle = async (e) => {
     const { NewNoticeAction } = this.props;
     const { value } = e.target;
@@ -31,13 +36,14 @@ class NoticePostContainer extends Component {
   }
 
   render() {
-    const { handleInputTitle, createNewPost } = this;
+    const { handleInputTitle, createNewPost, redirectNoticeList } = this;
     const { userType } = this.props;
     if(userType !== 'A') return <Redirect to="/boards/notice" />
     return (
       <NoticePost 
         handleInputTitle={handleInputTitle}
         createNewPost={createNewPost}
+        redirectNoticeList={redirectNoticeList}
       />
     );
   }
@@ -46,6 +52,7 @@ class NoticePostContainer extends Component {
 export default connect(
   (state) => ({
     title: state.noticePost.get('title'),
+    user_id: state.base.get('user_id'),
     content: state.noticePost.get('content'),
     img_file: state.noticePost.get('img_file'),
     userType: state.base.get('userType')

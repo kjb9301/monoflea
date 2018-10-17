@@ -14,9 +14,10 @@ class MarketDetailContainer extends Component {
 
   handleChange = (e) => {
     const { MarketUIActions } = this.props;
-    const { name, value } = e.target;
-    bodyData.set(name, value);
-    MarketUIActions.changeInput({ name, value });
+    const { name, value, files } = e.target;
+    if(bodyData.get(name)) bodyData.delete(name);
+    files ? bodyData.append(name, files[0]) : bodyData.set(name, value);
+    if(!files) MarketUIActions.changeInput({ name, value });
   }
 
   handleEdit = () => {
@@ -48,8 +49,6 @@ class MarketDetailContainer extends Component {
 
   handleUpdate = async (id,editTF) => {
     const {MarketActions,MarketUIActions,marketInfo} = this.props;
-    // const marketDetail = marketInfo.toJS();
-    // await MarketActions.updateMarket(id, marketDetail);
     await MarketActions.updateMarket(id, bodyData);
     const {message} = this.props;
     alert(message);

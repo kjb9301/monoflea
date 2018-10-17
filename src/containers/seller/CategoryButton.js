@@ -8,9 +8,10 @@ class CategoryButton extends Component {
   getSellersList = async (category,like) => {
     const { SellerActions } = this.props;
     SellerActions.setCategory(category);
-    await SellerActions.getSellersList(category,like);
-    const { sellerList } = this.props;
-    if(sellerList.length<=8) return SellerActions.toggleMoreState(false);
+    SellerActions.toggleMoreState(true);
+    await SellerActions.getSellersList(category, like);
+    const { totalCnt } = this.props;
+    if(totalCnt<=8) return SellerActions.toggleMoreState(false);
     return SellerActions.toggleMoreState(true);
   }
 
@@ -50,6 +51,8 @@ class CategoryButton extends Component {
 export default connect((state) => ({
   categories : state.seller.get('categories'),
   sellerList : state.seller.get('sellers'),
+  hasMore : state.seller.get('hasMore'),
+  totalCnt : state.seller.get('totalCnt')
  }),
 (dispatch) => ({
   SellerActions : bindActionCreators(sellerActions,dispatch),

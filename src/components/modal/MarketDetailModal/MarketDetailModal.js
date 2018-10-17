@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import styles from './MarketDetailModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
+import { FaUpload } from 'react-icons/fa';
+import { changeInput } from '../../../store/modules/marketUI';
 
 const cx = classNames.bind(styles);
 
@@ -20,8 +22,33 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               <img  
                 src={market_poster} 
                 alt={market_name}
+                ref={ref => this.poster = ref}
                 className={cx('poster-image')}
               />
+              {
+                !editTF ? 
+                <Fragment>
+                </Fragment> :
+                <Fragment>
+                <div className={cx('poster-cover')}>
+                  <input 
+                    type="file" 
+                    name="market_poster" 
+                    className={cx('market-poster')}
+                    ref={ref => this.posterFile = ref}
+                    onChange={(e) => {
+                      onChange(e);
+                      let reader = new FileReader();
+                      reader.onload = (event) => {
+                        this.poster.src = event.target.result;
+                      };
+                      reader.readAsDataURL(this.posterFile.files[0]);
+                    }}
+                  />
+                  <FaUpload className={cx('upload-icon')}/>
+                </div>
+                </Fragment>
+              }
             </div>
           </div>
         </div>
@@ -142,7 +169,7 @@ const MarketDetailModal = ({userType,user_host_id,visible,marketDetail,onChange,
               {
                 !editTF ?
                 <p className={cx('info-content', 'line-height-1-6')}>{market_desc}</p> :
-                <textarea className={cx('info-content', 'line-height-1-6')} cols="60" rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
+                <textarea className={cx('info-content', 'line-height-1-6')} rows="5" name="market_desc" value={market_desc} onChange={onChange}/>
               }
             </div>
           </div>
