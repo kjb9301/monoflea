@@ -52,32 +52,42 @@
       }
     }
     .desc {
-      width: 65%;
+      width: 100%;
       margin: auto;
-      .title-weight {
-        font-weight: bold !important;
-      }
+
       .info {
         width: 100%;
+
+        .info-category {
+          width: 50%;
+          display: inline-block;
+        }
+
+        .title-weight {
+          font-weight: bold;
+          font-size: 1rem;
+        }
+        .content {
+          font-size: .8rem;
+        }
+
         & > div {
           width: 100%;
           text-align: left;
-          margin-top: 5px;
+          line-height: 2rem;
+          margin-top: 10px;
           padding-left: 5px;
-          border-left: 3px solid orange;
-          & > span {
-            font-weight: bold;
-          }
+          border-left: 3px solid rgb(0, 148, 136);
         }
       }
       .desc-title, .desc-text {
         width: 100%;
         text-align: left;
         font-weight: 500;
-        margin-top: 5px;
+        margin-top: 10px;
       }
       .desc-title {
-        border-left: 3px solid orange;
+        border-left: 3px solid rgb(0, 148, 136);
         padding-left: 3px;
       }
     }

@@ -76,14 +76,17 @@ const SellerDetailModal = ({visible, editTF, user_seller_id, sellerDetailData, o
           </div>
           <div className={cx('desc')}>
             <div className={cx('info')}>
-              <div>
-                <span className={('title-weight')}>분야 : </span>{category_ko}
+              <div className={cx('info-category')}>
+                <span className={('title-weight')}>분야 : </span>
+                <span className={cx('content')}>{category_ko}</span>
+              </div>
+              <div className={cx('info-category')}>
+                <span className={('title-weight')}>경력 : </span>
+                <span className={cx('content')}>{career}년</span>
               </div>
               <div>
-                <span className={('title-weight')}>경력 : </span>{career}년
-              </div>
-              <div>
-                <span className={('title-weight')}>SNS : </span>{sns}
+                <span className={('title-weight')}>SNS : </span>
+                <span className={cx('content')}>{sns}</span>
               </div>
             </div>
             <h3 className={cx('desc-title', 'title-weight')}>셀러 소개</h3>
