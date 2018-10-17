@@ -4,7 +4,10 @@ import styles from './MyPageProfile';
 
 const cx = classNames.bind(styles);
 
-const MyPageProfile = () => {
-
+const MyPageProfile = ({data}) => {
+  const {user_id} = data;
+  return (
+    <div>{user_id}</div>
+  )
 }
 export default MyPageProfile;

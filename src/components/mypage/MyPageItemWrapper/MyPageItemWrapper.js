@@ -1,18 +1,31 @@
 import React from 'react';
 import classNames  from 'classnames/bind';
 import styles from './MyPageItemWrapper.scss';
-import MyPageAppliedMarket from '../MyPageAppliedMarket/MyPageAppliedMarket';
+import MyPageAppliedMarket from '../MyPageAppliedMarket';
 import MyPageHostMarket from '../MyPageHostMarket';
 import MyPageAppliedClass from '../MyPageAppliedClass';
-import MyPageHostClass from '../MyPageHostClass/MyPageHostClass';
+import MyPageHostClass from '../MyPageHostClass';
+import MyPageProfile from '../MyPageProfile';
+import MyPageLikeSeller from '../MyPageLikeSeller';
 const cx = classNames.bind(styles);
 let information = '';
 
 const MyPageItemWrapper = ({data, url}) => { 
   if (!data) return null;
+  console.log(data);
+  console.log(url);
+  switch(url) {
+    case '/mypages/profile' :
+            console.log('s')
+            return <MyPageProfile data = {data}/>
+    case '/mypages/like-classes' :
+            console.log('s')
+            return <MyPageLikeSeller data = {data}/>
+    default : break;
+  }
   const dataDetail = data.map(
     (data,idx) => {
-      const { market_poster,profile_img, class_name, seller, market_name} = data;
+      const { market_poster, class_name, seller, market_name} = data;
       const whoRu = class_name === undefined ? 'market' : 'seller';
       if(!url) return null;
       switch(url){
@@ -30,6 +43,7 @@ const MyPageItemWrapper = ({data, url}) => {
         case  '/mypages/host-markets' :
              information = <MyPageHostMarket data = {data}/>
             break;
+        
         default: break;
         }
       return (
@@ -58,6 +72,7 @@ const MyPageItemWrapper = ({data, url}) => {
             
     }
   )
+  
   return (
     <div>
       {dataDetail}
