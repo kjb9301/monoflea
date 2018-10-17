@@ -6,10 +6,10 @@ import MyPageContentsWrapper from 'components/mypage/MyPageContentsWrapper';
 import MyPageNavContainer from 'containers/mypage/MyPageNavContainer';
 const cx = classNames.bind(styles);
 
-const MypageWrapper = () => {
+const MypageWrapper = ({nickName}) => {
   return (
     <div className = {cx("total-wrapper")}> 
-      <MyPageHeader/>
+      <MyPageHeader nickName = {nickName}/>
       <MyPageNavContainer/>
       <MyPageContentsWrapper/>
     </div>

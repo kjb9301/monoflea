@@ -6,5 +6,8 @@ const cx = classNames.bind(styles);
 
 const MyPageLikeSeller = () =>{
 
+  return (
+    <div>123</div>
+  )
 }
 export default MyPageLikeSeller;

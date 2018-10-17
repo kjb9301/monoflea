@@ -8,20 +8,6 @@ const MyPageAppliedMarket = ({ data, openMap }) => {
   if (!data) return null;
   const { start_date, end_date, host, 
                 market_place, reg_end_date, reg_start_date, market_id } = data;
-  // const dataDetail = data.map(
-  //   (data,idx) => {
-  //    
-  //     return  <div className = {cx('detail-info-wrapper')} key = {idx}>
-  //               <div className = {cx('detail-info')}>
-  //                 <div className = {cx('item-date')}>개설날짜 : {start_date} ~ {end_date}</div>
-  //                 <div className = {cx("item-reg")}> 모집기간 : {reg_start_date} ~ {reg_end_date}</div>
-  //                 <div className = {cx("item-host")}>주최자 :  {host} </div>
-  //                 <div className = {cx("item-market_place")}>장소 : {market_place}</div>
-  //               </div>
-  //             </div>
-      
-  //   }
-  // )
   return (
     <div className = {cx('detail-info-wrapper')} >
       <div className = {cx('detail-info')}>

@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url('/images/profile_header.jpg');
   .header-image {
     position : absolute;
     width: 100%;
@@ -29,7 +30,7 @@
   }
   .nickName{
     padding: 30px;
-    font-size: 20px;
+    font-size: 30px;
     color : white;
     font-weight: bolder;
     z-index: 3;
