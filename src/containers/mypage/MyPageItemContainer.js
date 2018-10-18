@@ -26,7 +26,7 @@ class MyPageItemContainer extends Component {
 
   closeMap = () => {
     const { BaseActions } = this.props;
-    BaseActions.hideModal('myPageMap'); 
+    BaseActions.hideModal('myPageMap');
   }
   
   render() {
