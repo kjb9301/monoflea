@@ -135,8 +135,7 @@ class ClassDetailContainer extends Component {
       hideModal, deleteOnedayClass, toggleEditOnedayClass, changeValue, getEnrollList,
       cancelEditClass, updateOnedayClass, enrollOnedayClass, cancelOnedayClass, closeEnrollList
     } = this;
-    
-    if(!categories.length) return null;
+    // if(!categories.length) return null;
     return (
       <Fragment>
         <ClassDetailModal 

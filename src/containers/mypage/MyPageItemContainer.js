@@ -3,8 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import * as baseActions from 'store/modules/base';
 import * as mypageActions from 'store/modules/mypage';
+import * as classUIActions from 'store/modules/classUI'
 import MyPageItemWrapper from '../../components/mypage/MyPageItemWrapper/MyPageItemWrapper';
 import MypageMapModal from 'components/mypage/MypageMapModal';
+
 import axios from 'axios';
 
 class MyPageItemContainer extends Component {
@@ -35,9 +37,18 @@ class MyPageItemContainer extends Component {
     MypageActions.toggleEdit(editTF);
   }
   
+  showClassModal = async (id) =>{
+    const { ClassUIActions, BaseActions } = this.props;
+    const getDetailinfo = () => {
+      return axios.get(`/classes/${id}`);
+    }
+    const classDetail = await getDetailinfo();
+    ClassUIActions.setClassInfo(classDetail);
+    return BaseActions.showModal('class');
+  }
   render() {
-    const  { data, navList, url, visible, marketMap, editTF } = this.props;
-    const { openMap, closeMap, handleEdit } = this;
+    const  { data,  url, visible, marketMap, editTF } = this.props;
+    const { openMap, closeMap, handleEdit, showClassModal } = this;
     return (
       <Fragment>
         <MyPageItemWrapper
@@ -46,6 +57,7 @@ class MyPageItemContainer extends Component {
           openMap={openMap}
           toggleEdit={handleEdit}
           editTF={editTF}
+          showClassModal = {showClassModal}
         />
         <MypageMapModal visible={visible} closeMap={closeMap} marketMap={marketMap}/>
       </Fragment>
@@ -59,10 +71,13 @@ export default connect(
     data : state.mypage.get('data'),
     visible: state.base.getIn(['modal', 'myPageMap']),
     marketMap: state.mypage.get('marketPlace'),
-    editTF: state.mypage.get('editTF')
+    editTF: state.mypage.get('editTF'),
+    categories: state.class.get('categories')
+
   }),
   (dispatch) => ({
     MypageActions : bindActionCreators(mypageActions,dispatch),
-    BaseActions: bindActionCreators(baseActions, dispatch)
+    BaseActions: bindActionCreators(baseActions, dispatch),
+    ClassUIActions : bindActionCreators(classUIActions , dispatch)
   })
 )(MyPageItemContainer)
