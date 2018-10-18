@@ -11,7 +11,7 @@ import MyPageTakenClass from '../MyPageTakenClass/MyPageTakenClass';
 const cx = classNames.bind(styles);
 let information = '';
 
-const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit }) => {
+const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit, applyModal }) => {
   if (!data) return null;
   switch(url) {
     case '/mypages/profile' :
@@ -38,7 +38,7 @@ const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit }) => {
             information = <MyPageAppliedClass data = {data}/>
             break;
         case '/mypages/host-markets' :
-            information = <MyPageHostMarket openMap={openMap} data = {data}/>
+            information = <MyPageHostMarket applyModal={applyModal} data = {data}/>
             break;
         default: break;
       }
