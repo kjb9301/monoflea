@@ -9,6 +9,7 @@ const GET_NAVLIST_SELLER = 'mypage/GET_NAVLIST_SELLER';
 const GET_NAVLIST_USER = 'mypage/GET_NAVLIST_USER';
 const GET_URL = 'mypage/GET_URL';
 const GET_MARKET_PLACE = 'mypage/GET_MARKET_PLACE';
+const TOGGLE_EDIT = 'mypage/TOGGLE_EDIT';
 
 export const getMypageData = createAction(GET_MYPAGE_DATA, api.getMypageData);
 export const getNavListHost = createAction(GET_NAVLIST_HOST);
@@ -16,6 +17,7 @@ export const getNavListSeller = createAction(GET_NAVLIST_SELLER);
 export const getNavListUser = createAction(GET_NAVLIST_USER);
 export const getUrl =  createAction(GET_URL);
 export const getMarketPlace = createAction(GET_MARKET_PLACE, api.getMarketPlace);
+export const toggleEdit = createAction(TOGGLE_EDIT);
 
 const initialState = fromJS({
   data: '',
@@ -31,6 +33,7 @@ const initialState = fromJS({
   navList : '',
   url : '',
   marketPlace: '',
+  editTF: false
 });
 
 export default handleActions({
@@ -68,5 +71,10 @@ export default handleActions({
   },
   [GET_URL] : (state, action) => {
     return state.set('url',action.payload);
+  },
+  [TOGGLE_EDIT]: (state,action) => {
+    const editTF = action.payload;
+    console.log(editTF)
+    return (editTF === true? state.set('editTF',false) : state.set('editTF',true));
   }
 }, initialState);

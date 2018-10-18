@@ -9,14 +9,17 @@
   user-select: none;
   font-weight: 600;
   margin: 5px;
+  border-radius: 10px;
+  width: 80px;
+  text-align: center;
 
   &.default {
-    background: $oc-blue-6;
+    background: #9c9c95;
     &:hover {
-      background: $oc-blue-5;
+      background: #4cc09d;
     }
     &:active {
-      background: $oc-blue-6;
+      background: #9c9c95;
     }
   }
 

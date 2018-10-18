@@ -10,11 +10,11 @@ import MyPageLikeSeller from '../MyPageLikeSeller';
 const cx = classNames.bind(styles);
 let information = '';
 
-const MyPageItemWrapper = ({ data, openMap, url }) => {
+const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit }) => {
   if (!data) return null;
   switch(url) {
     case '/mypages/profile' :
-            return <MyPageProfile data = {data}/>
+            return <MyPageProfile data = {data} editTF={editTF} toggleEdit={toggleEdit}/>
     case '/mypages/like-seller' :
             return <MyPageLikeSeller data = {data}/>
     default : break;
