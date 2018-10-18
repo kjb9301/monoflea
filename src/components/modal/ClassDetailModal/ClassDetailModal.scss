@@ -4,6 +4,10 @@
   width: 100% !important;
 }
 
+.w-80 {
+  width: 85% !important;
+}
+
 .detail-modal {
   width: 100%;
   margin: auto;
@@ -146,6 +150,20 @@
       .info-content {
         margin-top: 5px;
         font-size: 13px;
+        width: 85%;
+        padding: 2px;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid #ccc;
+      }
+      .edit-bg {
+        border-bottom: 1.5px solid #548E3E;
+      }
+      .input-num {
+        width: 25px !important;
+      }
+      .input-date:nth-child(even) {
+        margin-left: 10px;
       }
       .inner-box {
         width: 40%;

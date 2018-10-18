@@ -154,7 +154,7 @@ const ClassDetailModal =
                 !editing ? 
                 <p className={cx('info-content')}>{onedayCategory.category_ko_name}</p> :
                 <select 
-                  className={cx('info-content')}
+                  className={cx('info-content', 'edit-bg')}
                   value={onedayCategory.class_category_id}
                   name='class_category_id'
                   onChange={changeValue}
@@ -168,7 +168,7 @@ const ClassDetailModal =
                 !editing ?
                 <p className={cx('info-content')}>{class_name}</p> :
                 <input 
-                  className={cx('info-content')} 
+                  className={cx('info-content', 'edit-bg')} 
                   value={class_name} 
                   name='class_name' 
                   onChange={changeValue}
@@ -181,7 +181,7 @@ const ClassDetailModal =
                 !editing ?
                 <p className={cx('info-content')}>{class_place}</p> :
                 <input 
-                  className={cx('info-content')} 
+                  className={cx('info-content', 'edit-bg')} 
                   value={class_place} 
                   name='class_place' 
                   onChange={changeValue}
@@ -195,7 +195,7 @@ const ClassDetailModal =
                 <p className={cx('info-content')}>{event_date}</p> :
                 <input 
                   type='date'
-                  className={cx('info-content')} 
+                  className={cx('info-content', 'edit-bg')} 
                   value={event_date} 
                   name='event_date' 
                   onChange={changeValue}
@@ -207,10 +207,10 @@ const ClassDetailModal =
               {
                 !editing ?
                 <p className={cx('info-content')}>{recruit_start_date} ~ {recruit_end_date}</p> :
-                <div className={cx('info-content')}>
+                <div className={cx('info-content')} style={{ 'border':  !editing ? null : '0' }}>
                   <input
                     type='date'
-                    className={cx('info-content', 'inner-box')} 
+                    className={cx('info-content', 'inner-box', 'edit-bg', 'input-date')} 
                     value={recruit_start_date} 
                     name='recruit_start_date' 
                     onChange={changeValue}
@@ -218,7 +218,7 @@ const ClassDetailModal =
                   ~ 
                   <input 
                     type='date'
-                    className={cx('info-content', 'inner-box')} 
+                    className={cx('info-content', 'inner-box', 'edit-bg', 'input-date')} 
                     value={recruit_end_date} 
                     name='recruit_end_date' 
                     onChange={changeValue}
@@ -233,15 +233,16 @@ const ClassDetailModal =
                 <p className={cx('info-content')}>
                   <span ref={ref => this.regCnt = ref}>{class_reg_cnt}</span> / {class_limit_cnt}
                 </p> :
-                <p className={cx('info-content')}>
+                <p className={cx('info-content', 'edit-bg')}>
                   <span ref={ref => this.regCnt = ref}>{class_reg_cnt}</span>
                    / 
                   <input 
                     type='number'
-                    className={cx('info-content', 'inner-box')} 
+                    className={cx('info-content', 'inner-box', 'input-num')} 
                     value={class_limit_cnt} 
                     name='class_limit_cnt' 
                     onChange={changeValue}
+                    style={{ 'border':  !editing ? null : '0' }}
                   />
                 </p>
               }
@@ -256,7 +257,7 @@ const ClassDetailModal =
                 !editing ?
                 <p className={cx('info-content', 'line-height-1-6')}>{class_desc}</p> :
                 <textarea 
-                  className={cx('info-content', 'w-100')} 
+                  className={cx('info-content', 'w-80')} 
                   name='class_desc' 
                   rows='5' 
                   value={class_desc}

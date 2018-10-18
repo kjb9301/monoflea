@@ -14,7 +14,7 @@ const fadeProperties = {
   infinite: true,
   indicators: true,
   scale: 1,
-  arrows: true
+  arrows: false
 }
 
 const imgStlyes = {
@@ -119,28 +119,6 @@ const LoginedSellerDetailModal
               {imgList}
             </Fade>
           </div>
-          {
-            user_seller_id === seller_id ?
-              <div className={cx('button-wrap')}>
-                <button className={cx('sellerBtn')} onClick={toggleState}> { !editTF ? '수정' : '취소' }</button>
-                { editTF ? <button className={cx('sellerBtn')} onClick={onUpdate}>완료</button> : <Fragment></Fragment> }
-                {/* {
-                  !editTF ?
-                    <Fragment>
-                      <button className={cx('sellerBtn')} onClick={toggleState}>수정</button>
-                      <button className={cx('sellerBtn')}>삭제</button>
-                    </Fragment>
-                  :
-                    <Fragment>
-                      <button className={cx('sellerBtn')}>완료</button>
-                      <button className={cx('sellerBtn')}>취소</button>
-                    </Fragment>
-                } */}
-                
-              </div>
-              :
-              <Fragment></Fragment>
-          }
         </div>
     </ModalWrapper>
   )

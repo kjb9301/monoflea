@@ -83,7 +83,7 @@ class SignupModalContainer extends Component {
 
   callNextModal = (validatedEmail, validatedPassword, comparedPassword) => {
     const { BaseActions } = this.props;
-    // if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
+    if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
     BaseActions.hideModal('signup');
     BaseActions.showModal('signupMore');
   }
