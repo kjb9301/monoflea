@@ -37,7 +37,7 @@ export default handleActions({
   ...pender({
     type: GET_MYPAGE_DATA,
     onSuccess: (state, action) => {
-      const { data } = action.payload
+      const { data } = action.payload;
       return state.set('data', data);
     }
   }),

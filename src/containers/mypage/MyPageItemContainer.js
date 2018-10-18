@@ -30,7 +30,7 @@ class MyPageItemContainer extends Component {
   }
   
   render() {
-    const  { data, navList,url, visible, marketMap } = this.props;
+    const  { data, navList, url, visible, marketMap } = this.props;
     const { openMap, closeMap } = this;
     return (
       <Fragment>

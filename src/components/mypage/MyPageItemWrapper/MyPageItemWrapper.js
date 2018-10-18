@@ -10,7 +10,7 @@ import MyPageLikeSeller from '../MyPageLikeSeller';
 const cx = classNames.bind(styles);
 let information = '';
 
-const MyPageItemWrapper = ({ data, openMap, url }) => { 
+const MyPageItemWrapper = ({ data, openMap, url }) => {
   if (!data) return null;
   switch(url) {
     case '/mypages/profile' :
@@ -27,11 +27,9 @@ const MyPageItemWrapper = ({ data, openMap, url }) => {
       switch(url){
         case '/mypages/apply-markets' :
             information = <MyPageAppliedMarket openMap={openMap} data = {data}/>
-            url = '';
             break;
         case '/mypages/host-classes' :
             information = <MyPageHostClass data = {data}/>
-            url = '';
             break;
         case '/mypages/apply-classes' :
             information = <MyPageAppliedClass data = {data}/>
