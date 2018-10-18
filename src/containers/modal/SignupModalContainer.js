@@ -12,7 +12,7 @@ class SignupModalContainer extends Component {
 
   handleSignup = async (validatedEmail, validatedPassword, comparedPassword) => {
     const { BaseActions } = this.props;
-    // if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
+    if(!this.checkValidations(validatedEmail, validatedPassword, comparedPassword)) return;
     try {
       await BaseActions.signup(bodyData);
       const { logged, nickName } = this.props;
