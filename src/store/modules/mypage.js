@@ -23,7 +23,7 @@ const initialState = fromJS({
   data: '',
   defaultNav : [{navs : '프로필', urls : '/mypages/profile'},
                 {navs : '좋아하는셀러', urls : '/mypages/like-seller'},
-                {navs : '찜한클래스', urls : '/mypages/like-classes'}],
+                {navs : '찜한클래스', urls : '/mypages/like-class'}],
   sellerNavs : [
           {navs : '신청마켓', urls : '/mypages/apply-markets'}, 
           {navs : '주최클래스', urls : '/mypages/host-classes'}, 

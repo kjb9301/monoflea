@@ -7,6 +7,7 @@ import MyPageAppliedClass from '../MyPageAppliedClass';
 import MyPageHostClass from '../MyPageHostClass';
 import MyPageProfile from '../MyPageProfile';
 import MyPageLikeSeller from '../MyPageLikeSeller';
+import MyPageTakenClass from '../MyPageTakenClass/MyPageTakenClass';
 const cx = classNames.bind(styles);
 let information = '';
 
@@ -17,6 +18,8 @@ const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit }) => {
             return <MyPageProfile data = {data} editTF={editTF} toggleEdit={toggleEdit}/>
     case '/mypages/like-seller' :
             return <MyPageLikeSeller data = {data}/>
+    case '/mypages/like-class' :
+            return <MyPageTakenClass data = {data}/>
     default : break;
   }
   const dataDetail = data.map(
