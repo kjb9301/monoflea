@@ -8,6 +8,7 @@ const MyPageAppliedMarket = ({ data, openMap }) => {
   if (!data) return null;
   const { start_date, end_date, host, 
                 market_place, reg_end_date, reg_start_date, market_id } = data;
+                // console.log
   return (
     <div className = {cx('detail-info-wrapper')} >
       <div className = {cx('detail-info')}>
