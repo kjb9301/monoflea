@@ -14,6 +14,7 @@ const GET_APPLY_LIST = 'mypage/GET_APPLY_LIST';
 const SET_PROFILE = 'mypage/SET_PROFILE';
 const CHANGE_PROFILE = 'mypage/CHANGE_PROFILE';
 const UPDATE_PROFILE = 'mypage/UPDATE_PROFILE';
+const SELECT_NAV = 'mypage/SELECT_NAV';
 
 export const getMypageData = createAction(GET_MYPAGE_DATA, api.getMypageData);
 export const getNavListHost = createAction(GET_NAVLIST_HOST);
@@ -26,6 +27,7 @@ export const getApplyList = createAction(GET_APPLY_LIST);
 export const setProfile = createAction(SET_PROFILE);
 export const changeProfile = createAction(CHANGE_PROFILE);
 export const updateProfile = createAction(UPDATE_PROFILE, api.updateProfile);
+export const selectNav = createAction(SELECT_NAV);
 
 const initialState = fromJS({
   data: '',
@@ -43,6 +45,7 @@ const initialState = fromJS({
   marketPlace: '',
   applyData: '',
   editTF: false,
+  selectedURL: '',
   userProfile: {
     profile: '',
     nickName: '',
@@ -103,5 +106,8 @@ export default handleActions({
   [CHANGE_PROFILE]: (state, action) => {
     const { name, value } = action.payload;
     return state.setIn(['userProfile', name], value);
+  },
+  [SELECT_NAV] : (state,action) => {
+    return state.set('selectedURL',action.payload);
   }
 }, initialState);

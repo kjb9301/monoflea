@@ -10,6 +10,7 @@ const MyPageLikeSeller = ({data}) =>{
     (data, idx) => {
       const { sellerCategory, like_cnt, sns, profile_img , user,career} = data;
       return (
+          
               <div className = {cx('item-wrapper')} key = {idx}>
                  <div className = {cx('item-image')}><img src = {profile_img} /></div>
                   <div className = {cx('item-detail')}>
@@ -19,7 +20,7 @@ const MyPageLikeSeller = ({data}) =>{
                         <div className = {cx('info item-category')}> 분야 : {sellerCategory.category_ko} </div>
                         <div className = {cx("info item-like_cnt")}> 좋아요 : {like_cnt} </div>
                         <div className = {cx("info item-career")}> 경력 :  {career} </div>
-                        <div className = {cx("info item-sns")}> SNS :  {sns} </div>
+                        <div className = {cx("info item-sns")}> SNS :  {sns} </div><br/>
                       </div>
                       <div className = {cx("status-wrapper")}>
                           <div className = {cx("detailBtn")} >상세정보 </div>

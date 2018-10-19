@@ -7,7 +7,8 @@ import * as mypageActions from 'store/modules/mypage';
 class MyPageNavContainer extends Component {
 
   getData = (url,id) => {
-    const { MypageActions, } = this.props;
+    const { MypageActions } = this.props;
+    MypageActions.selectNav(url);
     MypageActions.getMypageData(url, id)
       .then(() => {
         MypageActions.getUrl(url);
@@ -20,13 +21,14 @@ class MyPageNavContainer extends Component {
                 seller_id !== null ?  MypageActions.getNavListSeller() :
                 MypageActions.getNavListUser();
   }
+
   componentDidMount(){
     this.getNavList();
   }
   
   render() {
-    const {  seller_id, host_id, user_id ,navList, } = this.props;
-    const { getData, } = this;
+    const {  seller_id, host_id, user_id ,navList, selectedURL } = this.props;
+    const { getData } = this;
     if(!navList) return null;
     return (
       <MyPageNav
@@ -35,6 +37,7 @@ class MyPageNavContainer extends Component {
         seller_id = {seller_id}
         host_id = {host_id}
         user_id = {user_id}
+        selectedURL = {selectedURL}
       />
     );
   }
@@ -48,7 +51,8 @@ export default connect(
     sellerNavs : state.mypage.get('sellerNavs'),
     defaultNavs : state.mypage.get('defaultNav'),
     hostNavs : state.mypage.get('hostNav'),
-    navList : state.mypage.get('navList')
+    navList : state.mypage.get('navList'),
+    selectedURL : state.mypage.get('selectedURL')
   }),
   (dispatch) => ({
     MypageActions : bindActionCreators(mypageActions,dispatch),

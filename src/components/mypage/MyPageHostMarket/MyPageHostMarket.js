@@ -12,7 +12,6 @@ const MyPageHostMarket = ({ data, applyModal }) => {
       <div className = {cx('detail-info')}>
         <div className = {cx('info item-date')}>개설날짜 : {start_date} ~ {end_date}</div>
         <div className = {cx("info item-reg")}> 모집기간 : {reg_start_date} ~ {reg_end_date}</div>
-        <div className = {cx("info item-host")}>주최자 :  {host.host_id} </div>
         <div className = {cx("info item-market_place")}>장소 : {market_place}</div>
         <div className = {cx("info item-seller_cnt")}> 모집현황 : {seller_cnt} / {seller_limit_cnt} </div>
       </div>

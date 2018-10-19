@@ -80,7 +80,9 @@ const MyPageProfile
           </div>
           <div className={cx('input-item')}>
             <span className={cx('item-title')}>Usertype</span>
-            <p className={cx('item-content')}>{userType}</p>
+            <p className={cx('item-content')}>
+              {userType === 'U'? 'User' : (userType === 'H'? 'Host' : 'Seller')}
+            </p>
           </div>
         </div>
       </div>
