@@ -23,7 +23,6 @@ const ClassDetailModal =
   ({ visible, getEnrollList, classDetail, hideModal, nickName, 
      deleteOnedayClass, toggleEditOnedayClass, changeValue, editing, cancelEditClass, 
      updateOnedayClass, categories, enrollOnedayClass, cancelOnedayClass }) => {
-
   const { 
     class_desc, class_id, class_limit_cnt, class_name, class_place,
     class_reg_cnt, onedayCategory, onedayImages, recruit_start_date, 
@@ -39,7 +38,7 @@ const ClassDetailModal =
    ));
    
   if(!seller) return null;
-
+  
   const images = onedayImages.map((img, idx) => (
       <div key={img.class_img_id} className={cx('img-box')}>
         {

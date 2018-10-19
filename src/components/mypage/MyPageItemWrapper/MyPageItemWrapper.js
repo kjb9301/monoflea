@@ -11,15 +11,16 @@ import MyPageTakenClass from '../MyPageTakenClass/MyPageTakenClass';
 const cx = classNames.bind(styles);
 let information = '';
 
-const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit, applyModal }) => {
+const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit, applyModal, showClassModal }) => {
   if (!data) return null;
+
   switch(url) {
     case '/mypages/profile' :
             return <MyPageProfile data = {data} editTF={editTF} toggleEdit={toggleEdit}/>
     case '/mypages/like-seller' :
             return <MyPageLikeSeller data = {data}/>
     case '/mypages/like-class' :
-            return <MyPageTakenClass data = {data}/>
+            return <MyPageTakenClass data = {data} showClassModal = {showClassModal} />
     default : break;
   }
   const dataDetail = data.map(
@@ -35,7 +36,7 @@ const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit, applyModal 
             information = <MyPageHostClass data = {data}/>
             break;
         case '/mypages/apply-classes' :
-            information = <MyPageAppliedClass data = {data}/>
+            information = <MyPageAppliedClass data = {data} />
             break;
         case '/mypages/host-markets' :
             information = <MyPageHostMarket applyModal={applyModal} data = {data}/>

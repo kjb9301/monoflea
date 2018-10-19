@@ -1,17 +1,19 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './MyPageTakenClass.scss';
+import ClassDetailContainer from '../../../containers/class/ClassDetailContainer';
 
 const cx = classNames.bind(styles);
 
-const MyPageTakenClass = ({data}) => {
+const MyPageTakenClass = ({data ,showClassModal,categories}) => {
   console.log(data);
+
   const dataDetail = data.map (
     (data, idx) => {
       
-  const { class_limit_cnt, class_place, class_reg_cnt, event_date,
+  const { class_limit_cnt, class_place, class_reg_cnt, event_date, 
           taken_cnt, recruit_start_date, recruit_end_date, seller,class_name } = data;
-  const { user, profile_img } = seller;
+  const { user, profile_img, seller_id } = seller;
       return (
               <div className = {cx('item-wrapper')} key = {idx}>
                  <div className = {cx('item-image')}><img src = {profile_img} /></div>
@@ -27,7 +29,7 @@ const MyPageTakenClass = ({data}) => {
                         <div className = {cx("info item-seller_cnt")}> 모집현황 : {class_reg_cnt} / {class_limit_cnt} </div>
                       </div>
                       <div className = {cx("status-wrapper")}>
-                        <div className = {cx("detailBtn")} >상세정보 </div>
+                        <div className = {cx("detailBtn")} onClick = {() => showClassModal(seller_id)}> 상세정보 </div>
                       </div> 
                     </div>
                 </div>
@@ -38,12 +40,9 @@ const MyPageTakenClass = ({data}) => {
   return (
     <div>
       {dataDetail}
+      <ClassDetailContainer/>
     </div>
   )
-  return  (
-    <div className = {cx('detail-info-wrapper')} >
-      
-    </div>
-  );
+  
 }
 export default MyPageTakenClass;

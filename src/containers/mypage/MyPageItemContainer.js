@@ -4,10 +4,14 @@ import {bindActionCreators} from 'redux'
 import * as baseActions from 'store/modules/base';
 import * as mypageActions from 'store/modules/mypage';
 import * as marketActions from 'store/modules/market';
+
 import * as marketUIActions from 'store/modules/marketUI';
 import MyPageItemWrapper from '../../components/mypage/MyPageItemWrapper/MyPageItemWrapper';
 import MypageMapModal from 'components/mypage/MypageMapModal';
 import ApplyListModal from 'components/modal/ApplyListModal';
+
+import * as classUIActions from 'store/modules/classUI';
+
 import axios from 'axios';
 
 class MyPageItemContainer extends Component {
@@ -71,9 +75,18 @@ class MyPageItemContainer extends Component {
     return;
   }
   
+  showClassModal = async (id) =>{
+    const { ClassUIActions, BaseActions } = this.props;
+    const getDetailinfo = () => {
+      return axios.get(`/classes/${id}`);
+    }
+    const classDetail = await getDetailinfo();
+    ClassUIActions.setClassInfo(classDetail);
+    return BaseActions.showModal('class');
+  }
   render() {
     const  { data, navList, url, visible, marketMap, editTF, applyVisible, applyData } = this.props;
-    const { openMap, closeMap, handleEdit, handleApplyModal, closeApplyModal, HandleDeleteApply } = this;
+    const { openMap, closeMap, handleEdit, handleApplyModal, closeApplyModal, HandleDeleteApply, showClassModal } = this;
     console.log(applyData)
     return (
       <Fragment>
@@ -84,6 +97,7 @@ class MyPageItemContainer extends Component {
           toggleEdit={handleEdit}
           editTF={editTF}
           applyModal={handleApplyModal}
+          showClassModal = {showClassModal}
         />
         <MypageMapModal visible={visible} closeMap={closeMap} marketMap={marketMap}/>
         <ApplyListModal visible={applyVisible} applyListData={applyData} onClose={closeApplyModal} onDeleteApply={HandleDeleteApply}/>
@@ -100,12 +114,15 @@ export default connect(
     visible: state.base.getIn(['modal', 'myPageMap']),
     applyVisible: state.marketUI.getIn(['modal','apply']),
     marketMap: state.mypage.get('marketPlace'),
-    editTF: state.mypage.get('editTF')
+    editTF: state.mypage.get('editTF'),
+    categories: state.class.get('categories')
+
   }),
   (dispatch) => ({
     MypageActions : bindActionCreators(mypageActions,dispatch),
     BaseActions: bindActionCreators(baseActions, dispatch),
     MarketActions: bindActionCreators(marketActions, dispatch),
-    MarketUIActions: bindActionCreators(marketUIActions, dispatch)
+    MarketUIActions: bindActionCreators(marketUIActions, dispatch),
+    ClassUIActions : bindActionCreators(classUIActions , dispatch)
   })
 )(MyPageItemContainer)
