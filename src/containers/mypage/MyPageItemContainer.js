@@ -17,12 +17,13 @@ import axios from 'axios';
 class MyPageItemContainer extends Component {
   
   shouldComponentUpdate(nextProps, nextState) {
-    const { url, marketMap, visible, editTF, applyVisible } = this.props;
+    const { url, marketMap, visible, editTF, applyVisible, userProfile } = this.props;
     return nextProps.url !== url
         || nextProps.marketMap !== marketMap
         || nextProps.visible !== visible
         || nextProps.editTF !== editTF
-        || nextProps.applyVisible !== applyVisible;
+        || nextProps.applyVisible !== applyVisible
+        || nextProps.userProfile !== userProfile;
   }
   
   openMap = (id) => {
@@ -39,7 +40,10 @@ class MyPageItemContainer extends Component {
   }
 
   handleEdit = () => {
-    const { MypageActions, editTF } = this.props;
+    const { MypageActions, editTF, data } = this.props;
+    const { seller, nickName, tel } = data;
+    const profile_img = seller ? seller.profile_img : null;
+    profile_img ? MypageActions.setProfile({ profile_img, nickName, tel }) : MypageActions.setProfile({ nickName, tel });
     MypageActions.toggleEdit(editTF);
   }
 
@@ -84,17 +88,36 @@ class MyPageItemContainer extends Component {
     ClassUIActions.setClassInfo(classDetail);
     return BaseActions.showModal('class');
   }
+
+  changeProfileData = (e) => {
+    const { name, value, file } = e.target;
+    const { MypageActions } = this.props;
+    MypageActions.changeProfile({ name, value });
+  }
+
+  updateProfile = async () => {
+    const { userProfile, user_id, MypageActions, editTF } = this.props;
+    await MypageActions.updateProfile(user_id, userProfile);
+  }
+
   render() {
-    const  { data, navList, url, visible, marketMap, editTF, applyVisible, applyData } = this.props;
-    const { openMap, closeMap, handleEdit, handleApplyModal, closeApplyModal, HandleDeleteApply, showClassModal } = this;
-    console.log(applyData)
+    const  { data, navList, url, visible, marketMap, editTF, applyVisible, applyData, userProfile } = this.props;
+    const { 
+      openMap, closeMap, handleEdit, handleApplyModal, 
+      closeApplyModal, HandleDeleteApply, showClassModal, 
+      changeProfileData, updateProfile 
+    } = this;
+
     return (
       <Fragment>
         <MyPageItemWrapper
           data ={data}
+          userProfile={userProfile}
           url = {url}
           openMap={openMap}
           toggleEdit={handleEdit}
+          changeProfileData={changeProfileData}
+          updateProfile={updateProfile}
           editTF={editTF}
           applyModal={handleApplyModal}
           showClassModal = {showClassModal}
@@ -109,14 +132,15 @@ class MyPageItemContainer extends Component {
 export default connect(
   (state) => ({
     url : state.mypage.get('url'),
+    user_id: state.base.get('user_id'),
     data : state.mypage.get('data'),
     applyData: state.mypage.get('applyData'),
     visible: state.base.getIn(['modal', 'myPageMap']),
     applyVisible: state.marketUI.getIn(['modal','apply']),
     marketMap: state.mypage.get('marketPlace'),
     editTF: state.mypage.get('editTF'),
-    categories: state.class.get('categories')
-
+    categories: state.class.get('categories'),
+    userProfile: state.mypage.get('userProfile'),
   }),
   (dispatch) => ({
     MypageActions : bindActionCreators(mypageActions,dispatch),

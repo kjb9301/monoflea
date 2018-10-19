@@ -9,9 +9,9 @@ class MyPageWrapperContainer extends Component {
     return (
       <div>
         <MyPageWrapper
-        seller_id = {seller_id}
-        nickName = {nickName}
-        user_id = {user_id}
+          seller_id = {seller_id}
+          nickName = {nickName}
+          user_id = {user_id}
         />
       </div>
     );

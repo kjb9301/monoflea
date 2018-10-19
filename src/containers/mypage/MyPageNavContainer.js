@@ -23,18 +23,19 @@ class MyPageNavContainer extends Component {
   componentDidMount(){
     this.getNavList();
   }
+  
   render() {
     const {  seller_id, host_id, user_id ,navList, } = this.props;
     const { getData, } = this;
     if(!navList) return null;
     return (
       <MyPageNav
-      getData = {getData}
-      navs = {navList}
-      seller_id = {seller_id}
-      host_id = {host_id}
-      user_id = {user_id}
-    />
+        getData = {getData}
+        navs = {navList}
+        seller_id = {seller_id}
+        host_id = {host_id}
+        user_id = {user_id}
+      />
     );
   }
 }

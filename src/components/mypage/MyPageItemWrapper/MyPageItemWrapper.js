@@ -11,12 +11,13 @@ import MyPageTakenClass from '../MyPageTakenClass/MyPageTakenClass';
 const cx = classNames.bind(styles);
 let information = '';
 
-const MyPageItemWrapper = ({ data, openMap, url, editTF, toggleEdit, applyModal, showClassModal }) => {
+const MyPageItemWrapper 
+= ({ data, openMap, updateProfile, url, editTF, toggleEdit, changeProfileData, userProfile, applyModal, showClassModal  }) => {
   if (!data) return null;
 
   switch(url) {
     case '/mypages/profile' :
-            return <MyPageProfile data = {data} editTF={editTF} toggleEdit={toggleEdit}/>
+            return <MyPageProfile updateProfile={updateProfile} data = {data} editTF={editTF} toggleEdit={toggleEdit} userProfile={userProfile} changeProfileData={changeProfileData}/>
     case '/mypages/like-seller' :
             return <MyPageLikeSeller data = {data}/>
     case '/mypages/like-class' :

@@ -50,3 +50,4 @@ export const cancelOnedayClass = (id) => axios.delete(`/classes/taken`, { params
 // MyPage
 export const getMypageData = (url,id) => axios.get(`${url}?id=${id}`);
 export const getMarketPlace = (id) => axios.get(`/mypages/market-place?market_id=${id}`);
+export const updateProfile = (id, profile) => axios.put(`/mypages/update-profile`, { id, profile });
