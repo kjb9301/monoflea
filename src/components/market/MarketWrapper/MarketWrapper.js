@@ -18,16 +18,6 @@ const MarketWrapper = ({}) => {
         <MarketListContainer />
       </div>
     </div>   
-
-
-
-
-    // <div className={cx('wrapper')}>
-    //   <div className={cx('market-header')}>
-        
-    //   </div>
-    //   <MarketListContainer />
-    // </div>
   );
 };
 

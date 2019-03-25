@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const MarketItem = ({listType,market_id,market_name,market_place,market_poster,start_date,end_date,onDetail,curGetTime}) => {
+const MarketItem = ({listType,market_id,market_name,market_poster,start_date,onDetail,curGetTime}) => {
   const marketGetTime = new Date(start_date).getTime();
   const gap = marketGetTime - curGetTime;
   const dDay = Math.ceil(gap/(1000*60*60*24));
@@ -29,16 +29,7 @@ const MarketItem = ({listType,market_id,market_name,market_place,market_poster,s
   );
 };
 
-
 class MarketList extends Component {
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   const {listType,markets} = this.props;
-  //   if(listType === 'CL' && markets.marketComingList.length === nextProps.markets.length){
-  //     return false;
-  //   }
-  //   return true;         
-  // }
 
   render() {
     const {listType,markets,onDetail,curGetTime,children} = this.props;
